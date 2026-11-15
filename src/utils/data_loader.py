@@ -13,11 +13,11 @@ class DataLoader:
                 )
             
             corpus, queries, qrels = GenericDataLoader(data_path).load(split="train")
-            corpus2, queries2, qrels2 = GenericDataLoader(data_path).load(split="val")
+            corpus2, queries2, qrels2 = GenericDataLoader(data_path).load(split="dev")
             corpus3, queries3, qrels3 = GenericDataLoader(data_path).load(split="test")
             return {
                 "train": (corpus, queries, qrels),
-                "val": (corpus2, queries2, qrels2),
+                "dev": (corpus2, queries2, qrels2),
                 "test": (corpus3, queries3, qrels3),
             }
         except Exception as e:
