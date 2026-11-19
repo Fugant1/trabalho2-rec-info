@@ -1,4 +1,4 @@
-"""LLM generation module using LangChain and Google Gemini (free-tier compatible).
+"""LLM generation module using LangChain with local 4-bit Qwen3-4B (default) or Gemini.
 
 Implements the generation stage of the RAG pipeline defined in the project
 specification (Items 11-15):
@@ -15,23 +15,39 @@ Supports both experimental conditions with the same model and parameters:
 
 from __future__ import annotations
 
+import gc
 import os
+import re
 import time
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any, Literal
 
+from langchain_core.callbacks import CallbackManagerForLLMRun
 from langchain_core.documents import Document
 from langchain_core.language_models.chat_models import BaseChatModel
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
+from langchain_core.outputs import ChatGeneration, ChatResult
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_google_genai import ChatGoogleGenerativeAI
+from pydantic import PrivateAttr
 
-# Gemini Flash-Lite offers a free tier via Google AI Studio and supports
-# deterministic decoding parameters (temperature=0.0, seed).
+# Default local open-weights model quantized to 4-bit NF4 via bitsandbytes so
+# it fits comfortably within 16 GB RAM and 6 GB VRAM without external API limits.
+DEFAULT_QWEN_MODEL = "Qwen/Qwen3-4B"
+DEFAULT_LOCAL_MODEL = DEFAULT_QWEN_MODEL
+DEFAULT_LLM_MODEL = DEFAULT_QWEN_MODEL
 DEFAULT_GEMINI_MODEL = "gemini-3.5-flash-lite"
 
 _UNSET = object()
+
+_MODEL_ALIASES = {
+    "qwen3:4b": DEFAULT_QWEN_MODEL,
+    "qwen3-4b": DEFAULT_QWEN_MODEL,
+    "qwen3 4b": DEFAULT_QWEN_MODEL,
+    "qwen/qwen3-4b": DEFAULT_QWEN_MODEL,
+}
+
+_THINK_BLOCK_RE = re.compile(r"<think>.*?</think>", flags=re.IGNORECASE | re.DOTALL)
 
 _LANGUAGE_ALIASES = {
     "pt": "Portuguese",
@@ -48,18 +64,22 @@ _LANGUAGE_ALIASES = {
 
 NO_RAG_SYSTEM_PROMPT = (
     "You are a knowledgeable scientific and medical information assistant. "
-    "Answer the user's question clearly, accurately, and concisely in {language}. "
+    "Answer the user's question clearly, accurately, and concisely strictly in {language}. "
     "If you are uncertain or do not have enough knowledge to answer reliably, "
     "explicitly state that."
 )
 
-NO_RAG_HUMAN_TEMPLATE = "Question:\n{query}"
+NO_RAG_HUMAN_TEMPLATE = (
+    "Question:\n{query}\n\n"
+    "Important: Write your entire answer strictly in {language}."
+)
 
 RAG_SYSTEM_PROMPT = (
     "You are a scientific and medical information assistant operating in a "
     "Retrieval-Augmented Generation (RAG) pipeline.\n"
     "Follow these rules strictly:\n"
-    "1. Answer in {language}.\n"
+    "1. Write your ENTIRE answer strictly in {language}, even if the question "
+    "and context documents are in another language.\n"
     "2. Base your answer EXCLUSIVELY on the provided context documents. "
     "Do not use external knowledge or make unsupported extrapolations.\n"
     "3. Cite the exact document identifier(s) in square brackets (e.g., [MED-123]) "
@@ -74,7 +94,10 @@ RAG_HUMAN_TEMPLATE = (
     "Context documents:\n"
     "{context}\n\n"
     "Question:\n"
-    "{query}"
+    "{query}\n\n"
+    "Important: Write your ENTIRE answer strictly in {language} (do not switch "
+    "to English if {language} is not English). Cite the exact [doc_id] for every "
+    "claim and include a brief Sources/Fontes list at the end."
 )
 
 
@@ -131,11 +154,26 @@ class LLMResponse:
         }
 
 
+def _normalize_model_name(model: str) -> str:
+    cleaned = model.strip()
+    if not cleaned:
+        raise ValueError("model must be a non-empty string.")
+    return _MODEL_ALIASES.get(cleaned.lower(), cleaned)
+
+
 def _normalize_language(language: str) -> str:
     cleaned = language.strip()
     if not cleaned:
         raise ValueError("language must be a non-empty string.")
     return _LANGUAGE_ALIASES.get(cleaned.lower(), cleaned)
+
+
+def _strip_think_tags(text: str) -> str:
+    """Remove Qwen3 <think>...</think> reasoning blocks if present."""
+    cleaned = _THINK_BLOCK_RE.sub("", text)
+    if "</think>" in cleaned.lower():
+        cleaned = re.split(r"</think>", cleaned, flags=re.IGNORECASE)[-1]
+    return cleaned.strip()
 
 
 def _extract_doc_fields(item: Any, index: int) -> ContextDocument:
@@ -226,17 +264,17 @@ def _extract_doc_fields(item: Any, index: int) -> ContextDocument:
 def _extract_message_text(message: BaseMessage | str) -> str:
     """Extract clean plain text from a LangChain message or string."""
     if isinstance(message, str):
-        return message.strip()
+        return _strip_think_tags(message)
 
     # LangChain >=1.0 AIMessage exposes `.text` as a property which strips
-    # non-text blocks (such as Gemini thinking parts) and joins text parts cleanly.
+    # non-text blocks (such as thinking parts) and joins text parts cleanly.
     text_attr = getattr(message, "text", None)
     if isinstance(text_attr, str) and text_attr.strip():
-        return text_attr.strip()
+        return _strip_think_tags(text_attr)
 
     content = getattr(message, "content", "")
     if isinstance(content, str):
-        return content.strip()
+        return _strip_think_tags(content)
     if isinstance(content, list):
         parts: list[str] = []
         for block in content:
@@ -244,18 +282,222 @@ def _extract_message_text(message: BaseMessage | str) -> str:
                 parts.append(block)
             elif isinstance(block, Mapping) and block.get("type") == "text":
                 parts.append(str(block.get("text", "")))
-        return "\n".join(part for part in parts if part).strip()
-    return str(content).strip()
+        return _strip_think_tags("\n".join(part for part in parts if part))
+    return _strip_think_tags(str(content))
+
+
+class QuantizedLocalChatModel(BaseChatModel):
+    """LangChain chat model backed by a local 4-bit quantized Hugging Face CausalLM.
+
+    Uses ``bitsandbytes`` NF4 double quantization with ``low_cpu_mem_usage=True``
+    so ``Qwen/Qwen3-4B`` runs cleanly on machines with 16 GB RAM and 6 GB VRAM.
+    """
+
+    model_name: str = DEFAULT_QWEN_MODEL
+    temperature: float = 0.0
+    max_output_tokens: int | None = 1024
+    seed: int | None = 42
+    load_in_4bit: bool = True
+    bnb_4bit_quant_type: str = "nf4"
+    bnb_4bit_use_double_quant: bool = True
+    device_map: str = "auto"
+    enable_thinking: bool = False
+
+    _tokenizer: Any = PrivateAttr(default=None)
+    _model: Any = PrivateAttr(default=None)
+    _quantization_config: Any = PrivateAttr(default=None)
+
+    def model_post_init(self, __context: Any) -> None:
+        self.model_name = _normalize_model_name(self.model_name)
+
+    @property
+    def _llm_type(self) -> str:
+        return "local-transformers-4bit" if self.load_in_4bit else "local-transformers"
+
+    @property
+    def _identifying_params(self) -> dict[str, Any]:
+        return {
+            "model_name": self.model_name,
+            "temperature": self.temperature,
+            "max_output_tokens": self.max_output_tokens,
+            "seed": self.seed,
+            "load_in_4bit": self.load_in_4bit,
+            "bnb_4bit_quant_type": self.bnb_4bit_quant_type,
+            "bnb_4bit_use_double_quant": self.bnb_4bit_use_double_quant,
+            "enable_thinking": self.enable_thinking,
+        }
+
+    @property
+    def is_loaded_in_4bit(self) -> bool:
+        self._ensure_loaded()
+        return bool(getattr(self._model, "is_loaded_in_4bit", False))
+
+    @property
+    def quantization_config(self) -> Any:
+        self._ensure_loaded()
+        return self._quantization_config
+
+    def _ensure_loaded(self) -> None:
+        if self._model is not None and self._tokenizer is not None:
+            return
+
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+        compute_dtype = (
+            torch.bfloat16
+            if torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+            else torch.float16
+        )
+
+        tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
+            tokenizer.pad_token = tokenizer.eos_token
+
+        model_kwargs: dict[str, Any] = {
+            "device_map": self.device_map,
+            "low_cpu_mem_usage": True,
+        }
+        if self.load_in_4bit:
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_quant_type=self.bnb_4bit_quant_type,
+                bnb_4bit_use_double_quant=self.bnb_4bit_use_double_quant,
+                bnb_4bit_compute_dtype=compute_dtype,
+            )
+            model_kwargs["quantization_config"] = bnb_config
+            self._quantization_config = bnb_config
+        else:
+            model_kwargs["dtype"] = compute_dtype
+
+        model = AutoModelForCausalLM.from_pretrained(self.model_name, **model_kwargs)
+        model.eval()
+
+        self._tokenizer = tokenizer
+        self._model = model
+
+    def unload(self) -> None:
+        """Release model weights from GPU/CPU memory."""
+        self._model = None
+        self._tokenizer = None
+        self._quantization_config = None
+        gc.collect()
+        try:
+            import torch
+
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception:
+            pass
+
+    def _format_messages(self, messages: list[BaseMessage]) -> str:
+        chat_messages: list[dict[str, str]] = []
+        for msg in messages:
+            if isinstance(msg, SystemMessage):
+                role = "system"
+            elif isinstance(msg, HumanMessage):
+                role = "user"
+            elif isinstance(msg, AIMessage):
+                role = "assistant"
+            else:
+                role = "user"
+            chat_messages.append({"role": role, "content": _extract_message_text(msg)})
+
+        try:
+            return str(
+                self._tokenizer.apply_chat_template(
+                    chat_messages,
+                    tokenize=False,
+                    add_generation_prompt=True,
+                    enable_thinking=self.enable_thinking,
+                )
+            )
+        except TypeError:
+            return str(
+                self._tokenizer.apply_chat_template(
+                    chat_messages,
+                    tokenize=False,
+                    add_generation_prompt=True,
+                )
+            )
+
+    def _generate(
+        self,
+        messages: list[BaseMessage],
+        stop: list[str] | None = None,
+        run_manager: CallbackManagerForLLMRun | None = None,
+        **kwargs: Any,
+    ) -> ChatResult:
+        import torch
+
+        self._ensure_loaded()
+
+        prompt_text = self._format_messages(messages)
+        inputs = self._tokenizer(prompt_text, return_tensors="pt")
+        target_device = getattr(self._model, "device", None)
+        if target_device is not None:
+            inputs = {k: v.to(target_device) for k, v in inputs.items()}
+
+        if self.seed is not None:
+            torch.manual_seed(self.seed)
+            if torch.cuda.is_available():
+                torch.cuda.manual_seed_all(self.seed)
+
+        from transformers import GenerationConfig
+
+        max_new_tokens = int(
+            kwargs.get("max_new_tokens")
+            or kwargs.get("max_output_tokens")
+            or self.max_output_tokens
+            or 1024
+        )
+        eos_token_id = (
+            getattr(self._model.generation_config, "eos_token_id", None)
+            or self._tokenizer.eos_token_id
+        )
+        gen_kwargs: dict[str, Any] = {
+            "max_new_tokens": max_new_tokens,
+            "pad_token_id": self._tokenizer.pad_token_id,
+            "eos_token_id": eos_token_id,
+            "do_sample": self.temperature > 0.0,
+        }
+        if self.temperature > 0.0:
+            gen_kwargs["temperature"] = self.temperature
+        gen_config = GenerationConfig(**gen_kwargs)
+
+        input_len = int(inputs["input_ids"].shape[-1])
+        with torch.inference_mode():
+            output_ids = self._model.generate(
+                **inputs,
+                generation_config=gen_config,
+            )
+
+        generated_ids = output_ids[0, input_len:]
+        raw_text = self._tokenizer.decode(generated_ids, skip_special_tokens=True)
+        cleaned_text = _strip_think_tags(raw_text)
+
+        if stop:
+            for stop_seq in stop:
+                if stop_seq and stop_seq in cleaned_text:
+                    cleaned_text = cleaned_text.split(stop_seq, 1)[0].strip()
+
+        generation = ChatGeneration(message=AIMessage(content=cleaned_text))
+        return ChatResult(generations=[generation])
 
 
 class RAGLLM:
-    """LangChain + Gemini generator supporting RAG and non-RAG queries.
+    """LangChain generator supporting RAG and non-RAG queries.
+
+    Defaults to ``Qwen/Qwen3-4B`` loaded locally with 4-bit NF4 quantization
+    (``bitsandbytes``) so it runs offline without external API rate limits and
+    within a 16 GB RAM budget. Optionally supports Google Gemini when
+    ``provider="gemini"`` or a ``gemini-*`` model name is specified.
 
     Parameters
     ----------
     model:
-        Gemini model identifier (defaults to ``gemini-3.5-flash-lite``, available
-        on the Google AI Studio free tier).
+        Model identifier (defaults to ``Qwen/Qwen3-4B``; aliases such as
+        ``"qwen3:4b"`` are accepted and normalized automatically).
     temperature:
         Sampling temperature. Defaults to ``0.0`` for reproducibility as
         recommended by the assignment specification.
@@ -265,28 +507,37 @@ class RAGLLM:
         Optional fixed random seed for reproducibility when supported by the
         backend. Defaults to ``42``.
     max_retries:
-        Automatic retry count for transient API errors (e.g., free-tier 429
-        rate limits).
+        Automatic retry count for transient API errors (used for API backends).
     timeout:
-        Per-request timeout in seconds.
+        Per-request timeout in seconds (used for API backends).
     language:
         Target language enforced consistently across both Condition A (no RAG)
         and Condition B (with RAG). Defaults to ``"Portuguese"``.
     api_key:
-        Google AI Studio API key. If omitted, reads ``GOOGLE_API_KEY`` or
-        ``GEMINI_API_KEY`` from the environment.
+        Optional Google AI Studio API key (only used if a Gemini model is selected).
     top_k_context:
         Maximum number of retrieved documents included in the RAG prompt
         (defaults to ``5`` per Item 12 of the specification; pass ``None`` to
         include all provided documents).
+    provider:
+        Backend selector: ``"auto"`` (default — chooses local 4-bit Transformers
+        for open models like ``Qwen/Qwen3-4B`` and Gemini for ``gemini-*`` names),
+        ``"local"``, or ``"gemini"``.
+    load_in_4bit:
+        Whether to quantize the local model to 4-bit NF4 via ``bitsandbytes``
+        (defaults to ``True``).
+    enable_thinking:
+        Whether to enable Qwen3's internal ``<think>`` mode (defaults to
+        ``False`` so generation budget goes directly to the answer).
+    device_map:
+        Accelerate device placement strategy for local models (default ``"auto"``).
     llm:
-        Optional pre-configured LangChain ``BaseChatModel`` instance (useful
-        for custom models or testing without hitting the external API).
+        Optional pre-configured LangChain ``BaseChatModel`` instance.
     """
 
     def __init__(
         self,
-        model: str = DEFAULT_GEMINI_MODEL,
+        model: str = DEFAULT_QWEN_MODEL,
         temperature: float = 0.0,
         max_output_tokens: int | None = 1024,
         seed: int | None = 42,
@@ -295,14 +546,20 @@ class RAGLLM:
         language: str = "Portuguese",
         api_key: str | None = None,
         top_k_context: int | None = 5,
+        provider: Literal["auto", "local", "gemini"] = "auto",
+        load_in_4bit: bool = True,
+        enable_thinking: bool = False,
+        device_map: str = "auto",
         llm: BaseChatModel | None = None,
     ) -> None:
         if not 0.0 <= temperature <= 2.0:
             raise ValueError("temperature must be between 0.0 and 2.0.")
         if top_k_context is not None and top_k_context <= 0:
             raise ValueError("top_k_context must be positive or None.")
+        if provider not in ("auto", "local", "gemini"):
+            raise ValueError("provider must be one of 'auto', 'local', or 'gemini'.")
 
-        self.model = model
+        self.model = _normalize_model_name(model)
         self.temperature = temperature
         self.max_output_tokens = max_output_tokens
         self.seed = seed
@@ -311,6 +568,10 @@ class RAGLLM:
         self.language = _normalize_language(language)
         self._api_key = api_key
         self.top_k_context = top_k_context
+        self.provider = provider
+        self.load_in_4bit = load_in_4bit
+        self.enable_thinking = enable_thinking
+        self.device_map = device_map
         self._llm: BaseChatModel | None = llm
 
     @classmethod
@@ -318,7 +579,7 @@ class RAGLLM:
         """Instantiate :class:`RAGLLM` from a ``Config`` instance or dict."""
         getter = config.get if hasattr(config, "get") else dict.get
         return cls(
-            model=getter("llm_model", DEFAULT_GEMINI_MODEL),
+            model=getter("llm_model", DEFAULT_QWEN_MODEL),
             temperature=getter("llm_temperature", 0.0),
             max_output_tokens=getter("llm_max_output_tokens", 1024),
             seed=getter("llm_seed", 42),
@@ -327,16 +588,45 @@ class RAGLLM:
             language=getter("llm_language", "Portuguese"),
             api_key=getter("google_api_key", None),
             top_k_context=getter("rag_top_k", 5),
+            provider=getter("llm_provider", "auto"),
+            load_in_4bit=getter("llm_load_in_4bit", True),
+            enable_thinking=getter("llm_enable_thinking", False),
+            device_map=getter("llm_device_map", "auto"),
         )
+
+    def _resolved_provider(self) -> Literal["local", "gemini"]:
+        if self.provider in ("local", "gemini"):
+            return self.provider
+        if self.model.lower().startswith("gemini"):
+            return "gemini"
+        return "local"
 
     @property
     def llm(self) -> BaseChatModel:
         """Lazily initialize and return the underlying LangChain chat model."""
         if self._llm is None:
-            self._llm = self._build_gemini_llm()
+            if self._resolved_provider() == "gemini":
+                self._llm = self._build_gemini_llm()
+            else:
+                self._llm = self._build_local_llm()
         return self._llm
 
-    def _build_gemini_llm(self) -> ChatGoogleGenerativeAI:
+    def _build_local_llm(self) -> QuantizedLocalChatModel:
+        model = QuantizedLocalChatModel(
+            model_name=self.model,
+            temperature=self.temperature,
+            max_output_tokens=self.max_output_tokens,
+            seed=self.seed,
+            load_in_4bit=self.load_in_4bit,
+            device_map=self.device_map,
+            enable_thinking=self.enable_thinking,
+        )
+        model._ensure_loaded()
+        return model
+
+    def _build_gemini_llm(self) -> BaseChatModel:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+
         api_key = (
             self._api_key
             or os.getenv("GOOGLE_API_KEY")
@@ -441,7 +731,7 @@ class RAGLLM:
         documents: Sequence[Any] | None = None,
         top_k: int | None | object = _UNSET,
     ) -> LLMResponse:
-        """Invoke the LangChain Gemini chain and return answer plus metadata."""
+        """Invoke the LangChain LLM chain and return answer plus metadata."""
         prompt_template, prompt_vars, normalized_docs, condition = self.build_prompt(
             query=query,
             documents=documents,

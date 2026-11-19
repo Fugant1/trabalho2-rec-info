@@ -1,0 +1,858 @@
+{
+  "corrector_metadata": {
+    "k_gram": 2,
+    "jaccard_threshold": 0.35,
+    "max_edit_distance": 2,
+    "max_candidates": 100,
+    "distance_metric": "damerau_levenshtein",
+    "pad_kgrams": true,
+    "vocabulary_size": 26389,
+    "num_kgrams": 1096
+  },
+  "num_queries": 10,
+  "mean_ndcg10_original": 0.5269049023276731,
+  "mean_ndcg10_erro": 0.20754240534595478,
+  "mean_ndcg10_corrigida": 0.5269049023276731,
+  "queries_with_degradation": 8,
+  "mean_recovery_rate": 1.0,
+  "records": [
+    {
+      "query_id": "PLAIN-1656",
+      "query_original": "mouth cancer",
+      "query_erro": "mouth caqncer",
+      "query_corrigida": "mouth cancer",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.13886244387355454,
+      "NDCG10_erro": 0.09478836436955078,
+      "NDCG10_corrigida": 0.13886244387355454,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-1275",
+      "query_original": "goji berries",
+      "query_erro": "goji beries",
+      "query_corrigida": "goji berries",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.4537425745411855,
+      "NDCG10_erro": 0.3589542101716347,
+      "NDCG10_corrigida": 0.4537425745411855,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-913",
+      "query_original": "cinnamon",
+      "query_erro": "cinnqmon",
+      "query_corrigida": "cinnamon",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.9363792118010483,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.9363792118010483,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2830",
+      "query_original": "Neurobiology of Artificial Sweeteners",
+      "query_erro": "neurobiolgoy of Artificial Sweeteners",
+      "query_corrigida": "neurobiology of Artificial Sweeteners",
+      "tipo_erro": "troca",
+      "NDCG10_original": 0.4030302838010049,
+      "NDCG10_erro": 0.4030302838010049,
+      "NDCG10_corrigida": 0.4030302838010049,
+      "error_reduced_performance": false,
+      "recovery_rate": null,
+      "note": "o erro não reduziu o desempenho"
+    },
+    {
+      "query_id": "PLAIN-2051",
+      "query_original": "saturated fat",
+      "query_erro": "saaturated fat",
+      "query_corrigida": "saturated fat",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.7421246259355073,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.7421246259355073,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-1151",
+      "query_original": "factory farming practices",
+      "query_erro": "factory farming practces",
+      "query_corrigida": "factory farming practices",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.23177307466786254,
+      "NDCG10_erro": 0.11004588314904008,
+      "NDCG10_corrigida": 0.23177307466786254,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2071",
+      "query_original": "serotonin",
+      "query_erro": "swrotonin",
+      "query_corrigida": "serotonin",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.6434035614033737,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.6434035614033737,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-1568",
+      "query_original": "maple syrup",
+      "query_erro": "mpale syrup",
+      "query_corrigida": "male syrup",
+      "tipo_erro": "troca",
+      "NDCG10_original": 1.0,
+      "NDCG10_erro": 1.0,
+      "NDCG10_corrigida": 1.0,
+      "error_reduced_performance": false,
+      "recovery_rate": null,
+      "note": "o erro não reduziu o desempenho"
+    },
+    {
+      "query_id": "PLAIN-1940",
+      "query_original": "prolactin",
+      "query_erro": "preolactin",
+      "query_corrigida": "prolactin",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.3589542101716347,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.3589542101716347,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2930",
+      "query_original": "Kiwifruit for Irritable Bowel Syndrome",
+      "query_erro": "kiwfruit for Irritable Bowel Syndrome",
+      "query_corrigida": "kiwifruit for Irritable Bowel Syndrome",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.36077903708155934,
+      "NDCG10_erro": 0.10860531196831713,
+      "NDCG10_corrigida": 0.36077903708155934,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    }
+  ],
+  "semantic_optional": [
+    {
+      "query_id": "PLAIN-1656",
+      "query_original": "mouth cancer",
+      "query_erro": "mouth caqncer",
+      "query_corrigida": "mouth cancer",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.0,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.0,
+      "error_reduced_performance": false,
+      "recovery_rate": null,
+      "note": "o erro não reduziu o desempenho"
+    },
+    {
+      "query_id": "PLAIN-1275",
+      "query_original": "goji berries",
+      "query_erro": "goji beries",
+      "query_corrigida": "goji berries",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.5541432109622958,
+      "NDCG10_erro": 0.21222636597291458,
+      "NDCG10_corrigida": 0.5541432109622958,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-913",
+      "query_original": "cinnamon",
+      "query_erro": "cinnqmon",
+      "query_corrigida": "cinnamon",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.7849818707050383,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.7849818707050383,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2830",
+      "query_original": "Neurobiology of Artificial Sweeteners",
+      "query_erro": "neurobiolgoy of Artificial Sweeteners",
+      "query_corrigida": "neurobiology of Artificial Sweeteners",
+      "tipo_erro": "troca",
+      "NDCG10_original": 0.27511096828801057,
+      "NDCG10_erro": 0.2275408362015762,
+      "NDCG10_corrigida": 0.27511096828801057,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2051",
+      "query_original": "saturated fat",
+      "query_erro": "saaturated fat",
+      "query_corrigida": "saturated fat",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.6816808362189438,
+      "NDCG10_erro": 0.42367664508731884,
+      "NDCG10_corrigida": 0.6816808362189438,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-1151",
+      "query_original": "factory farming practices",
+      "query_erro": "factory farming practces",
+      "query_corrigida": "factory farming practices",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.28762634971412726,
+      "NDCG10_erro": 0.24703059344735182,
+      "NDCG10_corrigida": 0.28762634971412726,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2071",
+      "query_original": "serotonin",
+      "query_erro": "swrotonin",
+      "query_corrigida": "serotonin",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.3471357245055706,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.3471357245055706,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-1568",
+      "query_original": "maple syrup",
+      "query_erro": "mpale syrup",
+      "query_corrigida": "male syrup",
+      "tipo_erro": "troca",
+      "NDCG10_original": 0.9197207891481876,
+      "NDCG10_erro": 0.19342640361727081,
+      "NDCG10_corrigida": 0.0,
+      "error_reduced_performance": true,
+      "recovery_rate": -0.2663195633487891,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-1940",
+      "query_original": "prolactin",
+      "query_erro": "preolactin",
+      "query_corrigida": "prolactin",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.3589542101716347,
+      "NDCG10_erro": 0.06943122193677727,
+      "NDCG10_corrigida": 0.3589542101716347,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2930",
+      "query_original": "Kiwifruit for Irritable Bowel Syndrome",
+      "query_erro": "kiwfruit for Irritable Bowel Syndrome",
+      "query_corrigida": "kiwifruit for Irritable Bowel Syndrome",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.4509737963519492,
+      "NDCG10_erro": 0.42503508006474094,
+      "NDCG10_corrigida": 0.4509737963519492,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    }
+  ],
+  "details": [
+    {
+      "query_id": "PLAIN-1656",
+      "tipo_erro": "insercao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "caqncer"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "mouth caqncer",
+        "corrected_query": "mouth cancer",
+        "corrections": [
+          {
+            "original": "caqncer",
+            "corrected": "cancer",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.6666666666666666,
+            "candidates_checked": 13,
+            "top_candidates": [
+              {
+                "term": "cancer",
+                "edit_distance": 1,
+                "jaccard": 0.666667,
+                "freq": 741
+              },
+              {
+                "term": "cancers",
+                "edit_distance": 2,
+                "jaccard": 0.454545,
+                "freq": 176
+              },
+              {
+                "term": "cancer3",
+                "edit_distance": 2,
+                "jaccard": 0.454545,
+                "freq": 1
+              },
+              {
+                "term": "cancera",
+                "edit_distance": 2,
+                "jaccard": 0.454545,
+                "freq": 1
+              },
+              {
+                "term": "caner",
+                "edit_distance": 2,
+                "jaccard": 0.4,
+                "freq": 1
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-1656",
+        "query_original": "mouth cancer",
+        "query_erro": "mouth caqncer",
+        "query_corrigida": "mouth cancer",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.0,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.0,
+        "error_reduced_performance": false,
+        "recovery_rate": null,
+        "note": "o erro não reduziu o desempenho"
+      }
+    },
+    {
+      "query_id": "PLAIN-1275",
+      "tipo_erro": "remocao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "beries"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "goji beries",
+        "corrected_query": "goji berries",
+        "corrections": [
+          {
+            "original": "beries",
+            "corrected": "berries",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.875,
+            "candidates_checked": 29,
+            "top_candidates": [
+              {
+                "term": "berries",
+                "edit_distance": 1,
+                "jaccard": 0.875,
+                "freq": 28
+              },
+              {
+                "term": "series",
+                "edit_distance": 1,
+                "jaccard": 0.555556,
+                "freq": 56
+              },
+              {
+                "term": "fries",
+                "edit_distance": 2,
+                "jaccard": 0.444444,
+                "freq": 8
+              },
+              {
+                "term": "tries",
+                "edit_distance": 2,
+                "jaccard": 0.444444,
+                "freq": 3
+              },
+              {
+                "term": "besides",
+                "edit_distance": 2,
+                "jaccard": 0.4,
+                "freq": 17
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-1275",
+        "query_original": "goji berries",
+        "query_erro": "goji beries",
+        "query_corrigida": "goji berries",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.5541432109622958,
+        "NDCG10_erro": 0.21222636597291458,
+        "NDCG10_corrigida": 0.5541432109622958,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-913",
+      "tipo_erro": "substituicao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "cinnqmon"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "cinnqmon",
+        "corrected_query": "cinnamon",
+        "corrections": [
+          {
+            "original": "cinnqmon",
+            "corrected": "cinnamon",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.6363636363636364,
+            "candidates_checked": 2,
+            "top_candidates": [
+              {
+                "term": "cinnamon",
+                "edit_distance": 1,
+                "jaccard": 0.636364,
+                "freq": 14
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-913",
+        "query_original": "cinnamon",
+        "query_erro": "cinnqmon",
+        "query_corrigida": "cinnamon",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.7849818707050383,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.7849818707050383,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2830",
+      "tipo_erro": "troca",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "neurobiolgoy"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "neurobiolgoy of Artificial Sweeteners",
+        "corrected_query": "neurobiology of Artificial Sweeteners",
+        "corrections": [
+          {
+            "original": "neurobiolgoy",
+            "corrected": "neurobiology",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.625,
+            "candidates_checked": 2,
+            "top_candidates": [
+              {
+                "term": "neurobiology",
+                "edit_distance": 1,
+                "jaccard": 0.625,
+                "freq": 2
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2830",
+        "query_original": "Neurobiology of Artificial Sweeteners",
+        "query_erro": "neurobiolgoy of Artificial Sweeteners",
+        "query_corrigida": "neurobiology of Artificial Sweeteners",
+        "tipo_erro": "troca",
+        "NDCG10_original": 0.27511096828801057,
+        "NDCG10_erro": 0.2275408362015762,
+        "NDCG10_corrigida": 0.27511096828801057,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2051",
+      "tipo_erro": "insercao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "saaturated"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "saaturated fat",
+        "corrected_query": "saturated fat",
+        "corrections": [
+          {
+            "original": "saaturated",
+            "corrected": "saturated",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.9,
+            "candidates_checked": 17,
+            "top_candidates": [
+              {
+                "term": "saturated",
+                "edit_distance": 1,
+                "jaccard": 0.9,
+                "freq": 123
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2051",
+        "query_original": "saturated fat",
+        "query_erro": "saaturated fat",
+        "query_corrigida": "saturated fat",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.6816808362189438,
+        "NDCG10_erro": 0.42367664508731884,
+        "NDCG10_corrigida": 0.6816808362189438,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-1151",
+      "tipo_erro": "remocao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "practces"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "factory farming practces",
+        "corrected_query": "factory farming practices",
+        "corrections": [
+          {
+            "original": "practces",
+            "corrected": "practices",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.7272727272727273,
+            "candidates_checked": 14,
+            "top_candidates": [
+              {
+                "term": "practices",
+                "edit_distance": 1,
+                "jaccard": 0.727273,
+                "freq": 71
+              },
+              {
+                "term": "practice",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 89
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-1151",
+        "query_original": "factory farming practices",
+        "query_erro": "factory farming practces",
+        "query_corrigida": "factory farming practices",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.28762634971412726,
+        "NDCG10_erro": 0.24703059344735182,
+        "NDCG10_corrigida": 0.28762634971412726,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2071",
+      "tipo_erro": "substituicao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "swrotonin"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "swrotonin",
+        "corrected_query": "serotonin",
+        "corrections": [
+          {
+            "original": "swrotonin",
+            "corrected": "serotonin",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.6666666666666666,
+            "candidates_checked": 1,
+            "top_candidates": [
+              {
+                "term": "serotonin",
+                "edit_distance": 1,
+                "jaccard": 0.666667,
+                "freq": 21
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2071",
+        "query_original": "serotonin",
+        "query_erro": "swrotonin",
+        "query_corrigida": "serotonin",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.3471357245055706,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.3471357245055706,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-1568",
+      "tipo_erro": "troca",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "mpale"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "mpale syrup",
+        "corrected_query": "male syrup",
+        "corrections": [
+          {
+            "original": "mpale",
+            "corrected": "male",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.5714285714285714,
+            "candidates_checked": 13,
+            "top_candidates": [
+              {
+                "term": "male",
+                "edit_distance": 1,
+                "jaccard": 0.571429,
+                "freq": 151
+              },
+              {
+                "term": "ale",
+                "edit_distance": 2,
+                "jaccard": 0.428571,
+                "freq": 1
+              },
+              {
+                "term": "mle",
+                "edit_distance": 2,
+                "jaccard": 0.428571,
+                "freq": 1
+              },
+              {
+                "term": "mpa",
+                "edit_distance": 2,
+                "jaccard": 0.428571,
+                "freq": 1
+              },
+              {
+                "term": "kale",
+                "edit_distance": 2,
+                "jaccard": 0.375,
+                "freq": 8
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-1568",
+        "query_original": "maple syrup",
+        "query_erro": "mpale syrup",
+        "query_corrigida": "male syrup",
+        "tipo_erro": "troca",
+        "NDCG10_original": 0.9197207891481876,
+        "NDCG10_erro": 0.19342640361727081,
+        "NDCG10_corrigida": 0.0,
+        "error_reduced_performance": true,
+        "recovery_rate": -0.2663195633487891,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-1940",
+      "tipo_erro": "insercao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "preolactin"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "preolactin",
+        "corrected_query": "prolactin",
+        "corrections": [
+          {
+            "original": "preolactin",
+            "corrected": "prolactin",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.75,
+            "candidates_checked": 6,
+            "top_candidates": [
+              {
+                "term": "prolactin",
+                "edit_distance": 1,
+                "jaccard": 0.75,
+                "freq": 7
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-1940",
+        "query_original": "prolactin",
+        "query_erro": "preolactin",
+        "query_corrigida": "prolactin",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.3589542101716347,
+        "NDCG10_erro": 0.06943122193677727,
+        "NDCG10_corrigida": 0.3589542101716347,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2930",
+      "tipo_erro": "remocao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "kiwfruit"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "kiwfruit for Irritable Bowel Syndrome",
+        "corrected_query": "kiwifruit for Irritable Bowel Syndrome",
+        "corrections": [
+          {
+            "original": "kiwfruit",
+            "corrected": "kiwifruit",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.7272727272727273,
+            "candidates_checked": 2,
+            "top_candidates": [
+              {
+                "term": "kiwifruit",
+                "edit_distance": 1,
+                "jaccard": 0.727273,
+                "freq": 6
+              },
+              {
+                "term": "kiwifruits",
+                "edit_distance": 2,
+                "jaccard": 0.538462,
+                "freq": 3
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2930",
+        "query_original": "Kiwifruit for Irritable Bowel Syndrome",
+        "query_erro": "kiwfruit for Irritable Bowel Syndrome",
+        "query_corrigida": "kiwifruit for Irritable Bowel Syndrome",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.4509737963519492,
+        "NDCG10_erro": 0.42503508006474094,
+        "NDCG10_corrigida": 0.4509737963519492,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+query_id,query_original,query_erro,query_corrigida,tipo_erro,NDCG10_original,NDCG10_erro,NDCG10_corrigida,recovery_rate,error_reduced_performance,note
+PLAIN-1656,mouth cancer,mouth caqncer,mouth cancer,insercao,0.13886244387355454,0.09478836436955078,0.13886244387355454,1.0,True,
+PLAIN-1275,goji berries,goji beries,goji berries,remocao,0.4537425745411855,0.3589542101716347,0.4537425745411855,1.0,True,
+PLAIN-913,cinnamon,cinnqmon,cinnamon,substituicao,0.9363792118010483,0.0,0.9363792118010483,1.0,True,
+PLAIN-2830,Neurobiology of Artificial Sweeteners,neurobiolgoy of Artificial Sweeteners,neurobiology of Artificial Sweeteners,troca,0.4030302838010049,0.4030302838010049,0.4030302838010049,,False,o erro não reduziu o desempenho
+PLAIN-2051,saturated fat,saaturated fat,saturated fat,insercao,0.7421246259355073,0.0,0.7421246259355073,1.0,True,
+PLAIN-1151,factory farming practices,factory farming practces,factory farming practices,remocao,0.23177307466786254,0.11004588314904008,0.23177307466786254,1.0,True,
+PLAIN-2071,serotonin,swrotonin,serotonin,substituicao,0.6434035614033737,0.0,0.6434035614033737,1.0,True,
+PLAIN-1568,maple syrup,mpale syrup,male syrup,troca,1.0,1.0,1.0,,False,o erro não reduziu o desempenho
+PLAIN-1940,prolactin,preolactin,prolactin,insercao,0.3589542101716347,0.0,0.3589542101716347,1.0,True,
+PLAIN-2930,Kiwifruit for Irritable Bowel Syndrome,kiwfruit for Irritable Bowel Syndrome,kiwifruit for Irritable Bowel Syndrome,remocao,0.36077903708155934,0.10860531196831713,0.36077903708155934,1.0,True,

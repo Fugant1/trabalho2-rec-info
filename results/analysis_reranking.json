@@ -1,0 +1,1610 @@
+{
+  "hybrid_global": {
+    "Precision@10": 0.2529411764705882,
+    "Recall@10": 0.1748649972241968,
+    "MAP@10": 0.13352934715493364,
+    "NDCG@10": 0.34689997914463105,
+    "Hit@10": 0.7306501547987616
+  },
+  "reranking_global": {
+    "Precision@10": 0.251702786377709,
+    "Recall@10": 0.1663439182462947,
+    "MAP@10": 0.13841794481316672,
+    "NDCG@10": 0.35628200328854287,
+    "Hit@10": 0.7244582043343654
+  },
+  "largest_gains": [
+    {
+      "query_id": "PLAIN-1320",
+      "query_text": "Harvard Physicians’ Study II",
+      "ndcg_before": 0.08747171410140821,
+      "ndcg_after": 0.5709662133861838,
+      "ndcg_delta": 0.4834944992847756,
+      "top_before": [
+        {
+          "doc_id": "MED-2112",
+          "title": "How evidence-based medicine biases physicians against nutrition.",
+          "text_snippet": "Medical students in the United States are taught little about nutrition and dietetics. Worse yet, their training biases them against the studies that show the power of dietary approaches to managing disease. The current approach to evidence-based medicine encourages physicians to...",
+          "rank_before": 1,
+          "score_before": 0.13090909090909092,
+          "rank_after": 26,
+          "score_after": -9.774547576904297,
+          "rank_gain": -25,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1986",
+          "title": "Long-term morbidity and mortality of overweight adolescents. A follow-up of the Harvard Growth Study of 1922 to 1935.",
+          "text_snippet": "BACKGROUND: Overweight in adults is associated with increased morbidity and mortality. In contrast, the long-term effect of overweight in adolescence on morbidity and mortality is not known. METHODS: We studied the relation between overweight and morbidity and mortality in 508 le...",
+          "rank_before": 2,
+          "score_before": 0.11471861471861472,
+          "rank_after": 4,
+          "score_after": -4.050281047821045,
+          "rank_gain": -2,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-761",
+          "title": "The counseling practices of internists.",
+          "text_snippet": "OBJECTIVES: To determine the counseling practices of a group of internists in the areas of smoking, exercise, and alcohol and seat belt use, and to determine the associations among physicians' personal health habits and their counseling practices. DESIGN: A random stratified samp...",
+          "rank_before": 3,
+          "score_before": 0.11036036036036036,
+          "rank_after": 8,
+          "score_after": -7.343164443969727,
+          "rank_gain": -5,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1543",
+          "title": "Patient-related diet and exercise counseling: do providers' own lifestyle habits matter?",
+          "text_snippet": "The goal of this research was to evaluate the personal health behaviors of physicians in training and attending physicians in association with patient-related lifestyle counseling. Physicians at a major teaching hospital were surveyed regarding their personal lifestyle behavior, ...",
+          "rank_before": 4,
+          "score_before": 0.10795454545454546,
+          "rank_after": 19,
+          "score_after": -9.051448822021484,
+          "rank_gain": -15,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1549",
+          "title": "Physicians' health habits are associated with lifestyle counseling for hypertensive patients.",
+          "text_snippet": "BACKGROUND: The Seventh Report of the Joint National Committee on Prevention, Detection, Evaluation, and Treatment of High Blood Pressure (JNC VII) recommended lifestyle interventions, either with or without pharmacologic treatment, for all patients with high blood pressure. The ...",
+          "rank_before": 5,
+          "score_before": 0.10025062656641603,
+          "rank_after": 13,
+          "score_after": -7.908581733703613,
+          "rank_gain": -8,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4929",
+          "title": "Vitamins E and C in the Prevention of Cardiovascular Disease in Men: The Physicians’ Health Study II Randomized Trial",
+          "text_snippet": "Context Basic and observational studies suggest vitamins E or C may reduce risk of cardiovascular disease (CVD). However, few long-term trials have evaluated men at initially low risk of CVD, and no previous trial in men has examined vitamin C alone in the prevention of CVD. Obje...",
+          "rank_before": 6,
+          "score_before": 0.09741784037558684,
+          "rank_after": 2,
+          "score_after": 0.17774616181850433,
+          "rank_gain": 4,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-728",
+          "title": "Barriers to providing nutrition counseling cited by physicians: a survey of primary care practitioners.",
+          "text_snippet": "In a 1995 pivotal study, Kushner described the attitudes, practice behaviors, and barriers to the delivery of nutrition counseling by primary care physicians. This article recognized nutrition and dietary counseling as key components in the delivery of preventive services by prim...",
+          "rank_before": 7,
+          "score_before": 0.09722222222222221,
+          "rank_after": 10,
+          "score_after": -7.609072685241699,
+          "rank_gain": -3,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1053",
+          "title": "Physician disclosure of healthy personal behaviors improves credibility and ability to motivate.",
+          "text_snippet": "CONTEXT: While some studies have shown that physicians with healthy personal habits are especially likely to discuss prevention with their patients, to our knowledge no one has published information testing whether physician credibility and patient motivation to adopt healthier h...",
+          "rank_before": 8,
+          "score_before": 0.0946843853820598,
+          "rank_after": 14,
+          "score_after": -8.551700592041016,
+          "rank_gain": -6,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1097",
+          "title": "Moses Maimonides: medieval physician and scholar.",
+          "text_snippet": "Moses Maimonides (1135-1204), physician and philosopher, was the greatest Jewish thinker of the Middle Ages. Faced with a life of persecution, exile, and tragedy, Maimonides overcame obstacles to become the leading physician in his era, a clinician whose skills were sought across...",
+          "rank_before": 9,
+          "score_before": 0.09446693657219973,
+          "rank_after": 15,
+          "score_after": -8.663178443908691,
+          "rank_gain": -6,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2758",
+          "title": "Multivitamins in the Prevention of Cardiovascular Disease in Men: The Physicians' Health Study II Randomized Controlled Trial",
+          "text_snippet": "Context Though multivitamins aim to prevent vitamin and mineral deficiency, there is a perception that multivitamins may prevent cardiovascular disease (CVD). Observational studies examining regular multivitamin use have been inconsistently associated with CVD, with no long-term ...",
+          "rank_before": 10,
+          "score_before": 0.09226190476190475,
+          "rank_after": 3,
+          "score_after": -2.012955665588379,
+          "rank_gain": 7,
+          "relevance": 1
+        }
+      ],
+      "top_after": [
+        {
+          "doc_id": "MED-2760",
+          "title": "Multivitamins in the Prevention of Cancer in Men: The Physicians’ Health Study II Randomized Controlled Trial",
+          "text_snippet": "Context Multivitamin preparations are the most common dietary supplement, taken by at least one-third of all US adults. Limited observational studies have not provided evidence regarding associations of multivitamin use with total and site-specific cancer incidence or mortality. ...",
+          "rank_after": 1,
+          "score_after": 0.7552090287208557,
+          "rank_before": 12,
+          "score_before": 0.08882783882783883,
+          "rank_gain": 11,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-4929",
+          "title": "Vitamins E and C in the Prevention of Cardiovascular Disease in Men: The Physicians’ Health Study II Randomized Trial",
+          "text_snippet": "Context Basic and observational studies suggest vitamins E or C may reduce risk of cardiovascular disease (CVD). However, few long-term trials have evaluated men at initially low risk of CVD, and no previous trial in men has examined vitamin C alone in the prevention of CVD. Obje...",
+          "rank_after": 2,
+          "score_after": 0.17774616181850433,
+          "rank_before": 6,
+          "score_before": 0.09741784037558684,
+          "rank_gain": 4,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2758",
+          "title": "Multivitamins in the Prevention of Cardiovascular Disease in Men: The Physicians' Health Study II Randomized Controlled Trial",
+          "text_snippet": "Context Though multivitamins aim to prevent vitamin and mineral deficiency, there is a perception that multivitamins may prevent cardiovascular disease (CVD). Observational studies examining regular multivitamin use have been inconsistently associated with CVD, with no long-term ...",
+          "rank_after": 3,
+          "score_after": -2.012955665588379,
+          "rank_before": 10,
+          "score_before": 0.09226190476190475,
+          "rank_gain": 7,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-1986",
+          "title": "Long-term morbidity and mortality of overweight adolescents. A follow-up of the Harvard Growth Study of 1922 to 1935.",
+          "text_snippet": "BACKGROUND: Overweight in adults is associated with increased morbidity and mortality. In contrast, the long-term effect of overweight in adolescence on morbidity and mortality is not known. METHODS: We studied the relation between overweight and morbidity and mortality in 508 le...",
+          "rank_after": 4,
+          "score_after": -4.050281047821045,
+          "rank_before": 2,
+          "score_before": 0.11471861471861472,
+          "rank_gain": -2,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2761",
+          "title": "Who uses multivitamins? A cross-sectional study in the Physicians' Health Study.",
+          "text_snippet": "PURPOSE: The aim of this study was to examine the prevalence of self-reported multivitamin use in the Physicians' Health Study (PHS) cohort and its association with various lifestyle, clinical, and dietary factors to improve our understanding of who tends to use multivitamins. ME...",
+          "rank_after": 5,
+          "score_after": -5.364429473876953,
+          "rank_before": 18,
+          "score_before": 0.07313829787234043,
+          "rank_gain": 13,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-3932",
+          "title": "Caffeine and risk of Parkinson disease in a large cohort of men and women",
+          "text_snippet": "Background Caffeine consumption has been associated with a reduced risk of Parkinson disease. The association is strong and consistent in men, but uncertain in women, possibly because of an interaction with hormone replacement therapy. We sought to confirm these findings using da...",
+          "rank_after": 6,
+          "score_after": -6.23493766784668,
+          "rank_before": 20,
+          "score_before": 0.06666666666666667,
+          "rank_gain": 14,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-5124",
+          "title": "Egg Consumption and Cardiovascular Disease and Mortality The Physicians' Health Study",
+          "text_snippet": "Background Reduction in dietary cholesterol is recommended to prevent cardiovascular disease (CVD). Although eggs are important sources of cholesterol and other nutrients, limited and inconsistent data are available on the effects of egg consumption on the risk of CVD and mortali...",
+          "rank_after": 7,
+          "score_after": -7.139714241027832,
+          "rank_before": 32,
+          "score_before": 0.038461538461538464,
+          "rank_gain": 25,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-761",
+          "title": "The counseling practices of internists.",
+          "text_snippet": "OBJECTIVES: To determine the counseling practices of a group of internists in the areas of smoking, exercise, and alcohol and seat belt use, and to determine the associations among physicians' personal health habits and their counseling practices. DESIGN: A random stratified samp...",
+          "rank_after": 8,
+          "score_after": -7.343164443969727,
+          "rank_before": 3,
+          "score_before": 0.11036036036036036,
+          "rank_gain": -5,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4228",
+          "title": "Circulating insulin-like growth factor (IGF) peptides and prostate cancer risk: a systematic review and meta-analysis",
+          "text_snippet": "Insulin-like growth factors (IGF-I, IGF-II) and their binding proteins (IGFBP-1-6) play a key role in cell proliferation, differentiation and apoptosis, suggesting possible involvement in carcinogenesis. Several epidemiological studies show associations of IGFs with prostate canc...",
+          "rank_after": 9,
+          "score_after": -7.592846870422363,
+          "rank_before": 43,
+          "score_before": 0.029411764705882353,
+          "rank_gain": 34,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-728",
+          "title": "Barriers to providing nutrition counseling cited by physicians: a survey of primary care practitioners.",
+          "text_snippet": "In a 1995 pivotal study, Kushner described the attitudes, practice behaviors, and barriers to the delivery of nutrition counseling by primary care physicians. This article recognized nutrition and dietary counseling as key components in the delivery of preventive services by prim...",
+          "rank_after": 10,
+          "score_after": -7.609072685241699,
+          "rank_before": 7,
+          "score_before": 0.09722222222222221,
+          "rank_gain": -3,
+          "relevance": 0
+        }
+      ],
+      "moved_docs": [
+        {
+          "doc_id": "MED-4228",
+          "rank_before": 43,
+          "rank_after": 9,
+          "rank_gain": 34,
+          "score_before": 0.029411764705882353,
+          "score_after": -7.592846870422363,
+          "relevance": 0,
+          "title": "Circulating insulin-like growth factor (IGF) peptides and prostate cancer risk: a systematic review and meta-analysis",
+          "text_snippet": "Insulin-like growth factors (IGF-I, IGF-II) and their binding proteins (IGFBP-1-6) play a key role in cell proliferation, differentiation and apoptosis, suggesting possible involvement in carcinogenesis. Several epidemiological studies show associations of IGFs with prostate canc..."
+        },
+        {
+          "doc_id": "MED-4921",
+          "rank_before": 48,
+          "rank_after": 16,
+          "rank_gain": 32,
+          "score_before": 0.02631578947368421,
+          "score_after": -8.673741340637207,
+          "relevance": 0,
+          "title": "Diagnosing mild enteropathy celiac disease: a randomized, controlled clinical study.",
+          "text_snippet": "BACKGROUND & AIMS: The diagnostic criteria for celiac disease require small-bowel mucosal villous atrophy with crypt hyperplasia (Marsh III). However, mucosal damage develops gradually and patients may evince clinical symptoms before histologic changes appear. Endomysial antibodi..."
+        },
+        {
+          "doc_id": "MED-5346",
+          "rank_before": 16,
+          "rank_after": 46,
+          "rank_gain": -30,
+          "score_before": 0.08229166666666667,
+          "score_after": -10.939310073852539,
+          "relevance": 0,
+          "title": "Resident duty-hour restrictions-who are we protecting?: AOA critical issues.",
+          "text_snippet": "As advocated by Nasca, our teaching programs must nurture professionalism and the effacement of self interest that is the core of the practice of medicine and the profession. The evidence to date suggests that work-hour restrictions based solely on clock-defined time limits disco..."
+        },
+        {
+          "doc_id": "MED-5124",
+          "rank_before": 32,
+          "rank_after": 7,
+          "rank_gain": 25,
+          "score_before": 0.038461538461538464,
+          "score_after": -7.139714241027832,
+          "relevance": 0,
+          "title": "Egg Consumption and Cardiovascular Disease and Mortality The Physicians' Health Study",
+          "text_snippet": "Background Reduction in dietary cholesterol is recommended to prevent cardiovascular disease (CVD). Although eggs are important sources of cholesterol and other nutrients, limited and inconsistent data are available on the effects of egg consumption on the risk of CVD and mortali..."
+        },
+        {
+          "doc_id": "MED-2112",
+          "rank_before": 1,
+          "rank_after": 26,
+          "rank_gain": -25,
+          "score_before": 0.13090909090909092,
+          "score_after": -9.774547576904297,
+          "relevance": 0,
+          "title": "How evidence-based medicine biases physicians against nutrition.",
+          "text_snippet": "Medical students in the United States are taught little about nutrition and dietetics. Worse yet, their training biases them against the studies that show the power of dietary approaches to managing disease. The current approach to evidence-based medicine encourages physicians to..."
+        },
+        {
+          "doc_id": "MED-5256",
+          "rank_before": 34,
+          "rank_after": 11,
+          "rank_gain": 23,
+          "score_before": 0.03571428571428571,
+          "score_after": -7.861943244934082,
+          "relevance": 0,
+          "title": "No Association of Coffee Consumption with Gastric Ulcer, Duodenal Ulcer, Reflux Esophagitis, and Non-Erosive Reflux Disease: A Cross-Sectional Study of 8,013 Healthy Subjects in Japan",
+          "text_snippet": "Probably due to caffeine-induced gastric acid secretion, negative effects of coffee upon various upper-gastrointestinal diseases have been precariously accepted, despite the inadequate epidemiological evidence. Our aim is to evaluate the effect of coffee consumption on four major..."
+        },
+        {
+          "doc_id": "MED-749",
+          "rank_before": 14,
+          "rank_after": 34,
+          "rank_gain": -20,
+          "score_before": 0.08388157894736842,
+          "score_after": -10.38478946685791,
+          "relevance": 0,
+          "title": "Current perception of nutrition education in U.S. medical schools.",
+          "text_snippet": "Historically, physicians have perceived the quality of nutrition training during medical school as inadequate. A literature review suggests that this perception has not significantly changed since the 1950s. Many schools have worked to create clinical nutrition curricula for use ..."
+        },
+        {
+          "doc_id": "MED-1543",
+          "rank_before": 4,
+          "rank_after": 19,
+          "rank_gain": -15,
+          "score_before": 0.10795454545454546,
+          "score_after": -9.051448822021484,
+          "relevance": 0,
+          "title": "Patient-related diet and exercise counseling: do providers' own lifestyle habits matter?",
+          "text_snippet": "The goal of this research was to evaluate the personal health behaviors of physicians in training and attending physicians in association with patient-related lifestyle counseling. Physicians at a major teaching hospital were surveyed regarding their personal lifestyle behavior, ..."
+        },
+        {
+          "doc_id": "MED-3932",
+          "rank_before": 20,
+          "rank_after": 6,
+          "rank_gain": 14,
+          "score_before": 0.06666666666666667,
+          "score_after": -6.23493766784668,
+          "relevance": 0,
+          "title": "Caffeine and risk of Parkinson disease in a large cohort of men and women",
+          "text_snippet": "Background Caffeine consumption has been associated with a reduced risk of Parkinson disease. The association is strong and consistent in men, but uncertain in women, possibly because of an interaction with hormone replacement therapy. We sought to confirm these findings using da..."
+        },
+        {
+          "doc_id": "MED-2761",
+          "rank_before": 18,
+          "rank_after": 5,
+          "rank_gain": 13,
+          "score_before": 0.07313829787234043,
+          "score_after": -5.364429473876953,
+          "relevance": 1,
+          "title": "Who uses multivitamins? A cross-sectional study in the Physicians' Health Study.",
+          "text_snippet": "PURPOSE: The aim of this study was to examine the prevalence of self-reported multivitamin use in the Physicians' Health Study (PHS) cohort and its association with various lifestyle, clinical, and dietary factors to improve our understanding of who tends to use multivitamins. ME..."
+        },
+        {
+          "doc_id": "MED-2760",
+          "rank_before": 12,
+          "rank_after": 1,
+          "rank_gain": 11,
+          "score_before": 0.08882783882783883,
+          "score_after": 0.7552090287208557,
+          "relevance": 1,
+          "title": "Multivitamins in the Prevention of Cancer in Men: The Physicians’ Health Study II Randomized Controlled Trial",
+          "text_snippet": "Context Multivitamin preparations are the most common dietary supplement, taken by at least one-third of all US adults. Limited observational studies have not provided evidence regarding associations of multivitamin use with total and site-specific cancer incidence or mortality. ..."
+        },
+        {
+          "doc_id": "MED-727",
+          "rank_before": 15,
+          "rank_after": 24,
+          "rank_gain": -9,
+          "score_before": 0.08333333333333333,
+          "score_after": -9.615633964538574,
+          "relevance": 0,
+          "title": "Illuminating the 'black box'. A description of 4454 patient visits to 138 family physicians.",
+          "text_snippet": "BACKGROUND: The content and context of family practice outpatient visits have never been fully described, leaving many aspects of family practice in a \"black box,\" unseen by policymakers and understood only in isolation. This article describes community family practices, physicia..."
+        },
+        {
+          "doc_id": "MED-1498",
+          "rank_before": 28,
+          "rank_after": 20,
+          "rank_gain": 8,
+          "score_before": 0.0478021978021978,
+          "score_after": -9.06082534790039,
+          "relevance": 0,
+          "title": "A modest proposal for a longitudinal study of dementia prevention (with apologies to Jonathan Swift, 1729).",
+          "text_snippet": "Many studies have documented the role of risk and protective factors for late life dementing illnesses, particularly Alzheimer's disease. A \"Systematic Review\" from the US Agency for Healthcare Research and Quality and the National Institute on Aging concluded that because the ov..."
+        },
+        {
+          "doc_id": "MED-1549",
+          "rank_before": 5,
+          "rank_after": 13,
+          "rank_gain": -8,
+          "score_before": 0.10025062656641603,
+          "score_after": -7.908581733703613,
+          "relevance": 0,
+          "title": "Physicians' health habits are associated with lifestyle counseling for hypertensive patients.",
+          "text_snippet": "BACKGROUND: The Seventh Report of the Joint National Committee on Prevention, Detection, Evaluation, and Treatment of High Blood Pressure (JNC VII) recommended lifestyle interventions, either with or without pharmacologic treatment, for all patients with high blood pressure. The ..."
+        },
+        {
+          "doc_id": "MED-1545",
+          "rank_before": 11,
+          "rank_after": 18,
+          "rank_gain": -7,
+          "score_before": 0.09,
+          "score_after": -8.977542877197266,
+          "relevance": 0,
+          "title": "Physician smoking status, attitudes toward smoking, and cessation advice to patients: an international survey.",
+          "text_snippet": "OBJECTIVE: The smoking status of physicians can impact interactions with patients about smoking. The 'Smoking: The Opinions of Physicians' (STOP) survey examined whether an association existed between physician smoking status and beliefs about smoking and cessation and a physicia..."
+        }
+      ]
+    },
+    {
+      "query_id": "PLAIN-1409",
+      "query_text": "industrial toxins",
+      "ndcg_before": 0.0,
+      "ndcg_after": 0.42257499837058643,
+      "ndcg_delta": 0.42257499837058643,
+      "top_before": [
+        {
+          "doc_id": "MED-3385",
+          "title": "Popcorn-worker lung caused by corporate and regulatory negligence: an avoidable tragedy.",
+          "text_snippet": "Diacetyl-containing butter flavor was identified as the cause of an outbreak of bronchiolitis obliterans (BO) and other lung diseases in popcorn-plant workers. Litigation documents show that the outbreak was both predictable and preventable. The industry trade organization was aw...",
+          "rank_before": 1,
+          "score_before": 0.1037037037037037,
+          "rank_after": 31,
+          "score_after": -7.931486129760742,
+          "rank_gain": -30,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1570",
+          "title": "Ciguatera: recent advances but the risk remains.",
+          "text_snippet": "Ciguatera is an important form of human poisoning caused by the consumption of seafood. The disease is characterised by gastrointestinal, neurological and cardiovascular disturbances. In cases of severe toxicity, paralysis, coma and death may occur. There is no immunity, and the ...",
+          "rank_before": 2,
+          "score_before": 0.09090909090909091,
+          "rank_after": 8,
+          "score_after": -5.330505847930908,
+          "rank_gain": -6,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4602",
+          "title": "Manufactured uncertainty: protecting public health in the age of contested science and product defense.",
+          "text_snippet": "The strategy of \"manufacturing uncertainty\" has been used with great success by polluters and manufacturers of dangerous products to oppose public health and environmental regulation. This strategy entails questioning the validity of scientific evidence on which the regulation is...",
+          "rank_before": 3,
+          "score_before": 0.09090909090909091,
+          "rank_after": 28,
+          "score_after": -7.876803398132324,
+          "rank_gain": -25,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1144",
+          "title": "Perceived risks of conventional and organic produce: pesticides, pathogens, and natural toxins.",
+          "text_snippet": "Public risk perceptions and demand for safer food are important factors shaping agricultural production practices in the United States. Despite documented food safety concerns, little attempt has been made to elicit consumers' subjective risk judgments for a range of food safety ...",
+          "rank_before": 4,
+          "score_before": 0.08834586466165413,
+          "rank_after": 6,
+          "score_after": -5.045268535614014,
+          "rank_gain": -2,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1572",
+          "title": "Ciguatera fish poisoning. A southern California epidemic.",
+          "text_snippet": "Ciguatera fish poisoning results from the bioconcentration of a variety of toxins produced by marine dinoflagellates. Signs and symptoms vary widely, but it usually presents as gastrointestinal and neurologic complaints beginning shortly after the ingestion of fish containing the...",
+          "rank_before": 5,
+          "score_before": 0.08333333333333333,
+          "rank_after": 34,
+          "score_after": -8.152236938476562,
+          "rank_gain": -29,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4799",
+          "title": "Clostridium difficile in Retail Meat Products, USA, 2007",
+          "text_snippet": "To determine the presence of Clostridium difficile, we sampled cooked and uncooked meat products sold in Tucson, Arizona. Forty-two percent contained toxigenic C. difficile strains (either ribotype 078/toxinotype V [73%] or 027/toxinotype III [NAP1 or NAP1-related; 27%]). These f...",
+          "rank_before": 6,
+          "score_before": 0.08333333333333333,
+          "rank_after": 35,
+          "score_after": -8.229660034179688,
+          "rank_gain": -29,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1697",
+          "title": "Effect of Tomato Industrial Processing (Different Hybrids, Paste, and Pomace) on Inhibition of Platelet Function In Vitro, Ex Vivo, and In Vivo",
+          "text_snippet": "Cardiovascular disease (CVD) is the leading cause of death worldwide. Healthy eating is among its safeguards, especially the daily intake of fruits and vegetables. In this context it has been shown that tomato (Solanum lycopersicum) presents antiplatelet activity. In the present ...",
+          "rank_before": 7,
+          "score_before": 0.07692307692307693,
+          "rank_after": 11,
+          "score_after": -6.0626630783081055,
+          "rank_gain": -4,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4976",
+          "title": "Airborne mutagens produced by frying beef, pork and a soy-based food.",
+          "text_snippet": "Airborne cooking by-products from frying beef (hamburgers), pork (bacon strips) and soybean-based food (tempeh burgers) were collected, extracted, tested for mutagenicity and chemically analysed. The fumes generated by frying pork and beef were mutagenic, with 4900 and 1300 rever...",
+          "rank_before": 8,
+          "score_before": 0.07692307692307693,
+          "rank_after": 39,
+          "score_after": -8.653016090393066,
+          "rank_gain": -31,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1675",
+          "title": "Industrial, not fruit fructose intake is associated with the severity of liver fibrosis in genotype 1 chronic hepatitis C patients.",
+          "text_snippet": "BACKGROUND & AIMS: Unhealthy food intake, specifically fructose, has been associated with metabolic alterations and with the severity of liver fibrosis in patients with non-alcoholic fatty liver disease. In a cohort of patients with genotype 1 chronic hepatitis C (G1 CHC), we tes...",
+          "rank_before": 9,
+          "score_before": 0.07142857142857142,
+          "rank_after": 7,
+          "score_after": -5.256089210510254,
+          "rank_gain": 2,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4870",
+          "title": "First detection of anatoxin-a in human and animal dietary supplements containing cyanobacteria.",
+          "text_snippet": "Anatoxin-a is a potent neurotoxin produced by several species of cyanobacteria. This alkaloid may cause fatal intoxication to exposed organisms and this has raised concerns over the increasing popularity of food supplements containing cyanobacteria. These are being marketed with ...",
+          "rank_before": 10,
+          "score_before": 0.07142857142857142,
+          "rank_after": 20,
+          "score_after": -7.042398452758789,
+          "rank_gain": -10,
+          "relevance": 0
+        }
+      ],
+      "top_after": [
+        {
+          "doc_id": "MED-1958",
+          "title": "Congener-specific levels of dioxins and dibenzofurans in U.S. food and estimated daily dioxin toxic equivalent intake.",
+          "text_snippet": "Food, especially meat, milk, and fish, is the immediate source of almost all polychlorinated dibenzo-p-dioxins (PCDDs), dibenzofurans (PCDFs), and dioxinlike compounds in the general population. To estimate intake of these highly toxic compounds, we performed congener-specific di...",
+          "rank_after": 1,
+          "score_after": -4.027780532836914,
+          "rank_before": 40,
+          "score_before": 0.03415614236509759,
+          "rank_gain": 39,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-3590",
+          "title": "Male reproductive organs are at risk from environmental hazards",
+          "text_snippet": "Male reproductive disorders that are of interest from an environmental point of view include sexual dysfunction, infertility, cryptorchidism, hypospadias and testicular cancer. Several reports suggest declining sperm counts and increase of these reproductive disorders in some are...",
+          "rank_after": 2,
+          "score_after": -4.237854480743408,
+          "rank_before": 13,
+          "score_before": 0.06545454545454546,
+          "rank_gain": 11,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-5073",
+          "title": "Polyphenols and antioxidant properties of almond skins: influence of industrial processing.",
+          "text_snippet": "Almond (Prunus dulcis[Mill.] D.A. Webb) skins have been proposed as a source of bioactive polyphenols. In this article, the phenolic composition and antioxidant activity of almond skins obtained from different processes (blanching [freeze-drying], blanching + drying, and roasting...",
+          "rank_after": 3,
+          "score_after": -4.859821319580078,
+          "rank_before": 17,
+          "score_before": 0.058823529411764705,
+          "rank_gain": 14,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4807",
+          "title": "Presence and Characterization of Shiga Toxin-Producing Escherichia coli and Other Potentially Diarrheagenic E. coli Strains in Retail Meats",
+          "text_snippet": "To determine the presence of Shiga toxin-producing Escherichia coli (STEC) and other potentially diarrheagenic E. coli strains in retail meats, 7,258 E. coli isolates collected by the U.S. National Antimicrobial Resistance Monitoring System (NARMS) retail meat program from 2002 t...",
+          "rank_after": 4,
+          "score_after": -4.889960289001465,
+          "rank_before": 15,
+          "score_before": 0.0625,
+          "rank_gain": 11,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1598",
+          "title": "Cigarette Smoke Toxins Deposited on Surfaces: Implications for Human Health",
+          "text_snippet": "Cigarette smoking remains a significant health threat for smokers and nonsmokers alike. Secondhand smoke (SHS) is intrinsically more toxic than directly inhaled smoke. Recently, a new threat has been discovered – Thirdhand smoke (THS) – the accumulation of SHS on surfaces that ag...",
+          "rank_after": 5,
+          "score_after": -5.015295028686523,
+          "rank_before": 37,
+          "score_before": 0.035869565217391305,
+          "rank_gain": 32,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1144",
+          "title": "Perceived risks of conventional and organic produce: pesticides, pathogens, and natural toxins.",
+          "text_snippet": "Public risk perceptions and demand for safer food are important factors shaping agricultural production practices in the United States. Despite documented food safety concerns, little attempt has been made to elicit consumers' subjective risk judgments for a range of food safety ...",
+          "rank_after": 6,
+          "score_after": -5.045268535614014,
+          "rank_before": 4,
+          "score_before": 0.08834586466165413,
+          "rank_gain": -2,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1675",
+          "title": "Industrial, not fruit fructose intake is associated with the severity of liver fibrosis in genotype 1 chronic hepatitis C patients.",
+          "text_snippet": "BACKGROUND & AIMS: Unhealthy food intake, specifically fructose, has been associated with metabolic alterations and with the severity of liver fibrosis in patients with non-alcoholic fatty liver disease. In a cohort of patients with genotype 1 chronic hepatitis C (G1 CHC), we tes...",
+          "rank_after": 7,
+          "score_after": -5.256089210510254,
+          "rank_before": 9,
+          "score_before": 0.07142857142857142,
+          "rank_gain": 2,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1570",
+          "title": "Ciguatera: recent advances but the risk remains.",
+          "text_snippet": "Ciguatera is an important form of human poisoning caused by the consumption of seafood. The disease is characterised by gastrointestinal, neurological and cardiovascular disturbances. In cases of severe toxicity, paralysis, coma and death may occur. There is no immunity, and the ...",
+          "rank_after": 8,
+          "score_after": -5.330505847930908,
+          "rank_before": 2,
+          "score_before": 0.09090909090909091,
+          "rank_gain": -6,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1689",
+          "title": "Effect of tomato industrial processing on phenolic profile and antiplatelet activity.",
+          "text_snippet": "BACKGROUND: Regular consumption of fruits and vegetables (e.g., tomatoes) has been shown to be beneficial in terms of reducing the incidence of cardiovascular diseases. The industrial processing of tomatoes into tomato-based products includes several thermal treatments. Very litt...",
+          "rank_after": 9,
+          "score_after": -5.639150619506836,
+          "rank_before": 14,
+          "score_before": 0.0625,
+          "rank_gain": 5,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2650",
+          "title": "Inadvertent exposure to xenoestrogens.",
+          "text_snippet": "Over the last 40 years there have been constant reports concerning environmental chemicals with hormone-like effects in wildlife. An endocrine disruptor is an exogenous substance that causes adverse health effects in an intact organism or its progeny, secondary to changes in endo...",
+          "rank_after": 10,
+          "score_after": -5.667479038238525,
+          "rank_before": 25,
+          "score_before": 0.04738015607580825,
+          "rank_gain": 15,
+          "relevance": 1
+        }
+      ],
+      "moved_docs": [
+        {
+          "doc_id": "MED-1958",
+          "rank_before": 40,
+          "rank_after": 1,
+          "rank_gain": 39,
+          "score_before": 0.03415614236509759,
+          "score_after": -4.027780532836914,
+          "relevance": 1,
+          "title": "Congener-specific levels of dioxins and dibenzofurans in U.S. food and estimated daily dioxin toxic equivalent intake.",
+          "text_snippet": "Food, especially meat, milk, and fish, is the immediate source of almost all polychlorinated dibenzo-p-dioxins (PCDDs), dibenzofurans (PCDFs), and dioxinlike compounds in the general population. To estimate intake of these highly toxic compounds, we performed congener-specific di..."
+        },
+        {
+          "doc_id": "MED-855",
+          "rank_before": 49,
+          "rank_after": 15,
+          "rank_gain": 34,
+          "score_before": 0.029411764705882353,
+          "score_after": -6.7636637687683105,
+          "relevance": 0,
+          "title": "Hydrogen peroxide poisoning.",
+          "text_snippet": "Hydrogen peroxide is an oxidising agent that is used in a number of household products, including general-purpose disinfectants, chlorine-free bleaches, fabric stain removers, contact lens disinfectants and hair dyes, and it is a component of some tooth whitening products. In ind..."
+        },
+        {
+          "doc_id": "MED-5101",
+          "rank_before": 12,
+          "rank_after": 44,
+          "rank_gain": -32,
+          "score_before": 0.06612903225806452,
+          "score_after": -9.544145584106445,
+          "relevance": 1,
+          "title": "Nutrient and contaminant tradeoffs: exchanging meat, poultry, or seafood for dietary protein.",
+          "text_snippet": "When making food choices, consumers are faced with the dilemma of reconciling differences between health benefits and exposure to potential toxins. Analyses to estimate likely intake and exposure outcomes for young children and women of child-bearing age shows that seafood, chick..."
+        },
+        {
+          "doc_id": "MED-1598",
+          "rank_before": 37,
+          "rank_after": 5,
+          "rank_gain": 32,
+          "score_before": 0.035869565217391305,
+          "score_after": -5.015295028686523,
+          "relevance": 0,
+          "title": "Cigarette Smoke Toxins Deposited on Surfaces: Implications for Human Health",
+          "text_snippet": "Cigarette smoking remains a significant health threat for smokers and nonsmokers alike. Secondhand smoke (SHS) is intrinsically more toxic than directly inhaled smoke. Recently, a new threat has been discovered – Thirdhand smoke (THS) – the accumulation of SHS on surfaces that ag..."
+        },
+        {
+          "doc_id": "MED-4976",
+          "rank_before": 8,
+          "rank_after": 39,
+          "rank_gain": -31,
+          "score_before": 0.07692307692307693,
+          "score_after": -8.653016090393066,
+          "relevance": 0,
+          "title": "Airborne mutagens produced by frying beef, pork and a soy-based food.",
+          "text_snippet": "Airborne cooking by-products from frying beef (hamburgers), pork (bacon strips) and soybean-based food (tempeh burgers) were collected, extracted, tested for mutagenicity and chemically analysed. The fumes generated by frying pork and beef were mutagenic, with 4900 and 1300 rever..."
+        },
+        {
+          "doc_id": "MED-3385",
+          "rank_before": 1,
+          "rank_after": 31,
+          "rank_gain": -30,
+          "score_before": 0.1037037037037037,
+          "score_after": -7.931486129760742,
+          "relevance": 0,
+          "title": "Popcorn-worker lung caused by corporate and regulatory negligence: an avoidable tragedy.",
+          "text_snippet": "Diacetyl-containing butter flavor was identified as the cause of an outbreak of bronchiolitis obliterans (BO) and other lung diseases in popcorn-plant workers. Litigation documents show that the outbreak was both predictable and preventable. The industry trade organization was aw..."
+        },
+        {
+          "doc_id": "MED-4799",
+          "rank_before": 6,
+          "rank_after": 35,
+          "rank_gain": -29,
+          "score_before": 0.08333333333333333,
+          "score_after": -8.229660034179688,
+          "relevance": 0,
+          "title": "Clostridium difficile in Retail Meat Products, USA, 2007",
+          "text_snippet": "To determine the presence of Clostridium difficile, we sampled cooked and uncooked meat products sold in Tucson, Arizona. Forty-two percent contained toxigenic C. difficile strains (either ribotype 078/toxinotype V [73%] or 027/toxinotype III [NAP1 or NAP1-related; 27%]). These f..."
+        },
+        {
+          "doc_id": "MED-4797",
+          "rank_before": 48,
+          "rank_after": 19,
+          "rank_gain": 29,
+          "score_before": 0.029411764705882353,
+          "score_after": -6.982942581176758,
+          "relevance": 0,
+          "title": "Varied prevalence of Clostridium difficile in an integrated swine operation.",
+          "text_snippet": "The objectives of this study were to compare the prevalence of Clostridium difficile (Cd) among different age and production groups of swine in a vertically integrated swine operation in Texas in 2006 and to compare our isolates to other animal and human isolates. Results are bas..."
+        },
+        {
+          "doc_id": "MED-1572",
+          "rank_before": 5,
+          "rank_after": 34,
+          "rank_gain": -29,
+          "score_before": 0.08333333333333333,
+          "score_after": -8.152236938476562,
+          "relevance": 0,
+          "title": "Ciguatera fish poisoning. A southern California epidemic.",
+          "text_snippet": "Ciguatera fish poisoning results from the bioconcentration of a variety of toxins produced by marine dinoflagellates. Signs and symptoms vary widely, but it usually presents as gastrointestinal and neurologic complaints beginning shortly after the ingestion of fish containing the..."
+        },
+        {
+          "doc_id": "MED-944",
+          "rank_before": 16,
+          "rank_after": 41,
+          "rank_gain": -25,
+          "score_before": 0.060123784261715295,
+          "score_after": -8.864274978637695,
+          "relevance": 0,
+          "title": "Nanomaterials in consumer products: a challenging analytical problem.",
+          "text_snippet": "Many products used in everyday life are made with the assistance of nanotechnologies. Cosmetic, pharmaceuticals, sunscreen, powdered food are only few examples of end products containing nano-sized particles (NPs), generally added to improve the product quality. To evaluate corre..."
+        },
+        {
+          "doc_id": "MED-4602",
+          "rank_before": 3,
+          "rank_after": 28,
+          "rank_gain": -25,
+          "score_before": 0.09090909090909091,
+          "score_after": -7.876803398132324,
+          "relevance": 0,
+          "title": "Manufactured uncertainty: protecting public health in the age of contested science and product defense.",
+          "text_snippet": "The strategy of \"manufacturing uncertainty\" has been used with great success by polluters and manufacturers of dangerous products to oppose public health and environmental regulation. This strategy entails questioning the validity of scientific evidence on which the regulation is..."
+        },
+        {
+          "doc_id": "MED-956",
+          "rank_before": 18,
+          "rank_after": 37,
+          "rank_gain": -19,
+          "score_before": 0.058823529411764705,
+          "score_after": -8.614114761352539,
+          "relevance": 0,
+          "title": "Emerging pollutants in wastewater: a review of the literature.",
+          "text_snippet": "For 20 years, many articles report the presence of new compounds, called \"emerging compounds\", in wastewater and aquatic environments. The US EPA (United States - Environmental Protection Agency) defines emerging pollutants as new chemicals without regulatory status and which imp..."
+        },
+        {
+          "doc_id": "MED-2650",
+          "rank_before": 25,
+          "rank_after": 10,
+          "rank_gain": 15,
+          "score_before": 0.04738015607580825,
+          "score_after": -5.667479038238525,
+          "relevance": 1,
+          "title": "Inadvertent exposure to xenoestrogens.",
+          "text_snippet": "Over the last 40 years there have been constant reports concerning environmental chemicals with hormone-like effects in wildlife. An endocrine disruptor is an exogenous substance that causes adverse health effects in an intact organism or its progeny, secondary to changes in endo..."
+        },
+        {
+          "doc_id": "MED-5073",
+          "rank_before": 17,
+          "rank_after": 3,
+          "rank_gain": 14,
+          "score_before": 0.058823529411764705,
+          "score_after": -4.859821319580078,
+          "relevance": 0,
+          "title": "Polyphenols and antioxidant properties of almond skins: influence of industrial processing.",
+          "text_snippet": "Almond (Prunus dulcis[Mill.] D.A. Webb) skins have been proposed as a source of bioactive polyphenols. In this article, the phenolic composition and antioxidant activity of almond skins obtained from different processes (blanching [freeze-drying], blanching + drying, and roasting..."
+        },
+        {
+          "doc_id": "MED-2327",
+          "rank_before": 26,
+          "rank_after": 12,
+          "rank_gain": 14,
+          "score_before": 0.045454545454545456,
+          "score_after": -6.1305646896362305,
+          "relevance": 0,
+          "title": "Xenohormesis mechanisms underlying chemopreventive effects of some dietary phytochemicals.",
+          "text_snippet": "A wide variety of phytochemicals present in our diet, including fruits, vegetables, and spices, have been shown to possess a broad range of health-beneficial properties. The cytoprotective and restorative effects of dietary phytochemicals are likely to result from the modulation ..."
+        }
+      ]
+    }
+  ],
+  "minimal_change": {
+    "query_id": "PLAIN-1008",
+    "query_text": "deafness",
+    "ndcg_before": 0.0,
+    "ndcg_after": 0.0,
+    "ndcg_delta": 0.0,
+    "top_before": [
+      {
+        "doc_id": "MED-901",
+        "title": "Cow's milk allergy is associated with recurrent otitis media during childhood.",
+        "text_snippet": "To determine whether cow's milk allergy (CMA) in infancy is associated with recurrent otitis media (ROM) or other chronic ear infections, we conducted a cohort study by enrolling 56 milk-allergic and 204 control schoolchildren. We also studied the association between ear problems...",
+        "rank_before": 1,
+        "score_before": 0.09090909090909091,
+        "rank_after": 11,
+        "score_after": -9.895666122436523,
+        "rank_gain": -10,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4668",
+        "title": "Cretinism revisited.",
+        "text_snippet": "Endemic cretinism includes two syndromes: a more common neurological disorder with brain damage, deaf mutism, squint and spastic paresis of the legs and a less common syndrome of severe hypothyroidism, growth retardation and less severe mental defect. Both conditions are due to d...",
+        "rank_before": 2,
+        "score_before": 0.08333333333333333,
+        "rank_after": 1,
+        "score_after": -5.273714542388916,
+        "rank_gain": 1,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3863",
+        "title": "Sensitive skin: closing in on a physiological cause.",
+        "text_snippet": "The phenomenon of 'sensitive skin' is a relatively recent complaint in which certain individuals report more intense and frequent adverse sensory effects than the normal population upon use of cosmetic (personal-care) products. Originally defined as a minority complaint, sensitiv...",
+        "rank_before": 3,
+        "score_before": 0.07692307692307693,
+        "rank_after": 10,
+        "score_after": -9.812080383300781,
+        "rank_gain": -7,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-1519",
+        "title": "Improved performance on clerical tasks associated with administration of peppermint odor.",
+        "text_snippet": "Previous research indicates the presence of certain odors is associated with enhanced task performance. The present study investigated use of peppermint odor during typing performance, memorization, and alphabetization. Participants completed the protocol twice--once with pepperm...",
+        "rank_before": 4,
+        "score_before": 0.07142857142857142,
+        "rank_after": 41,
+        "score_after": -11.05389404296875,
+        "rank_gain": -37,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4694",
+        "title": "Total visual blindness is protective against breast cancer.",
+        "text_snippet": "OBJECTIVE: Observational data, though sparse and based on small studies with limited ability to control for known breast cancer risk factors, support a lower risk of breast cancer in blind women compared to sighted women. Mechanisms influenced by ocular light perception, such as ...",
+        "rank_before": 5,
+        "score_before": 0.06666666666666667,
+        "rank_after": 5,
+        "score_after": -9.530624389648438,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-900",
+        "title": "Cow's milk allergy in Thai children.",
+        "text_snippet": "Cow's milk allergy (CMA) is nowadays a common problem in Thai children. We reviewed medical records of patients with CMA from the Department of Pediatrics at King Chulalongkom Memorial Hospital of the past 10 years, from 1998 to 2007. The criteria for the diagnosis of CMA include...",
+        "rank_before": 6,
+        "score_before": 0.0625,
+        "rank_after": 16,
+        "score_after": -10.283732414245605,
+        "rank_gain": -10,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4883",
+        "title": "[Flatufonia--or the musical anus].",
+        "text_snippet": "The art of the musical anus is reviewed in the light of its most prominent performers and of anorectal physiological aspects related to this specific musical performance.",
+        "rank_before": 7,
+        "score_before": 0.058823529411764705,
+        "rank_after": 49,
+        "score_after": -11.19279956817627,
+        "rank_gain": -42,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3761",
+        "title": "General practice consultations: is there any point in being positive?",
+        "text_snippet": "A group of 200 patients who presented in general practice with symptoms but no abnormal physical signs and in whom no definite diagnosis was made were randomly selected for one of four consultations: a consultation conducted in a \"positive manner,\" with and without treatment, and...",
+        "rank_before": 8,
+        "score_before": 0.05555555555555555,
+        "rank_after": 33,
+        "score_after": -10.850425720214844,
+        "rank_gain": -25,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3355",
+        "title": "Recent fat intake modulates fat taste sensitivity in lean and overweight subjects.",
+        "text_snippet": "OBJECTIVE: To evaluate the effects of a high-fat and low-fat diet on taste sensitivity to oleic acid (C18:1) in lean and overweight/obese (OW/OB) subjects. DESIGN: Randomized cross-over dietary intervention involving the consumption of a high-fat (>45% fat) and low-fat (<20% fat)...",
+        "rank_before": 9,
+        "score_before": 0.05263157894736842,
+        "rank_after": 20,
+        "score_after": -10.394704818725586,
+        "rank_gain": -11,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-2036",
+        "title": "Sensitivity-related illness: the escalating pandemic of allergy, food intolerance and chemical sensitivity.",
+        "text_snippet": "The prevalence of allergic-related diseases, food intolerance, and chemical sensitivities in both the pediatric and adult population has increased dramatically over the last two decades, with escalating rates of associated morbidity. Conditions of acquired allergy, food intoleran...",
+        "rank_before": 10,
+        "score_before": 0.05,
+        "rank_after": 17,
+        "score_after": -10.29683780670166,
+        "rank_gain": -7,
+        "relevance": 0
+      }
+    ],
+    "top_after": [
+      {
+        "doc_id": "MED-4668",
+        "title": "Cretinism revisited.",
+        "text_snippet": "Endemic cretinism includes two syndromes: a more common neurological disorder with brain damage, deaf mutism, squint and spastic paresis of the legs and a less common syndrome of severe hypothyroidism, growth retardation and less severe mental defect. Both conditions are due to d...",
+        "rank_after": 1,
+        "score_after": -5.273714542388916,
+        "rank_before": 2,
+        "score_before": 0.08333333333333333,
+        "rank_gain": 1,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-899",
+        "title": "Milk-induced pulmonary disease in infants (Heiner syndrome).",
+        "text_snippet": "Heiner syndrome (HS) is a food hypersensitivity pulmonary disease that affects primarily infants, and is mostly caused by cow's milk (CM). Only a few reports have been published, which may be due to its misdiagnosis. We review here a series of eight cases. When first diagnosed th...",
+        "rank_after": 2,
+        "score_after": -8.907432556152344,
+        "rank_before": 33,
+        "score_before": 0.023255813953488372,
+        "rank_gain": 31,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3621",
+        "title": "Dental X-rays and Risk of Meningioma",
+        "text_snippet": "Context Ionizing radiation is a consistently identified and potentially modifiable risk factor for meningioma, the most frequently reported primary brain tumor in the United States. Objective To examine the association between dental x-rays, the most common artificial source of i...",
+        "rank_after": 3,
+        "score_after": -9.144012451171875,
+        "rank_before": 42,
+        "score_before": 0.019230769230769232,
+        "rank_gain": 39,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3937",
+        "title": "Traumatic brain injuries in illustrated literature: experience from a series of over 700 head injuries in the Asterix comic books.",
+        "text_snippet": "BACKGROUND: The goal of the present study was to analyze the epidemiology and specific risk factors of traumatic brain injury (TBI) in the Asterix illustrated comic books. Among the illustrated literature, TBI is a predominating injury pattern. METHODS: A retrospective analysis o...",
+        "rank_after": 4,
+        "score_after": -9.512594223022461,
+        "rank_before": 20,
+        "score_before": 0.03333333333333333,
+        "rank_gain": 16,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4694",
+        "title": "Total visual blindness is protective against breast cancer.",
+        "text_snippet": "OBJECTIVE: Observational data, though sparse and based on small studies with limited ability to control for known breast cancer risk factors, support a lower risk of breast cancer in blind women compared to sighted women. Mechanisms influenced by ocular light perception, such as ...",
+        "rank_after": 5,
+        "score_after": -9.530624389648438,
+        "rank_before": 5,
+        "score_before": 0.06666666666666667,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3023",
+        "title": "Relationship between the prenatal exposure to low-level of mercury and the size of a newborn's cerebellum.",
+        "text_snippet": "Exposure to methylmercury at any stage of central nervous system development could induce alterations and result in severe congenital abnormalities. Total mercury level in maternal hair during pregnancy correlates well with blood levels of methylmercury and with total mercury lev...",
+        "rank_after": 6,
+        "score_after": -9.535306930541992,
+        "rank_before": 34,
+        "score_before": 0.022727272727272728,
+        "rank_gain": 28,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3354",
+        "title": "Lip colour affects perceived sex typicality and attractiveness of human faces.",
+        "text_snippet": "The luminance contrast between facial features and facial skin is greater in women than in men, and women's use of make-up enhances this contrast. In black-and-white photographs, increased luminance contrast enhances femininity and attractiveness in women's faces, but reduces mas...",
+        "rank_after": 7,
+        "score_after": -9.621591567993164,
+        "rank_before": 38,
+        "score_before": 0.020833333333333332,
+        "rank_gain": 31,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-5135",
+        "title": "West syndrome in an infant with vitamin B12 deficiency in the absence of macrocytic anaemia.",
+        "text_snippet": "Vitamin B(12) deficiency in infants often produces haematological and neurological deficits, including macrocytic anaemia, neurodevelopmental delay or regression, irritability, weakness, hypotonia, ataxia, apathy, tremor, and seizures. The diagnosis of vitamin B(12) deficiency ca...",
+        "rank_after": 8,
+        "score_after": -9.732858657836914,
+        "rank_before": 26,
+        "score_before": 0.027777777777777776,
+        "rank_gain": 18,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3319",
+        "title": "Epidemiologic Investigation of Immune-Mediated Polyradiculoneuropathy among Abattoir Workers Exposed to Porcine Brain",
+        "text_snippet": "Background In October 2007, a cluster of patients experiencing a novel polyradiculoneuropathy was identified at a pork abattoir (Plant A). Patients worked in the primary carcass processing area (warm room); the majority processed severed heads (head-table). An investigation was i...",
+        "rank_after": 9,
+        "score_after": -9.742599487304688,
+        "rank_before": 13,
+        "score_before": 0.043478260869565216,
+        "rank_gain": 4,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3863",
+        "title": "Sensitive skin: closing in on a physiological cause.",
+        "text_snippet": "The phenomenon of 'sensitive skin' is a relatively recent complaint in which certain individuals report more intense and frequent adverse sensory effects than the normal population upon use of cosmetic (personal-care) products. Originally defined as a minority complaint, sensitiv...",
+        "rank_after": 10,
+        "score_after": -9.812080383300781,
+        "rank_before": 3,
+        "score_before": 0.07692307692307693,
+        "rank_gain": -7,
+        "relevance": 0
+      }
+    ],
+    "moved_docs": [
+      {
+        "doc_id": "MED-4883",
+        "rank_before": 7,
+        "rank_after": 49,
+        "rank_gain": -42,
+        "score_before": 0.058823529411764705,
+        "score_after": -11.19279956817627,
+        "relevance": 0,
+        "title": "[Flatufonia--or the musical anus].",
+        "text_snippet": "The art of the musical anus is reviewed in the light of its most prominent performers and of anorectal physiological aspects related to this specific musical performance."
+      },
+      {
+        "doc_id": "MED-3621",
+        "rank_before": 42,
+        "rank_after": 3,
+        "rank_gain": 39,
+        "score_before": 0.019230769230769232,
+        "score_after": -9.144012451171875,
+        "relevance": 0,
+        "title": "Dental X-rays and Risk of Meningioma",
+        "text_snippet": "Context Ionizing radiation is a consistently identified and potentially modifiable risk factor for meningioma, the most frequently reported primary brain tumor in the United States. Objective To examine the association between dental x-rays, the most common artificial source of i..."
+      },
+      {
+        "doc_id": "MED-1519",
+        "rank_before": 4,
+        "rank_after": 41,
+        "rank_gain": -37,
+        "score_before": 0.07142857142857142,
+        "score_after": -11.05389404296875,
+        "relevance": 0,
+        "title": "Improved performance on clerical tasks associated with administration of peppermint odor.",
+        "text_snippet": "Previous research indicates the presence of certain odors is associated with enhanced task performance. The present study investigated use of peppermint odor during typing performance, memorization, and alphabetization. Participants completed the protocol twice--once with pepperm..."
+      },
+      {
+        "doc_id": "MED-3774",
+        "rank_before": 11,
+        "rank_after": 44,
+        "rank_gain": -33,
+        "score_before": 0.047619047619047616,
+        "score_after": -11.097378730773926,
+        "relevance": 0,
+        "title": "Should children drink more water?: the effects of drinking water on cognition in children.",
+        "text_snippet": "While dehydration has well-documented negative effects on adult cognition, there is little research on hydration and cognitive performance in children. We investigated whether having a drink of water improved children's performance on cognitive tasks. Fifty-eight children aged 7-..."
+      },
+      {
+        "doc_id": "MED-5036",
+        "rank_before": 47,
+        "rank_after": 15,
+        "rank_gain": 32,
+        "score_before": 0.017543859649122806,
+        "score_after": -10.107342720031738,
+        "relevance": 0,
+        "title": "Meta-analysis of long-term mobile phone use and the association with brain tumours.",
+        "text_snippet": "We evaluated long-term use of mobile phones and the risk for brain tumours in case-control studies published so far on this issue. We identified ten studies on glioma and meta-analysis yielded OR = 0.9, 95% CI = 0.8-1.1. Latency period of > or =10-years gave OR = 1.2, 95% CI = 0...."
+      },
+      {
+        "doc_id": "MED-4960",
+        "rank_before": 19,
+        "rank_after": 50,
+        "rank_gain": -31,
+        "score_before": 0.034482758620689655,
+        "score_after": -11.222732543945312,
+        "relevance": 0,
+        "title": "A fishy cause of sudden near fatal hypotension.",
+        "text_snippet": "Seafood-borne illnesses are a common but under recognised source of morbidity. We report the case of an 80-year-old woman who presented to hospital after collapsing in a restaurant following lunch consisting of mackerel fish. A detailed food history and clinical exclusion helped ..."
+      },
+      {
+        "doc_id": "MED-3354",
+        "rank_before": 38,
+        "rank_after": 7,
+        "rank_gain": 31,
+        "score_before": 0.020833333333333332,
+        "score_after": -9.621591567993164,
+        "relevance": 0,
+        "title": "Lip colour affects perceived sex typicality and attractiveness of human faces.",
+        "text_snippet": "The luminance contrast between facial features and facial skin is greater in women than in men, and women's use of make-up enhances this contrast. In black-and-white photographs, increased luminance contrast enhances femininity and attractiveness in women's faces, but reduces mas..."
+      },
+      {
+        "doc_id": "MED-899",
+        "rank_before": 33,
+        "rank_after": 2,
+        "rank_gain": 31,
+        "score_before": 0.023255813953488372,
+        "score_after": -8.907432556152344,
+        "relevance": 0,
+        "title": "Milk-induced pulmonary disease in infants (Heiner syndrome).",
+        "text_snippet": "Heiner syndrome (HS) is a food hypersensitivity pulmonary disease that affects primarily infants, and is mostly caused by cow's milk (CM). Only a few reports have been published, which may be due to its misdiagnosis. We review here a series of eight cases. When first diagnosed th..."
+      },
+      {
+        "doc_id": "MED-3023",
+        "rank_before": 34,
+        "rank_after": 6,
+        "rank_gain": 28,
+        "score_before": 0.022727272727272728,
+        "score_after": -9.535306930541992,
+        "relevance": 0,
+        "title": "Relationship between the prenatal exposure to low-level of mercury and the size of a newborn's cerebellum.",
+        "text_snippet": "Exposure to methylmercury at any stage of central nervous system development could induce alterations and result in severe congenital abnormalities. Total mercury level in maternal hair during pregnancy correlates well with blood levels of methylmercury and with total mercury lev..."
+      },
+      {
+        "doc_id": "MED-3761",
+        "rank_before": 8,
+        "rank_after": 33,
+        "rank_gain": -25,
+        "score_before": 0.05555555555555555,
+        "score_after": -10.850425720214844,
+        "relevance": 0,
+        "title": "General practice consultations: is there any point in being positive?",
+        "text_snippet": "A group of 200 patients who presented in general practice with symptoms but no abnormal physical signs and in whom no definite diagnosis was made were randomly selected for one of four consultations: a consultation conducted in a \"positive manner,\" with and without treatment, and..."
+      },
+      {
+        "doc_id": "MED-4664",
+        "rank_before": 16,
+        "rank_after": 40,
+        "rank_gain": -24,
+        "score_before": 0.038461538461538464,
+        "score_after": -11.043951034545898,
+        "relevance": 0,
+        "title": "Iodine toxicity from soy milk and seaweed ingestion is associated with serious thyroid dysfunction.",
+        "text_snippet": "We report a series of cases of thyroid dysfunction in adults associated with ingestion of a brand of soy milk manufactured with kombu (seaweed), and a case of hypothyroidism in a neonate whose mother had been drinking this milk. We also report two cases of neonatal hypothyroidism..."
+      },
+      {
+        "doc_id": "MED-2990",
+        "rank_before": 36,
+        "rank_after": 14,
+        "rank_gain": 22,
+        "score_before": 0.021739130434782608,
+        "score_after": -10.068649291992188,
+        "relevance": 0,
+        "title": "Bisphosphonate-associated osteonecrosis of the jaw: report of a task force of the American Society for Bone and Mineral Research.",
+        "text_snippet": "ONJ has been increasingly suspected to be a potential complication of bisphosphonate therapy in recent years. Thus, the ASBMR leadership appointed a multidisciplinary task force to address key questions related to case definition, epidemiology, risk factors, diagnostic imaging, c..."
+      },
+      {
+        "doc_id": "MED-5209",
+        "rank_before": 15,
+        "rank_after": 35,
+        "rank_gain": -20,
+        "score_before": 0.04,
+        "score_after": -10.93177318572998,
+        "relevance": 0,
+        "title": "Fried-potato diet causes vitamin A deficiency in an autistic child.",
+        "text_snippet": "A 5-year-old boy with autism developed dry eye and xerophthalmia. Serum vitamin A was undetectable. Dietary history revealed a markedly altered intake consisting of only fried potatoes and rice balls for 2 years. Fried potatoes contain no vitamin A. Autism is a multifaceted devel..."
+      },
+      {
+        "doc_id": "MED-5135",
+        "rank_before": 26,
+        "rank_after": 8,
+        "rank_gain": 18,
+        "score_before": 0.027777777777777776,
+        "score_after": -9.732858657836914,
+        "relevance": 0,
+        "title": "West syndrome in an infant with vitamin B12 deficiency in the absence of macrocytic anaemia.",
+        "text_snippet": "Vitamin B(12) deficiency in infants often produces haematological and neurological deficits, including macrocytic anaemia, neurodevelopmental delay or regression, irritability, weakness, hypotonia, ataxia, apathy, tremor, and seizures. The diagnosis of vitamin B(12) deficiency ca..."
+      },
+      {
+        "doc_id": "MED-2900",
+        "rank_before": 29,
+        "rank_after": 13,
+        "rank_gain": 16,
+        "score_before": 0.02564102564102564,
+        "score_after": -10.010469436645508,
+        "relevance": 0,
+        "title": "The Association of Consumption of Fruits/Vegetables with Decreased Risk of Glaucoma among Older African American Women in the Study of Osteoporotic Fractures",
+        "text_snippet": "Purpose To explore the association between consumption of fruits and vegetables and the presence of glaucoma in older African American women. Design Cross-sectional study. Methods Disc photographs and suprathreshold visual fields were obtained from the 662 African American partic..."
+      }
+    ]
+  },
+  "worst_drop": {
+    "query_id": "PLAIN-3085",
+    "query_text": "The Difficulty of Arriving at a Vitamin D Recommendation",
+    "ndcg_before": 0.8772153153380493,
+    "ndcg_after": 0.23719771276929622,
+    "ndcg_delta": -0.6400176025687531,
+    "top_before": [
+      {
+        "doc_id": "MED-4573",
+        "title": "Low Vitamin D Status: Definition, Prevalence, Consequences and Correction",
+        "text_snippet": "Vitamin D is obtained from cutaneous production when 7-dehydrocholesterol is converted to vitamin D3 (cholecalciferol) by ultraviolet B radiation or by oral intake of vitamin D2 (ergocalciferol) and D3. An individual's vitamin D status is best evaluated by measuring the circulati...",
+        "rank_before": 1,
+        "score_before": 0.16025641025641024,
+        "rank_after": 5,
+        "score_after": -4.382184982299805,
+        "rank_gain": -4,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-714",
+        "title": "Towards prevention of vitamin D deficiency and beyond: knowledge gaps and research needs in vitamin D nutrition and public health.",
+        "text_snippet": "The North American Institute of Medicine (IOM) recently published their report on dietary reference intakes (DRI) for Ca and vitamin D. The DRI committee's deliberations underpinning this most comprehensive report on vitamin D nutrition to date benefited hugely from a much expand...",
+        "rank_before": 2,
+        "score_before": 0.14090909090909093,
+        "rank_after": 2,
+        "score_after": -2.905491352081299,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4872",
+        "title": "Safety considerations and potential interactions of vitamins: should vitamins be considered drugs?",
+        "text_snippet": "OBJECTIVE: To examine adverse effects, adverse events, and potential interactions of vitamins in light of their current prevalence of use, and to discuss whether vitamins should be considered over-the-counter drugs or natural health products/dietary supplements. DATA SOURCES: We ...",
+        "rank_before": 3,
+        "score_before": 0.13257575757575757,
+        "rank_after": 8,
+        "score_after": -5.536530494689941,
+        "rank_gain": -5,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4570",
+        "title": "Vitamin D supplement doses and serum 25-hydroxyvitamin D in the range associated with cancer prevention.",
+        "text_snippet": "BACKGROUND: Studies indicate that intake of vitamin D in the range from 1,100 to 4,000 IU/d and a serum 25-hydroxyvitamin D concentration [25(OH)D] from 60-80 ng/ml may be needed to reduce cancer risk. Few community-based studies allow estimation of the dose-response relationship...",
+        "rank_before": 4,
+        "score_before": 0.12406015037593984,
+        "rank_after": 12,
+        "score_after": -5.901060581207275,
+        "rank_gain": -8,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-716",
+        "title": "VITAMIN D: A D-LIGHTFUL SOLUTION FOR HEALTH",
+        "text_snippet": "Throughout evolution sunlight produced vitamin D in the skin has been critically important for health. Vitamin D, known as the sunshine vitamin, is actually a hormone. Once it is produced in the skin or ingested from the diet it is converted sequentially in the liver and kidneys ...",
+        "rank_before": 5,
+        "score_before": 0.12237762237762238,
+        "rank_after": 4,
+        "score_after": -4.327915668487549,
+        "rank_gain": 1,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4566",
+        "title": "Taking vitamin D with the largest meal improves absorption and results in higher serum levels of 25-hydroxyvitamin D.",
+        "text_snippet": "Many patients treated for vitamin D deficiency fail to achieve an adequate serum level of 25-hydroxyvitamin D [25(OH)D] despite high doses of ergo- or cholecalciferol. The objective of this study was to determine whether administration of vitamin D supplement with the largest mea...",
+        "rank_before": 6,
+        "score_before": 0.12179487179487179,
+        "rank_after": 6,
+        "score_after": -4.459746360778809,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3990",
+        "title": "Vitamin D supplementation for prevention of mortality in adults.",
+        "text_snippet": "BACKGROUND: The available evidence on vitamin D and mortality is inconclusive. OBJECTIVES: To assess the beneficial and harmful effects of vitamin D for prevention of mortality in adults. SEARCH STRATEGY: We searched The Cochrane Library, MEDLINE, EMBASE, LILACS, the Science Cita...",
+        "rank_before": 7,
+        "score_before": 0.11929824561403508,
+        "rank_after": 7,
+        "score_after": -4.5933942794799805,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3988",
+        "title": "Vitamin D2 Is as Effective as Vitamin D3 in Maintaining Circulating Concentrations of 25-Hydroxyvitamin D",
+        "text_snippet": "Context: Two reports suggested that vitamin D2 is less effective than vitamin D3 in maintaining vitamin D status. Objective: Our objective was to determine whether vitamin D2 was less effective than vitamin D3 in maintaining serum 25-hydroxyvitamin D levels or increased the catab...",
+        "rank_before": 8,
+        "score_before": 0.11805555555555555,
+        "rank_after": 11,
+        "score_after": -5.8588762283325195,
+        "rank_gain": -3,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4574",
+        "title": "Prevalence and correlates of vitamin D deficiency in US adults.",
+        "text_snippet": "Mounting evidence suggests that vitamin D deficiency could be linked to several chronic diseases, including cardiovascular disease and cancer. The purpose of this study was to examine the prevalence of vitamin D deficiency and its correlates to test the hypothesis that vitamin D ...",
+        "rank_before": 9,
+        "score_before": 0.11805555555555555,
+        "rank_after": 13,
+        "score_after": -5.923154830932617,
+        "rank_gain": -4,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-919",
+        "title": "Evaluation, treatment, and prevention of vitamin D deficiency: an Endocrine Society clinical practice guideline.",
+        "text_snippet": "OBJECTIVE: The objective was to provide guidelines to clinicians for the evaluation, treatment, and prevention of vitamin D deficiency with an emphasis on the care of patients who are at risk for deficiency. PARTICIPANTS: The Task Force was composed of a Chair, six additional exp...",
+        "rank_before": 10,
+        "score_before": 0.1037037037037037,
+        "rank_after": 3,
+        "score_after": -3.3397302627563477,
+        "rank_gain": 7,
+        "relevance": 0
+      }
+    ],
+    "top_after": [
+      {
+        "doc_id": "MED-4575",
+        "title": "Vitamin D: extraskeletal health.",
+        "text_snippet": "Vitamin D deficiency is the most common nutritional deficiency and likely the most common medical condition in the world. The major cause of vitamin D deficiency has been the lack of appreciation that the body requires 5- to 10-fold higher intakes than is currently recommended by...",
+        "rank_after": 1,
+        "score_after": -2.2840585708618164,
+        "rank_before": 13,
+        "score_before": 0.09166666666666667,
+        "rank_gain": 12,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-714",
+        "title": "Towards prevention of vitamin D deficiency and beyond: knowledge gaps and research needs in vitamin D nutrition and public health.",
+        "text_snippet": "The North American Institute of Medicine (IOM) recently published their report on dietary reference intakes (DRI) for Ca and vitamin D. The DRI committee's deliberations underpinning this most comprehensive report on vitamin D nutrition to date benefited hugely from a much expand...",
+        "rank_after": 2,
+        "score_after": -2.905491352081299,
+        "rank_before": 2,
+        "score_before": 0.14090909090909093,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-919",
+        "title": "Evaluation, treatment, and prevention of vitamin D deficiency: an Endocrine Society clinical practice guideline.",
+        "text_snippet": "OBJECTIVE: The objective was to provide guidelines to clinicians for the evaluation, treatment, and prevention of vitamin D deficiency with an emphasis on the care of patients who are at risk for deficiency. PARTICIPANTS: The Task Force was composed of a Chair, six additional exp...",
+        "rank_after": 3,
+        "score_after": -3.3397302627563477,
+        "rank_before": 10,
+        "score_before": 0.1037037037037037,
+        "rank_gain": 7,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-716",
+        "title": "VITAMIN D: A D-LIGHTFUL SOLUTION FOR HEALTH",
+        "text_snippet": "Throughout evolution sunlight produced vitamin D in the skin has been critically important for health. Vitamin D, known as the sunshine vitamin, is actually a hormone. Once it is produced in the skin or ingested from the diet it is converted sequentially in the liver and kidneys ...",
+        "rank_after": 4,
+        "score_after": -4.327915668487549,
+        "rank_before": 5,
+        "score_before": 0.12237762237762238,
+        "rank_gain": 1,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4573",
+        "title": "Low Vitamin D Status: Definition, Prevalence, Consequences and Correction",
+        "text_snippet": "Vitamin D is obtained from cutaneous production when 7-dehydrocholesterol is converted to vitamin D3 (cholecalciferol) by ultraviolet B radiation or by oral intake of vitamin D2 (ergocalciferol) and D3. An individual's vitamin D status is best evaluated by measuring the circulati...",
+        "rank_after": 5,
+        "score_after": -4.382184982299805,
+        "rank_before": 1,
+        "score_before": 0.16025641025641024,
+        "rank_gain": -4,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-4566",
+        "title": "Taking vitamin D with the largest meal improves absorption and results in higher serum levels of 25-hydroxyvitamin D.",
+        "text_snippet": "Many patients treated for vitamin D deficiency fail to achieve an adequate serum level of 25-hydroxyvitamin D [25(OH)D] despite high doses of ergo- or cholecalciferol. The objective of this study was to determine whether administration of vitamin D supplement with the largest mea...",
+        "rank_after": 6,
+        "score_after": -4.459746360778809,
+        "rank_before": 6,
+        "score_before": 0.12179487179487179,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3990",
+        "title": "Vitamin D supplementation for prevention of mortality in adults.",
+        "text_snippet": "BACKGROUND: The available evidence on vitamin D and mortality is inconclusive. OBJECTIVES: To assess the beneficial and harmful effects of vitamin D for prevention of mortality in adults. SEARCH STRATEGY: We searched The Cochrane Library, MEDLINE, EMBASE, LILACS, the Science Cita...",
+        "rank_after": 7,
+        "score_after": -4.5933942794799805,
+        "rank_before": 7,
+        "score_before": 0.11929824561403508,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4872",
+        "title": "Safety considerations and potential interactions of vitamins: should vitamins be considered drugs?",
+        "text_snippet": "OBJECTIVE: To examine adverse effects, adverse events, and potential interactions of vitamins in light of their current prevalence of use, and to discuss whether vitamins should be considered over-the-counter drugs or natural health products/dietary supplements. DATA SOURCES: We ...",
+        "rank_after": 8,
+        "score_after": -5.536530494689941,
+        "rank_before": 3,
+        "score_before": 0.13257575757575757,
+        "rank_gain": -5,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-961",
+        "title": "Vitamin D(3) is more potent than vitamin D(2) in humans.",
+        "text_snippet": "BACKGROUND: Current unitage for the calciferols suggests that equimolar quantities of vitamins D(2) (D2) and D(3) (D3) are biologically equivalent. Published studies yield mixed results. OBJECTIVE: The aim of the study was to compare the potencies of D2 and D3. DESIGN: The trial ...",
+        "rank_after": 9,
+        "score_after": -5.794222831726074,
+        "rank_before": 16,
+        "score_before": 0.07987711213517665,
+        "rank_gain": 7,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3985",
+        "title": "Vitamin D deficiency treated by consuming UVB-irradiated mushrooms",
+        "text_snippet": "Deficiency of vitamin D is usually caused by dietary deficiency and/or lack of exposure to sunlight in dark skinned individuals living at northern latitudes. Simple vitamin D deficiency is commonly treated by prescribing a vitamin D containing calcium supplement. This report pres...",
+        "rank_after": 10,
+        "score_after": -5.828701019287109,
+        "rank_before": 19,
+        "score_before": 0.06696428571428571,
+        "rank_gain": 9,
+        "relevance": 0
+      }
+    ],
+    "moved_docs": [
+      {
+        "doc_id": "MED-2765",
+        "rank_before": 34,
+        "rank_after": 14,
+        "rank_gain": 20,
+        "score_before": 0.034482758620689655,
+        "score_after": -6.039084434509277,
+        "relevance": 0,
+        "title": "The value of current nutrition information.",
+        "text_snippet": "To prevent or delay the occurrence of chronic diseases, scientific bodies from the cardiologic and oncologic disciplines have made recommendations regarding the daily dietary intake of certain macro- and micronutrients. This study assessed the knowledge of a random population of ..."
+      },
+      {
+        "doc_id": "MED-4575",
+        "rank_before": 13,
+        "rank_after": 1,
+        "rank_gain": 12,
+        "score_before": 0.09166666666666667,
+        "score_after": -2.2840585708618164,
+        "relevance": 0,
+        "title": "Vitamin D: extraskeletal health.",
+        "text_snippet": "Vitamin D deficiency is the most common nutritional deficiency and likely the most common medical condition in the world. The major cause of vitamin D deficiency has been the lack of appreciation that the body requires 5- to 10-fold higher intakes than is currently recommended by..."
+      },
+      {
+        "doc_id": "MED-3985",
+        "rank_before": 19,
+        "rank_after": 10,
+        "rank_gain": 9,
+        "score_before": 0.06696428571428571,
+        "score_after": -5.828701019287109,
+        "relevance": 0,
+        "title": "Vitamin D deficiency treated by consuming UVB-irradiated mushrooms",
+        "text_snippet": "Deficiency of vitamin D is usually caused by dietary deficiency and/or lack of exposure to sunlight in dark skinned individuals living at northern latitudes. Simple vitamin D deficiency is commonly treated by prescribing a vitamin D containing calcium supplement. This report pres..."
+      },
+      {
+        "doc_id": "MED-4570",
+        "rank_before": 4,
+        "rank_after": 12,
+        "rank_gain": -8,
+        "score_before": 0.12406015037593984,
+        "score_after": -5.901060581207275,
+        "relevance": 2,
+        "title": "Vitamin D supplement doses and serum 25-hydroxyvitamin D in the range associated with cancer prevention.",
+        "text_snippet": "BACKGROUND: Studies indicate that intake of vitamin D in the range from 1,100 to 4,000 IU/d and a serum 25-hydroxyvitamin D concentration [25(OH)D] from 60-80 ng/ml may be needed to reduce cancer risk. Few community-based studies allow estimation of the dose-response relationship..."
+      },
+      {
+        "doc_id": "MED-3986",
+        "rank_before": 11,
+        "rank_after": 19,
+        "rank_gain": -8,
+        "score_before": 0.10230179028132992,
+        "score_after": -7.06272554397583,
+        "relevance": 0,
+        "title": "Bioavailability of vitamin D₂ from UV-B-irradiated button mushrooms in healthy adults deficient in serum 25-hydroxyvitamin D: a randomized controll...",
+        "text_snippet": "BACKGROUND/OBJECTIVES: Mushrooms contain very little or any vitamin D(2) but are abundant in ergosterol, which can be converted into vitamin D(2) by ultraviolet (UV) irradiation. Our objective was to investigate the bioavailability of vitamin D(2) from vitamin D(2)-enhanced mushr..."
+      },
+      {
+        "doc_id": "MED-961",
+        "rank_before": 16,
+        "rank_after": 9,
+        "rank_gain": 7,
+        "score_before": 0.07987711213517665,
+        "score_after": -5.794222831726074,
+        "relevance": 0,
+        "title": "Vitamin D(3) is more potent than vitamin D(2) in humans.",
+        "text_snippet": "BACKGROUND: Current unitage for the calciferols suggests that equimolar quantities of vitamins D(2) (D2) and D(3) (D3) are biologically equivalent. Published studies yield mixed results. OBJECTIVE: The aim of the study was to compare the potencies of D2 and D3. DESIGN: The trial ..."
+      },
+      {
+        "doc_id": "MED-919",
+        "rank_before": 10,
+        "rank_after": 3,
+        "rank_gain": 7,
+        "score_before": 0.1037037037037037,
+        "score_after": -3.3397302627563477,
+        "relevance": 0,
+        "title": "Evaluation, treatment, and prevention of vitamin D deficiency: an Endocrine Society clinical practice guideline.",
+        "text_snippet": "OBJECTIVE: The objective was to provide guidelines to clinicians for the evaluation, treatment, and prevention of vitamin D deficiency with an emphasis on the care of patients who are at risk for deficiency. PARTICIPANTS: The Task Force was composed of a Chair, six additional exp..."
+      },
+      {
+        "doc_id": "MED-3987",
+        "rank_before": 12,
+        "rank_after": 18,
+        "rank_gain": -6,
+        "score_before": 0.10230179028132992,
+        "score_after": -6.9436354637146,
+        "relevance": 0,
+        "title": "Comparison of vitamin D2 and vitamin D3 supplementation in raising serum 25-hydroxyvitamin D status: a systematic review and meta-analysis",
+        "text_snippet": "Background: Currently, there is a lack of clarity in the literature as to whether there is a definitive difference between the effects of vitamins D2 and D3 in the raising of serum 25-hydroxyvitamin D [25(OH)D]. Objective: The objective of this article was to report a systematic ..."
+      },
+      {
+        "doc_id": "MED-4872",
+        "rank_before": 3,
+        "rank_after": 8,
+        "rank_gain": -5,
+        "score_before": 0.13257575757575757,
+        "score_after": -5.536530494689941,
+        "relevance": 0,
+        "title": "Safety considerations and potential interactions of vitamins: should vitamins be considered drugs?",
+        "text_snippet": "OBJECTIVE: To examine adverse effects, adverse events, and potential interactions of vitamins in light of their current prevalence of use, and to discuss whether vitamins should be considered over-the-counter drugs or natural health products/dietary supplements. DATA SOURCES: We ..."
+      },
+      {
+        "doc_id": "MED-3991",
+        "rank_before": 20,
+        "rank_after": 25,
+        "rank_gain": -5,
+        "score_before": 0.05733005733005733,
+        "score_after": -7.840038776397705,
+        "relevance": 0,
+        "title": "Ergocalciferol from mushrooms or supplements consumed with a standard meal increases 25-hydroxyergocalciferol but decreases 25-hydroxycholecalcifer...",
+        "text_snippet": "Few foods contain ergocalciferol or cholecalciferol. Treatment of mushrooms with UV light increases ergocalciferol content and could provide a dietary source of vitamin D. We evaluated the impact of consuming UV-treated white button mushrooms (Agaricus bisporus) on the vitamin D ..."
+      },
+      {
+        "doc_id": "MED-4573",
+        "rank_before": 1,
+        "rank_after": 5,
+        "rank_gain": -4,
+        "score_before": 0.16025641025641024,
+        "score_after": -4.382184982299805,
+        "relevance": 2,
+        "title": "Low Vitamin D Status: Definition, Prevalence, Consequences and Correction",
+        "text_snippet": "Vitamin D is obtained from cutaneous production when 7-dehydrocholesterol is converted to vitamin D3 (cholecalciferol) by ultraviolet B radiation or by oral intake of vitamin D2 (ergocalciferol) and D3. An individual's vitamin D status is best evaluated by measuring the circulati..."
+      },
+      {
+        "doc_id": "MED-3989",
+        "rank_before": 24,
+        "rank_after": 20,
+        "rank_gain": 4,
+        "score_before": 0.04754440961337513,
+        "score_after": -7.2229323387146,
+        "relevance": 0,
+        "title": "Vitamin D and sterol composition of 10 types of mushrooms from retail suppliers in the United States.",
+        "text_snippet": "Vitamin D(2) (ergocalciferol) and sterols were analyzed in mushrooms sampled nationwide in the United States to update the USDA Nutrient Database for Standard Reference. Vitamin D(2) was assayed using HPLC with [(3)H]-vitamin D(3) internal standard and sterols by GC-FID mass spec..."
+      },
+      {
+        "doc_id": "MED-4574",
+        "rank_before": 9,
+        "rank_after": 13,
+        "rank_gain": -4,
+        "score_before": 0.11805555555555555,
+        "score_after": -5.923154830932617,
+        "relevance": 0,
+        "title": "Prevalence and correlates of vitamin D deficiency in US adults.",
+        "text_snippet": "Mounting evidence suggests that vitamin D deficiency could be linked to several chronic diseases, including cardiovascular disease and cancer. The purpose of this study was to examine the prevalence of vitamin D deficiency and its correlates to test the hypothesis that vitamin D ..."
+      },
+      {
+        "doc_id": "MED-3988",
+        "rank_before": 8,
+        "rank_after": 11,
+        "rank_gain": -3,
+        "score_before": 0.11805555555555555,
+        "score_after": -5.8588762283325195,
+        "relevance": 0,
+        "title": "Vitamin D2 Is as Effective as Vitamin D3 in Maintaining Circulating Concentrations of 25-Hydroxyvitamin D",
+        "text_snippet": "Context: Two reports suggested that vitamin D2 is less effective than vitamin D3 in maintaining vitamin D status. Objective: Our objective was to determine whether vitamin D2 was less effective than vitamin D3 in maintaining serum 25-hydroxyvitamin D levels or increased the catab..."
+      },
+      {
+        "doc_id": "MED-862",
+        "rank_before": 18,
+        "rank_after": 21,
+        "rank_gain": -3,
+        "score_before": 0.07333333333333333,
+        "score_after": -7.33050537109375,
+        "relevance": 0,
+        "title": "Traditionally living populations in East Africa have a mean serum 25-hydroxyvitamin D concentration of 115 nmol/l.",
+        "text_snippet": "Cutaneous synthesis of vitamin D by exposure to UVB is the principal source of vitamin D in the human body. Our current clothing habits and reduced time spent outdoors put us at risk of many insufficiency-related diseases that are associated with calcaemic and non-calcaemic funct..."
+      }
+    ]
+  }
+}

@@ -1,0 +1,1535 @@
+{
+  "lexical_global": {
+    "Precision@10": 0.22074303405572754,
+    "Recall@10": 0.15273260837762345,
+    "MAP@10": 0.11989339291232107,
+    "NDCG@10": 0.31214334864824694,
+    "Hit@10": 0.6904024767801857
+  },
+  "semantic_global": {
+    "Precision@10": 0.24334365325077398,
+    "Recall@10": 0.15498797328057845,
+    "MAP@10": 0.11082911029858557,
+    "NDCG@10": 0.31667312754717797,
+    "Hit@10": 0.6904024767801857
+  },
+  "semantic_advantage": [
+    {
+      "query_id": "PLAIN-1537",
+      "query_text": "low-carb diets",
+      "query_tokens": [
+        "low",
+        "carb",
+        "diets"
+      ],
+      "query_term_stats": [
+        {
+          "term": "low",
+          "df": 726,
+          "idf": 1.609850765945779
+        },
+        {
+          "term": "carb",
+          "df": 1,
+          "idf": 7.792624140847952
+        },
+        {
+          "term": "diets",
+          "df": 293,
+          "idf": 2.516211609687965
+        }
+      ],
+      "total_relevant_docs_in_qrels": 45,
+      "ndcg_lexical": 0.0,
+      "ndcg_semantic": 0.6618313225363274,
+      "diff_semantic_minus_lexical": 0.6618313225363274,
+      "top_lexical": [
+        {
+          "doc_id": "MED-4880",
+          "rank": 1,
+          "score": 23.083905749076674,
+          "relevance": 0,
+          "title": "Effects of very-low-carbohydrate (horsemeat- or beef-based) diets and restricted feeding on weight gain, feed and energy efficiency, as well as ser...",
+          "text_snippet": "BACKGROUND/AIMS: The beneficial or harmful effect of the low-carbohydrate (low-carb), high-protein, high-fat diet (Atkins diet) has not been clearly demonstrated. We determined the effect of a low-carb diet and restricted feeding (70% ad libitum intake) on serum levels of cholesterol, triacylglycerol, glucose, ketone b...",
+          "doc_length_tokens": 182,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 11,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 3.498418188691867
+            },
+            {
+              "term": "carb",
+              "qtf": 1,
+              "tf": 8,
+              "df": 1,
+              "idf": 7.792624140847952,
+              "bm25_contribution": 16.142910584868382
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 2,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 3.4425769755164253
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 2,
+          "score_in_other_system": 0.6094472408294678
+        },
+        {
+          "doc_id": "MED-3149",
+          "rank": 2,
+          "score": 8.510617496567729,
+          "relevance": 0,
+          "title": "Four therapeutic diets: adherence and acceptability.",
+          "text_snippet": "Many health conditions are treated, at least in part, by therapeutic diets. Although the success of any intervention depends on its acceptability to the patient, the acceptability of therapeutic diets and factors that influence it have been largely neglected in nutrition research. A working definition of acceptability ...",
+          "doc_length_tokens": 124,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 4,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 3.068264855796325
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 8,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 5.442352640771404
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3273",
+          "rank": 3,
+          "score": 8.376900039550256,
+          "relevance": 0,
+          "title": "The low-methionine content of vegan diets may make methionine restriction feasible as a life extension strategy.",
+          "text_snippet": "Recent studies confirm that dietary methionine restriction increases both mean and maximal lifespan in rats and mice, achieving \"aging retardant\" effects very similar to those of caloric restriction, including a suppression of mitochondrial superoxide generation. Although voluntary caloric restriction is never likely t...",
+          "doc_length_tokens": 147,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 5,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 3.140079190978438
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 7,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 5.236820848571818
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": 95,
+          "score_in_other_system": 0.39923959970474243
+        },
+        {
+          "doc_id": "MED-4353",
+          "rank": 4,
+          "score": 7.989023018632215,
+          "relevance": 0,
+          "title": "Effects of dietary proteins on plasma lipoprotein levels in normal subjects: interaction with dietary cholesterol.",
+          "text_snippet": "We have compared the effects of dietary soy protein and casein in diets low in cholesterol (less than 100 mg/d) and in diets enriched in cholesterol (500 mg/d) to examine whether the level of cholesterol intake affects the response of plasma lipoproteins to dietary proteins of plant and animal origin. Normal men and wo...",
+          "doc_length_tokens": 175,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 4,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 2.87199829737482
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 7,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 5.117024721257395
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": 71,
+          "score_in_other_system": 0.4132193326950073
+        },
+        {
+          "doc_id": "MED-1257",
+          "rank": 5,
+          "score": 7.949204099837475,
+          "relevance": 0,
+          "title": "Protein and coronary heart disease: the role of different protein sources.",
+          "text_snippet": "Meat protein is associated with an increase in risk of heart disease. Recent data have shown that meat protein appeared to be associated with weight gain over 6.5 years, with 1 kg of weight increase per 125 g of meat per day. In the Nurses' Health Study, diets low in red meat, containing nuts, low-fat dairy, poultry, o...",
+          "doc_length_tokens": 116,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 4,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 3.10151208191978
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 4,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 4.847692017917695
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": 10,
+          "score_in_other_system": 0.5032258033752441
+        }
+      ],
+      "top_semantic": [
+        {
+          "doc_id": "MED-4515",
+          "rank": 1,
+          "score": 0.6623272895812988,
+          "relevance": 1,
+          "title": "The effect of a plant-based low-carbohydrate (\"Eco-Atkins\") diet on body weight and blood lipid concentrations in hyperlipidemic subjects.",
+          "text_snippet": "BACKGROUND: Low-carbohydrate, high-animal protein diets, which are advocated for weight loss, may not promote the desired reduction in low-density lipoprotein cholesterol (LDL-C) concentration. The effect of exchanging the animal proteins and fats for those of vegetable origin has not been tested. Our objective was to ...",
+          "doc_length_tokens": 228,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 10,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 3.3600302344710955
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 3,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 3.791037015670823
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": 18,
+          "score_in_other_system": 7.151067250141919
+        },
+        {
+          "doc_id": "MED-4880",
+          "rank": 2,
+          "score": 0.6094472408294678,
+          "relevance": 0,
+          "title": "Effects of very-low-carbohydrate (horsemeat- or beef-based) diets and restricted feeding on weight gain, feed and energy efficiency, as well as ser...",
+          "text_snippet": "BACKGROUND/AIMS: The beneficial or harmful effect of the low-carbohydrate (low-carb), high-protein, high-fat diet (Atkins diet) has not been clearly demonstrated. We determined the effect of a low-carb diet and restricted feeding (70% ad libitum intake) on serum levels of cholesterol, triacylglycerol, glucose, ketone b...",
+          "doc_length_tokens": 182,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 11,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 3.498418188691867
+            },
+            {
+              "term": "carb",
+              "qtf": 1,
+              "tf": 8,
+              "df": 1,
+              "idf": 7.792624140847952,
+              "bm25_contribution": 16.142910584868382
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 2,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 3.4425769755164253
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 1,
+          "score_in_other_system": 23.083905749076674
+        },
+        {
+          "doc_id": "MED-4514",
+          "rank": 3,
+          "score": 0.5962386131286621,
+          "relevance": 1,
+          "title": "Low-carbohydrate diets and all-cause and cause-specific mortality: Two cohort Studies",
+          "text_snippet": "Background Data on the long-term association between low-carbohydrate diets and mortality are sparse. Objective To examine the association of low-carbohydrate diets with mortality during 26 years of follow-up in women and 20 years in men. Design A prospective cohort study of women and men, followed from 1980 (women) or...",
+          "doc_length_tokens": 304,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 9,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 3.1463524537084195
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 4,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 3.8638042709975484
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": 21,
+          "score_in_other_system": 7.010156724705968
+        },
+        {
+          "doc_id": "MED-1616",
+          "rank": 4,
+          "score": 0.5870106220245361,
+          "relevance": 1,
+          "title": "Very-low-carbohydrate ketogenic diet v. low-fat diet for long-term weight loss: a meta-analysis of randomised controlled trials.",
+          "text_snippet": "The role of very-low-carbohydrate ketogenic diets (VLCKD) in the long-term management of obesity is not well established. The present meta-analysis aimed to investigate whether individuals assigned to a VLCKD (i.e. a diet with no more than 50 g carbohydrates/d) achieve better long-term body weight and cardiovascular ri...",
+          "doc_length_tokens": 236,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 4,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 2.6678811025725
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 1,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 2.0732136796451863
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": 94,
+          "score_in_other_system": 4.7410947822176865
+        },
+        {
+          "doc_id": "MED-2586",
+          "rank": 5,
+          "score": 0.5584240555763245,
+          "relevance": 1,
+          "title": "Systematic review and meta-analysis of clinical trials of the effects of low carbohydrate diets on cardiovascular risk factors.",
+          "text_snippet": "A systematic review and meta-analysis were carried out to study the effects of low-carbohydrate diet (LCD) on weight loss and cardiovascular risk factors (search performed on PubMed, Cochrane Central Register of Controlled Trials and Scopus databases). A total of 23 reports, corresponding to 17 clinical investigations,...",
+          "doc_length_tokens": 237,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "low",
+              "qtf": 1,
+              "tf": 3,
+              "df": 726,
+              "idf": 1.609850765945779,
+              "bm25_contribution": 2.3950301809035057
+            },
+            {
+              "term": "diets",
+              "qtf": 1,
+              "tf": 1,
+              "df": 293,
+              "idf": 2.516211609687965,
+              "bm25_contribution": 2.068420976231276
+            }
+          ],
+          "missing_query_terms": [
+            "carb"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        }
+      ]
+    },
+    {
+      "query_id": "PLAIN-2470",
+      "query_text": "Is Milk Good for Our Bones?",
+      "query_tokens": [
+        "milk",
+        "good",
+        "bones"
+      ],
+      "query_term_stats": [
+        {
+          "term": "milk",
+          "df": 169,
+          "idf": 3.0652363221356116
+        },
+        {
+          "term": "good",
+          "df": 82,
+          "idf": 3.7852909556154812
+        },
+        {
+          "term": "bones",
+          "df": 3,
+          "idf": 6.9453262804607485
+        }
+      ],
+      "total_relevant_docs_in_qrels": 73,
+      "ndcg_lexical": 0.0961271177726593,
+      "ndcg_semantic": 0.7205646068602002,
+      "diff_semantic_minus_lexical": 0.6244374890875409,
+      "top_lexical": [
+        {
+          "doc_id": "MED-4897",
+          "rank": 1,
+          "score": 13.538101024672837,
+          "relevance": 0,
+          "title": "Milk consumption: aggravating factor of acne and promoter of chronic diseases of Western societies.",
+          "text_snippet": "Consumption of cow's milk and cow's milk protein result in changes of the hormonal axis of insulin, growth hormone and insulin-like growth factor-1(IGF-1) in humans. Milk consumption raises IGF-1 serum levels in the perinatal period, adolescence and adulthood. During puberty with the physiological onset of increased se...",
+          "doc_length_tokens": 159,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 9,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 6.57284204843158
+            },
+            {
+              "term": "bones",
+              "qtf": 1,
+              "tf": 1,
+              "df": 3,
+              "idf": 6.9453262804607485,
+              "bm25_contribution": 6.965258976241258
+            }
+          ],
+          "missing_query_terms": [
+            "good"
+          ],
+          "rank_in_other_system": 43,
+          "score_in_other_system": 0.4085177779197693
+        },
+        {
+          "doc_id": "MED-4901",
+          "rank": 2,
+          "score": 10.706742572991425,
+          "relevance": 0,
+          "title": "Antioxidant status in humans after consumption of blackberry (Rubus fruticosus L.) juices with and without defatted milk.",
+          "text_snippet": "The present study was designed to evaluate the possible effect of the consumption of blackberry juices (BJ) prepared with water (BJW) and defatted milk (BJM) on the plasma antioxidant capacity and the enzymatic and nonenzymatic antioxidants. A significant (p < 0.05) increase in the ascorbic acid content in the plasma w...",
+          "doc_length_tokens": 159,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 2,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 4.387878264585522
+            },
+            {
+              "term": "good",
+              "qtf": 1,
+              "tf": 3,
+              "df": 82,
+              "idf": 3.7852909556154812,
+              "bm25_contribution": 6.318864308405903
+            }
+          ],
+          "missing_query_terms": [
+            "bones"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-4782",
+          "rank": 3,
+          "score": 8.448836123677015,
+          "relevance": 0,
+          "title": "Survey of commercially available chocolate- and cocoa-containing products in the United States. 2. Comparison of flavan-3-ol content with nonfat co...",
+          "text_snippet": "A survey of a broad range of chocolate- and cocoa-containing products marketed in the United States was conducted to provide a more detailed analysis of flavan-3-ol monomers, oligomers, and polymers, which can be grouped into a class of compounds called procyanidins. Samples consisted of the three or four top-selling p...",
+          "doc_length_tokens": 297,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 3,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 4.208137712065014
+            },
+            {
+              "term": "good",
+              "qtf": 1,
+              "tf": 2,
+              "df": 82,
+              "idf": 3.7852909556154812,
+              "bm25_contribution": 4.2406984116120015
+            }
+          ],
+          "missing_query_terms": [
+            "bones"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-4839",
+          "rank": 4,
+          "score": 8.0296008474786,
+          "relevance": 0,
+          "title": "Migrating fish bone presenting as acute onset of neck lump.",
+          "text_snippet": "We encountered a 62-year-old woman with a progressively worsening sore throat and a sharp lump located in her left upper neck, which appeared several hours before admission. After questioning, she underwent rigid esophagoscopy at a local hospital for suspected fish bone impaction but this gave a negative result. Unusua...",
+          "doc_length_tokens": 112,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.3333333333333333,
+          "matched_query_terms": [
+            {
+              "term": "bones",
+              "qtf": 1,
+              "tf": 1,
+              "df": 3,
+              "idf": 6.9453262804607485,
+              "bm25_contribution": 8.0296008474786
+            }
+          ],
+          "missing_query_terms": [
+            "milk",
+            "good"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-1770",
+          "rank": 5,
+          "score": 7.302693469876477,
+          "relevance": 1,
+          "title": "Possible health impact of animal oestrogens in food.",
+          "text_snippet": "Oestrogens govern reproductive functions in vertebrates, and are present in all animal tissues. The theoretical maximum daily intake (TMDI) of oestradiol-17beta by consumption of cattle meat is calculated to be 4.3 ng. Following the use of oestradiol-containing growth-promoting agents, TMDI is increased by a factor of ...",
+          "doc_length_tokens": 138,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.6666666666666666,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 1,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 3.26755596550757
+            },
+            {
+              "term": "good",
+              "qtf": 1,
+              "tf": 1,
+              "df": 82,
+              "idf": 3.7852909556154812,
+              "bm25_contribution": 4.035137504368906
+            }
+          ],
+          "missing_query_terms": [
+            "bones"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        }
+      ],
+      "top_semantic": [
+        {
+          "doc_id": "MED-1337",
+          "rank": 1,
+          "score": 0.6237367391586304,
+          "relevance": 2,
+          "title": "Milk intake and risk of hip fracture in men and women: a meta-analysis of prospective cohort studies.",
+          "text_snippet": "Milk contains calcium, phosphorus, and protein and is fortified with vitamin D in the United States. All these ingredients may improve bone health. However, the potential benefit of milk on hip fracture prevention is not well established. The objective of this study was to assess the association of milk intake with ris...",
+          "doc_length_tokens": 184,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.3333333333333333,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 10,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 6.567270994791037
+            }
+          ],
+          "missing_query_terms": [
+            "good",
+            "bones"
+          ],
+          "rank_in_other_system": 21,
+          "score_in_other_system": 6.567270994791037
+        },
+        {
+          "doc_id": "MED-4682",
+          "rank": 2,
+          "score": 0.5643675327301025,
+          "relevance": 0,
+          "title": "Calcium absorption in Australian osteopenic post-menopausal women: an acute comparative study of fortified soymilk to cows' milk.",
+          "text_snippet": "Calcium loss after menopause increases the risk of osteoporosis in aging women. Soymilk is often consumed to reduce menopausal symptoms, although in its native form, it contains significantly less calcium than cow's milk. Moreover, when calcium is added as a fortificant, it may not be absorbed efficiently. This study c...",
+          "doc_length_tokens": 182,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.3333333333333333,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 7,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 6.198087317035705
+            }
+          ],
+          "missing_query_terms": [
+            "good",
+            "bones"
+          ],
+          "rank_in_other_system": 44,
+          "score_in_other_system": 6.198087317035705
+        },
+        {
+          "doc_id": "MED-3228",
+          "rank": 3,
+          "score": 0.5634918212890625,
+          "relevance": 1,
+          "title": "Dietary protein and bone health: harmonizing conflicting theories.",
+          "text_snippet": "A precise understanding of the role of dietary protein in bone health has been evasive despite decades of research. It is known that a dietary acid load is harmful to bone, and sulfur-containing amino acids are metabolized to provide such an acid load. It is also known that protein elevates urine calcium loss. However,...",
+          "doc_length_tokens": 126,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "milk",
+            "good",
+            "bones"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-1340",
+          "rank": 4,
+          "score": 0.5622339248657227,
+          "relevance": 2,
+          "title": "Milk Consumption During Teenage Years and Risk of Hip Fractures in Older Adults",
+          "text_snippet": "Importance Milk consumption during adolescence is recommended to promote peak bone mass and thereby reduce fracture risk in later life. However, its role in hip fracture prevention is not established and high consumption may adversely influence risk by increasing height. Objective To determine whether milk consumption ...",
+          "doc_length_tokens": 228,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.3333333333333333,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 9,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 6.282395765481164
+            }
+          ],
+          "missing_query_terms": [
+            "good",
+            "bones"
+          ],
+          "rank_in_other_system": 37,
+          "score_in_other_system": 6.282395765481164
+        },
+        {
+          "doc_id": "MED-4722",
+          "rank": 5,
+          "score": 0.5375300049781799,
+          "relevance": 1,
+          "title": "Dietary protein and bone health: a systematic review and meta-analysis.",
+          "text_snippet": "BACKGROUND: There has been a resurgence of interest in the controversial relation between dietary protein and bone health. OBJECTIVE: This article reports on the first systematic review and meta-analysis of the relation between protein and bone health in healthy human adults. DESIGN: The MEDLINE (January 1966 to Septem...",
+          "doc_length_tokens": 164,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.3333333333333333,
+          "matched_query_terms": [
+            {
+              "term": "milk",
+              "qtf": 1,
+              "tf": 1,
+              "df": 169,
+              "idf": 3.0652363221356116,
+              "bm25_contribution": 3.03128825470721
+            }
+          ],
+          "missing_query_terms": [
+            "good",
+            "bones"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        }
+      ]
+    },
+    {
+      "query_id": "PLAIN-924",
+      "query_text": "cocaine",
+      "query_tokens": [
+        "cocaine"
+      ],
+      "query_term_stats": [
+        {
+          "term": "cocaine",
+          "df": 1,
+          "idf": 7.792624140847952
+        }
+      ],
+      "total_relevant_docs_in_qrels": 32,
+      "ndcg_lexical": 0.22009176629808017,
+      "ndcg_semantic": 0.7778721720600673,
+      "diff_semantic_minus_lexical": 0.5577804057619872,
+      "top_lexical": [
+        {
+          "doc_id": "MED-3044",
+          "rank": 1,
+          "score": 17.440487681374435,
+          "relevance": 1,
+          "title": "Cue-induced cocaine craving: neuroanatomical specificity for drug users and drug stimuli.",
+          "text_snippet": "OBJECTIVE: Cocaine-related cues have been hypothesized to perpetuate drug abuse by inducing a craving response that prompts drug-seeking behavior. However, the mechanisms, underlying neuroanatomy, and specificity of this neuroanatomy are not yet fully understood. METHOD: To address these issues, experienced cocaine use...",
+          "doc_length_tokens": 213,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "cocaine",
+              "qtf": 1,
+              "tf": 16,
+              "df": 1,
+              "idf": 7.792624140847952,
+              "bm25_contribution": 17.440487681374435
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 1,
+          "score_in_other_system": 0.4666813015937805
+        }
+      ],
+      "top_semantic": [
+        {
+          "doc_id": "MED-3044",
+          "rank": 1,
+          "score": 0.4666813015937805,
+          "relevance": 1,
+          "title": "Cue-induced cocaine craving: neuroanatomical specificity for drug users and drug stimuli.",
+          "text_snippet": "OBJECTIVE: Cocaine-related cues have been hypothesized to perpetuate drug abuse by inducing a craving response that prompts drug-seeking behavior. However, the mechanisms, underlying neuroanatomy, and specificity of this neuroanatomy are not yet fully understood. METHOD: To address these issues, experienced cocaine use...",
+          "doc_length_tokens": 213,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "cocaine",
+              "qtf": 1,
+              "tf": 16,
+              "df": 1,
+              "idf": 7.792624140847952,
+              "bm25_contribution": 17.440487681374435
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 1,
+          "score_in_other_system": 17.440487681374435
+        },
+        {
+          "doc_id": "MED-3054",
+          "rank": 2,
+          "score": 0.3844216465950012,
+          "relevance": 1,
+          "title": "Does food addiction exist? A phenomenological discussion based on the psychiatric classification of substance-related disorders and addiction.",
+          "text_snippet": "The relationship between overeating, substance abuse and (behavioral) addiction is controversial. Medically established forms of addiction so far pertain to substance use disorders only. But the preliminary Diagnostic and Statistical Manual for Mental Disorders V (DSM V) suggests replacing the previous category 'Substa...",
+          "doc_length_tokens": 121,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "cocaine"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3055",
+          "rank": 3,
+          "score": 0.33886420726776123,
+          "relevance": 1,
+          "title": "Food and drug reward: overlapping circuits in human obesity and addiction.",
+          "text_snippet": "Both drug addiction and obesity can be defined as disorders in which the saliency value of one type of reward (drugs and food, respectively) becomes abnormally enhanced relative to, and at the expense of others. This model is consistent with the fact that both drugs and food have powerful reinforcing effects-partly med...",
+          "doc_length_tokens": 129,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "cocaine"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3052",
+          "rank": 4,
+          "score": 0.3344810903072357,
+          "relevance": 1,
+          "title": "Obesity and addiction: neurobiological overlaps.",
+          "text_snippet": "Drug addiction and obesity appear to share several properties. Both can be defined as disorders in which the saliency of a specific type of reward (food or drug) becomes exaggerated relative to, and at the expense of others rewards. Both drugs and food have powerful reinforcing effects, which are in part mediated by ab...",
+          "doc_length_tokens": 129,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "cocaine"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-4790",
+          "rank": 5,
+          "score": 0.3132901191711426,
+          "relevance": 0,
+          "title": "The risks of copper toxicity contributing to cognitive decline in the aging population and to Alzheimer's disease.",
+          "text_snippet": "It is a pleasure and an honor to contribute a paper to a special issue of the Journal of the American College of Nutrition honoring Stanley Wallach and Pearl Small. In this brief review I advance the hypothesis that copper toxicity is the major cause of the epidemic of mild cognitive impairment and Alzheimer's disease ...",
+          "doc_length_tokens": 129,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "cocaine"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        }
+      ]
+    }
+  ],
+  "lexical_advantage": [
+    {
+      "query_id": "PLAIN-1473",
+      "query_text": "kohlrabi",
+      "query_tokens": [
+        "kohlrabi"
+      ],
+      "query_term_stats": [
+        {
+          "term": "kohlrabi",
+          "df": 1,
+          "idf": 7.792624140847952
+        }
+      ],
+      "total_relevant_docs_in_qrels": 1,
+      "ndcg_lexical": 1.0,
+      "ndcg_semantic": 0.0,
+      "diff_semantic_minus_lexical": -1.0,
+      "top_lexical": [
+        {
+          "doc_id": "MED-4455",
+          "rank": 1,
+          "score": 12.293362307522331,
+          "relevance": 1,
+          "title": "Glucoraphanin and 4-hydroxyglucobrassicin contents in seeds of 59 cultivars of broccoli, raab, kohlrabi, radish, cauliflower, brussels sprouts, kal...",
+          "text_snippet": "The importance of dietary sulforaphane in helping maintain good health continues to gain support within the health-care community and awareness among U.S. consumers. In addition to the traditional avenue for obtaining sulforaphane, namely, the consumption of appropriate cruciferous vegetables, other consumer products c...",
+          "doc_length_tokens": 113,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "kohlrabi",
+              "qtf": 1,
+              "tf": 2,
+              "df": 1,
+              "idf": 7.792624140847952,
+              "bm25_contribution": 12.293362307522331
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        }
+      ],
+      "top_semantic": [
+        {
+          "doc_id": "MED-3947",
+          "rank": 1,
+          "score": 0.22023332118988037,
+          "relevance": 0,
+          "title": "Hibiscus anthocyanins rich extract-induced apoptotic cell death in human promyelocytic leukemia cells.",
+          "text_snippet": "Hibiscus sabdariffa Linne (Malvaceae), an attractive plant believed to be native to Africa, is cultivated in the Sudan and Eastern Taiwan. Anthocyanins exist widely in many vegetables and fruits. Some reports demonstrated that anthocyanins extracted from H. sabdariffa L., Hibiscus anthocyanins (HAs) (which are a group ...",
+          "doc_length_tokens": 161,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "kohlrabi"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-4660",
+          "rank": 2,
+          "score": 0.2173134684562683,
+          "relevance": 0,
+          "title": "Variability of iodine content in common commercially available edible seaweeds.",
+          "text_snippet": "Dietary seaweeds, common in Asia and in Asian restaurants, have become established as part of popular international cuisine. To understand the possibility for iodine-induced thyroid dysfunction better, we collected samples of the most common dietary seaweeds available from commercial sources in the United States, as we...",
+          "doc_length_tokens": 129,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "kohlrabi"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3441",
+          "rank": 3,
+          "score": 0.21563103795051575,
+          "relevance": 0,
+          "title": "Marine edible algae as disease preventers.",
+          "text_snippet": "As modern lifestyles and new feeding habits settle in the world, noncommunicable diseases (NCDs) have evolved to be major causes of disability in developing as well as developed countries. As a concomitant effect, there is a growing interest in natural, healthy food and an increasing awareness of risk factors and deter...",
+          "doc_length_tokens": 74,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "kohlrabi"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3447",
+          "rank": 4,
+          "score": 0.21279875934123993,
+          "relevance": 0,
+          "title": "Seaweed prevents breast cancer?",
+          "text_snippet": "To investigate the chemopreventive effects of seaweed on breast cancer, we have been studying the relationship between iodine and breast cancer. We found earlier that the seaweed, wakame, showed a suppressive effect on the proliferation of DMBA (dimethylbenz(a)anthracene)-induced rat mammary tumors, possibly via apopto...",
+          "doc_length_tokens": 109,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "kohlrabi"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-5024",
+          "rank": 5,
+          "score": 0.21249009668827057,
+          "relevance": 0,
+          "title": "Disseminated chlorellosis in a dog.",
+          "text_snippet": "An adult dog with ataxia and a lingual mass, previously diagnosed as protothecosis, was euthanized. At the postmortem examination, the lingual mass, regions of the lungs and hilar lymph nodes, liver, mesenteric and sublumbar lymph nodes, and spinal meninges had pronounced green discoloration. Histologically, pyogranulo...",
+          "doc_length_tokens": 89,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "kohlrabi"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        }
+      ]
+    },
+    {
+      "query_id": "PLAIN-2081",
+      "query_text": "shelf life",
+      "query_tokens": [
+        "shelf",
+        "life"
+      ],
+      "query_term_stats": [
+        {
+          "term": "shelf",
+          "df": 7,
+          "idf": 6.1831862284138515
+        },
+        {
+          "term": "life",
+          "df": 262,
+          "idf": 2.627838166924438
+        }
+      ],
+      "total_relevant_docs_in_qrels": 1,
+      "ndcg_lexical": 1.0,
+      "ndcg_semantic": 0.0,
+      "diff_semantic_minus_lexical": -1.0,
+      "top_lexical": [
+        {
+          "doc_id": "MED-4303",
+          "rank": 1,
+          "score": 15.719001783791347,
+          "relevance": 1,
+          "title": "Oxidative stability and shelf-life evaluation of selected culinary oils.",
+          "text_snippet": "Four out of eight 'healthier' oils-namely, almond oil, avocado oil, hazelnut oil and macadamia nut oil-studied were rich sources of monounsaturated fatty acids like olive oil. Grape seed oil, rice barn oil (marketed recently), toasted sesame oil and walnut oil contained high levels of essential fatty acids. The order o...",
+          "doc_length_tokens": 175,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "shelf",
+              "qtf": 1,
+              "tf": 4,
+              "df": 7,
+              "idf": 6.1831862284138515,
+              "bm25_contribution": 11.030898450964939
+            },
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 4,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 4.688103332826408
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 15,
+          "score_in_other_system": 0.33511024713516235
+        },
+        {
+          "doc_id": "MED-1182",
+          "rank": 2,
+          "score": 12.388536527286035,
+          "relevance": 0,
+          "title": "Fruit and Soil Quality of Organic and Conventional Strawberry Agroecosystems",
+          "text_snippet": "Background Sale of organic foods is one of the fastest growing market segments within the global food industry. People often buy organic food because they believe organic farms produce more nutritious and better tasting food from healthier soils. Here we tested if there are significant differences in fruit and soil qua...",
+          "doc_length_tokens": 168,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "shelf",
+              "qtf": 1,
+              "tf": 2,
+              "df": 7,
+              "idf": 6.1831862284138515,
+              "bm25_contribution": 8.693725611092917
+            },
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 2,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 3.6948109161931177
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-2700",
+          "rank": 3,
+          "score": 11.294409070133497,
+          "relevance": 0,
+          "title": "The effect of blood removal on oxidation and shelf life of broiler breast meat.",
+          "text_snippet": "Blood components, especially hemoglobin, are powerful promoters of lipid oxidation and may decrease the shelf life of meat products. Therefore, this study examined different slaughter techniques to determine their effects on pH (24 h), color (L*a*b* values at 24 h), lipid oxidation, residual hemoglobin concentration (2...",
+          "doc_length_tokens": 217,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "shelf",
+              "qtf": 1,
+              "tf": 2,
+              "df": 7,
+              "idf": 6.1831862284138515,
+              "bm25_contribution": 7.925915476691934
+            },
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 2,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 3.368493593441564
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-2671",
+          "rank": 4,
+          "score": 10.895004324371872,
+          "relevance": 0,
+          "title": "Microbiology of fresh and restructured lamb meat: a review.",
+          "text_snippet": "Microbiology of meats has been a subject of great concern in food science and public health in recent years. Although many articles have been devoted to the microbiology of beef, pork, and poultry meats, much less has been written about microbiology of lamb meat and even less on restructured lamb meat. This article pre...",
+          "doc_length_tokens": 92,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "shelf",
+              "qtf": 1,
+              "tf": 1,
+              "df": 7,
+              "idf": 6.1831862284138515,
+              "bm25_contribution": 7.645630936240198
+            },
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 1,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 3.249373388131673
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 35,
+          "score_in_other_system": 0.3082674741744995
+        },
+        {
+          "doc_id": "MED-2074",
+          "rank": 5,
+          "score": 8.713440646859857,
+          "relevance": 0,
+          "title": "Modifying the processing and handling of frozen broccoli for increased sulforaphane formation.",
+          "text_snippet": "Frozen broccoli can provide a cheaper product, with a longer shelf life and less preparation time than fresh broccoli. We previously showed that several commercially available frozen broccoli products do not retain the ability to generate the cancer-preventative agent sulforaphane. We hypothesized that this was because...",
+          "doc_length_tokens": 164,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "shelf",
+              "qtf": 1,
+              "tf": 1,
+              "df": 7,
+              "idf": 6.1831862284138515,
+              "bm25_contribution": 6.114706280721495
+            },
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 1,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 2.598734366138362
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 86,
+          "score_in_other_system": 0.28127068281173706
+        }
+      ],
+      "top_semantic": [
+        {
+          "doc_id": "MED-1378",
+          "rank": 1,
+          "score": 0.41539812088012695,
+          "relevance": 0,
+          "title": "Longevity and diet. Myth or pragmatism?",
+          "text_snippet": "Longevity is a very complex phenomenon, because many environmental, behavioral, socio-demographic and dietary factors influence the physiological pathways of aging and life-expectancy. Nutrition has been recognized to have an important impact on overall mortality and morbidity; and its role in extending life expectancy...",
+          "doc_length_tokens": 127,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.5,
+          "matched_query_terms": [
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 2,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 4.020719628432771
+            }
+          ],
+          "missing_query_terms": [
+            "shelf"
+          ],
+          "rank_in_other_system": 55,
+          "score_in_other_system": 4.020719628432771
+        },
+        {
+          "doc_id": "MED-2422",
+          "rank": 2,
+          "score": 0.3862653374671936,
+          "relevance": 0,
+          "title": "A statistical regression model for the estimation of acrylamide concentrations in French fries for excess lifetime cancer risk assessment.",
+          "text_snippet": "Human exposure to acrylamide (AA) through consumption of French fries and other foods has been recognized as a potential health concern. Here, we used a statistical non-linear regression model, based on the two most influential factors, cooking temperature and time, to estimate AA concentrations in French fries. The R(...",
+          "doc_length_tokens": 136,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.5,
+          "matched_query_terms": [
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 2,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 3.9443470376111858
+            }
+          ],
+          "missing_query_terms": [
+            "shelf"
+          ],
+          "rank_in_other_system": 61,
+          "score_in_other_system": 3.9443470376111858
+        },
+        {
+          "doc_id": "MED-2510",
+          "rank": 3,
+          "score": 0.3856244683265686,
+          "relevance": 0,
+          "title": "Comparative and meta-analytic insights into life extension via dietary restriction.",
+          "text_snippet": "Dietary restriction (DR) extends the lifespan of a wide range of species, although the universality of this effect has never been quantitatively examined. Here, we report the first comprehensive comparative meta-analysis of DR across studies and species. Overall, DR significantly increased lifespan, but this effect is ...",
+          "doc_length_tokens": 107,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.5,
+          "matched_query_terms": [
+            {
+              "term": "life",
+              "qtf": 1,
+              "tf": 3,
+              "df": 262,
+              "idf": 2.627838166924438,
+              "bm25_contribution": 4.775270236503917
+            }
+          ],
+          "missing_query_terms": [
+            "shelf"
+          ],
+          "rank_in_other_system": 24,
+          "score_in_other_system": 4.775270236503917
+        },
+        {
+          "doc_id": "MED-4715",
+          "rank": 4,
+          "score": 0.3817516565322876,
+          "relevance": 0,
+          "title": "Effects of date ( Phoenix dactylifera L., Medjool or Hallawi Variety) consumption by healthy subjects on serum glucose and lipid levels and on seru...",
+          "text_snippet": "The present pilot study analyzed, for the first time, the in vivo effect of Medjool or Hallawi date consumption by healthy subjects on serum glucose, lipids, and oxidative stress. Total phenolics concentration in the Hallawi versus Medjool dates was greater by 20-31%. The major proportion of the soluble phenolics in bo...",
+          "doc_length_tokens": 226,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "shelf",
+            "life"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-1433",
+          "rank": 5,
+          "score": 0.37324798107147217,
+          "relevance": 0,
+          "title": "Dietary Advanced Glycation End Products and Aging",
+          "text_snippet": "Advanced glycation end products (AGEs) are a heterogeneous, complex group of compounds that are formed when reducing sugar reacts in a non-enzymatic way with amino acids in proteins and other macromolecules. This occurs both exogenously (in food) and endogenously (in humans) with greater concentrations found in older a...",
+          "doc_length_tokens": 113,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "shelf",
+            "life"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        }
+      ]
+    },
+    {
+      "query_id": "PLAIN-1288",
+      "query_text": "grapes",
+      "query_tokens": [
+        "grapes"
+      ],
+      "query_term_stats": [
+        {
+          "term": "grapes",
+          "df": 16,
+          "idf": 5.394728868049581
+        }
+      ],
+      "total_relevant_docs_in_qrels": 196,
+      "ndcg_lexical": 0.741670249010153,
+      "ndcg_semantic": 0.12987501165334076,
+      "diff_semantic_minus_lexical": -0.6117952373568123,
+      "top_lexical": [
+        {
+          "doc_id": "MED-1538",
+          "rank": 1,
+          "score": 10.91732627298497,
+          "relevance": 1,
+          "title": "A premeal snack of raisins decreases mealtime food intake more than grapes in young children.",
+          "text_snippet": "The effect of a premeal snack of grapes, raisins, or a mix of almonds and raisins, compared with a water control, on food intake (FI) was examined in 8- to 11-year-old normal-weight (15th to 85th percentile) children. Children randomly received 1 of 4 ad libitum (Experiment 1: 13 boys, 13 girls) or fixed-calorie (150 k...",
+          "doc_length_tokens": 181,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "grapes",
+              "qtf": 1,
+              "tf": 7,
+              "df": 16,
+              "idf": 5.394728868049581,
+              "bm25_contribution": 10.91732627298497
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 26,
+          "score_in_other_system": 0.2862884998321533
+        },
+        {
+          "doc_id": "MED-1533",
+          "rank": 2,
+          "score": 10.600826360789757,
+          "relevance": 1,
+          "title": "An after-school snack of raisins lowers cumulative food intake in young children.",
+          "text_snippet": "Snacks are an important part of children's dietary intake, but the role of dried fruit on energy intake in children is unknown. Therefore, the effect of ad libitum consumption of an after-school snack of raisins, grapes, potato chips, and chocolate chip cookies on appetite and energy intake in twenty-six 8- to 11-y-old...",
+          "doc_length_tokens": 179,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "grapes",
+              "qtf": 1,
+              "tf": 6,
+              "df": 16,
+              "idf": 5.394728868049581,
+              "bm25_contribution": 10.600826360789757
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-2663",
+          "rank": 3,
+          "score": 7.816945835199639,
+          "relevance": 1,
+          "title": "A berry thought-provoking idea: the potential role of plant polyphenols in the treatment of age-related cognitive disorders.",
+          "text_snippet": "Today, tens of millions of elderly individuals worldwide suffer from dementia. While the pathogenesis of dementia is complex and incompletely understood, it may be, at least to a certain extent, the consequence of systemic vascular pathology. The metabolic syndrome and its individual components induce a proinflammatory...",
+          "doc_length_tokens": 153,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "grapes",
+              "qtf": 1,
+              "tf": 2,
+              "df": 16,
+              "idf": 5.394728868049581,
+              "bm25_contribution": 7.816945835199639
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 10,
+          "score_in_other_system": 0.3766816258430481
+        },
+        {
+          "doc_id": "MED-2085",
+          "rank": 4,
+          "score": 7.600158995094591,
+          "relevance": 0,
+          "title": "Antiplatelet, anticoagulant, and fibrinolytic activity in vitro of extracts from selected fruits and vegetables.",
+          "text_snippet": "A diet rich in fruits and vegetables is known to decrease the risk of cardiovascular disease. However, the information regarding the antithrombotic activity (antiplatelet, anticoagulant, and fibrinolytic) of fruits and vegetables is scarce. The aim of this study was to assess the antithrombotic activity of extracts fro...",
+          "doc_length_tokens": 167,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "grapes",
+              "qtf": 1,
+              "tf": 2,
+              "df": 16,
+              "idf": 5.394728868049581,
+              "bm25_contribution": 7.600158995094591
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3728",
+          "rank": 5,
+          "score": 6.512173201229254,
+          "relevance": 0,
+          "title": "Strawberry fields forever?",
+          "text_snippet": "On the basis of copious preclinical data supporting the preventive efficacy of small fruits such as berries and grapes, Chen and colleagues conducted a randomized (noncomparative) phase II trial evaluating two doses of strawberry powder (60 g/d or 30 g/d for six months) to prevent esophageal cancer in China (reported i...",
+          "doc_length_tokens": 99,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "grapes",
+              "qtf": 1,
+              "tf": 1,
+              "df": 16,
+              "idf": 5.394728868049581,
+              "bm25_contribution": 6.512173201229254
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 22,
+          "score_in_other_system": 0.29198452830314636
+        }
+      ],
+      "top_semantic": [
+        {
+          "doc_id": "MED-3200",
+          "rank": 1,
+          "score": 0.4264224171638489,
+          "relevance": 0,
+          "title": "Prospective study of grapefruit intake and risk of breast cancer in postmenopausal women: the Multiethnic Cohort Study",
+          "text_snippet": "In vitro and in vivo studies have shown that cytochrome P450 3A4 (CYP3A4) is involved in the metabolism of oestrogens. There is evidence that grapefruit, an inhibitor of CYP3A4, increases plasma oestrogen concentrations. Since it is well established that oestrogen is associated with breast cancer risk, it is plausible ...",
+          "doc_length_tokens": 133,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "grapes"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3207",
+          "rank": 2,
+          "score": 0.4249674081802368,
+          "relevance": 0,
+          "title": "The grapefruit: an old wine in a new glass? Metabolic and cardiovascular perspectives",
+          "text_snippet": "Summary Grapefruit is a popular, tasty and nutritive fruit enjoyed globally. Biomedical evidence in the last 10 years has, however, shown that consumption of grapefruit or its juice is associated with drug interactions, which, in some cases, have been fatal. Grapefruit-induced drug interactions are unique in that the c...",
+          "doc_length_tokens": 85,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "grapes"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-398",
+          "rank": 3,
+          "score": 0.4249674081802368,
+          "relevance": 0,
+          "title": "The grapefruit: an old wine in a new glass? Metabolic and cardiovascular perspectives",
+          "text_snippet": "Summary Grapefruit is a popular, tasty and nutritive fruit enjoyed globally. Biomedical evidence in the last 10 years has, however, shown that consumption of grapefruit or its juice is associated with drug interactions, which, in some cases, have been fatal. Grapefruit-induced drug interactions are unique in that the c...",
+          "doc_length_tokens": 85,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "grapes"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-3210",
+          "rank": 4,
+          "score": 0.4243220090866089,
+          "relevance": 0,
+          "title": "The effects of daily consumption of grapefruit on body weight, lipids, and blood pressure in healthy, overweight adults.",
+          "text_snippet": "Folklore has suggested that consuming grapefruit may promote weight control. Sparse data exist to support this hypothesis, although there is some evidence of health promotion effects with regard to blood pressure control and modulation of circulating lipids. The aim of this randomized controlled trial was to prospectiv...",
+          "doc_length_tokens": 200,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 0.0,
+          "matched_query_terms": [],
+          "missing_query_terms": [
+            "grapes"
+          ],
+          "rank_in_other_system": null,
+          "score_in_other_system": null
+        },
+        {
+          "doc_id": "MED-2083",
+          "rank": 5,
+          "score": 0.4141343832015991,
+          "relevance": 0,
+          "title": "Grape juice, but not orange juice or grapefruit juice, inhibits human platelet aggregation.",
+          "text_snippet": "Coronary artery disease is responsible for much mortality and morbidity around the world. Platelets are involved in atherosclerotic disease development and the reduction of platelet activity by medications reduces the incidence and severity of disease. Red wine and grapes contain polyphenolic compounds, including flavo...",
+          "doc_length_tokens": 174,
+          "avg_doc_length_tokens": 160.01761629507294,
+          "lexical_overlap_ratio": 1.0,
+          "matched_query_terms": [
+            {
+              "term": "grapes",
+              "qtf": 1,
+              "tf": 1,
+              "df": 16,
+              "idf": 5.394728868049581,
+              "bm25_contribution": 5.190627553992052
+            }
+          ],
+          "missing_query_terms": [],
+          "rank_in_other_system": 12,
+          "score_in_other_system": 5.190627553992052
+        }
+      ]
+    }
+  ]
+}

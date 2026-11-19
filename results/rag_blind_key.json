@@ -1,0 +1,105 @@
+{
+  "seed": 42,
+  "mapping": {
+    "PLAIN-153__R1": {
+      "query_id": "PLAIN-153",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-153__R2": {
+      "query_id": "PLAIN-153",
+      "condition": "A",
+      "slot": 2
+    },
+    "PLAIN-238__R1": {
+      "query_id": "PLAIN-238",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-238__R2": {
+      "query_id": "PLAIN-238",
+      "condition": "A",
+      "slot": 2
+    },
+    "PLAIN-2430__R1": {
+      "query_id": "PLAIN-2430",
+      "condition": "A",
+      "slot": 1
+    },
+    "PLAIN-2430__R2": {
+      "query_id": "PLAIN-2430",
+      "condition": "B",
+      "slot": 2
+    },
+    "PLAIN-2450__R1": {
+      "query_id": "PLAIN-2450",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-2450__R2": {
+      "query_id": "PLAIN-2450",
+      "condition": "A",
+      "slot": 2
+    },
+    "PLAIN-2470__R1": {
+      "query_id": "PLAIN-2470",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-2470__R2": {
+      "query_id": "PLAIN-2470",
+      "condition": "A",
+      "slot": 2
+    },
+    "PLAIN-270__R1": {
+      "query_id": "PLAIN-270",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-270__R2": {
+      "query_id": "PLAIN-270",
+      "condition": "A",
+      "slot": 2
+    },
+    "PLAIN-2750__R1": {
+      "query_id": "PLAIN-2750",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-2750__R2": {
+      "query_id": "PLAIN-2750",
+      "condition": "A",
+      "slot": 2
+    },
+    "PLAIN-2850__R1": {
+      "query_id": "PLAIN-2850",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-2850__R2": {
+      "query_id": "PLAIN-2850",
+      "condition": "A",
+      "slot": 2
+    },
+    "PLAIN-3342__R1": {
+      "query_id": "PLAIN-3342",
+      "condition": "A",
+      "slot": 1
+    },
+    "PLAIN-3342__R2": {
+      "query_id": "PLAIN-3342",
+      "condition": "B",
+      "slot": 2
+    },
+    "PLAIN-68__R1": {
+      "query_id": "PLAIN-68",
+      "condition": "B",
+      "slot": 1
+    },
+    "PLAIN-68__R2": {
+      "query_id": "PLAIN-68",
+      "condition": "A",
+      "slot": 2
+    }
+  }
+}

@@ -1,0 +1,1097 @@
+{
+  "PLAIN-68": {
+    "query_id": "PLAIN-68",
+    "query": "What is Actually in Chicken Nuggets?",
+    "total_relevant_docs_in_qrels": 55,
+    "stage_1_lexical": {
+      "NDCG10": 0.47305314144171057,
+      "P10": 0.3,
+      "R10": 0.05454545454545454,
+      "relevant_in_top100": 13
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.4150816930657179,
+      "P10": 0.2,
+      "R10": 0.03636363636363636,
+      "relevant_in_top100": 13
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.43846857403921885,
+      "P10": 0.2,
+      "R10": 0.03636363636363636,
+      "relevant_in_top100": 12,
+      "relevant_in_top50": 8,
+      "relevant_available_from_union_top100": 20
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.36077903708155934,
+      "P10": 0.1,
+      "R10": 0.01818181818181818,
+      "ndcg10_delta_vs_hybrid": -0.07768953695765951
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.2,
+      "Recall@5": 0.01818181818181818,
+      "Hit@5": 1.0,
+      "relevant_in_context": 1,
+      "context_docs": [
+        {
+          "doc_id": "MED-2991",
+          "title": "The autopsy of chicken nuggets reads \"chicken little\".",
+          "text_snippet": "PURPOSE: To determine the contents of chicken nuggets from 2 national food chains. BACKGROUND: Chicken nuggets have become a major component of the American diet. We sought to determine the current composition of this highly processed food. METHODS: Randomly s...",
+          "relevance": 2,
+          "rank_lexical": 1,
+          "rank_semantic": 1,
+          "rank_hybrid": 1,
+          "rank_reranking": 1,
+          "score_reranking": 4.171980857849121
+        },
+        {
+          "doc_id": "MED-1797",
+          "title": "Comparative genome analysis with the human genome reveals chicken genes associated with fatness and body weight.",
+          "text_snippet": "The selection of meat-type chickens (broilers) for rapid growth has been accompanied by excessive fat deposition. In this study, we analysed 53 candidate genes that are associated with obesity and obesity-related traits in humans, for which we found chicken or...",
+          "relevance": 0,
+          "rank_lexical": 33,
+          "rank_semantic": 24,
+          "rank_hybrid": 22,
+          "rank_reranking": 2,
+          "score_reranking": -5.805657386779785
+        },
+        {
+          "doc_id": "MED-2492",
+          "title": "Roxarsone, Inorganic Arsenic, and Other Arsenic Species in Chicken: A U.S.-Based Market Basket Sample",
+          "text_snippet": "Background: Inorganic arsenic (iAs) causes cancer and possibly other adverse health outcomes. Arsenic-based drugs are permitted in poultry production; however, the contribution of chicken consumption to iAs intake is unknown. Objectives: We sought to character...",
+          "relevance": 0,
+          "rank_lexical": 5,
+          "rank_semantic": 18,
+          "rank_hybrid": 3,
+          "rank_reranking": 3,
+          "score_reranking": -6.684438705444336
+        },
+        {
+          "doc_id": "MED-2088",
+          "title": "Arsenic species in poultry feather meal.",
+          "text_snippet": "Organoarsenical drugs are widely used in the production of broiler chickens in the United States. Feathers from these chickens are processed into a meal product that is used as an animal feed additive and as an organic fertilizer. Research conducted to date su...",
+          "relevance": 0,
+          "rank_lexical": null,
+          "rank_semantic": 5,
+          "rank_hybrid": 14,
+          "rank_reranking": 4,
+          "score_reranking": -6.71424674987793
+        },
+        {
+          "doc_id": "MED-1810",
+          "title": "Transmissibility of adenovirus-induced adiposity in a chicken model.",
+          "text_snippet": "BACKGROUND: We previously reported that human adenovirus Ad-36 induces adiposity and paradoxically lower levels of serum cholesterol (CHOL) and triglycerides (TG) in animals. OBJECTIVE: To evaluate the transmissibility of Ad-36 and Ad-36 induced adiposity usin...",
+          "relevance": 0,
+          "rank_lexical": 18,
+          "rank_semantic": null,
+          "rank_hybrid": 43,
+          "rank_reranking": 5,
+          "score_reranking": -7.001025199890137
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "As patêtas de frango (ou nuggets de frango) são geralmente feitas com farinha de trigo, ovo, farinha de frango, sal, pimenta, e outros condimentos. O frango é geralmente cozido em óleo quente, geralmente em uma panela ou em um forno, e depois frito. O frango é geralmente cortado em pedaços pequenos e então envolto em uma mistura de farinha, ovo e farinha de frango. O processo de fritura resulta em um produto crocante e saboroso. As patêtas de frango podem variar em composição dependendo do tipo de restaurante ou da marca, mas geralmente contêm frango, farinha, ovo e condimentos.",
+      "condition_B_answer": "De acordo com o estudo [MED-2991], a análise microscópica de nuggets de frango revelou que a carne muscular (frango) não é o componente predominante. Em vez disso, a gordura foi encontrada em quantidades iguais ou maiores do que o epitélio, ossos, nervos e tecidos conjuntivos. Portanto, os nuggets de frango são principalmente compostos de gordura, o que contradiz o nome \"frango pequeno\" que eles têm.\n\nFontes:\n- [MED-2991] - The autopsy of chicken nuggets reads \"chicken little\".\n- [MED-1797] - Comparative genome analysis with the human genome reveals chicken genes associated with fatness and body weight. (Embora este documento não aborde diretamente o conteúdo dos nuggets, ele fornece contexto sobre a relação entre genética de frango e gordura, o que pode ser relevante para a compreensão do conteúdo dos nuggets.)\n- [MED-2492] - Roxarsone, Inorganic Arsenic, and Other Arsenic Species in Chicken: A U.S.-Based Market Basket Sample. (Este documento aborda a presença de arsenico em carne de frango, mas não especificamente nos nuggets.)\n- [MED-2088] - Arsenic species in poultry feather meal. (Este documento aborda a presença de arsenico em produtos de penas de frango, mas não especificamente nos nuggets.)\n- [MED-1810] - Transmissibility of adenovirus-induced adiposity in a chicken model. (Este documento aborda a gordura em frango, mas não especificamente nos nuggets.)\n\n[med-2991]",
+      "condition_B_cited_ids": [
+        "MED-2991",
+        "MED-1797",
+        "MED-2492",
+        "MED-2088",
+        "MED-1810",
+        "med-2991"
+      ],
+      "condition_B_valid_citations": [
+        "MED-2991",
+        "MED-1797",
+        "MED-2492",
+        "MED-2088",
+        "MED-1810"
+      ],
+      "condition_B_hallucinated_citations": [
+        "med-2991"
+      ]
+    }
+  },
+  "PLAIN-2450": {
+    "query_id": "PLAIN-2450",
+    "query": "Are Organic Foods Safer?",
+    "total_relevant_docs_in_qrels": 38,
+    "stage_1_lexical": {
+      "NDCG10": 0.31488013066763093,
+      "P10": 0.2,
+      "R10": 0.05263157894736842,
+      "relevant_in_top100": 7
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.1736666713479918,
+      "P10": 0.2,
+      "R10": 0.05263157894736842,
+      "relevant_in_top100": 8
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.2984900352767555,
+      "P10": 0.2,
+      "R10": 0.05263157894736842,
+      "relevant_in_top100": 8,
+      "relevant_in_top50": 7,
+      "relevant_available_from_union_top100": 8
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.2934367834519528,
+      "P10": 0.3,
+      "R10": 0.07894736842105263,
+      "ndcg10_delta_vs_hybrid": -0.005053251824802707
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.4,
+      "Recall@5": 0.05263157894736842,
+      "Hit@5": 1.0,
+      "relevant_in_context": 2,
+      "context_docs": [
+        {
+          "doc_id": "MED-1140",
+          "title": "Organic food: buying more safety or just peace of mind? A critical review of the literature.",
+          "text_snippet": "Consumer concern over the quality and safety of conventional food has intensified in recent years, and primarily drives the increasing demand for organically grown food, which is perceived as healthier and safer. Relevant scientific evidence, however, is scarc...",
+          "relevance": 0,
+          "rank_lexical": 2,
+          "rank_semantic": 4,
+          "rank_hybrid": 3,
+          "rank_reranking": 1,
+          "score_reranking": 8.22402572631836
+        },
+        {
+          "doc_id": "MED-1178",
+          "title": "Are organic foods safer or healthier than conventional alternatives?: a systematic review.",
+          "text_snippet": "BACKGROUND: The health benefits of organic foods are unclear. PURPOSE: To review evidence comparing the health effects of organic and conventional foods. DATA SOURCES: MEDLINE (January 1966 to May 2011), EMBASE, CAB Direct, Agricola, TOXNET, Cochrane Library (...",
+          "relevance": 2,
+          "rank_lexical": 1,
+          "rank_semantic": 3,
+          "rank_hybrid": 1,
+          "rank_reranking": 2,
+          "score_reranking": 7.122367858886719
+        },
+        {
+          "doc_id": "MED-1144",
+          "title": "Perceived risks of conventional and organic produce: pesticides, pathogens, and natural toxins.",
+          "text_snippet": "Public risk perceptions and demand for safer food are important factors shaping agricultural production practices in the United States. Despite documented food safety concerns, little attempt has been made to elicit consumers' subjective risk judgments for a r...",
+          "relevance": 0,
+          "rank_lexical": 6,
+          "rank_semantic": 2,
+          "rank_hybrid": 4,
+          "rank_reranking": 3,
+          "score_reranking": 4.065608978271484
+        },
+        {
+          "doc_id": "MED-1179",
+          "title": "Organic foods: health and environmental advantages and disadvantages.",
+          "text_snippet": "The US market for organic foods has grown from $3.5 billion in 1996 to $28.6 billion in 2010, according to the Organic Trade Association. Organic products are now sold in specialty stores and conventional supermarkets. Organic products contain numerous marketi...",
+          "relevance": 0,
+          "rank_lexical": 3,
+          "rank_semantic": 1,
+          "rank_hybrid": 2,
+          "rank_reranking": 4,
+          "score_reranking": 3.7077040672302246
+        },
+        {
+          "doc_id": "MED-1173",
+          "title": "Choice of organic foods is related to perceived consequences for human health and to environmentally friendly behaviour.",
+          "text_snippet": "We designed a questionnaire concerned with attitudes and behaviour towards organic foods, environmentally friendly behaviour (EFB), and perceived consequences of organic food choice in terms of human health, the environment and animal welfare. It was mailed in...",
+          "relevance": 2,
+          "rank_lexical": 4,
+          "rank_semantic": 10,
+          "rank_hybrid": 6,
+          "rank_reranking": 5,
+          "score_reranking": 3.634918212890625
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A pergunta de se os alimentos orgânicos são mais seguros não tem uma resposta simples, pois depende de vários fatores. Alimentos orgânicos são cultivados sem o uso de substâncias químicas como pesticidas, herbicidas e fertilizantes sintéticos, o que pode reduzir o risco de exposição a substâncias tóxicas. No entanto, estudos científicos ainda não mostraram conclusivamente que os alimentos orgânicos sejam mais seguros ou mais saudáveis do que os convencionais. A segurança de um alimento também depende de fatores como a higiene durante a produção, o transporte e o armazenamento. Em geral, os alimentos orgânicos podem ser considerados mais seguros em termos de saúde, mas isso não é uma afirmação definitiva.",
+      "condition_B_answer": "De acordo com os documentos fornecidos, não há evidência conclusiva de que alimentos orgânicos sejam significativamente mais seguros do que os convencionais. O documento [MED-1140] afirma que, embora os alimentos orgânicos possam conter menos resíduos de agroquímicos, a diferença é questionável, já que os níveis de contaminação em ambos os tipos de alimentos geralmente estão abaixo dos limites aceitáveis. Além disso, o documento [MED-1178] menciona que o risco de contaminação com resíduos de pesticidas foi menor nos alimentos orgânicos, mas a diferença em termos de excedentes dos limites permitidos foi pequena. Por outro lado, o documento [MED-1179] afirma que não há evidências de benefícios nutricionais significativos ou déficits na alimentação orgânica em comparação com a convencional, e que não há estudos bem projetados que demonstrem benefícios de saúde ou proteção contra doenças resultantes de uma dieta orgânica. \n\nPortanto, os documentos não fornecem evidências suficientes para concluir que os alimentos orgânicos sejam mais seguros, mas destacam que a percepção de risco e a preferência por alimentos orgânicos são influenciadas por fatores como a confiança na segurança da alimentação e a crença em benefícios para a saúde.\n\nFontes:\n- [MED-1140]\n- [MED-1178]\n- [MED-1179]",
+      "condition_B_cited_ids": [
+        "MED-1140",
+        "MED-1178",
+        "MED-1179"
+      ],
+      "condition_B_valid_citations": [
+        "MED-1140",
+        "MED-1178",
+        "MED-1179"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-153": {
+    "query_id": "PLAIN-153",
+    "query": "How Should I Take Probiotics?",
+    "total_relevant_docs_in_qrels": 47,
+    "stage_1_lexical": {
+      "NDCG10": 0.7105596593727584,
+      "P10": 0.8,
+      "R10": 0.1702127659574468,
+      "relevant_in_top100": 11
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.947855735153442,
+      "P10": 0.9,
+      "R10": 0.19148936170212766,
+      "relevant_in_top100": 21
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.8372504082558505,
+      "P10": 0.9,
+      "R10": 0.19148936170212766,
+      "relevant_in_top100": 22,
+      "relevant_in_top50": 17,
+      "relevant_available_from_union_top100": 22
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.947855735153442,
+      "P10": 0.9,
+      "R10": 0.19148936170212766,
+      "ndcg10_delta_vs_hybrid": 0.1106053268975915
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 1.0,
+      "Recall@5": 0.10638297872340426,
+      "Hit@5": 1.0,
+      "relevant_in_context": 5,
+      "context_docs": [
+        {
+          "doc_id": "MED-3679",
+          "title": "The impact of meals on a probiotic during transit through a model of the human upper gastrointestinal tract.",
+          "text_snippet": "Commercial literature on various probiotic products suggests that they can be taken before meals, during meals or after meals or even without meals. This has led to serious confusion for the industry and the consumer. The objective of our study was to examine ...",
+          "relevance": 2,
+          "rank_lexical": 13,
+          "rank_semantic": 1,
+          "rank_hybrid": 5,
+          "rank_reranking": 1,
+          "score_reranking": 2.2542998790740967
+        },
+        {
+          "doc_id": "MED-3692",
+          "title": "Human gut microbiota and its relationship to health and disease.",
+          "text_snippet": "Probiotics are live microorganisms that confer a health benefit on the host when administered in appropriate amounts. Over 700 randomized, controlled, human studies have been conducted with probiotics thus far, with the results providing strong support for the...",
+          "relevance": 1,
+          "rank_lexical": 2,
+          "rank_semantic": 5,
+          "rank_hybrid": 2,
+          "rank_reranking": 2,
+          "score_reranking": -0.44062894582748413
+        },
+        {
+          "doc_id": "MED-3695",
+          "title": "Probiotics for the prevention of pediatric antibiotic-associated diarrhea.",
+          "text_snippet": "BACKGROUND: Antibiotics alter the microbial balance within the gastrointestinal tract. Probiotics may prevent antibiotic-associated diarrhea (AAD) via restoration of the gut microflora. Antibiotics are prescribed frequently in children and AAD is common in thi...",
+          "relevance": 1,
+          "rank_lexical": 4,
+          "rank_semantic": 8,
+          "rank_hybrid": 6,
+          "rank_reranking": 3,
+          "score_reranking": -0.7970767021179199
+        },
+        {
+          "doc_id": "MED-3693",
+          "title": "Microbiological evaluation of commercial probiotic products available in the USA in 2009.",
+          "text_snippet": "Probiotics are widely used to prevent and treat several diseases. Many commercial products are available worldwide. However, there is no clear international or local legislation about them and previous studies showed that most of the tested products are not in...",
+          "relevance": 1,
+          "rank_lexical": 9,
+          "rank_semantic": 7,
+          "rank_hybrid": 7,
+          "rank_reranking": 4,
+          "score_reranking": -1.533461332321167
+        },
+        {
+          "doc_id": "MED-3680",
+          "title": "Probiotics for preventing acute upper respiratory tract infections.",
+          "text_snippet": "BACKGROUND: Probiotics may improve a person's health by regulating their immune function. Some studies show that probiotic strains can prevent respiratory infections. However, no evidence of the benefits of probiotics for acute upper respiratory tract infectio...",
+          "relevance": 1,
+          "rank_lexical": 3,
+          "rank_semantic": 6,
+          "rank_hybrid": 4,
+          "rank_reranking": 5,
+          "score_reranking": -1.779118537902832
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A forma correta de tomar probióticos depende do tipo de suplemento e das instruções do fabricante, mas geralmente, é recomendado seguir as seguintes orientações:\n\n- **Tomar com água:** Probióticos geralmente devem ser tomados com água, não com alimentos ou bebidas calóricas, para garantir a sobrevivência das bactérias vivas.\n- **Em horário adequado:** É comum tomar probióticos com ou após as refeições, mas é importante seguir as instruções específicas do produto.\n- **Não com medicamentos:** Evite tomar probióticos ao mesmo tempo que medicamentos, a menos que o médico diga o contrário.\n- **Não com produtos com açúcar:** Alguns probióticos contêm açúcar, então leia a lista de ingredientes cuidadosamente.\n- **Armazenar corretamente:** Mantenha os probióticos em um local fresco e seco, conforme indicado na embalagem.\n\nSe houver dúvidas sobre o uso específico de um probiótico, consulte o médico ou nutricionista.",
+      "condition_B_answer": "De acordo com o estudo [MED-3679], os probióticos devem ser tomados com ou imediatamente antes de uma refeição que contenha algum gordura. O melhor desempenho foi observado quando os probióticos foram administrados com uma refeição ou 30 minutos antes de uma refeição (como o pão de ave com leite). Além disso, o probiótico S. boulardii não foi afetado pelo tempo da refeição ou pela capacidade tampão da refeição. Por outro lado, probióticos administrados 30 minutos após a refeição não sobreviveram em números elevados. A gordura do leite parece ser mais importante para a sobrevivência das bactérias do que a proteína da refeição.\n\nFontes:\n- [MED-3679] - The impact of meals on a probiotic during transit through a model of the human upper gastrointestinal tract.\n- [MED-3695] - Probiotics for the prevention of pediatric antibiotic-associated diarrhea.",
+      "condition_B_cited_ids": [
+        "MED-3679",
+        "MED-3695"
+      ],
+      "condition_B_valid_citations": [
+        "MED-3679",
+        "MED-3695"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-2850": {
+    "query_id": "PLAIN-2850",
+    "query": "More Antibiotics In White Meat or Dark Meat?",
+    "total_relevant_docs_in_qrels": 9,
+    "stage_1_lexical": {
+      "NDCG10": 0.0,
+      "P10": 0.0,
+      "R10": 0.0,
+      "relevant_in_top100": 2
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.0,
+      "P10": 0.0,
+      "R10": 0.0,
+      "relevant_in_top100": 2
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.0,
+      "P10": 0.0,
+      "R10": 0.0,
+      "relevant_in_top100": 2,
+      "relevant_in_top50": 1,
+      "relevant_available_from_union_top100": 3
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.0,
+      "P10": 0.0,
+      "R10": 0.0,
+      "ndcg10_delta_vs_hybrid": 0.0
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.0,
+      "Recall@5": 0.0,
+      "Hit@5": 0.0,
+      "relevant_in_context": 0,
+      "context_docs": [
+        {
+          "doc_id": "MED-3891",
+          "title": "Comparison of the Prevalences and Antimicrobial Resistances of Escherichia coli Isolates from Different Retail Meats in the United States, 2002 to 2008",
+          "text_snippet": "Escherichia coli isolates were recovered from the National Antimicrobial Resistance Monitoring System retail meat program and examined for antimicrobial susceptibility. Retail meat samples (n = 11,921) from four U.S. states collected during 2002 to 2008, consi...",
+          "relevance": 0,
+          "rank_lexical": null,
+          "rank_semantic": 3,
+          "rank_hybrid": 7,
+          "rank_reranking": 1,
+          "score_reranking": -4.929081916809082
+        },
+        {
+          "doc_id": "MED-4358",
+          "title": "Bacteriophage biocontrol in animals and meat products",
+          "text_snippet": "Summary Since their discovery almost a century ago, bacterial viruses (bacteriophages or ‘phages’) have been used to prevent and treat a multitude of bacterial infections (phage therapy: PT). In addition, they have been the basis for many advances in genetics ...",
+          "relevance": 0,
+          "rank_lexical": 9,
+          "rank_semantic": 44,
+          "rank_hybrid": 10,
+          "rank_reranking": 2,
+          "score_reranking": -5.673342227935791
+        },
+        {
+          "doc_id": "MED-4983",
+          "title": "Meat intake and mortality: a prospective study of over half a million people",
+          "text_snippet": "Context High intakes of red or processed meat may increase risk of mortality. Objective Determine the relations of red, white and processed meat intakes to risk for total, and cause-specific mortality. Design, Setting, and Participants The NIH-AARP Diet and He...",
+          "relevance": 0,
+          "rank_lexical": 3,
+          "rank_semantic": null,
+          "rank_hybrid": 8,
+          "rank_reranking": 3,
+          "score_reranking": -5.760580062866211
+        },
+        {
+          "doc_id": "MED-2584",
+          "title": "Dietary risk factors for colon cancer in a low-risk population.",
+          "text_snippet": "In a 6-year prospective study, the authors examined the relation between diet and incident colon cancer among 32,051 non-Hispanic white cohort members of the Adventist Health Study (California, 1976-1982) who, at baseline, had no documented or reported history...",
+          "relevance": 0,
+          "rank_lexical": 1,
+          "rank_semantic": 64,
+          "rank_hybrid": 2,
+          "rank_reranking": 4,
+          "score_reranking": -5.776253700256348
+        },
+        {
+          "doc_id": "MED-4482",
+          "title": "Meat consumption, Cooking Practices, Meat Mutagens and Risk of Prostate Cancer",
+          "text_snippet": "Consumption of red meat, particularly well done meat, has been associated with increased prostate cancer risk. High temperature cooking methods such as grilling and barbequeing may produce heterocyclic amines (HCAs) and polycyclic aromatic hydrocarbons (PAHs) ...",
+          "relevance": 0,
+          "rank_lexical": 2,
+          "rank_semantic": 82,
+          "rank_hybrid": 3,
+          "rank_reranking": 5,
+          "score_reranking": -6.153052806854248
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A questão de quanto antibiótico deve ser usado em carne branca ou carne escura depende de fatores como o tipo de animal, a espécie, a prática de criação e as diretrizes sanitárias da região. Em geral, a utilização de antibióticos em animais de produção (como aves ou bovinos) é regulamentada para prevenir infecções, promover o crescimento ou evitar a resistência bacteriana. \n\nNo entanto, não há uma regra fixa que indique que a carne branca ou escura deve conter mais antibióticos. A quantidade e o tipo de antibiótico utilizados são determinados por normas sanitárias e práticas de criação, e não por cor da carne. \n\nPortanto, a quantidade de antibiótico em carne branca ou escura não é uma questão de cor, mas de padrões de uso e regulamentação.",
+      "condition_B_answer": "A análise dos documentos fornecidos não fornece informações específicas sobre a relação entre o consumo de carne branca ou marrom e o uso de antibióticos. No entanto, o documento [MED-3891] menciona que os isolados de E. coli de carne de frango (poultry) tiveram uma maior percentagem de resistência a todos os medicamentos testados, exceto a cloramfenicol, para o qual os isolados de carne de porco tiveram a maior resistência. Além disso, o documento [MED-3891] também menciona que os isolados de carne de frango tiveram uma maior resistência a múltiplos medicamentos em comparação com os isolados de carne de boi e porco. No entanto, não há informações específicas sobre o uso de antibióticos em carne branca ou marrom.\n\nFontes:\n- [MED-3891]: Comparison of the Prevalences and Antimicrobial Resistances of Escherichia coli Isolates from Different Retail Meats in the United States, 2002 to 2008\n- [MED-4358]: Bacteriophage biocontrol in animals and meat products\n- [MED-4983]: Meat intake and mortality: a prospective study of over half a million people\n- [MED-2584]: Dietary risk factors for colon cancer in a low-risk population.\n- [MED-4482]: Meat consumption, Cooking Practices, Meat Mutagens and Risk of Prostate Cancer",
+      "condition_B_cited_ids": [
+        "MED-3891",
+        "MED-4358",
+        "MED-4983",
+        "MED-2584",
+        "MED-4482"
+      ],
+      "condition_B_valid_citations": [
+        "MED-3891",
+        "MED-4358",
+        "MED-4983",
+        "MED-2584",
+        "MED-4482"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-2750": {
+    "query_id": "PLAIN-2750",
+    "query": "Preventing the Common Cold with Probiotics?",
+    "total_relevant_docs_in_qrels": 59,
+    "stage_1_lexical": {
+      "NDCG10": 0.5190826568157176,
+      "P10": 0.5,
+      "R10": 0.0847457627118644,
+      "relevant_in_top100": 13
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.7571358013071953,
+      "P10": 0.9,
+      "R10": 0.15254237288135594,
+      "relevant_in_top100": 23
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.5887728590165431,
+      "P10": 0.7,
+      "R10": 0.11864406779661017,
+      "relevant_in_top100": 19,
+      "relevant_in_top50": 16,
+      "relevant_available_from_union_top100": 24
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.6695297042992998,
+      "P10": 0.8,
+      "R10": 0.13559322033898305,
+      "ndcg10_delta_vs_hybrid": 0.08075684528275673
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.8,
+      "Recall@5": 0.06779661016949153,
+      "Hit@5": 1.0,
+      "relevant_in_context": 4,
+      "context_docs": [
+        {
+          "doc_id": "MED-3683",
+          "title": "Randomised, double-blind and placebo-controlled study using new probiotic lactobacilli for strengthening the body immune defence against viral infe...",
+          "text_snippet": "BACKGROUND: The aim of this study was to investigate whether consumption of Lactobacillus plantarum HEAL 9 (DSM 15312) and Lactobacillus paracasei 8700:2 (DSM 13434) could affect naturally acquired common cold infections in healthy subjects. METHODS: A randomi...",
+          "relevance": 2,
+          "rank_lexical": 1,
+          "rank_semantic": 1,
+          "rank_hybrid": 1,
+          "rank_reranking": 1,
+          "score_reranking": 3.5729289054870605
+        },
+        {
+          "doc_id": "MED-3695",
+          "title": "Probiotics for the prevention of pediatric antibiotic-associated diarrhea.",
+          "text_snippet": "BACKGROUND: Antibiotics alter the microbial balance within the gastrointestinal tract. Probiotics may prevent antibiotic-associated diarrhea (AAD) via restoration of the gut microflora. Antibiotics are prescribed frequently in children and AAD is common in thi...",
+          "relevance": 1,
+          "rank_lexical": 7,
+          "rank_semantic": 7,
+          "rank_hybrid": 4,
+          "rank_reranking": 2,
+          "score_reranking": 1.4957928657531738
+        },
+        {
+          "doc_id": "MED-3680",
+          "title": "Probiotics for preventing acute upper respiratory tract infections.",
+          "text_snippet": "BACKGROUND: Probiotics may improve a person's health by regulating their immune function. Some studies show that probiotic strains can prevent respiratory infections. However, no evidence of the benefits of probiotics for acute upper respiratory tract infectio...",
+          "relevance": 2,
+          "rank_lexical": 2,
+          "rank_semantic": 3,
+          "rank_hybrid": 2,
+          "rank_reranking": 3,
+          "score_reranking": 0.5745055675506592
+        },
+        {
+          "doc_id": "MED-3690",
+          "title": "Probiotics as prevention and treatment for diarrhea.",
+          "text_snippet": "PURPOSE OF REVIEW: To critically appraise evidence on probiotic use for prevention and treatment of diarrhea in children and adults. RECENT FINDINGS: Several randomized controlled trials and meta-analyses suggested that probiotics are effective in primary and ...",
+          "relevance": 1,
+          "rank_lexical": 11,
+          "rank_semantic": 6,
+          "rank_hybrid": 5,
+          "rank_reranking": 4,
+          "score_reranking": -1.1729590892791748
+        },
+        {
+          "doc_id": "MED-4762",
+          "title": "Probiotic effects on cold and influenza-like symptom incidence and duration in children.",
+          "text_snippet": "OBJECTIVE: Probiotic consumption effects on cold and influenza-like symptom incidence and duration were evaluated in healthy children during the winter season. METHODS: In this double-blind, placebo-controlled study, 326 eligible children (3-5 years of age) we...",
+          "relevance": 0,
+          "rank_lexical": 9,
+          "rank_semantic": 2,
+          "rank_hybrid": 3,
+          "rank_reranking": 5,
+          "score_reranking": -1.190605878829956
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A utilização de probióticos para prevenir o resfriado comum ainda é um tema de pesquisa, e os resultados até agora são mistos. Estudos sugerem que certos tipos de probióticos, especialmente aqueles que contêm estrófilos (como *Lactobacillus* e *Bifidobacterium*), podem ajudar a reduzir a gravidade e a duração de infecções virais, incluindo resfriados, em pessoas com sistemas imunológicos comprometidos, como idosos ou pessoas com doenças crônicas.\n\nNo entanto, para a prevenção geral do resfriado comum em pessoas saudáveis, a evidência é limitada. A maioria dos estudos disponíveis não mostrou um efeito significativo na prevenção de resfriados em indivíduos saudáveis. Portanto, a eficácia dos probióticos para prevenir resfriados em pessoas saudáveis ainda não está bem estabelecida.\n\nA prevenção mais eficaz do resfriado inclui medidas como lavar as mãos com frequência, manter uma boa higiene respiratória, manter o sistema imunológico saudável com uma dieta equilibrada, sono adequado e exercícios regulares. Se você tem um sistema imunológico fraco, consulte um médico para avaliar a possibilidade de suplementos probióticos.",
+      "condition_B_answer": "A utilização de probióticos para prevenir o resfriado comum foi investigada em vários estudos. Segundo o documento [MED-3683], um estudo randomizado, duplo-cegueado e controlado com placebo mostrou que o consumo de Lactobacillus plantarum HEAL 9 (DSM 15312) e Lactobacillus paracasei 8700:2 (DSM 13434) reduziu a incidência de um ou mais episódios de resfriado comum de 67% no grupo controle para 55% no grupo de probióticos. Além disso, o número de dias com sintomas de resfriado foi significativamente reduzido, bem como a pontuação total de sintomas. O estudo também mostrou que a proliferação de linfócitos B foi significativamente contrariada no grupo de probióticos em comparação com o grupo controle.\n\nOutro estudo, [MED-3680], avaliou a eficácia de probióticos na prevenção de infecções respiratórias superiores agudas (URTIs). O estudo incluiu 14 ensaios controlados randomizados (RCTs), embora apenas dados de 10 estudos pudessem ser analisados em metanálise. Os resultados mostraram que os probióticos foram mais eficazes do que o placebo na redução do número de participantes que experimentaram episódios de URTI, na taxa de episódios de URTI e na redução da prescrição de antibióticos. No entanto, os resultados têm limitações e não há dados para pessoas mais velhas.\n\nO documento [MED-4762] também avaliou o efeito dos probióticos na incidência e duração de sintomas de resfriado e influenza-like em crianças. O estudo mostrou que a suplementação diária com probióticos reduziu significativamente a incidência de febre, tosse e rinite, bem como a duração desses sintomas. Além disso, a incidência de uso de antibióticos foi reduzida, e o número de dias ausentes da creche foi significativamente reduzido.\n\nEm resumo, os estudos mostram que os probióticos podem ser eficazes na prevenção de resfriados comuns, especialmente em crianças, reduzindo a incidência e a duração dos sintomas, além de reduzir a necessidade de uso de antibióticos.\n\nFontes:\n- [MED-3683]\n- [MED-3680]\n- [MED-4762]",
+      "condition_B_cited_ids": [
+        "MED-3683",
+        "MED-3680",
+        "MED-4762"
+      ],
+      "condition_B_valid_citations": [
+        "MED-3683",
+        "MED-3680",
+        "MED-4762"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-270": {
+    "query_id": "PLAIN-270",
+    "query": "Is Caffeinated Tea Really Dehydrating?",
+    "total_relevant_docs_in_qrels": 52,
+    "stage_1_lexical": {
+      "NDCG10": 0.22009176629808017,
+      "P10": 0.1,
+      "R10": 0.019230769230769232,
+      "relevant_in_top100": 11
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.2863459897524692,
+      "P10": 0.2,
+      "R10": 0.038461538461538464,
+      "relevant_in_top100": 9
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.22009176629808017,
+      "P10": 0.1,
+      "R10": 0.019230769230769232,
+      "relevant_in_top100": 13,
+      "relevant_in_top50": 9,
+      "relevant_available_from_union_top100": 13
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.22009176629808017,
+      "P10": 0.1,
+      "R10": 0.019230769230769232,
+      "ndcg10_delta_vs_hybrid": 0.0
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.2,
+      "Recall@5": 0.019230769230769232,
+      "Hit@5": 1.0,
+      "relevant_in_context": 1,
+      "context_docs": [
+        {
+          "doc_id": "MED-4331",
+          "title": "Black tea is not significantly different from water in the maintenance of normal hydration in human subjects: results from a randomised controlled ...",
+          "text_snippet": "There is a belief that caffeinated drinks, such as tea, may adversely affect hydration. This was investigated in a randomised controlled trial. Healthy resting males (n 21) were recruited from the general population. Following 24 h of abstention from caffeine,...",
+          "relevance": 1,
+          "rank_lexical": 1,
+          "rank_semantic": 1,
+          "rank_hybrid": 1,
+          "rank_reranking": 1,
+          "score_reranking": 1.4738637208938599
+        },
+        {
+          "doc_id": "MED-5245",
+          "title": "Effect of decaffeination of coffee or tea on gastro-oesophageal reflux.",
+          "text_snippet": "BACKGROUND: Coffee and tea are believed to cause gastro-oesophageal reflux; however, the effects of these beverages and of their major component, caffeine, have not been quantified. The aim of this study was to evaluate gastro-oesophageal reflux induced by cof...",
+          "relevance": 0,
+          "rank_lexical": 14,
+          "rank_semantic": 2,
+          "rank_hybrid": 2,
+          "rank_reranking": 2,
+          "score_reranking": 0.32643622159957886
+        },
+        {
+          "doc_id": "MED-878",
+          "title": "Acute effects of coffee on endothelial function in healthy subjects.",
+          "text_snippet": "BACKGROUND/OBJECTIVES: Coffee is the most widely consumed beverage in the world, but its effect on the cardiovascular system has not been fully understood. Coffee contains caffeine and antioxidants, which may influence endothelial function, both of which have ...",
+          "relevance": 0,
+          "rank_lexical": 85,
+          "rank_semantic": 13,
+          "rank_hybrid": 24,
+          "rank_reranking": 3,
+          "score_reranking": -3.159667491912842
+        },
+        {
+          "doc_id": "MED-1645",
+          "title": "The acute effect of green tea consumption on endothelial function in healthy individuals.",
+          "text_snippet": "BACKGROUND: Tea consumption is associated with decreased cardiovascular risk. Flow-mediated dilatation (FMD) of the brachial artery is related to coronary endothelial function and it is an independent predictor of cardiovascular risk. Black tea has a beneficia...",
+          "relevance": 0,
+          "rank_lexical": 17,
+          "rank_semantic": 5,
+          "rank_hybrid": 9,
+          "rank_reranking": 4,
+          "score_reranking": -3.4620933532714844
+        },
+        {
+          "doc_id": "MED-1642",
+          "title": "Dose-dependent effects of decaffeinated coffee on endothelial function in healthy subjects.",
+          "text_snippet": "BACKGROUND/OBJECTIVES: Coffee is known to contain antioxidant substances whose effects may be blunted because of caffeine that may unfavorably affect the cardiovascular system. This study was designed to investigate the acute dose-dependent effects of decaffei...",
+          "relevance": 0,
+          "rank_lexical": 78,
+          "rank_semantic": 20,
+          "rank_hybrid": 35,
+          "rank_reranking": 5,
+          "score_reranking": -3.653489589691162
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A bebida com cafeína, como o chá, pode ter um efeito desidratante, mas isso depende de vários fatores, como a quantidade de cafeína, a composição do chá e a quantidade de líquido consumida. O chá, em geral, é considerado uma bebida hidratante, pois contém água e outros compostos que ajudam no equilíbrio do corpo. No entanto, a cafeína pode ter um efeito diurético, o que pode aumentar a perda de líquido no corpo. Portanto, o chá com cafeína pode ser desidratante em certas circunstâncias, mas não é considerado uma bebida altamente desidratante em comparação com bebidas como o suco ou a água.",
+      "condition_B_answer": "De acordo com os dados fornecidos, não há evidência suficiente para concluir que o chá com cafeína seja desidratante. O estudo [MED-4331] demonstra que o chá preto, mesmo com cafeína, não difere significativamente de água na manutenção da hidratação em humanos. Os participantes foram testados em diferentes condições e não houve diferença significativa em nenhuma das medidas de sangue ou urina entre o chá e a água. Portanto, o chá com cafeína, na quantidade estudada, oferece propriedades hidratantes semelhantes à água.\n\nFontes/Fontes:\n- [MED-4331]",
+      "condition_B_cited_ids": [
+        "MED-4331"
+      ],
+      "condition_B_valid_citations": [
+        "MED-4331"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-2470": {
+    "query_id": "PLAIN-2470",
+    "query": "Is Milk Good for Our Bones?",
+    "total_relevant_docs_in_qrels": 73,
+    "stage_1_lexical": {
+      "NDCG10": 0.0961271177726593,
+      "P10": 0.2,
+      "R10": 0.0273972602739726,
+      "relevant_in_top100": 14
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.7205646068602002,
+      "P10": 0.8,
+      "R10": 0.1095890410958904,
+      "relevant_in_top100": 24
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.5559023187191365,
+      "P10": 0.5,
+      "R10": 0.0684931506849315,
+      "relevant_in_top100": 24,
+      "relevant_in_top50": 16,
+      "relevant_available_from_union_top100": 29
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.6565782930419843,
+      "P10": 0.5,
+      "R10": 0.0684931506849315,
+      "ndcg10_delta_vs_hybrid": 0.1006759743228478
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.6,
+      "Recall@5": 0.0410958904109589,
+      "Hit@5": 1.0,
+      "relevant_in_context": 3,
+      "context_docs": [
+        {
+          "doc_id": "MED-1337",
+          "title": "Milk intake and risk of hip fracture in men and women: a meta-analysis of prospective cohort studies.",
+          "text_snippet": "Milk contains calcium, phosphorus, and protein and is fortified with vitamin D in the United States. All these ingredients may improve bone health. However, the potential benefit of milk on hip fracture prevention is not well established. The objective of this...",
+          "relevance": 2,
+          "rank_lexical": 21,
+          "rank_semantic": 1,
+          "rank_hybrid": 1,
+          "rank_reranking": 1,
+          "score_reranking": 3.4924113750457764
+        },
+        {
+          "doc_id": "MED-1340",
+          "title": "Milk Consumption During Teenage Years and Risk of Hip Fractures in Older Adults",
+          "text_snippet": "Importance Milk consumption during adolescence is recommended to promote peak bone mass and thereby reduce fracture risk in later life. However, its role in hip fracture prevention is not established and high consumption may adversely influence risk by increas...",
+          "relevance": 2,
+          "rank_lexical": 37,
+          "rank_semantic": 4,
+          "rank_hybrid": 5,
+          "rank_reranking": 2,
+          "score_reranking": -1.95106840133667
+        },
+        {
+          "doc_id": "MED-1338",
+          "title": "Milk intake and risk of mortality and fractures in women and men: cohort studies",
+          "text_snippet": "Objective To examine whether high milk consumption is associated with mortality and fractures in women and men. Design Cohort studies. Setting Three counties in central Sweden. Participants Two large Swedish cohorts, one with 61 433 women (39-74 years at basel...",
+          "relevance": 2,
+          "rank_lexical": 41,
+          "rank_semantic": 6,
+          "rank_hybrid": 9,
+          "rank_reranking": 3,
+          "score_reranking": -4.4078474044799805
+        },
+        {
+          "doc_id": "MED-904",
+          "title": "A systematic review and meta-analysis of the effects of pasteurization on milk vitamins, and evidence for raw milk consumption and other health-rel...",
+          "text_snippet": "Pasteurization of milk ensures safety for human consumption by reducing the number of viable pathogenic bacteria. Although the public health benefits of pasteurization are well established, pro-raw milk advocate organizations continue to promote raw milk as \"n...",
+          "relevance": 0,
+          "rank_lexical": 28,
+          "rank_semantic": 16,
+          "rank_hybrid": 18,
+          "rank_reranking": 4,
+          "score_reranking": -4.41447114944458
+        },
+        {
+          "doc_id": "MED-4902",
+          "title": "Addition of milk prevents vascular protective effects of tea.",
+          "text_snippet": "AIMS: Experimental and clinical studies indicate that tea exerts protection against cardiovascular diseases. However, a question of much debate is whether addition of milk modifies the biological activities of tea. We studied the vascular effects of tea, with ...",
+          "relevance": 0,
+          "rank_lexical": 14,
+          "rank_semantic": 56,
+          "rank_hybrid": 22,
+          "rank_reranking": 5,
+          "score_reranking": -5.710685729980469
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "Sim, a leite é boa para os ossos. Ele é uma fonte rica de cálcio, que é essencial para a formação e manutenção de ossos saudáveis. Além disso, o leite contém vitamina D, que ajuda o corpo a absorver o cálcio. No entanto, a quantidade de cálcio em leite depende do tipo de leite e da dieta geral. Em geral, o consumo moderado de leite é benéfico para a saúde óssea.",
+      "condition_B_answer": "A relação entre o consumo de leite e a saúde óssea é um tema de discussão, com evidências variadas. Segundo o estudo [MED-1337], não foi encontrada uma associação geral entre o consumo de leite e o risco de fratura de quadril em mulheres, com um risco relativo (RR) de 0.99 (intervalo de confiança 95%: 0.96-1.02). No entanto, em homens, o RR foi de 0.91 (intervalo de confiança 95%: 0.81-1.01), indicando que, embora não houvesse uma associação clara, mais dados são necessários para confirmar essa relação. Além disso, o estudo [MED-1338] mostrou que o consumo elevado de leite está associado a um aumento no risco de mortalidade e fraturas em mulheres, com um risco relativo de 1.09 para fraturas de quadril. Por outro lado, o estudo [MED-1340] não encontrou uma associação entre o consumo de leite na adolescência e o risco de fraturas de quadril em idosos, com um risco relativo de 1.00 para mulheres. \n\nPortanto, os dados sugerem que o leite pode não ter um efeito significativo na prevenção de fraturas de quadril, especialmente em mulheres, e que o consumo elevado de leite pode estar associado a um aumento no risco de mortalidade e fraturas em mulheres. No entanto, a relação entre o leite e a saúde óssea ainda precisa de mais investigação.\n\nFontes:\n- [MED-1337]\n- [MED-1338]\n- [MED-1340]",
+      "condition_B_cited_ids": [
+        "MED-1337",
+        "MED-1338",
+        "MED-1340"
+      ],
+      "condition_B_valid_citations": [
+        "MED-1337",
+        "MED-1338",
+        "MED-1340"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-2430": {
+    "query_id": "PLAIN-2430",
+    "query": "Preventing Brain Loss with B Vitamins?",
+    "total_relevant_docs_in_qrels": 46,
+    "stage_1_lexical": {
+      "NDCG10": 0.39366982114002336,
+      "P10": 0.3,
+      "R10": 0.06521739130434782,
+      "relevant_in_top100": 9
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.6190807167889661,
+      "P10": 0.6,
+      "R10": 0.13043478260869565,
+      "relevant_in_top100": 19
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.5469172505015452,
+      "P10": 0.5,
+      "R10": 0.10869565217391304,
+      "relevant_in_top100": 19,
+      "relevant_in_top50": 15,
+      "relevant_available_from_union_top100": 19
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.5867945846769145,
+      "P10": 0.5,
+      "R10": 0.10869565217391304,
+      "ndcg10_delta_vs_hybrid": 0.03987733417536932
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.6,
+      "Recall@5": 0.06521739130434782,
+      "Hit@5": 1.0,
+      "relevant_in_context": 3,
+      "context_docs": [
+        {
+          "doc_id": "MED-994",
+          "title": "Preventing Alzheimer’s disease-related gray matter atrophy by B-vitamin treatment",
+          "text_snippet": "Is it possible to prevent atrophy of key brain regions related to cognitive decline and Alzheimer’s disease (AD)? One approach is to modify nongenetic risk factors, for instance by lowering elevated plasma homocysteine using B vitamins. In an initial, randomiz...",
+          "relevance": 2,
+          "rank_lexical": 1,
+          "rank_semantic": 1,
+          "rank_hybrid": 1,
+          "rank_reranking": 1,
+          "score_reranking": 5.376022815704346
+        },
+        {
+          "doc_id": "MED-980",
+          "title": "Homocysteine-Lowering by B Vitamins Slows the Rate of Accelerated Brain Atrophy in Mild Cognitive Impairment: A Randomized Controlled Trial",
+          "text_snippet": "Background An increased rate of brain atrophy is often observed in older subjects, in particular those who suffer from cognitive decline. Homocysteine is a risk factor for brain atrophy, cognitive impairment and dementia. Plasma concentrations of homocysteine ...",
+          "relevance": 2,
+          "rank_lexical": 2,
+          "rank_semantic": 2,
+          "rank_hybrid": 2,
+          "rank_reranking": 2,
+          "score_reranking": 1.310206651687622
+        },
+        {
+          "doc_id": "MED-5128",
+          "title": "Low vitamin B-12 status and risk of cognitive decline in older adults.",
+          "text_snippet": "BACKGROUND: Elevated total homocysteine (tHcy) concentrations have been associated with cognitive impairment, but it is unclear whether low vitamin B-12 or folate status is responsible for cognitive decline. OBJECTIVE: We examined the associations of cognitive...",
+          "relevance": 0,
+          "rank_lexical": null,
+          "rank_semantic": 4,
+          "rank_hybrid": 9,
+          "rank_reranking": 3,
+          "score_reranking": -2.064725875854492
+        },
+        {
+          "doc_id": "MED-986",
+          "title": "Effect of homocysteine lowering treatment on cognitive function: a systematic review and meta-analysis of randomized controlled trials.",
+          "text_snippet": "Elevated total plasma homocysteine has been linked to the development of cognitive impairment and dementia in later life and this can be reliably lowered by the daily supplementation of vitamin B6, B12, and folic acid. We performed a systematic review and meta...",
+          "relevance": 2,
+          "rank_lexical": 14,
+          "rank_semantic": 3,
+          "rank_hybrid": 5,
+          "rank_reranking": 4,
+          "score_reranking": -2.8764960765838623
+        },
+        {
+          "doc_id": "MED-4929",
+          "title": "Vitamins E and C in the Prevention of Cardiovascular Disease in Men: The Physicians’ Health Study II Randomized Trial",
+          "text_snippet": "Context Basic and observational studies suggest vitamins E or C may reduce risk of cardiovascular disease (CVD). However, few long-term trials have evaluated men at initially low risk of CVD, and no previous trial in men has examined vitamin C alone in the pre...",
+          "relevance": 0,
+          "rank_lexical": null,
+          "rank_semantic": 20,
+          "rank_hybrid": 40,
+          "rank_reranking": 5,
+          "score_reranking": -3.8901870250701904
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A suplementação com vitaminas do complexo B pode ser benéfica para a prevenção da perda cerebral, especialmente em pessoas com deficiência de vitaminas B1 (tiamina), B6 (piridoxina) ou B12 (cianocobalamina). Essas vitaminas desempenham um papel importante na função cerebral e no metabolismo do ácido láctico, que está associado ao declínio cognitivo.\n\nEstudos sugerem que a suplementação com B12 e B6 pode ajudar a prevenir a doença de Alzheimer e outros trastornos cognitivos, além de melhorar a memória e a função cognitiva em pessoas idosas. No entanto, é importante consultar um médico antes de iniciar qualquer suplementação, pois a dosagem e a eficácia podem variar de pessoa para pessoa.\n\nA alimentação equilibrada rica em alimentos como carnes, ovos, frutas, legumes e grãos pode fornecer as vitaminas B necessárias para manter a saúde cerebral.",
+      "condition_B_answer": "Sim, os vitaminos B podem ser eficazes na prevenção da perda cerebral associada à doença de Alzheimer. Estudos mostram que a suplementação com vitaminas B (fólico, vitamina B6 e B12) pode reduzir a atrofia cerebral, especialmente em regiões do cérebro vulneráveis à doença de Alzheimer, como o lobo temporal médio. Em um estudo randomizado controlado, foi demonstrado que a suplementação com altas doses desses vitaminos reduziu a atrofia cerebral em até sete vezes em participantes com maior risco de demência [MED-994]. Além disso, em outro estudo, foi observado que a suplementação com vitaminas B reduziu a taxa de atrofia cerebral em 53% em participantes com níveis elevados de homocisteína [MED-980]. \n\nOs resultados indicam que a suplementação com vitaminas B pode ajudar a reduzir a taxa de atrofia cerebral em indivíduos com cognição leve, especialmente aqueles com níveis elevados de homocisteína, o que está associado a maior risco de demência [MED-980]. Além disso, a suplementação com vitaminas B pode ser eficaz na prevenção da progressão da demência em indivíduos com cognição leve [MED-994].\n\nFontes:\n- [MED-994]\n- [MED-980]",
+      "condition_B_cited_ids": [
+        "MED-994",
+        "MED-980"
+      ],
+      "condition_B_valid_citations": [
+        "MED-994",
+        "MED-980"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-238": {
+    "query_id": "PLAIN-238",
+    "query": "How Chemically Contaminated Are We?",
+    "total_relevant_docs_in_qrels": 54,
+    "stage_1_lexical": {
+      "NDCG10": 0.0,
+      "P10": 0.0,
+      "R10": 0.0,
+      "relevant_in_top100": 3
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.0,
+      "P10": 0.0,
+      "R10": 0.0,
+      "relevant_in_top100": 2
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.0,
+      "P10": 0.0,
+      "R10": 0.0,
+      "relevant_in_top100": 2,
+      "relevant_in_top50": 2,
+      "relevant_available_from_union_top100": 4
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.13886244387355454,
+      "P10": 0.1,
+      "R10": 0.018518518518518517,
+      "ndcg10_delta_vs_hybrid": 0.13886244387355454
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.2,
+      "Recall@5": 0.018518518518518517,
+      "Hit@5": 1.0,
+      "relevant_in_context": 1,
+      "context_docs": [
+        {
+          "doc_id": "MED-2391",
+          "title": "Perfluorinated Compounds, Polychlorinated Biphenyls, and Organochlorine Pesticide Contamination in Composite Food Samples from Dallas, Texas, USA",
+          "text_snippet": "Objectives The objective of this article is to extend our previous studies of persistent organic pollutant (POP) contamination of U.S. food by measuring perfluorinated compounds (PFCs), organochlorine pesticides, and polychlorinated biphenyls (PCBs) in composi...",
+          "relevance": 0,
+          "rank_lexical": null,
+          "rank_semantic": 2,
+          "rank_hybrid": 5,
+          "rank_reranking": 1,
+          "score_reranking": -2.5898332595825195
+        },
+        {
+          "doc_id": "MED-4739",
+          "title": "Nowhere to hide: Chemical toxicants and the unborn child.",
+          "text_snippet": "Contemporary reproductive aged women and their offspring are facing an unprecedented onslaught of toxicant exposures from myriad sources in their day-to-day life. Public health recommendations regarding optimal diet and nutrition in pregnancy must incorporate ...",
+          "relevance": 1,
+          "rank_lexical": 32,
+          "rank_semantic": 26,
+          "rank_hybrid": 24,
+          "rank_reranking": 2,
+          "score_reranking": -3.9151253700256348
+        },
+        {
+          "doc_id": "MED-2493",
+          "title": "Environmental toxicants and the developing immune system: a missing link in the global battle against infectious disease?",
+          "text_snippet": "There is now compelling evidence that developmental exposure to chemicals from our environment contributes to disease later in life, with animal models supporting this concept in reproductive, metabolic, and neurodegenerative diseases. In contrast, data regard...",
+          "relevance": 0,
+          "rank_lexical": null,
+          "rank_semantic": 19,
+          "rank_hybrid": 42,
+          "rank_reranking": 3,
+          "score_reranking": -4.670742034912109
+        },
+        {
+          "doc_id": "MED-2994",
+          "title": "Carcinogenicity and regulation of caramel colorings.",
+          "text_snippet": "2- and 4-methylimidazoles are present as contaminants in caramel colorings manufactured with ammonia catalysts. Both contaminants have been shown to induce cancer in animals and may be present in caramel colorings in amounts that exceed federal guidelines. Cal...",
+          "relevance": 0,
+          "rank_lexical": 15,
+          "rank_semantic": 52,
+          "rank_hybrid": 16,
+          "rank_reranking": 4,
+          "score_reranking": -4.805520057678223
+        },
+        {
+          "doc_id": "MED-5104",
+          "title": "Brominated flame retardants in US food.",
+          "text_snippet": "We and others recently began studying brominated flame retardant levels in various matrices in the US including human milk and other food. This paper reviews the food studies. In our studies, ten to thirteen polybrominated diphenyl ether (PBDE) congeners were ...",
+          "relevance": 0,
+          "rank_lexical": 12,
+          "rank_semantic": 3,
+          "rank_hybrid": 1,
+          "rank_reranking": 5,
+          "score_reranking": -5.211594104766846
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A questão de quanto estamos contaminados quimicamente depende de vários fatores, incluindo o ambiente em que vivemos, nossas hábitos de vida, o tipo de alimentação que consumimos e as exposições ocupacionais ou ambientais. A contaminação química pode ocorrer por meio de substâncias tóxicas presentes em alimentos, água, ar e produtos de consumo.\n\nAlguns dos principais contaminantes químicos incluem:\n\n- **Metais pesados**: como chumbo, mercúrio, arsênico e cadmio, que podem ser absorvidos por meio da alimentação ou da água.\n- **Pesticidas e herbicidas**: utilizados na agricultura, que podem residir em alimentos e na água.\n- **Plásticos e substâncias orgânicas persistentes (SOP)**: como o DDT, que podem ser encontrados na alimentação e no ambiente.\n- **Substâncias de uso industrial**: como o benzeno, que pode estar presente no ar e na água.\n- **Substâncias de uso medicinal**: como o iodo, que pode ser absorvido por meio de alimentos ou suplementos.\n\nA contaminação química é um problema global, e a exposição a essas substâncias pode ter efeitos tóxicos na saúde, incluindo danos ao sistema nervoso, problemas no fígado e no rim, e riscos para o desenvolvimento fetal.\n\nA avaliação da contaminação química depende de estudos de saúde pública, testes de exposição e análise de amostras de água, ar e alimentos. Em geral, a contaminação química é um problema complexo que exige vigilância, políticas públicas e medidas de prevenção para minimizar os riscos à saúde.",
+      "condition_B_answer": "A contaminação química é um problema significativo que afeta a população, conforme evidenciado por vários estudos. Por exemplo, o estudo [MED-2391] revela que alimentos comuns em Dallas, Texas, apresentam níveis elevados de substâncias persistentes orgânicas poluentes (POP), incluindo pesticidas organoclorados, compostos de polictiofenilos (PCBs) e compostos perfluorados (PFCs). Esse estudo identificou que o DDT e seus metabolitos, como o p,p′-diclorodiphenil dicloroetileno, foram encontrados em níveis elevados em alimentos como iogurte de leite inteiro e peixe de gato, enquanto os PCBs, especialmente o PCB-153 e PCB-138, foram mais comuns em peixes, com níveis mais altos em salmão. Além disso, o PFOA foi detectado em 17 de 31 amostras, variando de 0,07 ng/g em batata a 1,80 ng/g em azeite de oliva. Esses compostos são consumidos por pessoas na América dos Estados Unidos, indicando a necessidade de testes mais amplos de alimentos para contaminantes químicos.\n\nOutro estudo, [MED-5104], aborda a presença de retardantes de chama bromados (BDEs) em alimentos dos Estados Unidos, mostrando níveis muito altos de PBDEs em leite materno e em outros alimentos, com valores que superam significativamente os relatados em estudos europeus. Esses níveis são considerados altos e podem representar riscos para a saúde.\n\nAlém disso, [MED-2994] destaca a presença de 2- e 4-metilimidazóis como contaminantes em colorantes caramelo fabricados com catalisadores de amônia, que podem induzir câncer em animais e estão acima dos limites federais. O estudo [MED-4739] também menciona a exposição a toxicantes durante a gravidez, especialmente através de peixes contaminados, que podem afetar o desenvolvimento do feto.\n\nEm resumo, a contaminação química em alimentos é um problema real que afeta a saúde pública, com níveis elevados de substâncias tóxicas detectados em diversos alimentos e matérias-primas, exigindo ações mais rigorosas para a vigilância e regulação desses contaminantes.\n\nFontes:\n- [MED-2391] - Estudo sobre contaminação de alimentos com POPs.\n- [MED-5104] - Estudo sobre bromados de chama em alimentos.\n- [MED-2994] - Estudo sobre contaminantes em colorantes caramelo.\n- [MED-4739] - Estudo sobre exposição a toxicantes durante a gravidez.",
+      "condition_B_cited_ids": [
+        "MED-2391",
+        "MED-5104",
+        "MED-2994",
+        "MED-4739"
+      ],
+      "condition_B_valid_citations": [
+        "MED-2391",
+        "MED-5104",
+        "MED-2994",
+        "MED-4739"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  },
+  "PLAIN-3342": {
+    "query_id": "PLAIN-3342",
+    "query": "Is Coconut Milk Good For You?",
+    "total_relevant_docs_in_qrels": 3,
+    "stage_1_lexical": {
+      "NDCG10": 0.7653606369886217,
+      "P10": 0.2,
+      "R10": 0.6666666666666666,
+      "relevant_in_top100": 3
+    },
+    "stage_2_semantic": {
+      "NDCG10": 0.49818925746641285,
+      "P10": 0.2,
+      "R10": 0.6666666666666666,
+      "relevant_in_top100": 3
+    },
+    "stage_3_hybrid": {
+      "NDCG10": 0.7039180890341347,
+      "P10": 0.2,
+      "R10": 0.6666666666666666,
+      "relevant_in_top100": 3,
+      "relevant_in_top50": 3,
+      "relevant_available_from_union_top100": 3
+    },
+    "stage_4_reranking": {
+      "NDCG10": 0.8072467605676945,
+      "P10": 0.3,
+      "R10": 1.0,
+      "ndcg10_delta_vs_hybrid": 0.10332867153355985
+    },
+    "stage_5_context_selection": {
+      "Precision@5": 0.4,
+      "Recall@5": 0.6666666666666666,
+      "Hit@5": 1.0,
+      "relevant_in_context": 2,
+      "context_docs": [
+        {
+          "doc_id": "MED-5014",
+          "title": "Dietary intake and the risk of coronary heart disease among the coconut-consuming Minangkabau in West Sumatra, Indonesia.",
+          "text_snippet": "Several nutrition and non-nutritional pathways are recognised in the development and occurrence of cardiovascular disease. In many populations, high intakes of saturated fat are associated with elevated serum cholesterol concentrations and increased coronary h...",
+          "relevance": 2,
+          "rank_lexical": 2,
+          "rank_semantic": 4,
+          "rank_hybrid": 3,
+          "rank_reranking": 1,
+          "score_reranking": -3.0404627323150635
+        },
+        {
+          "doc_id": "MED-5015",
+          "title": "The intravenous use of coconut water.",
+          "text_snippet": "Medical resources routinely used for intravenous hydration and resuscitation of critically ill patients may be limited in remote regions of the world. When faced with these shortages, physicians have had to improvise with the available resources, or simply do ...",
+          "relevance": 0,
+          "rank_lexical": 5,
+          "rank_semantic": 6,
+          "rank_hybrid": 4,
+          "rank_reranking": 2,
+          "score_reranking": -4.392242431640625
+        },
+        {
+          "doc_id": "MED-4000",
+          "title": "Coconut oil predicts a beneficial lipid profile in pre-menopausal women in the Philippines",
+          "text_snippet": "Coconut oil is a common edible oil in many countries, and there is mixed evidence for its effects on lipid profiles and cardiovascular disease risk. Here we examine the association between coconut oil consumption and lipid profiles in a cohort of 1,839 Filipin...",
+          "relevance": 0,
+          "rank_lexical": 4,
+          "rank_semantic": 1,
+          "rank_hybrid": 2,
+          "rank_reranking": 3,
+          "score_reranking": -4.5472211837768555
+        },
+        {
+          "doc_id": "MED-4002",
+          "title": "Effects of dietary coconut oil on the biochemical and anthropometric profiles of women presenting abdominal obesity.",
+          "text_snippet": "The effects of dietary supplementation with coconut oil on the biochemical and anthropometric profiles of women presenting waist circumferences (WC) >88 cm (abdominal obesity) were investigated. The randomised, double-blind, clinical trial involved 40 women ag...",
+          "relevance": 0,
+          "rank_lexical": 8,
+          "rank_semantic": 7,
+          "rank_hybrid": 7,
+          "rank_reranking": 4,
+          "score_reranking": -4.813218116760254
+        },
+        {
+          "doc_id": "MED-5012",
+          "title": "The cholesterol-lowering effect of coconut flakes in humans with moderately raised serum cholesterol.",
+          "text_snippet": "This study investigated the effect of coconut flakes on serum cholesterol levels of humans with moderately raised serum cholesterol in 21 subjects. The serum total cholesterol of subjects differed and ranged from 259 to 283 mg/dL. The study was conducted in a ...",
+          "relevance": 2,
+          "rank_lexical": 1,
+          "rank_semantic": 2,
+          "rank_hybrid": 1,
+          "rank_reranking": 5,
+          "score_reranking": -5.090570449829102
+        }
+      ]
+    },
+    "stage_6_generation": {
+      "condition_A_answer": "A leite de coco é benéfico para a saúde quando consumido com moderação. É rico em vitaminas, minerais e antioxidantes, e contém fibra, o que pode ajudar no controle do peso e na saúde intestinal. Também é uma boa fonte de potássio, que é importante para o equilíbrio eletrólico do corpo. No entanto, é importante notar que o leite de coco é alto em calorias e açúcar natural, então é importante consumi-lo com moderação, especialmente para pessoas que estão em uma dieta controlada de calorias ou com condições médicas como diabetes. Além disso, o leite de coco pode conter alergenos, então pessoas com alergias alimentares devem ser cautelosas. Em resumo, o leite de coco é saudável quando consumido com moderação e como parte de uma dieta equilibrada.",
+      "condition_B_answer": "A milk de coco pode ser benéfica para a saúde, mas é importante considerar os contextos específicos. Em relação ao consumo de coco, estudos mostram que a ingestão de coco, incluindo a leite de coco, pode ter efeitos positivos na saúde cardiovascular. Por exemplo, em um estudo realizado com a população Minangkabau, que consome alto teor de coco, não foi observada uma associação entre o consumo de coco e o risco de doenças cardíacas, mesmo que o consumo de gordura saturada seja comum. Isso sugere que fatores além da ingestão de gordura saturada podem influenciar o risco de doenças cardíacas [MED-5014].\n\nAlém disso, em outro estudo, foi observado que o consumo de óleo de coco está associado a uma melhoria na perfil lipídico, especialmente no aumento do HDL (colesterol bom) e na redução do LDL (colesterol ruim) em mulheres pré-menopáusicas [MED-4000]. Outro estudo mostrou que a suplementação com óleo de coco pode levar a uma redução na obesidade abdominal e na taxa de LDL, além de melhorar o perfil lipídico [MED-4002].\n\nNo entanto, é importante notar que o consumo de coco, incluindo o leite de coco, deve ser considerado dentro do contexto geral da dieta e do estilo de vida. Ainda assim, os estudos mencionados acima indicam que o leite de coco pode ter benefícios para a saúde, especialmente quando consumido como parte de uma dieta equilibrada.\n\nFontes:\n- [MED-5014]\n- [MED-4000]\n- [MED-4002]",
+      "condition_B_cited_ids": [
+        "MED-5014",
+        "MED-4000",
+        "MED-4002"
+      ],
+      "condition_B_valid_citations": [
+        "MED-5014",
+        "MED-4000",
+        "MED-4002"
+      ],
+      "condition_B_hallucinated_citations": []
+    }
+  }
+}

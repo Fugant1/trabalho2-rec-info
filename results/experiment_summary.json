@@ -1,0 +1,884 @@
+{
+  "run_id": "run_20261119_153011",
+  "dataset_name": "nfcorpus",
+  "environment": {
+    "python_version": "3.12.3",
+    "platform": "Linux-7.0.11-76070011-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 20,
+    "gpu": {
+      "cuda_available": true,
+      "device_count": 1,
+      "device_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+      "cuda_version": "13.2"
+    },
+    "packages": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.1",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "torch": "2.15.0",
+      "sentence-transformers": "6.3.0",
+      "transformers": "5.23.0",
+      "beir": "2.2.0",
+      "pytrec_eval": null,
+      "langchain-core": "1.8.1",
+      "langchain-google-genai": "4.5.0"
+    }
+  },
+  "dataset_stats": {
+    "num_documents": 3633,
+    "splits": {
+      "train": {
+        "num_qrels_queries": 2590,
+        "num_judgments": 110575
+      },
+      "dev": {
+        "num_qrels_queries": 324,
+        "num_judgments": 11385
+      },
+      "test": {
+        "num_qrels_queries": 323,
+        "num_judgments": 12334
+      }
+    }
+  },
+  "indexing": {
+    "run_id": "run_20261119_153011",
+    "updated_at": "2026-11-19T15:30:14",
+    "cache_dir": "cache",
+    "lexical": {
+      "status": "loaded_from_cache",
+      "cache_hit": true,
+      "cache_load_time_seconds": 0.044626145999700384,
+      "index_build_time_seconds": 0.43248244500136934,
+      "cache_save_time_seconds": null,
+      "total_build_and_cache_time_seconds": null,
+      "cache_files_bytes": {
+        "cache/lexical_index.json": 6276414
+      },
+      "stats": {
+        "N": 3633,
+        "vocab_size": 26071,
+        "total_postings": 365436,
+        "avg_doc_length": 160.01761629507294,
+        "params": {
+          "lowercase": true,
+          "remove_stopwords": true,
+          "min_token_length": 1,
+          "token_pattern": "[a-z0-9]+",
+          "stopwords_source": "sklearn.ENGLISH_STOP_WORDS"
+        }
+      }
+    },
+    "semantic": {
+      "status": "loaded_from_cache",
+      "cache_hit": true,
+      "cache_load_time_seconds": 0.0013007920001655293,
+      "index_build_time_seconds": 8.746845916000893,
+      "cache_save_time_seconds": null,
+      "total_build_and_cache_time_seconds": null,
+      "cache_files_bytes": {
+        "cache/semantic_embeddings.npy": 5580416,
+        "cache/semantic_metadata.json": 58280
+      },
+      "stats": {
+        "num_documents": 3633,
+        "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+        "library": "sentence-transformers==6.3.0",
+        "embedding_dim": 384,
+        "similarity_function": "cosine",
+        "normalized": true,
+        "max_seq_length": 256,
+        "truncated_docs_count": 2864,
+        "had_truncation": true
+      }
+    },
+    "history": [
+      {
+        "timestamp": "2026-11-19T15:30:14",
+        "lexical": {
+          "status": "loaded_from_cache",
+          "cache_hit": true,
+          "cache_load_time_seconds": 0.044626145999700384,
+          "index_build_time_seconds": 0.43248244500136934,
+          "cache_save_time_seconds": null,
+          "total_build_and_cache_time_seconds": null,
+          "cache_files_bytes": {
+            "cache/lexical_index.json": 6276414
+          },
+          "stats": {
+            "N": 3633,
+            "vocab_size": 26071,
+            "total_postings": 365436,
+            "avg_doc_length": 160.01761629507294,
+            "params": {
+              "lowercase": true,
+              "remove_stopwords": true,
+              "min_token_length": 1,
+              "token_pattern": "[a-z0-9]+",
+              "stopwords_source": "sklearn.ENGLISH_STOP_WORDS"
+            }
+          }
+        },
+        "semantic": {
+          "status": "loaded_from_cache",
+          "cache_hit": true,
+          "cache_load_time_seconds": 0.0013007920001655293,
+          "index_build_time_seconds": 8.746845916000893,
+          "cache_save_time_seconds": null,
+          "total_build_and_cache_time_seconds": null,
+          "cache_files_bytes": {
+            "cache/semantic_embeddings.npy": 5580416,
+            "cache/semantic_metadata.json": 58280
+          },
+          "stats": {
+            "num_documents": 3633,
+            "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+            "library": "sentence-transformers==6.3.0",
+            "embedding_dim": 384,
+            "similarity_function": "cosine",
+            "normalized": true,
+            "max_seq_length": 256,
+            "truncated_docs_count": 2864,
+            "had_truncation": true
+          }
+        }
+      }
+    ]
+  },
+  "dev_tuning": {
+    "rrf": {
+      "best_k": 10,
+      "best_dev_ndcg10": 0.3192195961516605,
+      "fusion_depth": 100,
+      "k_candidates": [
+        10,
+        60,
+        100
+      ],
+      "results_by_k": {
+        "10": {
+          "k": 10,
+          "fusion_depth": 100,
+          "global_metrics": {
+            "Precision@10": 0.2540123456790123,
+            "Recall@10": 0.14178001570101287,
+            "MAP@10": 0.09905895660896723,
+            "NDCG@10": 0.3192195961516605,
+            "Hit@10": 0.7098765432098766
+          },
+          "NDCG@10": 0.3192195961516605
+        },
+        "60": {
+          "k": 60,
+          "fusion_depth": 100,
+          "global_metrics": {
+            "Precision@10": 0.2506172839506173,
+            "Recall@10": 0.14049561433449198,
+            "MAP@10": 0.09755763406744125,
+            "NDCG@10": 0.31489601719449867,
+            "Hit@10": 0.7006172839506173
+          },
+          "NDCG@10": 0.31489601719449867
+        },
+        "100": {
+          "k": 100,
+          "fusion_depth": 100,
+          "global_metrics": {
+            "Precision@10": 0.2515432098765432,
+            "Recall@10": 0.1408391814580213,
+            "MAP@10": 0.09745119915661124,
+            "NDCG@10": 0.31520809552620427,
+            "Hit@10": 0.7037037037037037
+          },
+          "NDCG@10": 0.31520809552620427
+        }
+      }
+    },
+    "typo": {
+      "best_params": {
+        "k": 2,
+        "jaccard_threshold": 0.35,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein"
+      },
+      "best_result": {
+        "k": 2,
+        "jaccard_threshold": 0.35,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein",
+        "mean_ndcg10_original": 0.440701167842887,
+        "mean_ndcg10_erro": 0.2212739504516598,
+        "mean_ndcg10_corrigida": 0.424584977392061,
+        "mean_recovery_rate": 0.9090909090909091,
+        "exact_query_accuracy": 0.9,
+        "num_dev_cases": 30
+      },
+      "grid_results": [
+        {
+          "k": 2,
+          "jaccard_threshold": 0.2,
+          "max_edit_distance": 2,
+          "distance_metric": "damerau_levenshtein",
+          "mean_ndcg10_original": 0.440701167842887,
+          "mean_ndcg10_erro": 0.2212739504516598,
+          "mean_ndcg10_corrigida": 0.4233255237998473,
+          "mean_recovery_rate": 0.9090909090909091,
+          "exact_query_accuracy": 0.9333333333333333,
+          "num_dev_cases": 30
+        },
+        {
+          "k": 2,
+          "jaccard_threshold": 0.25,
+          "max_edit_distance": 2,
+          "distance_metric": "damerau_levenshtein",
+          "mean_ndcg10_original": 0.440701167842887,
+          "mean_ndcg10_erro": 0.2212739504516598,
+          "mean_ndcg10_corrigida": 0.4233255237998473,
+          "mean_recovery_rate": 0.9090909090909091,
+          "exact_query_accuracy": 0.9333333333333333,
+          "num_dev_cases": 30
+        },
+        {
+          "k": 2,
+          "jaccard_threshold": 0.35,
+          "max_edit_distance": 2,
+          "distance_metric": "damerau_levenshtein",
+          "mean_ndcg10_original": 0.440701167842887,
+          "mean_ndcg10_erro": 0.2212739504516598,
+          "mean_ndcg10_corrigida": 0.424584977392061,
+          "mean_recovery_rate": 0.9090909090909091,
+          "exact_query_accuracy": 0.9,
+          "num_dev_cases": 30
+        },
+        {
+          "k": 3,
+          "jaccard_threshold": 0.2,
+          "max_edit_distance": 2,
+          "distance_metric": "damerau_levenshtein",
+          "mean_ndcg10_original": 0.440701167842887,
+          "mean_ndcg10_erro": 0.2212739504516598,
+          "mean_ndcg10_corrigida": 0.424584977392061,
+          "mean_recovery_rate": 0.9090909090909091,
+          "exact_query_accuracy": 0.9,
+          "num_dev_cases": 30
+        },
+        {
+          "k": 3,
+          "jaccard_threshold": 0.25,
+          "max_edit_distance": 2,
+          "distance_metric": "damerau_levenshtein",
+          "mean_ndcg10_original": 0.440701167842887,
+          "mean_ndcg10_erro": 0.2212739504516598,
+          "mean_ndcg10_corrigida": 0.4132073885856028,
+          "mean_recovery_rate": 0.8148639473385798,
+          "exact_query_accuracy": 0.8333333333333334,
+          "num_dev_cases": 30
+        },
+        {
+          "k": 3,
+          "jaccard_threshold": 0.35,
+          "max_edit_distance": 2,
+          "distance_metric": "damerau_levenshtein",
+          "mean_ndcg10_original": 0.440701167842887,
+          "mean_ndcg10_erro": 0.2212739504516598,
+          "mean_ndcg10_corrigida": 0.40310878415837476,
+          "mean_recovery_rate": 0.7727272727272727,
+          "exact_query_accuracy": 0.8,
+          "num_dev_cases": 30
+        }
+      ]
+    }
+  },
+  "retrieval": {
+    "global_metrics": {
+      "lexical": {
+        "Precision@10": 0.22074303405572754,
+        "Recall@10": 0.15273260837762345,
+        "MAP@10": 0.11989339291232107,
+        "NDCG@10": 0.31214334864824694,
+        "Hit@10": 0.6904024767801857
+      },
+      "semantic": {
+        "Precision@10": 0.24334365325077398,
+        "Recall@10": 0.15498797328057845,
+        "MAP@10": 0.11082911029858557,
+        "NDCG@10": 0.31667312754717797,
+        "Hit@10": 0.6904024767801857
+      },
+      "hybrid": {
+        "Precision@10": 0.2529411764705882,
+        "Recall@10": 0.1748649972241968,
+        "MAP@10": 0.13352934715493364,
+        "NDCG@10": 0.34689997914463105,
+        "Hit@10": 0.7306501547987616
+      },
+      "reranking": {
+        "Precision@10": 0.251702786377709,
+        "Recall@10": 0.1663439182462947,
+        "MAP@10": 0.13841794481316672,
+        "NDCG@10": 0.35628200328854287,
+        "Hit@10": 0.7244582043343654
+      }
+    },
+    "pytrec_eval_cross_check": {
+      "lexical": {
+        "Precision@10": 0.22074303405572754,
+        "Recall@10": 0.15273260837762345,
+        "MAP@10": 0.11988452807674908,
+        "NDCG@10": 0.3120972095757609
+      },
+      "semantic": {
+        "Precision@10": 0.24334365325077398,
+        "Recall@10": 0.15498797328057845,
+        "MAP@10": 0.11048378585967285,
+        "NDCG@10": 0.31594074924861876
+      },
+      "hybrid": {
+        "Precision@10": 0.25356037151702787,
+        "Recall@10": 0.17484223270043062,
+        "MAP@10": 0.13491051843932803,
+        "NDCG@10": 0.34869577923039796
+      },
+      "reranking": {
+        "Precision@10": 0.251702786377709,
+        "Recall@10": 0.1663439182462947,
+        "MAP@10": 0.13801532440801087,
+        "NDCG@10": 0.3552277709081086
+      }
+    },
+    "models_and_timings": {
+      "lexical": {
+        "model": "BM25",
+        "k1": 1.5,
+        "b": 0.75,
+        "N": 3633,
+        "vocab_size": 26071,
+        "total_postings": 365436,
+        "avg_doc_length": 160.01761629507294,
+        "build_time_seconds": 0.43248244500136934,
+        "preprocessing": {
+          "lowercase": true,
+          "remove_stopwords": true,
+          "min_token_length": 1,
+          "token_pattern": "[a-z0-9]+"
+        },
+        "timing": {
+          "num_queries": 323,
+          "top_k": 100,
+          "total_query_time_seconds": 0.046683477999977185,
+          "mean_query_time_seconds": 0.00014453089164079624,
+          "mean_query_time_ms": 0.14453089164079624
+        }
+      },
+      "semantic": {
+        "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+        "library": "sentence-transformers==6.3.0",
+        "embedding_dim": 384,
+        "num_documents": 3633,
+        "similarity_function": "cosine",
+        "normalized": true,
+        "max_seq_length": 256,
+        "truncated_docs_count": 2864,
+        "had_truncation": true,
+        "doc_embedding_time_seconds": 8.746845916000893,
+        "timing": {
+          "num_queries": 323,
+          "top_k": 100,
+          "batch_size": null,
+          "total_query_time_seconds": 1.1621737870000288,
+          "mean_query_time_seconds": 0.003598061260062009,
+          "mean_query_time_ms": 3.5980612600620088
+        }
+      },
+      "hybrid": {
+        "method": "Reciprocal Rank Fusion (RRF)",
+        "k": 10,
+        "fusion_depth": 100,
+        "dev_tuning": {
+          "best_k": 10,
+          "best_dev_ndcg10": 0.3192195961516605,
+          "fusion_depth": 100,
+          "k_candidates": [
+            10,
+            60,
+            100
+          ],
+          "results_by_k": {
+            "10": {
+              "k": 10,
+              "fusion_depth": 100,
+              "global_metrics": {
+                "Precision@10": 0.2540123456790123,
+                "Recall@10": 0.14178001570101287,
+                "MAP@10": 0.09905895660896723,
+                "NDCG@10": 0.3192195961516605,
+                "Hit@10": 0.7098765432098766
+              },
+              "NDCG@10": 0.3192195961516605
+            },
+            "60": {
+              "k": 60,
+              "fusion_depth": 100,
+              "global_metrics": {
+                "Precision@10": 0.2506172839506173,
+                "Recall@10": 0.14049561433449198,
+                "MAP@10": 0.09755763406744125,
+                "NDCG@10": 0.31489601719449867,
+                "Hit@10": 0.7006172839506173
+              },
+              "NDCG@10": 0.31489601719449867
+            },
+            "100": {
+              "k": 100,
+              "fusion_depth": 100,
+              "global_metrics": {
+                "Precision@10": 0.2515432098765432,
+                "Recall@10": 0.1408391814580213,
+                "MAP@10": 0.09745119915661124,
+                "NDCG@10": 0.31520809552620427,
+                "Hit@10": 0.7037037037037037
+              },
+              "NDCG@10": 0.31520809552620427
+            }
+          }
+        },
+        "timing": {
+          "num_queries": 323,
+          "k": 10,
+          "fusion_depth": 100,
+          "total_query_time_seconds": 0.057083740000052785,
+          "mean_query_time_seconds": 0.00017672984520140182,
+          "mean_query_time_ms": 0.1767298452014018
+        }
+      },
+      "reranking": {
+        "model_name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+        "library": "sentence-transformers==6.3.0",
+        "rerank_top_k": 50,
+        "batch_size": 32,
+        "truncation": {
+          "max_length": 512,
+          "total_pairs_evaluated": 16150,
+          "truncated_pairs_count": 1393,
+          "truncated_pairs_ratio": 0.08625386996904025,
+          "had_truncation": true
+        },
+        "timing": {
+          "num_queries": 323,
+          "rerank_top_k": 50,
+          "batch_size": 32,
+          "total_query_time_seconds": 72.66658800599998,
+          "mean_query_time_seconds": 0.22497395667492254,
+          "mean_query_time_ms": 224.97395667492253
+        }
+      }
+    }
+  },
+  "typo_experiment": {
+    "corrector_metadata": {
+      "k_gram": 2,
+      "jaccard_threshold": 0.35,
+      "max_edit_distance": 2,
+      "max_candidates": 100,
+      "distance_metric": "damerau_levenshtein",
+      "pad_kgrams": true,
+      "vocabulary_size": 26389,
+      "num_kgrams": 1096
+    },
+    "num_queries": 10,
+    "mean_ndcg10_original": 0.5269049023276731,
+    "mean_ndcg10_erro": 0.20754240534595478,
+    "mean_ndcg10_corrigida": 0.5269049023276731,
+    "queries_with_degradation": 8,
+    "mean_recovery_rate": 1.0,
+    "records": [
+      {
+        "query_id": "PLAIN-1656",
+        "query_original": "mouth cancer",
+        "query_erro": "mouth caqncer",
+        "query_corrigida": "mouth cancer",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.13886244387355454,
+        "NDCG10_erro": 0.09478836436955078,
+        "NDCG10_corrigida": 0.13886244387355454,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-1275",
+        "query_original": "goji berries",
+        "query_erro": "goji beries",
+        "query_corrigida": "goji berries",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.4537425745411855,
+        "NDCG10_erro": 0.3589542101716347,
+        "NDCG10_corrigida": 0.4537425745411855,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-913",
+        "query_original": "cinnamon",
+        "query_erro": "cinnqmon",
+        "query_corrigida": "cinnamon",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.9363792118010483,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.9363792118010483,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-2830",
+        "query_original": "Neurobiology of Artificial Sweeteners",
+        "query_erro": "neurobiolgoy of Artificial Sweeteners",
+        "query_corrigida": "neurobiology of Artificial Sweeteners",
+        "tipo_erro": "troca",
+        "NDCG10_original": 0.4030302838010049,
+        "NDCG10_erro": 0.4030302838010049,
+        "NDCG10_corrigida": 0.4030302838010049,
+        "error_reduced_performance": false,
+        "recovery_rate": null,
+        "note": "o erro não reduziu o desempenho"
+      },
+      {
+        "query_id": "PLAIN-2051",
+        "query_original": "saturated fat",
+        "query_erro": "saaturated fat",
+        "query_corrigida": "saturated fat",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.7421246259355073,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.7421246259355073,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-1151",
+        "query_original": "factory farming practices",
+        "query_erro": "factory farming practces",
+        "query_corrigida": "factory farming practices",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.23177307466786254,
+        "NDCG10_erro": 0.11004588314904008,
+        "NDCG10_corrigida": 0.23177307466786254,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-2071",
+        "query_original": "serotonin",
+        "query_erro": "swrotonin",
+        "query_corrigida": "serotonin",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.6434035614033737,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.6434035614033737,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-1568",
+        "query_original": "maple syrup",
+        "query_erro": "mpale syrup",
+        "query_corrigida": "male syrup",
+        "tipo_erro": "troca",
+        "NDCG10_original": 1.0,
+        "NDCG10_erro": 1.0,
+        "NDCG10_corrigida": 1.0,
+        "error_reduced_performance": false,
+        "recovery_rate": null,
+        "note": "o erro não reduziu o desempenho"
+      },
+      {
+        "query_id": "PLAIN-1940",
+        "query_original": "prolactin",
+        "query_erro": "preolactin",
+        "query_corrigida": "prolactin",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.3589542101716347,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.3589542101716347,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-2930",
+        "query_original": "Kiwifruit for Irritable Bowel Syndrome",
+        "query_erro": "kiwfruit for Irritable Bowel Syndrome",
+        "query_corrigida": "kiwifruit for Irritable Bowel Syndrome",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.36077903708155934,
+        "NDCG10_erro": 0.10860531196831713,
+        "NDCG10_corrigida": 0.36077903708155934,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    ],
+    "semantic_optional": [
+      {
+        "query_id": "PLAIN-1656",
+        "query_original": "mouth cancer",
+        "query_erro": "mouth caqncer",
+        "query_corrigida": "mouth cancer",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.0,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.0,
+        "error_reduced_performance": false,
+        "recovery_rate": null,
+        "note": "o erro não reduziu o desempenho"
+      },
+      {
+        "query_id": "PLAIN-1275",
+        "query_original": "goji berries",
+        "query_erro": "goji beries",
+        "query_corrigida": "goji berries",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.5541432109622958,
+        "NDCG10_erro": 0.21222636597291458,
+        "NDCG10_corrigida": 0.5541432109622958,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-913",
+        "query_original": "cinnamon",
+        "query_erro": "cinnqmon",
+        "query_corrigida": "cinnamon",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.7849818707050383,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.7849818707050383,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-2830",
+        "query_original": "Neurobiology of Artificial Sweeteners",
+        "query_erro": "neurobiolgoy of Artificial Sweeteners",
+        "query_corrigida": "neurobiology of Artificial Sweeteners",
+        "tipo_erro": "troca",
+        "NDCG10_original": 0.27511096828801057,
+        "NDCG10_erro": 0.2275408362015762,
+        "NDCG10_corrigida": 0.27511096828801057,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-2051",
+        "query_original": "saturated fat",
+        "query_erro": "saaturated fat",
+        "query_corrigida": "saturated fat",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.6816808362189438,
+        "NDCG10_erro": 0.42367664508731884,
+        "NDCG10_corrigida": 0.6816808362189438,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-1151",
+        "query_original": "factory farming practices",
+        "query_erro": "factory farming practces",
+        "query_corrigida": "factory farming practices",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.28762634971412726,
+        "NDCG10_erro": 0.24703059344735182,
+        "NDCG10_corrigida": 0.28762634971412726,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-2071",
+        "query_original": "serotonin",
+        "query_erro": "swrotonin",
+        "query_corrigida": "serotonin",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.3471357245055706,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.3471357245055706,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-1568",
+        "query_original": "maple syrup",
+        "query_erro": "mpale syrup",
+        "query_corrigida": "male syrup",
+        "tipo_erro": "troca",
+        "NDCG10_original": 0.9197207891481876,
+        "NDCG10_erro": 0.19342640361727081,
+        "NDCG10_corrigida": 0.0,
+        "error_reduced_performance": true,
+        "recovery_rate": -0.2663195633487891,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-1940",
+        "query_original": "prolactin",
+        "query_erro": "preolactin",
+        "query_corrigida": "prolactin",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.3589542101716347,
+        "NDCG10_erro": 0.06943122193677727,
+        "NDCG10_corrigida": 0.3589542101716347,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      },
+      {
+        "query_id": "PLAIN-2930",
+        "query_original": "Kiwifruit for Irritable Bowel Syndrome",
+        "query_erro": "kiwfruit for Irritable Bowel Syndrome",
+        "query_corrigida": "kiwifruit for Irritable Bowel Syndrome",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.4509737963519492,
+        "NDCG10_erro": 0.42503508006474094,
+        "NDCG10_corrigida": 0.4509737963519492,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    ]
+  },
+  "rag_experiment": {
+    "query_ids": [
+      "PLAIN-68",
+      "PLAIN-2450",
+      "PLAIN-153",
+      "PLAIN-2850",
+      "PLAIN-2750",
+      "PLAIN-270",
+      "PLAIN-2470",
+      "PLAIN-2430",
+      "PLAIN-238",
+      "PLAIN-3342"
+    ],
+    "llm_config": {
+      "model": "Qwen/Qwen3-4B",
+      "provider": "local",
+      "load_in_4bit": true,
+      "enable_thinking": false,
+      "temperature": 0.0,
+      "max_output_tokens": 1024,
+      "seed": 42,
+      "language": "Portuguese",
+      "top_k_context": 5
+    },
+    "retrieval_metrics_at_5": {
+      "num_queries": 10,
+      "k": 5,
+      "global": {
+        "Precision@5": 0.44000000000000006,
+        "Recall@5": 0.10557222221533435,
+        "MAP@5": 0.08120808118643359,
+        "NDCG@5": 0.5166394046723071,
+        "Hit@5": 0.9
+      },
+      "per_query": {
+        "PLAIN-153": {
+          "P5": 1.0,
+          "R5": 0.10638297872340426,
+          "AP5": 0.10638297872340426,
+          "NDCG5": 1.0,
+          "Hit5": 1.0
+        },
+        "PLAIN-238": {
+          "P5": 0.2,
+          "R5": 0.018518518518518517,
+          "AP5": 0.009259259259259259,
+          "NDCG5": 0.21398626473452756,
+          "Hit5": 1.0
+        },
+        "PLAIN-2430": {
+          "P5": 0.6,
+          "R5": 0.06521739130434782,
+          "AP5": 0.059782608695652176,
+          "NDCG5": 0.6992148198508501,
+          "Hit5": 1.0
+        },
+        "PLAIN-2450": {
+          "P5": 0.4,
+          "R5": 0.05263157894736842,
+          "AP5": 0.02368421052631579,
+          "NDCG5": 0.34519134224686937,
+          "Hit5": 1.0
+        },
+        "PLAIN-2470": {
+          "P5": 0.6,
+          "R5": 0.0410958904109589,
+          "AP5": 0.0410958904109589,
+          "NDCG5": 0.7227265726449519,
+          "Hit5": 1.0
+        },
+        "PLAIN-270": {
+          "P5": 0.2,
+          "R5": 0.019230769230769232,
+          "AP5": 0.019230769230769232,
+          "NDCG5": 0.3391602052736161,
+          "Hit5": 1.0
+        },
+        "PLAIN-2750": {
+          "P5": 0.8,
+          "R5": 0.06779661016949153,
+          "AP5": 0.06779661016949153,
+          "NDCG5": 0.6887676151990412,
+          "Hit5": 1.0
+        },
+        "PLAIN-2850": {
+          "P5": 0.0,
+          "R5": 0.0,
+          "AP5": 0.0,
+          "NDCG5": 0.0,
+          "Hit5": 0.0
+        },
+        "PLAIN-3342": {
+          "P5": 0.4,
+          "R5": 0.6666666666666666,
+          "AP5": 0.4666666666666666,
+          "NDCG5": 0.6508205185601091,
+          "Hit5": 1.0
+        },
+        "PLAIN-68": {
+          "P5": 0.2,
+          "R5": 0.01818181818181818,
+          "AP5": 0.01818181818181818,
+          "NDCG5": 0.5065267082131061,
+          "Hit5": 1.0
+        }
+      },
+      "model": "RAG_Context"
+    },
+    "generation_latency": {
+      "condition_A_mean_seconds": 5.65913993130007,
+      "condition_B_mean_seconds": 13.779659167300043,
+      "condition_A_total_seconds": 56.59139931300069,
+      "condition_B_total_seconds": 137.79659167300042
+    },
+    "files": {
+      "rag_experiment_csv": "results/rag_experiment.csv",
+      "pipeline_trace_json": "results/rag_pipeline_trace.json",
+      "blind_csv": "results/rag_blind_evaluation.csv",
+      "key_json": "results/rag_blind_key.json",
+      "context_reference_json": "results/rag_context_reference.json",
+      "num_rows": 20
+    }
+  }
+}

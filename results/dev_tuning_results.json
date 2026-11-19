@@ -1,0 +1,144 @@
+{
+  "rrf": {
+    "best_k": 10,
+    "best_dev_ndcg10": 0.3192195961516605,
+    "fusion_depth": 100,
+    "k_candidates": [
+      10,
+      60,
+      100
+    ],
+    "results_by_k": {
+      "10": {
+        "k": 10,
+        "fusion_depth": 100,
+        "global_metrics": {
+          "Precision@10": 0.2540123456790123,
+          "Recall@10": 0.14178001570101287,
+          "MAP@10": 0.09905895660896723,
+          "NDCG@10": 0.3192195961516605,
+          "Hit@10": 0.7098765432098766
+        },
+        "NDCG@10": 0.3192195961516605
+      },
+      "60": {
+        "k": 60,
+        "fusion_depth": 100,
+        "global_metrics": {
+          "Precision@10": 0.2506172839506173,
+          "Recall@10": 0.14049561433449198,
+          "MAP@10": 0.09755763406744125,
+          "NDCG@10": 0.31489601719449867,
+          "Hit@10": 0.7006172839506173
+        },
+        "NDCG@10": 0.31489601719449867
+      },
+      "100": {
+        "k": 100,
+        "fusion_depth": 100,
+        "global_metrics": {
+          "Precision@10": 0.2515432098765432,
+          "Recall@10": 0.1408391814580213,
+          "MAP@10": 0.09745119915661124,
+          "NDCG@10": 0.31520809552620427,
+          "Hit@10": 0.7037037037037037
+        },
+        "NDCG@10": 0.31520809552620427
+      }
+    }
+  },
+  "typo": {
+    "best_params": {
+      "k": 2,
+      "jaccard_threshold": 0.35,
+      "max_edit_distance": 2,
+      "distance_metric": "damerau_levenshtein"
+    },
+    "best_result": {
+      "k": 2,
+      "jaccard_threshold": 0.35,
+      "max_edit_distance": 2,
+      "distance_metric": "damerau_levenshtein",
+      "mean_ndcg10_original": 0.440701167842887,
+      "mean_ndcg10_erro": 0.2212739504516598,
+      "mean_ndcg10_corrigida": 0.424584977392061,
+      "mean_recovery_rate": 0.9090909090909091,
+      "exact_query_accuracy": 0.9,
+      "num_dev_cases": 30
+    },
+    "grid_results": [
+      {
+        "k": 2,
+        "jaccard_threshold": 0.2,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein",
+        "mean_ndcg10_original": 0.440701167842887,
+        "mean_ndcg10_erro": 0.2212739504516598,
+        "mean_ndcg10_corrigida": 0.4233255237998473,
+        "mean_recovery_rate": 0.9090909090909091,
+        "exact_query_accuracy": 0.9333333333333333,
+        "num_dev_cases": 30
+      },
+      {
+        "k": 2,
+        "jaccard_threshold": 0.25,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein",
+        "mean_ndcg10_original": 0.440701167842887,
+        "mean_ndcg10_erro": 0.2212739504516598,
+        "mean_ndcg10_corrigida": 0.4233255237998473,
+        "mean_recovery_rate": 0.9090909090909091,
+        "exact_query_accuracy": 0.9333333333333333,
+        "num_dev_cases": 30
+      },
+      {
+        "k": 2,
+        "jaccard_threshold": 0.35,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein",
+        "mean_ndcg10_original": 0.440701167842887,
+        "mean_ndcg10_erro": 0.2212739504516598,
+        "mean_ndcg10_corrigida": 0.424584977392061,
+        "mean_recovery_rate": 0.9090909090909091,
+        "exact_query_accuracy": 0.9,
+        "num_dev_cases": 30
+      },
+      {
+        "k": 3,
+        "jaccard_threshold": 0.2,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein",
+        "mean_ndcg10_original": 0.440701167842887,
+        "mean_ndcg10_erro": 0.2212739504516598,
+        "mean_ndcg10_corrigida": 0.424584977392061,
+        "mean_recovery_rate": 0.9090909090909091,
+        "exact_query_accuracy": 0.9,
+        "num_dev_cases": 30
+      },
+      {
+        "k": 3,
+        "jaccard_threshold": 0.25,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein",
+        "mean_ndcg10_original": 0.440701167842887,
+        "mean_ndcg10_erro": 0.2212739504516598,
+        "mean_ndcg10_corrigida": 0.4132073885856028,
+        "mean_recovery_rate": 0.8148639473385798,
+        "exact_query_accuracy": 0.8333333333333334,
+        "num_dev_cases": 30
+      },
+      {
+        "k": 3,
+        "jaccard_threshold": 0.35,
+        "max_edit_distance": 2,
+        "distance_metric": "damerau_levenshtein",
+        "mean_ndcg10_original": 0.440701167842887,
+        "mean_ndcg10_erro": 0.2212739504516598,
+        "mean_ndcg10_corrigida": 0.40310878415837476,
+        "mean_recovery_rate": 0.7727272727272727,
+        "exact_query_accuracy": 0.8,
+        "num_dev_cases": 30
+      }
+    ]
+  }
+}
