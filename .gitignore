@@ -223,3 +223,9 @@ cache/*
 datasets/*
 *cache*
 report.md
+
+# temp notes
+temp_notes/
+
+# graphify output
+graphify-out/

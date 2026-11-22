@@ -1,11 +1,11 @@
 # Trabalho Prático 2 — Recuperação de Informação (SCC0282)
 
-Sistema de Recuperação de Informação e Geração Aumentada por Recuperação (RAG) sobre a coleção **NFCorpus (BEIR)**, combinando busca lexical (índice invertido construído do zero + BM25), tolerância a erros ortográficos (k-gramas + Jaccard + distância de edição), recuperação semântica (bi-encoder), busca híbrida (Reciprocal Rank Fusion — RRF), reranking neural (cross-encoder) e geração de respostas com LLM local quantizada em 4-bit (`Qwen/Qwen3-4B` via LangChain + Transformers + bitsandbytes).
+Sistema de Recuperação de Informação e Geração Aumentada por Recuperação (RAG) sobre a coleção **NFCorpus (BEIR)**, combinando busca lexical (índice invertido construído do zero + BM25), tolerância a erros ortográficos (k-gramas + Jaccard + distância de edição), recuperação semântica (bi-encoder), busca híbrida (Reciprocal Rank Fusion, o RRF), reranking neural (cross-encoder) e geração de respostas com LLM local quantizada em 4-bit (`Qwen/Qwen3-4B` via LangChain + Transformers + bitsandbytes).
 
 ## Integrantes do Grupo
 
 - **Julio Cesar Alves Araujo Fuganti** — Nº USP: `15638792`
-- _(Caso o trabalho seja em dupla, inserir aqui o Nome Completo e Nº USP do 2º integrante; caso seja individual, remover esta linha antes da entrega.)_
+- **Luiz Gabriel Correia dos Santos** — Nº USP: `15639682`
 
 ## Arquitetura e Modelos Escolhidos
 
@@ -16,7 +16,7 @@ Sistema de Recuperação de Informação e Geração Aumentada por Recuperação
 | **Busca Lexical (Baseline)** | Okapi BM25 (`src/retrieval/lexical.py`) | Opera exclusivamente sobre posting lists (sem varredura completa da coleção por consulta); `k1=1.5`, `b=0.75` (ajuste opcional no `dev`) |
 | **Tolerância a Erros** | `SpellCorrector` (`src/pre_processing/typo.py`) | Dicionário pré-stemming/lematização (com stopwords preservadas), índice de k-gramas (`k=2`), filtro por Jaccard (`≥0.35`) e seleção por Damerau-Levenshtein (`≤2`), ajustados no `dev` |
 | **Recuperação Semântica** | `sentence-transformers/all-MiniLM-L6-v2` (`src/pre_processing/semantic_index.py`, `src/retrieval/semantic.py`) | Embeddings densos normalizados L2 (384 dims), similaridade do cosseno, busca exaustiva e registro de truncamento (`max_seq_length=256`) |
-| **Busca Híbrida** | Reciprocal Rank Fusion — RRF (`src/retrieval/hybrid.py`) | Fusão dos Top-100 lexical e semântico; `k ∈ {10, 60, 100}` ajustado por `NDCG@10` no `dev` (`k=10` selecionado) |
+| **Busca Híbrida** | Reciprocal Rank Fusion (RRF) (`src/retrieval/hybrid.py`) | Fusão dos Top-100 lexical e semântico; `k ∈ {10, 60, 100}` ajustado por `NDCG@10` no `dev` (`k=10` selecionado) |
 | **Reranking** | `cross-encoder/ms-marco-MiniLM-L6-v2` (`src/retrieval/reranking.py`) | Reordena os Top-50 do ranking híbrido, preservando a ordem relativa abaixo da posição 50; registra latência e truncamento (`max_length=512`) |
 | **RAG / LLM** | `Qwen/Qwen3-4B` local quantizado em 4-bit NF4 (`src/retrieval/llm.py`) | Execução 100% local via `transformers` + `bitsandbytes` (`load_in_4bit=True`, `nf4`, double quantization, `enable_thinking=False`), sem custo de API; Condição A (sem RAG) vs. Condição B (com RAG, Top-5 docs), `temperature=0.0`, `seed=42`, `max_output_tokens=1024`, idioma consistente nas duas condições |
 
@@ -45,11 +45,11 @@ pip install -r requirements.txt
 
 A etapa de RAG utiliza por padrão o modelo aberto **`Qwen/Qwen3-4B`** executado **localmente em 4-bit** (baixado automaticamente do Hugging Face Hub na primeira execução), portanto **não requer chave de API externa nem serviço pago**.
 
-_(Opcionalmente, caso deseje usar Google Gemini via API, basta informar `--llm-provider gemini --llm-model gemini-3.5-flash-lite` e exportar `GOOGLE_API_KEY` — nunca versione nem inclua chaves ou arquivos `.env` na entrega.)_
+_(Opcionalmente, caso deseje usar Google Gemini via API, basta informar `--llm-provider gemini --llm-model gemini-3.5-flash-lite` e exportar `GOOGLE_API_KEY`)_
 
 ## Como Regenerar Dataset, Índices e Resultados
 
-Arquivos grandes (`datasets/`, `cache/`, `.venv/`, pesos do Hugging Face) e arquivos de credenciais (`.env`) não devem ser incluídos na entrega final; todos os dados e índices são regenerados automaticamente pelos scripts:
+Arquivos grandes (`datasets/`, `cache/`, `.venv/`, pesos do Hugging Face) e arquivos de credenciais (`.env`) não são incluídos na entrega final; todos os dados e índices são regenerados automaticamente pelos scripts:
 
 1. **Dataset NFCorpus:** baixado e extraído automaticamente em `datasets/nfcorpus/` pelo `DataLoader` caso ainda não exista localmente.
 2. **Cache de índices (lexical e semântico):** gerados automaticamente pelo `PreProcessor` em `cache/lexical_index.json`, `cache/semantic_embeddings.npy` e `cache/semantic_metadata.json` (com custos de construção/carregamento registrados em `runs/<run_id>/index_cache_metrics.json`). Use `--force-rebuild` para forçar a reconstrução.
