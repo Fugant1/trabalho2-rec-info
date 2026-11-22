@@ -1,0 +1,264 @@
+\documentclass[12pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{sbc-template}
+\usepackage{amsmath,graphicx,tikz,url}
+\usepackage{microtype}
+\usepackage{breakcites}
+\usetikzlibrary{arrows.meta}
+
+\title{Avaliação de busca lexical, semântica e híbrida\\
+  com reranking e geração aumentada por recuperação}
+
+\author{Julio Cesar Alves Araujo Fuganti\inst{1} (Nº USP 15638792)\\
+  Luiz Gabriel Correia dos Santos\inst{1} (Nº USP 15639682)}
+
+% Os e-mails vieram do histórico Git. Confirmar os contatos e a filiação antes da entrega.
+\address{Instituto de Ciências Matemáticas e de Computação (ICMC)\\
+  Universidade de São Paulo (USP) -- São Carlos, SP, Brasil
+  \email{juliocesarfuganti@gmail.com, luizgcorreiadosantos@usp.br}}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+
+Sistemas de recuperação de informação ordenam documentos de acordo com sua
+relevância para uma consulta. Em coleções científicas da área da saúde, perguntas
+em linguagem natural podem expressar o mesmo conceito que um artigo usando
+termos diferentes. Também há consultas em que uma palavra específica, como o
+nome de um alimento ou de uma substância, ajuda a identificar documentos
+relevantes. Essas situações motivam a comparação entre métodos baseados em
+correspondência de termos e métodos baseados em representações semânticas.
+
+Este trabalho investiga como a combinação dessas abordagens afeta a recuperação
+no NFCorpus, uma coleção de recuperação de informação na área da saúde
+\cite{boteva2016,thakur2021}. O sistema usa BM25 como referência lexical e um
+bi-encoder para a busca semântica. Os rankings são combinados e os primeiros
+candidatos são reordenados por um cross-encoder. Um experimento separado avalia
+quanto do desempenho perdido com a introdução de erros ortográficos pode ser
+recuperado por um corretor.
+
+O trabalho também investiga o efeito da recuperação sobre as respostas de um
+modelo de linguagem. A geração aumentada por recuperação, ou RAG, fornece ao
+modelo documentos recuperados para a consulta \cite{lewis2020}. O experimento
+compara as respostas para as mesmas perguntas em duas condições, com e sem
+acesso aos documentos. A comparação considera tanto a relevância dos documentos
+que chegaram ao contexto quanto a qualidade e a rastreabilidade das respostas.
+
+\section{Metodologia}
+
+A Figura~\ref{fig:pipeline} mostra as etapas de recuperação e o caminho até a
+geração com contexto. O experimento ortográfico usa variantes das consultas em
+uma etapa separada. As etapas do fluxo principal recebem as consultas originais.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[
+  etapa/.style={draw, rounded corners=2pt, align=center, font=\small,
+    inner xsep=5pt, inner ysep=4pt, minimum height=10mm},
+  fluxo/.style={-{Stealth[length=2mm]}, semithick}
+]
+  \node[etapa] (consulta) at (0,0) {Consulta};
+  \node[etapa, minimum width=3.1cm] (lexical) at (3.0,0.75) {Busca lexical\\BM25};
+  \node[etapa, minimum width=3.1cm] (semantica) at (3.0,-0.75) {Busca semântica\\Bi-encoder};
+  \node[etapa] (rrf) at (5.45,0) {Fusão\\RRF};
+  \node[etapa] (rerank) at (7.6,0) {Reranking\\Cross-encoder};
+  \node[etapa] (contexto) at (10.05,0) {Seleção\\Top-5};
+  \node[etapa] (llm) at (12.3,0) {LLM\\Resposta};
+
+  \draw[fluxo] (consulta.east) -- ++(4mm,0) |- (lexical.west);
+  \draw[fluxo] (consulta.east) -- ++(4mm,0) |- (semantica.west);
+  \draw[fluxo] (lexical.east) -- (rrf.155);
+  \draw[fluxo] (semantica.east) -- (rrf.205);
+  \draw[fluxo] (rrf) -- (rerank);
+  \draw[fluxo] (rerank) -- (contexto);
+  \draw[fluxo] (contexto) -- (llm);
+\end{tikzpicture}%
+}
+\caption{Fluxo de recuperação e geração na condição com RAG.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Coleção e pré-processamento}
+
+Utilizamos o NFCorpus distribuído pelo \textit{benchmark} BEIR
+\cite{boteva2016,thakur2021}. O carregador do BEIR lê
+\texttt{corpus.jsonl}, \texttt{queries.jsonl} e os arquivos de julgamentos de
+relevância (\textit{qrels}). A coleção contém 3.633 documentos. Os julgamentos
+definem as consultas de cada divisão, com 324 em \texttt{dev} e 323 em
+\texttt{test}. O conjunto \texttt{dev} serve ao ajuste dos parâmetros de fusão
+e correção ortográfica. O conjunto \texttt{test} é reservado à avaliação final.
+
+Cada documento é representado pela concatenação dos campos \texttt{title} e
+\texttt{text}. Na busca lexical, documentos e consultas são convertidos para
+minúsculas e tokenizados pela expressão regular \texttt{[a-z0-9]+} do módulo
+\texttt{re} do Python. O sistema remove as \textit{stopwords} em inglês
+fornecidas pelo scikit-learn e mantém tokens de comprimento mínimo um.
+
+Mantivemos uma configuração lexical fixa ao longo dos experimentos, sem
+\textit{stemming} ou lematização, para manter o BM25 como uma referência
+simples e concentrar a avaliação nos métodos de recuperação, fusão e
+reordenação. Preservar as formas dos termos após a normalização facilita
+relacionar a pontuação do BM25 às correspondências encontradas no índice.
+Essa escolha pode reduzir a cobertura lexical quando consultas e documentos
+usam flexões diferentes de uma mesma palavra.
+
+O bi-encoder e o cross-encoder recebem os textos e aplicam seus próprios
+tokenizadores.
+
+\subsection{Índice invertido e busca lexical}
+
+O índice invertido foi implementado pelo grupo com dicionários Python. Cada
+termo aponta para uma lista invertida que associa o identificador de cada
+documento à frequência do termo. Por exemplo, uma lista
+\(\{d_1 \mapsto 2,\ d_2 \mapsto 1\}\) indica duas ocorrências em \(d_1\),
+uma em \(d_2\) e frequência documental igual a dois. Também são armazenados o
+comprimento de cada documento, o total de documentos e o comprimento médio.
+O programa registra o tamanho do vocabulário, o número de entradas nas listas
+invertidas, o tempo de construção do índice e o tempo médio de consulta.
+
+Escolhemos o Okapi BM25 \cite{manning2008} como referência lexical porque o
+modelo combina a importância do termo na coleção, a saturação da frequência
+no documento e a normalização pelo comprimento. Para cada consulta, o
+algoritmo percorre as listas invertidas dos seus termos e acumula a pontuação
+somente para os documentos encontrados. A implementação calcula
+\begin{align*}
+  s(q,d) &=
+  \sum_{t\in V(q)}
+  f(t,q)\,\mathrm{IDF}(t)
+  \frac{f(t,d)(k_1+1)}
+  {f(t,d)+k_1\bigl(1-b+b\,|d|/\overline{L}\bigr)}, \\
+  \mathrm{IDF}(t) &=
+    \log\!\left(1+\frac{N-\mathrm{DF}(t)+0{,}5}
+                       {\mathrm{DF}(t)+0{,}5}\right).
+\end{align*}
+Aqui, \(V(q)\) representa os termos distintos de \(q\), \(f(t,x)\) é a
+frequência do termo em \(x\), \(|d|\) é o comprimento do documento,
+\(\overline{L}\) é o comprimento médio e \(N\) é o número de documentos.
+Adotamos \(k_1=1{,}5\) e \(b=0{,}75\). O ranking textual exporta até cem
+candidatos. Na implementação atual, a lista é mais curta quando há menos de
+cem documentos que contêm pelo menos um termo indexado da consulta.
+
+\subsection{Tolerância a erros ortográficos}
+
+O corretor usa um vocabulário de tokens da coleção antes de
+\textit{stemming} ou lematização, com as \textit{stopwords} preservadas.
+Para um termo fora do vocabulário, um índice de bigramas de caracteres com
+marcadores de borda recupera candidatos. O coeficiente de Jaccard filtra as
+alternativas com similaridade inferior a \(0{,}35\). A seleção usa distância
+de Damerau--Levenshtein de no máximo duas edições. Em caso de empate, prioriza
+maior Jaccard, maior número de documentos com o candidato e ordem alfabética.
+
+O experimento usa dez consultas de \texttt{test} cujo NDCG@10 lexical original
+é positivo. Os erros introduzidos abrangem inserção, remoção, substituição e
+troca de posição de caracteres. A palavra alterada deve ficar fora do
+vocabulário. São comparadas as versões original, com erro e corrigida.
+Quando há perda, calcula-se a fração recuperada dividindo a melhora da
+versão corrigida sobre a versão com erro pela perda em relação à original.
+As mesmas variantes são avaliadas na busca semântica como análise
+complementar.
+
+\subsection{Recuperação semântica}
+
+O bi-encoder \texttt{all-MiniLM-L6-v2}, da biblioteca Sentence Transformers,
+transforma cada texto em um vetor de 384 dimensões. Os vetores dos documentos
+são pré-calculados e armazenados. Consultas e documentos têm vetores
+normalizados pela norma \(L_2\). O produto escalar entre eles equivale à
+similaridade do cosseno e é calculado com NumPy para todos os documentos.
+O tokenizador limita a entrada a 256 tokens. O programa contabiliza os
+documentos sujeitos a truncamento e registra o tempo de geração dos
+vetores da coleção e o tempo médio por consulta.
+
+\subsection{Busca híbrida}
+
+A busca híbrida usa \textit{Reciprocal Rank Fusion} (RRF)
+\cite{cormack2009}. A fusão recebe os primeiros cem documentos disponíveis de
+cada ranking. Cada documento \(d\) recebe a pontuação
+\[
+  \mathrm{RRF}(d)=\sum_{s:\, d\in L_s}\frac{1}{k+r_s(d)},
+\]
+em que \(L_s\) é a lista de candidatos do sistema \(s\) e \(r_s(d)\) é sua
+posição, contada a partir de um. A fusão utiliza posições, o que permite
+combinar listas pontuadas em escalas diferentes. Os valores
+\(k\in\{10,60,100\}\) são comparados por NDCG@10 médio em \texttt{dev}.
+A configuração de maior média é usada na avaliação em \texttt{test}.
+
+\subsection{Reranking}
+
+Utilizamos o cross-encoder \texttt{ms-marco-MiniLM-L6-v2}, pré-treinado para
+ordenar passagens no MS MARCO \cite{crossencoder}. Seu treinamento é
+adequado à tarefa de pontuar candidatos para uma consulta. O modelo processa
+os dois textos conjuntamente e considera interações entre seus tokens.
+Esse processamento é limitado aos 50 primeiros candidatos da lista
+híbrida para conter o custo por consulta. A ordenação neural mantém a
+posição híbrida como critério de desempate e preserva a ordem relativa dos
+documentos a partir da posição 51. O modelo recebe até 512 tokens por par.
+O programa registra o tempo da reordenação e contabiliza os pares que
+ultrapassam o limite.
+
+\subsection{Geração aumentada por recuperação}
+
+O experimento de RAG usa as dez perguntas fixas de \texttt{test}. Seus
+identificadores são sorteados com semente 42 de uma lista ordenada de
+consultas que terminam em ponto de interrogação. Cada pergunta é respondida em
+português pelo \texttt{Qwen/Qwen3-4B}, executado localmente com Transformers,
+LangChain e quantização NF4 de quatro bits via bitsandbytes. As condições
+compartilham temperatura zero, semente 42, limite de 1.024 tokens de saída e
+modo de raciocínio desativado.
+
+Na condição A, o modelo recebe a pergunta sem contexto externo. Na condição B,
+o \textit{prompt} inclui a mesma pergunta e os cinco primeiros documentos do
+ranking reranqueado. Cada documento é mantido como uma unidade com
+identificador, título e texto. A instrução pede uma resposta apoiada no
+contexto, com indicação dos identificadores que sustentam as afirmações e
+menção explícita quando a evidência é insuficiente. O protocolo prevê avaliar
+a relevância dos documentos enviados e a qualidade das respostas por
+julgamento humano nas duas condições.
+
+% Próximas seções: Avaliação, Resultados Obtidos e Análise,
+% Considerações finais e Uso de ferramentas de IA.
+% Ao fechar a Avaliação, registrar as revisões dos pesos, o ambiente e
+% os parâmetros da execução escolhida. Atualizar a descrição do Top-100
+% lexical se o comportamento do ranking for ajustado.
+
+\begin{thebibliography}{}
+\bibitem[Boteva et al. 2016]{boteva2016}
+Boteva, V., Gholipour, D., Sokolov, A. e Riezler, S. (2016).
+\newblock A Full-Text Learning to Rank Dataset for Medical Information Retrieval.
+\newblock In \textit{European Conference on Information Retrieval}.
+
+\bibitem[Cormack et al. 2009]{cormack2009}
+Cormack, G. V., Clarke, C. L. A. e Büttcher, S. (2009).
+\newblock Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank
+Learning Methods.
+\newblock In \textit{Proceedings of the 32nd International ACM SIGIR Conference
+on Research and Development in Information Retrieval}.
+
+\bibitem[Lewis et al. 2020]{lewis2020}
+Lewis, P., Perez, E., Piktus, A. et al. (2020).
+\newblock Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.
+\newblock In \textit{Advances in Neural Information Processing Systems}, vol.~33.
+
+\bibitem[Manning et al. 2008]{manning2008}
+Manning, C. D., Raghavan, P. e Schütze, H. (2008).
+\newblock \textit{Introduction to Information Retrieval}.
+\newblock Cambridge University Press.
+
+\bibitem[Sentence Transformers]{crossencoder}
+Sentence Transformers.
+\newblock \textit{Cross-Encoder for MS Marco}. Ficha do modelo.
+\newblock \url{https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2}.
+
+\bibitem[Thakur et al. 2021]{thakur2021}
+Thakur, N., Reimers, N., Rücklé, A., Srivastava, A. e Gurevych, I. (2021).
+\newblock BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of
+Information Retrieval Models.
+\newblock In \textit{NeurIPS Datasets and Benchmarks}.
+\end{thebibliography}
+
+\end{document}
