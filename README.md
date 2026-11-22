@@ -97,6 +97,8 @@ Isso desmascara as condições A e B, preenche automaticamente `N/A` na Rastreab
 
 ## Arquivos Padronizados de Resultados (`results/`)
 
+O [guia de resultados](results/README.md) indica o que abrir para conferir cada experimento e descreve os arquivos auxiliares.
+
 - `results_lexical.csv`: Top-100 por consulta do sistema lexical BM25 (`query_id, doc_id, rank, score, relevance`)
 - `results_semantic.csv`: Top-100 por consulta do sistema semântico (`query_id, doc_id, rank, score, relevance`)
 - `results_hybrid.csv`: Top-100 por consulta da busca híbrida RRF (`query_id, doc_id, rank, score, relevance`)
