@@ -86,25 +86,25 @@ O modo Snowball usa `cache/lexical_index_snowball_english.json`. Os modos reapro
 python -m src.main --stages rag --llm-model Qwen/Qwen3-4B --llm-language Portuguese
 ```
 
-Reutiliza os rankings salvos em `results/results_*.csv`, seleciona as 10 consultas fixas com `seed=42` (`PLAIN-68`, `PLAIN-2450`, `PLAIN-153`, `PLAIN-2850`, `PLAIN-2750`, `PLAIN-270`, `PLAIN-2470`, `PLAIN-2430`, `PLAIN-238`, `PLAIN-3342`), calcula `Precision@5`, `Recall@5` e `Hit@5`, gera as respostas das Condições A e B no mesmo idioma com `Qwen/Qwen3-4B` (4-bit NF4) e produz:
-- `results/rag_experiment.csv`
-- `results/rag_blind_evaluation.csv` (planilha embaralhada para avaliação humana cega)
-- `results/rag_blind_key.json` (chave de desmascaramento A/B)
-- `results/rag_context_reference.json` (documentos Top-5 completos para verificação de Fidelidade)
-- `results/rag_pipeline_trace.json` (rastreamento completo nas 6 etapas do pipeline para análise de falhas — Requisito 14)
+Reutiliza os rankings salvos em `results/recuperacao/results_*.csv`, seleciona as 10 consultas fixas com `seed=42` (`PLAIN-68`, `PLAIN-2450`, `PLAIN-153`, `PLAIN-2850`, `PLAIN-2750`, `PLAIN-270`, `PLAIN-2470`, `PLAIN-2430`, `PLAIN-238`, `PLAIN-3342`), calcula `Precision@5`, `Recall@5` e `Hit@5`, gera as respostas das Condições A e B no mesmo idioma com `Qwen/Qwen3-4B` (4-bit NF4) e produz:
+- `results/rag/rag_experiment.csv`
+- `results/rag/avaliacao_humana/rag_blind_evaluation.csv` (planilha embaralhada para avaliação humana cega)
+- `results/rag/avaliacao_humana/rag_blind_key.json` (chave de desmascaramento A/B)
+- `results/rag/avaliacao_humana/rag_context_reference.json` (documentos Top-5 completos para verificação de Fidelidade)
+- `results/rag/rag_pipeline_trace.json` (rastreamento completo nas 6 etapas do pipeline para análise de falhas — Requisito 14)
 
 _(Alternativamente, execute todo o pipeline de uma só vez com `python -m src.main --stages all`.)_
 
 ### 3. Consolidar avaliação humana do RAG (cega, 1 ou 2 avaliadores)
 
-Após preencher as notas (`0`, `1`, `2`) e justificativas em cópias de `results/rag_blind_evaluation.csv` (consultando `results/rag_context_reference.json` para verificar Fidelidade e Rastreabilidade):
+Após preencher as notas (`0`, `1`, `2`) e justificativas em cópias de `results/rag/avaliacao_humana/rag_blind_evaluation.csv` (consultando `results/rag/avaliacao_humana/rag_context_reference.json` para verificar Fidelidade e Rastreabilidade):
 
 ```bash
 python -m src.main --stages rag-aggregate \
-    --blind-csv results/rag_blind_avaliador1.csv results/rag_blind_avaliador2.csv
+    --blind-csv results/rag/avaliacao_humana/rag_blind_avaliador1.csv results/rag/avaliacao_humana/rag_blind_avaliador2.csv
 ```
 
-Isso desmascara as condições A e B, preenche automaticamente `N/A` na Rastreabilidade da Condição A, atualiza `results/rag_experiment.csv` e calcula as médias por condição e a concordância entre avaliadores (concordância exata e Kappa de Cohen) em `results/rag_human_evaluation_summary.json`.
+Isso desmascara as condições A e B, preenche automaticamente `N/A` na Rastreabilidade da Condição A, atualiza `results/rag/rag_experiment.csv` e calcula as médias por condição e a concordância entre avaliadores (concordância exata e Kappa de Cohen) em `results/rag/avaliacao_humana/rag_human_evaluation_summary.json`.
 
 ## Arquivos Padronizados de Resultados (`results/`)
 

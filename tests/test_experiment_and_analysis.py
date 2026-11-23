@@ -154,7 +154,7 @@ class TestExperimentEndToEnd(unittest.TestCase):
             self.assertEqual([c.args[0] for c in lexical_search.call_args_list], [original, typo, original])
             self.assertEqual([c.args[0] for c in encode.call_args_list], [[original], [typo], [original]])
             self.assertEqual(result["details"][0]["validation"]["oov_tokens"], ["scurvyy"])
-            with (tmp / "results" / "typo_experiment.csv").open(newline="") as f:
+            with (tmp / "results" / "tolerancia_erros/typo_experiment.csv").open(newline="") as f:
                 typo_row = next(csv.DictReader(f))
             self.assertEqual(
                 [typo_row[k] for k in ("query_original", "query_erro", "query_corrigida")],
@@ -167,7 +167,7 @@ class TestExperimentEndToEnd(unittest.TestCase):
                 (original, "Vitamin C and Scurvy Vitamin C prevents scurvy effectively in humans."),
                 predict.call_args.args[0],
             )
-            analysis = json.loads((tmp / "results" / "analysis_lexical_vs_semantic.json").read_text())
+            analysis = json.loads((tmp / "results" / "recuperacao/analysis_lexical_vs_semantic.json").read_text())
             self.assertEqual(analysis["lexical_stemming"], "snowball-english")
             case = analysis["lexical_advantage"][0]
             self.assertEqual(case["query_text"], original)
@@ -177,7 +177,7 @@ class TestExperimentEndToEnd(unittest.TestCase):
             self.assertEqual((evidence["tf"], evidence["df"]), (1, 1))
 
             exp.run_rag_experiment()
-            with (tmp / "results" / "rag_experiment.csv").open(newline="") as f:
+            with (tmp / "results" / "rag/rag_experiment.csv").open(newline="") as f:
                 rag_rows = {row["condition"]: row for row in csv.DictReader(f)}
             self.assertIn(original, rag_rows["A"]["prompt"])
             self.assertIn(original, rag_rows["B"]["prompt"])
@@ -189,7 +189,6 @@ class TestExperimentEndToEnd(unittest.TestCase):
             "Sem RAG resposta.",
             "Com RAG resposta baseada em [MED-1].",
         ] * 4
-        fake_llm = FakeListChatModel(responses=fake_answers)
 
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp = Path(tmpdir)
@@ -213,20 +212,29 @@ class TestExperimentEndToEnd(unittest.TestCase):
                 data_loader=_TinyDataLoader(),
                 embedding_model=_SyntheticBiEncoder(),
                 reranker_model=_SyntheticCrossEncoder(),
-                llm_client=fake_llm,
             )
-            summary = exp.run(["all"])
+            exp.run(["setup", "dev-tuning", "retrieval", "typo"])
+
+            # A separate RAG invocation must read the rankings from disk.
+            exp = Experiment(
+                config,
+                data_loader=_TinyDataLoader(),
+                embedding_model=_SyntheticBiEncoder(),
+                reranker_model=_SyntheticCrossEncoder(),
+                llm_client=FakeListChatModel(responses=fake_answers),
+            )
+            summary = exp.run(["rag"])
 
             results_dir = tmp / "results"
             # Verify all 7 mandatory standardized CSVs (Requirement 15)
             required_csvs = [
-                "results_lexical.csv",
-                "results_semantic.csv",
-                "results_hybrid.csv",
-                "results_reranking.csv",
-                "metrics_per_query.csv",
-                "typo_experiment.csv",
-                "rag_experiment.csv",
+                "recuperacao/results_lexical.csv",
+                "recuperacao/results_semantic.csv",
+                "recuperacao/results_hybrid.csv",
+                "recuperacao/results_reranking.csv",
+                "recuperacao/metrics_per_query.csv",
+                "tolerancia_erros/typo_experiment.csv",
+                "rag/rag_experiment.csv",
             ]
             for fname in required_csvs:
                 path = results_dir / fname
@@ -234,19 +242,22 @@ class TestExperimentEndToEnd(unittest.TestCase):
 
             # Verify auxiliary analysis outputs (Reqs 7, 10, 13, 14)
             for aux in (
-                "dev_tuning_results.json",
-                "analysis_lexical_vs_semantic.json",
-                "analysis_reranking.json",
-                "rag_blind_evaluation.csv",
-                "rag_blind_key.json",
-                "rag_context_reference.json",
-                "rag_pipeline_trace.json",
+                "ajuste_dev/dev_tuning_results.json",
+                "recuperacao/analysis_lexical_vs_semantic.json",
+                "recuperacao/analysis_reranking.json",
+                "rag/avaliacao_humana/rag_blind_evaluation.csv",
+                "rag/avaliacao_humana/rag_blind_key.json",
+                "rag/avaliacao_humana/rag_context_reference.json",
+                "rag/rag_pipeline_trace.json",
                 "experiment_summary.json",
+                "tolerancia_erros/typo_experiment_details.json",
+                "tolerancia_erros/typo_experiment_semantic.csv",
+                "rag/rag_experiment_summary.json",
             ):
                 self.assertTrue((results_dir / aux).is_file(), f"Missing auxiliary file: {aux}")
 
             # Verify metrics_per_query.csv has all 4 models and mean AP10 == MAP@10
-            with open(results_dir / "metrics_per_query.csv", encoding="utf-8") as f:
+            with open(results_dir / "recuperacao/metrics_per_query.csv", encoding="utf-8") as f:
                 m_rows = list(csv.DictReader(f))
             self.assertEqual(
                 {r["model"] for r in m_rows},
@@ -260,19 +271,19 @@ class TestExperimentEndToEnd(unittest.TestCase):
             )
 
             # Verify typo_experiment.csv schema
-            with open(results_dir / "typo_experiment.csv", encoding="utf-8") as f:
+            with open(results_dir / "tolerancia_erros/typo_experiment.csv", encoding="utf-8") as f:
                 t_rows = list(csv.DictReader(f))
             self.assertEqual(len(t_rows), 4)
             self.assertTrue(all(float(r["NDCG10_original"]) > 0 for r in t_rows))
 
             # Verify RAG blind evaluation + 2-annotator unblinding & Cohen's Kappa
-            blind_template = results_dir / "rag_blind_evaluation.csv"
+            blind_template = results_dir / "rag/avaliacao_humana/rag_blind_evaluation.csv"
             with open(blind_template, encoding="utf-8") as f:
                 blind_rows = list(csv.DictReader(f))
             self.assertEqual(len(blind_rows), 8)
 
-            ann1_path = results_dir / "blind_ann1.csv"
-            ann2_path = results_dir / "blind_ann2.csv"
+            ann1_path = results_dir / "rag/avaliacao_humana/blind_ann1.csv"
+            ann2_path = results_dir / "rag/avaliacao_humana/blind_ann2.csv"
             for ann_path, offset in ((ann1_path, 0), (ann2_path, 0)):
                 filled = []
                 for row in blind_rows:
@@ -292,7 +303,9 @@ class TestExperimentEndToEnd(unittest.TestCase):
                     writer.writeheader()
                     writer.writerows(filled)
 
-            agg = exp.aggregate_rag_scores([ann1_path, ann2_path])
+            agg = Experiment(config).aggregate_rag_scores([ann1_path, ann2_path])
+            aggregate_path = results_dir / "rag/avaliacao_humana/rag_human_evaluation_summary.json"
+            self.assertTrue(aggregate_path.is_file())
             self.assertIsNone(agg["condition_means"]["A"]["rastreabilidade"])
             self.assertEqual(agg["condition_means"]["B"]["rastreabilidade"], 2.0)
             self.assertEqual(agg["condition_means"]["B"]["fidelidade"], 2.0)
@@ -301,13 +314,13 @@ class TestExperimentEndToEnd(unittest.TestCase):
             self.assertAlmostEqual(agg["inter_annotator_agreement"]["fidelidade"]["cohens_kappa"], 1.0)
 
             # Verify rag_experiment.csv got updated with N/A for A rastreabilidade
-            with open(results_dir / "rag_experiment.csv", encoding="utf-8") as f:
+            with open(results_dir / "rag/rag_experiment.csv", encoding="utf-8") as f:
                 final_rag = list(csv.DictReader(f))
             cond_a_rows = [r for r in final_rag if r["condition"] == "A"]
             self.assertTrue(all(r["rastreabilidade"] == "N/A" for r in cond_a_rows))
 
             # Verify pipeline trace JSON has all 6 stages
-            with open(results_dir / "rag_pipeline_trace.json", encoding="utf-8") as f:
+            with open(results_dir / "rag/rag_pipeline_trace.json", encoding="utf-8") as f:
                 traces = json.load(f)
             first_trace = next(iter(traces.values()))
             for stage_key in (

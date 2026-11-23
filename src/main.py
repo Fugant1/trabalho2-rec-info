@@ -15,7 +15,7 @@ Run only the RAG experiment (reusing saved ``results_*.csv`` rankings):
 
 Aggregate completed blinded human evaluations back into ``rag_experiment.csv``:
     python -m src.main --stages rag-aggregate \\
-        --blind-csv results/rag_blind_eval_annotator1.csv results/rag_blind_eval_annotator2.csv
+        --blind-csv results/rag/avaliacao_humana/rag_blind_eval_annotator1.csv results/rag/avaliacao_humana/rag_blind_eval_annotator2.csv
 """
 
 from __future__ import annotations
@@ -253,7 +253,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--blind-key",
         default=None,
-        help="Path to rag_blind_key.json (default: <results-dir>/rag_blind_key.json).",
+        help="Path to rag_blind_key.json (default: <results-dir>/rag/avaliacao_humana/rag_blind_key.json).",
     )
 
     return parser

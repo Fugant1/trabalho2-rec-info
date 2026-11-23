@@ -153,6 +153,11 @@ class Experiment:
         self.cache_dir = Path(_cfg_get(self.config, "cache_dir", "cache"))
         self.runs_dir = Path(_cfg_get(self.config, "runs_dir", "runs"))
         self.results_dir = Path(_cfg_get(self.config, "results_dir", "results"))
+        self.dev_results_dir = self.results_dir / "ajuste_dev"
+        self.retrieval_results_dir = self.results_dir / "recuperacao"
+        self.typo_results_dir = self.results_dir / "tolerancia_erros"
+        self.rag_results_dir = self.results_dir / "rag"
+        self.human_evaluation_dir = self.rag_results_dir / "avaliacao_humana"
         self.run_id: str = str(
             _cfg_get(
                 self.config,
@@ -446,7 +451,7 @@ class Experiment:
 
         self.dev_tuning_results = report
         self.summary["dev_tuning"] = report
-        self._save_json(self.results_dir / "dev_tuning_results.json", report)
+        self._save_json(self.dev_results_dir / "dev_tuning_results.json", report)
         return report
 
     def run_retrieval_pipeline(self) -> dict[str, Any]:
@@ -465,7 +470,6 @@ class Experiment:
         )
         self.test_rankings = all_rankings
 
-        self.results_dir.mkdir(parents=True, exist_ok=True)
         evaluations: dict[str, dict[str, Any]] = {}
         pytrec_cross_check: dict[str, dict[str, float]] = {}
 
@@ -480,7 +484,7 @@ class Experiment:
             self.evaluator.export_ranking_csv(
                 rankings,
                 test_qrels,
-                self.results_dir / f"results_{model_name}.csv",
+                self.retrieval_results_dir / f"results_{model_name}.csv",
                 top_k=100,
             )
 
@@ -499,7 +503,7 @@ class Experiment:
         self.test_evaluations = evaluations
         self.evaluator.export_metrics_per_query_csv(
             evaluations,
-            self.results_dir / "metrics_per_query.csv",
+            self.retrieval_results_dir / "metrics_per_query.csv",
         )
 
         # Requirement 7: Lexical vs. Semantic per-query analysis with concrete evidence
@@ -520,7 +524,7 @@ class Experiment:
             test_qrels,
         )
         self._save_json(
-            self.results_dir / "analysis_lexical_vs_semantic.json",
+            self.retrieval_results_dir / "analysis_lexical_vs_semantic.json",
             lex_vs_sem_enriched,
         )
 
@@ -540,7 +544,7 @@ class Experiment:
             test_qrels,
         )
         self._save_json(
-            self.results_dir / "analysis_reranking.json",
+            self.retrieval_results_dir / "analysis_reranking.json",
             rerank_enriched,
         )
 
@@ -560,7 +564,11 @@ class Experiment:
     ) -> dict[str, list[tuple[str, float]]]:
         if model_name in self.test_rankings:
             return self.test_rankings[model_name]
-        csv_path = self.results_dir / f"results_{model_name}.csv"
+        csv_path = self.retrieval_results_dir / f"results_{model_name}.csv"
+        legacy_path = self.results_dir / csv_path.name
+        # Fall back only for flat runs, so an incomplete new run cannot mix rankings.
+        if not self.retrieval_results_dir.exists() and legacy_path.is_file():
+            csv_path = legacy_path
         if csv_path.is_file():
             loaded = _load_ranking_csv(csv_path)
             self.test_rankings[model_name] = loaded
@@ -702,12 +710,12 @@ class Experiment:
         )
         self.evaluator.export_typo_experiment_csv(
             evaluated_lexical,
-            self.results_dir / "typo_experiment.csv",
+            self.typo_results_dir / "typo_experiment.csv",
         )
         if semantic_records:
             self.evaluator.export_typo_experiment_csv(
                 semantic_records,
-                self.results_dir / "typo_experiment_semantic.csv",
+                self.typo_results_dir / "typo_experiment_semantic.csv",
             )
 
         valid_recoveries = [
@@ -739,7 +747,7 @@ class Experiment:
             "details": detailed_logs,
         }
         self._save_json(
-            self.results_dir / "typo_experiment_details.json", typo_summary
+            self.typo_results_dir / "typo_experiment_details.json", typo_summary
         )
         self.summary["typo_experiment"] = {
             k: v
@@ -882,16 +890,16 @@ class Experiment:
         # Export standardized rag_experiment.csv (Requirement 15)
         rag_csv_path = self.evaluator.export_rag_experiment_csv(
             rag_records,
-            self.results_dir / "rag_experiment.csv",
+            self.rag_results_dir / "rag_experiment.csv",
         )
 
         # Export blinded evaluation template + key + context reference (Requirement 13)
         blind_info = build_rag_blind_evaluation(
             rag_records,
-            blind_csv_path=self.results_dir / "rag_blind_evaluation.csv",
-            key_json_path=self.results_dir / "rag_blind_key.json",
+            blind_csv_path=self.human_evaluation_dir / "rag_blind_evaluation.csv",
+            key_json_path=self.human_evaluation_dir / "rag_blind_key.json",
             corpus=self.corpus,
-            context_reference_path=self.results_dir / "rag_context_reference.json",
+            context_reference_path=self.human_evaluation_dir / "rag_context_reference.json",
             seed=self.rag_seed,
         )
 
@@ -909,7 +917,7 @@ class Experiment:
             top_k_context=self.rag_top_k,
         )
         trace_path = self._save_json(
-            self.results_dir / "rag_pipeline_trace.json",
+            self.rag_results_dir / "rag_pipeline_trace.json",
             pipeline_trace,
         )
 
@@ -939,7 +947,7 @@ class Experiment:
                 **blind_info,
             },
         }
-        self._save_json(self.results_dir / "rag_experiment_summary.json", rag_summary)
+        self._save_json(self.rag_results_dir / "rag_experiment_summary.json", rag_summary)
         self.summary["rag_experiment"] = rag_summary
         return rag_summary
 
@@ -951,8 +959,12 @@ class Experiment:
         output_csv_path: str | Path | None = None,
     ) -> dict[str, Any]:
         """Unblind human RAG scores, update ``rag_experiment.csv``, and compute averages/Kappa."""
-        rag_csv = Path(rag_csv_path) if rag_csv_path else (self.results_dir / "rag_experiment.csv")
-        key_json = Path(key_json_path) if key_json_path else (self.results_dir / "rag_blind_key.json")
+        rag_dir = self.rag_results_dir
+        evaluation_dir = self.human_evaluation_dir
+        if not rag_dir.exists() and (self.results_dir / "rag_experiment.csv").is_file():
+            rag_dir = evaluation_dir = self.results_dir
+        rag_csv = Path(rag_csv_path) if rag_csv_path else rag_dir / "rag_experiment.csv"
+        key_json = Path(key_json_path) if key_json_path else evaluation_dir / "rag_blind_key.json"
         result = merge_blind_evaluations(
             rag_csv_path=rag_csv,
             blind_csv_paths=blind_csv_paths,
@@ -960,7 +972,7 @@ class Experiment:
             output_csv_path=output_csv_path or rag_csv,
         )
         self._save_json(
-            self.results_dir / "rag_human_evaluation_summary.json",
+            evaluation_dir / "rag_human_evaluation_summary.json",
             result,
         )
         self.summary["rag_human_evaluation"] = result

@@ -873,11 +873,11 @@
       "condition_B_total_seconds": 137.79659167300042
     },
     "files": {
-      "rag_experiment_csv": "results/rag_experiment.csv",
-      "pipeline_trace_json": "results/rag_pipeline_trace.json",
-      "blind_csv": "results/rag_blind_evaluation.csv",
-      "key_json": "results/rag_blind_key.json",
-      "context_reference_json": "results/rag_context_reference.json",
+      "rag_experiment_csv": "results/rag/rag_experiment.csv",
+      "pipeline_trace_json": "results/rag/rag_pipeline_trace.json",
+      "blind_csv": "results/rag/avaliacao_humana/rag_blind_evaluation.csv",
+      "key_json": "results/rag/avaliacao_humana/rag_blind_key.json",
+      "context_reference_json": "results/rag/avaliacao_humana/rag_context_reference.json",
       "num_rows": 20
     }
   }
