@@ -4,6 +4,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 from langchain_core.language_models.fake_chat_models import FakeListChatModel
@@ -114,6 +115,74 @@ class _SyntheticCrossEncoder:
 
 
 class TestExperimentEndToEnd(unittest.TestCase):
+    def test_stemming_keeps_raw_text_in_spelling_and_neural_stages(self) -> None:
+        loader = _TinyDataLoader()
+        original = "Vitamin C prevents scurvy?"
+        typo = "Vitamin C prevents scurvyy?"
+        loader.test_queries = {"Q-1": original}
+        loader.test_qrels = {"Q-1": {"MED-1": 2}}
+        encoder = _SyntheticBiEncoder()
+        cross_encoder = _SyntheticCrossEncoder()
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            exp = Experiment(
+                {
+                    "cache_dir": tmp / "cache",
+                    "runs_dir": tmp / "runs",
+                    "results_dir": tmp / "results",
+                    "lexical_stemming": "snowball-english",
+                    "typo_eval_semantic": True,
+                    "rag_sample_size": 1,
+                    "rag_top_k": 1,
+                },
+                data_loader=loader,
+                embedding_model=encoder,
+                reranker_model=cross_encoder,
+                llm_client=FakeListChatModel(responses=["Resposta A.", "Resposta B."]),
+            )
+            exp.setup()
+            assert exp.retriever is not None
+            lexical = exp.retriever.lexical
+            with (
+                patch.object(lexical, "search", wraps=lexical.search) as lexical_search,
+                patch.object(encoder, "encode", wraps=encoder.encode) as encode,
+            ):
+                result = exp.run_typo_experiment([
+                    {"query_id": "Q-1", "query_erro": typo, "tipo_erro": "insercao"},
+                ])
+            self.assertEqual([c.args[0] for c in lexical_search.call_args_list], [original, typo, original])
+            self.assertEqual([c.args[0] for c in encode.call_args_list], [[original], [typo], [original]])
+            self.assertEqual(result["details"][0]["validation"]["oov_tokens"], ["scurvyy"])
+            with (tmp / "results" / "typo_experiment.csv").open(newline="") as f:
+                typo_row = next(csv.DictReader(f))
+            self.assertEqual(
+                [typo_row[k] for k in ("query_original", "query_erro", "query_corrigida")],
+                [original, typo, original],
+            )
+
+            with patch.object(cross_encoder, "predict", wraps=cross_encoder.predict) as predict:
+                exp.run_retrieval_pipeline()
+            self.assertIn(
+                (original, "Vitamin C and Scurvy Vitamin C prevents scurvy effectively in humans."),
+                predict.call_args.args[0],
+            )
+            analysis = json.loads((tmp / "results" / "analysis_lexical_vs_semantic.json").read_text())
+            self.assertEqual(analysis["lexical_stemming"], "snowball-english")
+            case = analysis["lexical_advantage"][0]
+            self.assertEqual(case["query_text"], original)
+            self.assertIn("prevent", case["query_tokens"])
+            doc = next(d for d in case["top_lexical"] if d["doc_id"] == "MED-1")
+            evidence = next(t for t in doc["matched_query_terms"] if t["term"] == "prevent")
+            self.assertEqual((evidence["tf"], evidence["df"]), (1, 1))
+
+            exp.run_rag_experiment()
+            with (tmp / "results" / "rag_experiment.csv").open(newline="") as f:
+                rag_rows = {row["condition"]: row for row in csv.DictReader(f)}
+            self.assertIn(original, rag_rows["A"]["prompt"])
+            self.assertIn(original, rag_rows["B"]["prompt"])
+            self.assertIn("Vitamin C prevents scurvy effectively in humans.", rag_rows["B"]["prompt"])
+
     def test_full_pipeline_generates_all_required_csvs_and_blind_aggregation(self) -> None:
         # 4 RAG queries x 2 conditions (A and B) = 8 LLM calls
         fake_answers = [
@@ -265,6 +334,11 @@ class TestExperimentEndToEnd(unittest.TestCase):
         self.assertEqual(args.stages, ["setup", "dev-tuning", "retrieval", "typo"])
         self.assertTrue(args.tune_bm25_on_dev)
         self.assertEqual(args.rrf_k_candidates, [10, 60, 100])
+        self.assertEqual(args.lexical_stemming, "none")
+        self.assertEqual(
+            parser.parse_args(["--lexical-stemming", "snowball-english"]).lexical_stemming,
+            "snowball-english",
+        )
 
 
 if __name__ == "__main__":

@@ -69,6 +69,17 @@ Isso executa em ordem:
 3. `retrieval`: avalia Lexical (BM25), Semântico, Híbrido (RRF) e Híbrido + Reranking no conjunto `test` (323 consultas), valida as métricas com `pytrec_eval`, exporta os CSVs padronizados e gera as análises detalhadas por consulta (Requisitos 7 e 10).
 4. `typo`: executa o experimento separado de tolerância a erros em 10 consultas elegíveis do `test` (`NDCG@10 > 0`) cobrindo inserção, remoção, substituição e troca (Requisito 4), além da avaliação opcional no sistema semântico. Pode receber casos manuais via `--typo-queries-json`.
 
+#### Stemming opcional no BM25
+
+O modo padrão, `--lexical-stemming none`, usa `cache/lexical_index.json`. Para ativar Snowball English (Porter2), use `--lexical-stemming snowball-english`. Nesse modo, o índice e as consultas do BM25 passam pela mesma redução morfológica após a filtragem de stopwords. O corretor usa o vocabulário bruto do corpus, e os modelos semântico, de reranking e de RAG recebem texto sem stemming.
+
+```bash
+python -m src.main --stages setup dev-tuning retrieval typo \
+  --lexical-stemming snowball-english --results-dir results_stemming
+```
+
+O modo Snowball usa `cache/lexical_index_snowball_english.json`. Os modos reaproveitam o mesmo cache semântico quando ele está disponível e válido. O índice lexical guarda o modo em `params.stemming`, e `experiment_summary.json` registra a configuração usada, incluindo a versão do Snowball quando ativo. Ao comparar execuções, use um `--results-dir` para cada modo. Para executar `rag` sobre esses rankings, repita o `--lexical-stemming` e o `--results-dir` usados na recuperação.
+
 ### 2. Executar o experimento de RAG (sem RAG × com RAG)
 
 ```bash

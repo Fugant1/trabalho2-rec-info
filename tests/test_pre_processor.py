@@ -64,6 +64,32 @@ class TestLexicalAndSemanticPreprocessing(unittest.TestCase):
         self.assertEqual(payload["total_postings"], sum(payload["df"].values()))
         self.assertIn("params", payload)
 
+    def test_english_stemming_groups_terms_in_the_inverted_index(self) -> None:
+        corpus = {"D1": "Connections connected 20 t2", "D2": "Connect and health"}
+        indexer = InvertedIndexer(stemming="snowball-english")
+
+        self.assertEqual(indexer.tokenize(corpus["D1"]), ["connect", "connect", "20", "t2"])
+        self.assertEqual(indexer.tokenize(corpus["D2"]), ["connect", "health"])
+        payload = indexer.build(corpus)
+
+        self.assertEqual(payload["params"]["stemming"], "snowball-english")
+        self.assertEqual(payload["index"]["connect"], {"D1": 2, "D2": 1})
+        self.assertEqual(payload["df"]["connect"], 2)
+        self.assertEqual(payload["doc_lengths"], {"D1": 4, "D2": 2})
+
+    def test_stemming_respects_case_and_filters_stopwords_before_stemming(self) -> None:
+        indexer = InvertedIndexer(
+            lowercase=False,
+            token_pattern=r"[A-Za-z0-9]+",
+            stopwords={"connections"},
+            stemming="snowball-english",
+        )
+
+        self.assertEqual(
+            indexer.tokenize("Connected connections connecting 20 t2"),
+            ["Connected", "connect", "20", "t2"],
+        )
+
     def test_embedding_indexer_uses_suggested_default_and_truncation_info(self) -> None:
         dummy_model = _DummySentenceTransformer(dim=8, max_seq_length=5)
         indexer = EmbeddingIndexer(model=dummy_model)
@@ -177,6 +203,42 @@ class TestLexicalAndSemanticPreprocessing(unittest.TestCase):
             self.assertEqual(logged_load["semantic"]["status"], "loaded_from_cache")
             self.assertIsNotNone(logged_load["lexical"]["cache_load_time_seconds"])
             self.assertIsNotNone(logged_load["semantic"]["cache_load_time_seconds"])
+
+    def test_lexical_caches_follow_mode_and_reuse_semantic_embeddings(self) -> None:
+        corpus = {"D1": "Connections connected", "D2": "Connect and health"}
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            encoder = _DummySentenceTransformer()
+            config = {"cache_dir": tmp / "cache", "runs_dir": tmp / "runs", "embedding_model": encoder}
+            default = PreProcessor(config)
+            default.preprocess(corpus)
+            self.assertEqual(default.lexical_cache_path.name, "lexical_index.json")
+            legacy = json.loads(default.lexical_cache_path.read_text())
+            del legacy["params"]["stemming"]
+            default.lexical_cache_path.write_text(json.dumps(legacy))
+
+            stem_config = {**config, "lexical_stemming": "snowball-english"}
+            stemmed = PreProcessor(stem_config)
+            built = stemmed.preprocess(corpus)
+            self.assertEqual(stemmed.lexical_cache_path.name, "lexical_index_snowball_english.json")
+            self.assertEqual(built["lexical"]["index"]["connect"], {"D1": 2, "D2": 1})
+            self.assertEqual(built["run_metrics"]["lexical"]["stats"]["params"]["stemming"], "snowball-english")
+            self.assertTrue(stemmed.preprocess()["run_metrics"]["lexical"]["cache_hit"])
+            restored = default.preprocess()
+            self.assertTrue(restored["run_metrics"]["lexical"]["cache_hit"])
+            self.assertEqual(restored["lexical"]["params"]["stemming"], "none")
+
+            explicit = PreProcessor({**stem_config, "lexical_cache_file": default.lexical_cache_path.name})
+            rebuilt = explicit.preprocess(corpus)
+            self.assertFalse(rebuilt["run_metrics"]["lexical"]["cache_hit"])
+            self.assertEqual(rebuilt["lexical"]["params"]["stemming"], "snowball-english")
+            mismatch = rebuilt["lexical"]
+            mismatch["params"]["stemmer_version"] = "old"
+            explicit.lexical_cache_path.write_text(json.dumps(mismatch))
+            rebuilt_version = explicit.preprocess(corpus)
+            self.assertFalse(rebuilt_version["run_metrics"]["lexical"]["cache_hit"])
+            self.assertNotEqual(rebuilt_version["lexical"]["params"]["stemmer_version"], "old")
+            self.assertEqual(encoder.encode_calls, 1)
 
     def test_empty_cache_files_trigger_rebuild(self) -> None:
         corpus = {"D1": {"title": "Heart", "text": "Omega 3 fatty acids."}}

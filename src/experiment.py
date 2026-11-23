@@ -256,6 +256,8 @@ class Experiment:
 
         preprocessor_cfg = {
             "cache_dir": str(self.cache_dir),
+            "lexical_cache_file": _cfg_get(self.config, "lexical_cache_file"),
+            "lexical_stemming": _cfg_get(self.config, "lexical_stemming", "none"),
             "runs_dir": str(self.runs_dir),
             "run_dir": str(self.run_dir),
             "force_rebuild": bool(_cfg_get(self.config, "force_rebuild", False)),

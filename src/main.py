@@ -31,6 +31,7 @@ if str(_ROOT_DIR) not in sys.path:
 
 from src.experiment import Experiment
 from src.pre_processing import DEFAULT_EMBEDDING_MODEL
+from src.pre_processing.lexical_text import STEMMING_MODES
 from src.retrieval import DEFAULT_QWEN_MODEL, DEFAULT_RERANKER_MODEL
 
 
@@ -77,6 +78,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     # Lexical (BM25)
+    parser.add_argument(
+        "--lexical-stemming",
+        choices=STEMMING_MODES,
+        default="none",
+        help="Stemming mode for BM25 documents and queries (default: none).",
+    )
     parser.add_argument("--bm25-k1", type=float, default=1.5, help="BM25 k1 parameter.")
     parser.add_argument("--bm25-b", type=float, default=0.75, help="BM25 b parameter.")
     parser.add_argument(

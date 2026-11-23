@@ -20,6 +20,8 @@ from typing import Any
 
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
+from src.pre_processing.lexical_text import create_stemmer, tokenize_lexical
+
 
 class BM25Retriever:
     """Okapi BM25 retriever operating strictly on inverted index posting lists."""
@@ -62,6 +64,13 @@ class BM25Retriever:
         self.remove_stopwords = bool(params.get("remove_stopwords", True))
         self.min_token_length = int(params.get("min_token_length", 1))
         self.token_pattern = str(params.get("token_pattern", r"[a-z0-9]+"))
+        self.stemming = str(params.get("stemming", "none"))
+        self._stem_word = create_stemmer(self.stemming)
+        self._stemmer_metadata = {
+            name: params[name]
+            for name in ("stemmer_language", "stemmer_version")
+            if name in params
+        }
         self._regex = re.compile(self.token_pattern)
         self._stopwords = (
             frozenset(w.lower() for w in stopwords)
@@ -79,14 +88,14 @@ class BM25Retriever:
 
     def tokenize_query(self, query: str) -> list[str]:
         """Tokenize a query with the exact parameters stored in the inverted index."""
-        normalized = query.lower() if self.lowercase else query
-        tokens = self._regex.findall(normalized)
-        if self.min_token_length > 1:
-            tokens = [t for t in tokens if len(t) >= self.min_token_length]
-        if self.remove_stopwords:
-            stop = self._stopwords
-            tokens = [t for t in tokens if t.lower() not in stop]
-        return tokens
+        return tokenize_lexical(
+            query,
+            lowercase=self.lowercase,
+            pattern=self._regex,
+            min_token_length=self.min_token_length,
+            stopwords=self._stopwords if self.remove_stopwords else None,
+            stem_word=self._stem_word,
+        )
 
     def search(self, query: str, top_k: int = 100) -> list[tuple[str, float]]:
         """Rank matching documents for a single query using posting lists only."""
@@ -220,6 +229,8 @@ class BM25Retriever:
                 "remove_stopwords": self.remove_stopwords,
                 "min_token_length": self.min_token_length,
                 "token_pattern": self.token_pattern,
+                "stemming": self.stemming,
+                **self._stemmer_metadata,
             },
             "timing": self.last_timing_stats,
         }

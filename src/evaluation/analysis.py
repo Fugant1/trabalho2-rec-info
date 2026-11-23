@@ -141,6 +141,7 @@ def enrich_lexical_vs_semantic_analysis(
         }
 
     return {
+        "lexical_stemming": getattr(lexical_retriever, "stemming", "none"),
         "lexical_global": comparison["lexical_global"],
         "semantic_global": comparison["semantic_global"],
         "semantic_advantage": [

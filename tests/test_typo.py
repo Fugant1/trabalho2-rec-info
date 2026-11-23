@@ -68,6 +68,17 @@ class TestTypoTolerance(unittest.TestCase):
         handler = TypoHandler(self.corrector)
         self.assertEqual(handler.correct_typos("vitmin prevents scruvy"), "vitamin prevents scurvy")
 
+    def test_dictionary_uses_surface_forms_even_when_bm25_groups_them(self) -> None:
+        corpus = {"D1": "Connections connected", "D2": "Connect and health"}
+        corrector = SpellCorrector().fit_from_corpus(corpus)
+        index = InvertedIndexer(stemming="snowball-english").build(corpus)
+        bm25 = BM25Retriever(index)
+
+        self.assertEqual(corrector.vocabulary & {"connections", "connected", "and"},
+                         {"connections", "connected", "and"})
+        self.assertFalse(corrector.is_known("connecting"))
+        self.assertEqual(set(dict(bm25.search("connecting"))), {"D1", "D2"})
+
     def test_validate_typo_pair_rejects_in_vocabulary_word(self) -> None:
         valid = self.corrector.validate_typo_pair("vitamin prevents scurvy", "vitmin prevents scurvy")
         self.assertTrue(valid["is_valid"])

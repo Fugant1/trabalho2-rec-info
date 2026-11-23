@@ -13,13 +13,23 @@ import time
 from collections.abc import Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 from typing import Any
 
 import numpy as np
 
 from .lexical_index import InvertedIndexer
+from .lexical_text import stemming_metadata
 from .semantic_index import DEFAULT_EMBEDDING_MODEL, EmbeddingIndexer
 
+_LEXICAL_DEFAULTS = {
+    "lowercase": True,
+    "remove_stopwords": True,
+    "min_token_length": 1,
+    "token_pattern": r"[a-z0-9]+",
+    "stemming": "none",
+    "stopwords_source": "sklearn.ENGLISH_STOP_WORDS",
+}
 
 def _cfg_get(config: Any, key: str, default: Any = None) -> Any:
     """Read a key from Config, dict/Mapping, argparse.Namespace, or None."""
@@ -105,8 +115,26 @@ class PreProcessor:
     def __init__(self, config: Any = None) -> None:
         self.config = config
         self.cache_dir = Path(_cfg_get(config, "cache_dir", "cache"))
+        stemming = str(_cfg_get(config, "lexical_stemming", "none"))
+        self._lexical_options = {
+            "lowercase": bool(_cfg_get(config, "lowercase", _LEXICAL_DEFAULTS["lowercase"])),
+            "remove_stopwords": bool(_cfg_get(config, "remove_stopwords", _LEXICAL_DEFAULTS["remove_stopwords"])),
+            "min_token_length": int(_cfg_get(config, "min_token_length", _LEXICAL_DEFAULTS["min_token_length"])),
+            "token_pattern": str(_cfg_get(config, "token_pattern", _LEXICAL_DEFAULTS["token_pattern"])),
+            "stemming": stemming,
+        }
+        self._expected_lexical_params = {
+            **_LEXICAL_DEFAULTS,
+            **self._lexical_options,
+            **stemming_metadata(stemming),
+        }
+        cache_filename = (
+            "lexical_index_snowball_english.json"
+            if stemming == "snowball-english"
+            else "lexical_index.json"
+        )
         self.lexical_cache_path = self.cache_dir / _cfg_get(
-            config, "lexical_cache_file", "lexical_index.json"
+            config, "lexical_cache_file", cache_filename
         )
         self.semantic_embeddings_path = self.cache_dir / _cfg_get(
             config, "semantic_embeddings_file", "semantic_embeddings.npy"
@@ -150,10 +178,22 @@ class PreProcessor:
             not isinstance(payload, dict)
             or not payload.get("index")
             or not payload.get("doc_lengths")
-            or int(payload.get("N", 0)) <= 0
+            or not isinstance(payload.get("N"), int)
+            or payload["N"] <= 0
         ):
             return None, None
 
+        params = payload.get("params", {})
+        if not isinstance(params, dict):
+            return None, None
+        # Older indexes implicitly used the historical lexical defaults.
+        effective_params = {**_LEXICAL_DEFAULTS, **params}
+        if any(
+            effective_params.get(key) != value
+            for key, value in self._expected_lexical_params.items()
+        ):
+            return None, None
+        payload["params"] = effective_params
         return payload, load_time
 
     def _try_load_semantic_cache(
@@ -192,18 +232,22 @@ class PreProcessor:
     def _build_and_cache_lexical(
         self, documents: Mapping[str, str]
     ) -> tuple[dict[str, Any], float]:
-        indexer = InvertedIndexer(
-            lowercase=bool(_cfg_get(self.config, "lowercase", True)),
-            remove_stopwords=bool(_cfg_get(self.config, "remove_stopwords", True)),
-            min_token_length=int(_cfg_get(self.config, "min_token_length", 1)),
-            token_pattern=str(_cfg_get(self.config, "token_pattern", r"[a-z0-9]+")),
-        )
+        indexer = InvertedIndexer(**self._lexical_options)
         payload = indexer.build(documents)
 
         self.lexical_cache_path.parent.mkdir(parents=True, exist_ok=True)
         save_start = time.perf_counter()
-        with open(self.lexical_cache_path, "w", encoding="utf-8") as f:
-            json.dump(payload, f)
+        temporary = None
+        try:
+            with NamedTemporaryFile(
+                mode="w", encoding="utf-8", dir=self.lexical_cache_path.parent, delete=False
+            ) as f:
+                temporary = Path(f.name)
+                json.dump(payload, f)
+            temporary.replace(self.lexical_cache_path)
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
         save_time = time.perf_counter() - save_start
         return payload, save_time
 

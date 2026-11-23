@@ -18,6 +18,8 @@ from typing import Any
 
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
+from .lexical_text import create_stemmer, stemming_metadata, tokenize_lexical
+
 
 class InvertedIndexer:
     """Builds a clean, BM25-ready inverted index from preprocessed tokens."""
@@ -29,6 +31,8 @@ class InvertedIndexer:
         min_token_length: int = 1,
         token_pattern: str = r"[a-z0-9]+",
         stopwords: Iterable[str] | None = None,
+        *,
+        stemming: str = "none",
     ) -> None:
         if min_token_length < 1:
             raise ValueError("min_token_length must be at least 1.")
@@ -37,6 +41,8 @@ class InvertedIndexer:
         self.remove_stopwords = remove_stopwords
         self.min_token_length = min_token_length
         self.token_pattern = token_pattern
+        self.stemming = stemming
+        self._stem_word = create_stemmer(stemming)
         self._regex = re.compile(token_pattern)
         self._stopwords = (
             frozenset(w.lower() for w in stopwords)
@@ -51,14 +57,14 @@ class InvertedIndexer:
 
     def tokenize(self, text: str) -> list[str]:
         """Tokenize and normalize text according to the configured parameters."""
-        normalized = text.lower() if self.lowercase else text
-        tokens = self._regex.findall(normalized)
-        if self.min_token_length > 1:
-            tokens = [t for t in tokens if len(t) >= self.min_token_length]
-        if self.remove_stopwords:
-            stop = self._stopwords
-            tokens = [t for t in tokens if t.lower() not in stop]
-        return tokens
+        return tokenize_lexical(
+            text,
+            lowercase=self.lowercase,
+            pattern=self._regex,
+            min_token_length=self.min_token_length,
+            stopwords=self._stopwords if self.remove_stopwords else None,
+            stem_word=self._stem_word,
+        )
 
     def add_document(self, doc_id: str, terms: list[str]) -> None:
         """Insert a tokenized document into the inverted index."""
@@ -103,6 +109,7 @@ class InvertedIndexer:
                 "remove_stopwords": self.remove_stopwords,
                 "min_token_length": self.min_token_length,
                 "token_pattern": self.token_pattern,
+                **stemming_metadata(self.stemming),
                 "stopwords_source": "custom"
                 if self._stopwords is not ENGLISH_STOP_WORDS
                 else "sklearn.ENGLISH_STOP_WORDS",

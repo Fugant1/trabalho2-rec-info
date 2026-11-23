@@ -129,6 +129,36 @@ class TestRetrievalModules(unittest.TestCase):
         self.assertAlmostEqual(evidence["lexical_overlap_ratio"], 2 / 3)
         self.assertGreater(evidence["bm25_score"], 0.0)
 
+    def test_bm25_applies_the_stemming_mode_stored_in_the_index(self) -> None:
+        corpus = {"D1": "Connections connected 20 t2", "D2": "Connect and health"}
+        original = InvertedIndexer().build(corpus)
+        self.assertEqual(original["params"]["stemming"], "none")
+        legacy = {**original, "params": original["params"].copy()}
+        del legacy["params"]["stemming"]
+        for index in (original, legacy):
+            bm25 = BM25Retriever(index)
+            self.assertEqual(bm25.search("connecting"), [])
+            self.assertEqual(bm25.tokenize_query("connecting"), ["connecting"])
+            ranked = bm25.search("connect")
+            self.assertEqual([doc_id for doc_id, _ in ranked], ["D2"])
+            self.assertAlmostEqual(ranked[0][1], 0.8154672712469945)
+
+        stemmed = InvertedIndexer(stemming="snowball-english").build(corpus)
+        bm25 = BM25Retriever(stemmed)
+        self.assertEqual(bm25.tokenize_query("connecting"), ["connect"])
+        metadata = bm25.get_metadata()["preprocessing"]
+        self.assertEqual(metadata["stemming"], "snowball-english")
+        self.assertEqual(metadata["stemmer_language"], "english")
+        self.assertEqual(metadata["stemmer_version"], stemmed["params"]["stemmer_version"])
+        ranked = dict(bm25.search("connecting"))
+        self.assertEqual(set(ranked), {"D1", "D2"})
+
+        evidence = bm25.explain_doc_match("connecting", "D1")
+        self.assertEqual(evidence["query_tokens"], ["connect"])
+        self.assertEqual(evidence["matched_terms"][0]["tf"], 2)
+        self.assertEqual(evidence["matched_terms"][0]["df"], 2)
+        self.assertAlmostEqual(evidence["bm25_score"], ranked["D1"])
+
     def test_semantic_retriever_cosine_similarity_and_metadata(self) -> None:
         sem = SemanticRetriever(
             embeddings=self.doc_embeddings,
