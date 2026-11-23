@@ -51,7 +51,7 @@ _(Opcionalmente, caso deseje usar Google Gemini via API, basta informar `--llm-p
 
 Arquivos grandes (`datasets/`, `cache/`, `.venv/`, pesos do Hugging Face) e arquivos de credenciais (`.env`) não são incluídos na entrega final; todos os dados e índices são regenerados automaticamente pelos scripts:
 
-1. **Dataset NFCorpus:** baixado e extraído automaticamente em `datasets/nfcorpus/` pelo `DataLoader` caso ainda não exista localmente.
+1. **Dataset NFCorpus:** o `DataLoader` reutiliza `datasets/nfcorpus/` quando os arquivos `corpus.jsonl`, `queries.jsonl` e os três TSVs em `qrels/` estão disponíveis. Se faltarem arquivos, tenta aproveitar `datasets/nfcorpus.zip` ou baixar o ZIP do BEIR. Se o servidor do ZIP falhar, busca os textos e julgamentos nas publicações do BEIR no [Hugging Face](https://huggingface.co/datasets/BeIR/nfcorpus/tree/e28763e68d85db0fa71652ba3c4afabf8c5b3bb7) e [BeIR/nfcorpus-qrels](https://huggingface.co/datasets/BeIR/nfcorpus-qrels/tree/a451b3b26d3ae1358f259c1a3a4dd61fcea35a65). Use `--data-dir` para indicar outra pasta que contenha `nfcorpus/`.
 2. **Cache de índices (lexical e semântico):** gerados automaticamente pelo `PreProcessor` em `cache/lexical_index.json`, `cache/semantic_embeddings.npy` e `cache/semantic_metadata.json` (com custos de construção/carregamento registrados em `runs/<run_id>/index_cache_metrics.json`). Use `--force-rebuild` para forçar a reconstrução.
 3. **Modelo LLM local (`Qwen/Qwen3-4B`):** baixado automaticamente para o cache padrão do Hugging Face (`~/.cache/huggingface/hub`) e quantizado em 4-bit NF4 em tempo de carregamento.
 
