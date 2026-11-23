@@ -1,8 +1,8 @@
 """Lexical retrieval baseline using Okapi BM25 over the in-house inverted index.
 
 Implements Requirements 2 and 3 of Trabalho Pratico 2:
-- Uses ONLY the inverted index posting lists of query terms (never iterates
-  over the entire corpus per query).
+- Scores documents using posting lists of query terms. Fills short rankings
+  with zero-score documents from a precomputed order.
 - Applies the exact same tokenization / stopword / normalization parameters
   used when building the inverted index.
 - Tracks mean query processing latency and exposes term-level match evidence
@@ -11,7 +11,10 @@ Implements Requirements 2 and 3 of Trabalho Pratico 2:
 
 from __future__ import annotations
 
+import hashlib
+import json
 import math
+import random
 import re
 import time
 from collections import Counter
@@ -23,8 +26,11 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 from src.pre_processing.lexical_text import create_stemmer, tokenize_lexical
 
 
+ZERO_SCORE_PADDING_SEED = 2026
+
+
 class BM25Retriever:
-    """Okapi BM25 retriever operating strictly on inverted index posting lists."""
+    """Okapi BM25 retriever with deterministic zero-score padding."""
 
     def __init__(
         self,
@@ -47,6 +53,10 @@ class BM25Retriever:
             str(doc_id): int(length)
             for doc_id, length in lexical_index["doc_lengths"].items()
         }
+        self._padding_order = sorted(self.doc_lengths)
+        random.Random(ZERO_SCORE_PADDING_SEED).shuffle(self._padding_order)
+        padding_bytes = json.dumps(self._padding_order, separators=(",", ":")).encode("ascii")
+        self._padding_order_sha256 = hashlib.sha256(padding_bytes).hexdigest()
         self.index: dict[str, dict[str, int]] = lexical_index["index"]
         self.df: dict[str, int] = (
             {str(t): int(c) for t, c in lexical_index["df"].items()}
@@ -98,14 +108,15 @@ class BM25Retriever:
         )
 
     def search(self, query: str, top_k: int = 100) -> list[tuple[str, float]]:
-        """Rank matching documents for a single query using posting lists only."""
+        """Score matches and fill up to top_k positions with zero-score documents."""
         if top_k <= 0:
             raise ValueError("top_k must be a positive integer.")
 
-        query_tokens = self.tokenize_query(query)
-        if not query_tokens or self.N == 0 or self.avg_doc_length <= 0.0:
+        limit = min(top_k, len(self._padding_order))
+        if limit == 0:
             return []
 
+        query_tokens = self.tokenize_query(query) if self.avg_doc_length > 0.0 else []
         query_term_counts = Counter(query_tokens)
         scores: dict[str, float] = {}
 
@@ -130,11 +141,17 @@ class BM25Retriever:
                     (tf * (k1 + 1.0)) / denom
                 )
 
-        if not scores:
-            return []
-
         ranked = sorted(scores.items(), key=lambda item: (-item[1], item[0]))
-        return ranked[:top_k]
+        if len(ranked) >= limit:
+            return ranked[:limit]
+
+        # The order is independent of both relevance judgments and stemming.
+        for doc_id in self._padding_order:
+            if doc_id not in scores:
+                ranked.append((doc_id, 0.0))
+                if len(ranked) == limit:
+                    break
+        return ranked
 
     def retrieve(
         self,
@@ -156,6 +173,9 @@ class BM25Retriever:
             "total_query_time_seconds": elapsed,
             "mean_query_time_seconds": mean_sec,
             "mean_query_time_ms": mean_sec * 1000.0,
+            "num_queries_with_padding": sum(
+                bool(ranking) and ranking[-1][1] == 0.0 for ranking in rankings.values()
+            ),
         }
         return rankings
 
@@ -224,6 +244,12 @@ class BM25Retriever:
             "total_postings": self.total_postings,
             "avg_doc_length": self.avg_doc_length,
             "build_time_seconds": self.build_time_seconds,
+            "zero_score_padding": {
+                "method": "sorted_doc_ids_then_random_shuffle",
+                "seed": ZERO_SCORE_PADDING_SEED,
+                "order_sha256": self._padding_order_sha256,
+                "num_queries_with_padding": self.last_timing_stats.get("num_queries_with_padding"),
+            },
             "preprocessing": {
                 "lowercase": self.lowercase,
                 "remove_stopwords": self.remove_stopwords,

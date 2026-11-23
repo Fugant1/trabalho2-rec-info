@@ -144,6 +144,8 @@ class TestExperimentEndToEnd(unittest.TestCase):
             exp.setup()
             assert exp.retriever is not None
             lexical = exp.retriever.lexical
+            dev_report = exp.run_dev_tuning()["lexical_dev"]
+            self.assertEqual(dev_report["stemming"], "snowball-english")
             with (
                 patch.object(lexical, "search", wraps=lexical.search) as lexical_search,
                 patch.object(encoder, "encode", wraps=encoder.encode) as encode,
@@ -226,6 +228,20 @@ class TestExperimentEndToEnd(unittest.TestCase):
             summary = exp.run(["rag"])
 
             results_dir = tmp / "results"
+            with (results_dir / "ajuste_dev/dev_tuning_results.json").open(encoding="utf-8") as f:
+                lexical_dev = json.load(f)["lexical_dev"]
+            self.assertEqual(lexical_dev["stemming"], "none")
+            self.assertEqual(lexical_dev["bm25"], {"k1": 1.5, "b": 0.75})
+            self.assertEqual(lexical_dev["ranking_depth"], exp.rrf_fusion_depth)
+            self.assertEqual(set(lexical_dev["per_query"]), set(_TinyDataLoader().dev_qrels))
+            self.assertEqual(lexical_dev["num_queries"], len(lexical_dev["per_query"]))
+            for mean_key, query_key in (
+                ("Precision@10", "P10"), ("Recall@10", "R10"),
+                ("MAP@10", "AP10"), ("NDCG@10", "NDCG10"),
+            ):
+                values = [row[query_key] for row in lexical_dev["per_query"].values()]
+                self.assertAlmostEqual(lexical_dev["global"][mean_key], sum(values) / len(values))
+
             # Verify all 7 mandatory standardized CSVs (Requirement 15)
             required_csvs = [
                 "recuperacao/results_lexical.csv",

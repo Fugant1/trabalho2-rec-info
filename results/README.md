@@ -1,6 +1,6 @@
 # Resultados
 
-Os rankings, os testes de erros e as respostas do RAG aqui são da rodada de referência do Julio. O [resumo dessa rodada](experiment_summary.json) registra a configuração, as métricas e os tempos.
+Os rankings, os testes de erros e as respostas do RAG aqui são da rodada de referência do Julio. O [resumo dessa rodada](experiment_summary.json) registra a configuração, as métricas e os tempos. A [comparação atual no dev](ajuste_dev/comparacao_stemming/top100/README.md) registra a configuração escolhida para a próxima rodada em `test`.
 
 | Pasta | O que você encontra |
 | --- | --- |

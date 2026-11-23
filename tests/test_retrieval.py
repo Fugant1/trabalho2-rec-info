@@ -112,15 +112,17 @@ class TestRetrievalModules(unittest.TestCase):
         bm25.doc_lengths = _StrictDocLengths(bm25.doc_lengths)
 
         ranked = bm25.search("vitamin scurvy", top_k=5)
-        self.assertEqual(ranked[0][0], "D1")
-        # Only D1 and D5 contain 'vitamin' or 'scurvy'; non-matching docs are untouched
-        self.assertEqual({doc_id for doc_id, _ in ranked}, {"D1", "D5"})
+        self.assertEqual([doc_id for doc_id, _ in ranked[:2]], ["D1", "D5"])
+        self.assertTrue(all(score > 0 for _, score in ranked[:2]))
+        self.assertEqual({doc_id for doc_id, _ in ranked[2:]}, {"D2", "D3", "D4"})
+        self.assertTrue(all(score == 0 for _, score in ranked[2:]))
 
         # Batch retrieve records timing stats
         batch = bm25.retrieve({"Q1": "vitamin scurvy", "Q2": "cholesterol fiber"}, top_k=5)
         self.assertEqual(batch["Q1"][0][0], "D1")
         self.assertEqual(batch["Q2"][0][0], "D2")
         self.assertEqual(bm25.last_timing_stats["num_queries"], 2)
+        self.assertEqual(bm25.get_metadata()["zero_score_padding"]["num_queries_with_padding"], 2)
         self.assertGreaterEqual(bm25.last_timing_stats["mean_query_time_seconds"], 0.0)
 
         # Match explanation provides concrete evidence for Req 7
@@ -128,6 +130,29 @@ class TestRetrievalModules(unittest.TestCase):
         self.assertEqual(evidence["missing_terms"], ["unknownterm"])
         self.assertAlmostEqual(evidence["lexical_overlap_ratio"], 2 / 3)
         self.assertGreater(evidence["bm25_score"], 0.0)
+
+    def test_bm25_padding_is_independent_of_document_order_and_stemming(self) -> None:
+        original = BM25Retriever(self.lexical_index)
+        reversed_corpus = dict(reversed(list(self.flat_corpus.items())))
+        stemmed = BM25Retriever(InvertedIndexer(stemming="snowball-english").build(reversed_corpus))
+
+        ranked = original.search("zzzznotindexed", top_k=100)
+        self.assertEqual(ranked, stemmed.search("zzzznotindexed", top_k=100))
+        self.assertEqual(ranked, original.search("the and", top_k=100))
+        self.assertEqual(len(ranked), len(self.corpus))
+        self.assertEqual(set(ranked), {(doc_id, 0.0) for doc_id in self.corpus})
+        self.assertEqual(original.get_metadata()["zero_score_padding"],
+                         stemmed.get_metadata()["zero_score_padding"])
+        empty = BM25Retriever(InvertedIndexer().build({}))
+        self.assertEqual(empty.search("zzzznotindexed"), [])
+
+    def test_bm25_top100_keeps_positive_matches_when_they_fill_the_ranking(self) -> None:
+        corpus = {f"D{number:03}": "vitamin" for number in range(105)}
+        corpus["Z"] = "fiber"
+        retriever = BM25Retriever(InvertedIndexer().build(corpus))
+        ranking = retriever.search("vitamin")
+        self.assertEqual([doc_id for doc_id, _ in ranking], list(corpus)[:100])
+        self.assertTrue(all(score > 0 for _, score in ranking))
 
     def test_bm25_applies_the_stemming_mode_stored_in_the_index(self) -> None:
         corpus = {"D1": "Connections connected 20 t2", "D2": "Connect and health"}
@@ -137,11 +162,12 @@ class TestRetrievalModules(unittest.TestCase):
         del legacy["params"]["stemming"]
         for index in (original, legacy):
             bm25 = BM25Retriever(index)
-            self.assertEqual(bm25.search("connecting"), [])
+            self.assertEqual(set(bm25.search("connecting")), {("D1", 0.0), ("D2", 0.0)})
             self.assertEqual(bm25.tokenize_query("connecting"), ["connecting"])
             ranked = bm25.search("connect")
-            self.assertEqual([doc_id for doc_id, _ in ranked], ["D2"])
+            self.assertEqual([doc_id for doc_id, _ in ranked], ["D2", "D1"])
             self.assertAlmostEqual(ranked[0][1], 0.8154672712469945)
+            self.assertEqual(ranked[1][1], 0.0)
 
         stemmed = InvertedIndexer(stemming="snowball-english").build(corpus)
         bm25 = BM25Retriever(stemmed)

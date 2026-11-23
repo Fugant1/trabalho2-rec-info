@@ -412,10 +412,20 @@ class Experiment:
             )
             report["bm25"] = bm25_tuning
 
-        # Mandatory RRF k tuning on dev (at least k in {10, 60, 100}, Requirement 8)
+        # Evaluate BM25 on the same dev ranking that feeds the RRF tuning.
         lex_dev = self.retriever.retrieve_lexical(
             dev_queries, top_k=self.rrf_fusion_depth
         )
+        lexical = self.retriever.lexical
+        report["lexical_dev"] = {
+            "stemming": lexical.stemming,
+            "bm25": {"k1": lexical.k1, "b": lexical.b},
+            "ranking_depth": self.rrf_fusion_depth,
+            "zero_score_padding": lexical.get_metadata()["zero_score_padding"],
+            **self.evaluator.evaluate(dev_qrels, lex_dev, k=10),
+        }
+
+        # Mandatory RRF k tuning on dev (at least k in {10, 60, 100}, Requirement 8)
         sem_dev = self.retriever.retrieve_semantic(
             dev_queries,
             top_k=self.rrf_fusion_depth,

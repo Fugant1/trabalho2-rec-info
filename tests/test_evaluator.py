@@ -40,6 +40,17 @@ class TestEvaluator(unittest.TestCase):
         mean_ap = sum(res["per_query"][q]["AP10"] for q in qrels) / len(qrels)
         self.assertAlmostEqual(res["global"]["MAP@10"], mean_ap, places=12)
 
+    def test_pytrec_eval_cross_check_preserves_zero_score_document_order(self) -> None:
+        qrels = {"Q1": {"D01": 2}}
+        rankings = {"Q1": [(f"D{number:02}", 0.0) for number in range(1, 12)]}
+
+        local = self.evaluator.evaluate(qrels, rankings)["per_query"]["Q1"]
+        reference = self.evaluator.cross_check_with_pytrec_eval(qrels, rankings)["Q1"]
+
+        self.assertEqual(local["NDCG10"], 1.0)
+        self.assertEqual(reference["ndcg_cut_10"], local["NDCG10"])
+        self.assertEqual(reference["P_10"], local["P10"])
+
     def test_rag_query_selection_and_retrieval_metrics(self) -> None:
         queries = {f"Q{i}": (f"Question {i}?" if i % 2 == 0 else f"Statement {i}") for i in range(30)}
         test_qrels = {f"Q{i}": {"D1": 2} for i in range(30)}

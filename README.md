@@ -80,6 +80,8 @@ python -m src.main --stages setup dev-tuning retrieval typo \
 
 O modo Snowball usa `cache/lexical_index_snowball_english.json`. Os modos reaproveitam o mesmo cache semântico quando ele está disponível e válido. O índice lexical guarda o modo em `params.stemming`, e `experiment_summary.json` registra a configuração usada, incluindo a versão do Snowball quando ativo. Ao comparar execuções, use um `--results-dir` para cada modo. Para executar `rag` sobre esses rankings, repita o `--lexical-stemming` e o `--results-dir` usados na recuperação.
 
+Quando o BM25 encontra menos de 100 documentos com score positivo, completa o Top-100 com documentos de score zero. A lista de preenchimento é preparada uma vez por instância do BM25, ordenando os IDs externos e embaralhando-os com a semente fixa `2026`. A mesma ordem vale para os dois modos de stemming. O RRF e o CSV usam as posições desse ranking. O bloco `zero_score_padding` registra a semente, o SHA-256 da ordem e o número de consultas preenchidas.
+
 ### 2. Executar o experimento de RAG (sem RAG × com RAG)
 
 ```bash

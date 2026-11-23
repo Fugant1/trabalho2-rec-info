@@ -194,10 +194,9 @@ class Evaluator:
         norm_rankings = _normalize_rankings(rankings)
         run: dict[str, dict[str, float]] = {}
         for qid in norm_qrels:
-            # Build strictly decreasing synthetic tie-breaker only if scores tie?
-            # Here we pass actual scores directly as standard trec_eval input.
+            # trec_eval sorts by score. Encode the rank to preserve the run's tie-breaking.
             docs = _deduplicate_preserve_order(norm_rankings.get(qid, []))
-            run[qid] = {doc_id: float(score) for doc_id, score in docs}
+            run[qid] = {doc_id: -float(rank) for rank, (doc_id, _) in enumerate(docs, start=1)}
 
         trec_evaluator = pytrec_eval.RelevanceEvaluator(
             norm_qrels,
