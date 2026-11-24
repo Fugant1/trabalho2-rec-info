@@ -227,6 +227,9 @@ report.md
 # Resultados locais de validação
 /results_validacao/
 
+# Cópias intermediárias e registros locais de execução
+/results_final/runs/
+
 # temp notes
 temp_notes/
 
