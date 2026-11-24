@@ -27,10 +27,14 @@ justificativa.
 
 ## 2. Avaliação de cada resposta
 
+Aplicar a mesma rubrica a todas as respostas. A avaliação deve ser feita
+sem identificar a condição e sem levar em conta se o modelo recebeu ou não
+documentos durante a geração. Para julgar a fidelidade, consultar o mesmo
+conjunto de referência nas duas respostas de cada pergunta. Para julgar a
+rastreabilidade, examinar as fontes citadas na própria resposta.
+
 1. Ler a pergunta em `query` e a resposta em `answer`.
-2. Localizar o `query_id` no JSON e consultar os cinco documentos. As duas
-   respostas da mesma pergunta são julgadas quanto à fidelidade com base no
-   mesmo conjunto de referência.
+2. Localizar o `query_id` no JSON e consultar os cinco documentos de referência.
 3. Atribuir uma nota inteira de 0 a 2 por critério e registrar uma justificativa
    breve na coluna correspondente, como `justificativa_fidelidade`. Em
    fidelidade e rastreabilidade, indicar a afirmação relevante e, quando

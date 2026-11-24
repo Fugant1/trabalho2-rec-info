@@ -225,15 +225,19 @@ ultrapassam o limite.
 O experimento sem RAG e com RAG utiliza as mesmas dez perguntas do conjunto
 \texttt{test} nas duas condições. Conforme o requisito 12, o sorteio foi
 realizado com a semente 42 a partir da lista ordenada de identificadores
-das 42 consultas cujo texto termina em ponto de interrogação. A sequência
-sorteada foi conferida e coincide, na mesma ordem, com a lista do enunciado.
+das 42 consultas cujo texto termina em ponto de interrogação. Foi verificado
+que a sequência do sorteio coincide, na mesma ordem, com a lista do
+enunciado e com os identificadores registrados no CSV da geração.
 Os dez identificadores constam na Tabela~\ref{tab:contexto-rag}.
 
-O protocolo prevê o uso local do modelo \texttt{Qwen/Qwen3-4B} para gerar
-respostas em português. A execução utiliza Transformers e LangChain, com
-quantização NF4 de quatro bits via bitsandbytes.
-Em ambas as condições, a temperatura é zero e a semente de geração é 42.
-O limite de saída é de 1.024 tokens e o modo de raciocínio fica desativado.
+As respostas em português foram geradas com o modelo \texttt{Qwen/Qwen3-4B}.
+A revisão dos pesos foi \texttt{1cfa9a7208912126459214e8b04321603b3df60c}.
+
+A execução foi local e sem cobrança de API. Foram utilizados Transformers
+5.23.0, LangChain Core 1.8.1 e bitsandbytes 0.50.2, com quantização NF4 de
+quatro bits. Nas duas condições, foi adotada temperatura zero, com escolha
+do token mais provável a cada passo, semente de geração 42 e limite de
+1.024 novos tokens por resposta. O modo de raciocínio foi desativado.
 
 Adota-se a nomenclatura do requisito 12 do enunciado. Na condição A
 (sem RAG), o modelo recebe somente a pergunta. Na condição B (com RAG),
@@ -241,9 +245,9 @@ o \textit{prompt} inclui a mesma pergunta e os cinco primeiros documentos
 após a reordenação. Cada documento é mantido como uma unidade com
 identificador, título e texto. A instrução pede uma resposta apoiada no
 contexto, com indicação dos identificadores que sustentam as afirmações e
-menção explícita quando a evidência é insuficiente. O protocolo prevê avaliar
-a relevância dos documentos enviados e a qualidade das respostas por
-julgamento humano nas duas condições.
+menção explícita quando a evidência é insuficiente. Os documentos usados
+como contexto foram avaliados pelos julgamentos de relevância da coleção.
+As respostas das duas condições serão avaliadas pelos integrantes.
 
 \section{Avaliação}
 \label{sec:avaliacao}
@@ -293,17 +297,18 @@ o kappa de Cohen.
 
 \subsection{Configuração e ambiente}
 
-A execução \texttt{run\_20261123\_181623} foi realizada em Linux sob WSL2,
+A recuperação e o teste de tolerância a erros (\texttt{run\_20261123\_181623})
+foram executados em Linux sob WSL2,
 com uma GPU NVIDIA GeForce RTX 2050 de 4~GB. O ambiente usou Python
 3.12.3, PyTorch 2.15.0, BEIR 2.2.0, scikit-learn 1.9.1 e Sentence
 Transformers 6.3.0.
 
-Os resultados de recuperação e tolerância a erros apresentados neste
-relatório correspondem a essa execução. A rodada produziu quatro CSVs
-com as listas ordenadas de documentos, um CSV de métricas por consulta
-e um CSV do experimento de tolerância a erros. Os tempos foram obtidos
-do resumo da execução e do registro de uso dos índices. O CSV com os
-resultados da geração será completado após a avaliação humana.
+A geração (\texttt{run\_20261123\_220135}) foi executada na mesma máquina,
+com o Qwen na RTX 2050. A etapa reutilizou as listas da recuperação e
+registrou seus próprios tempos, mantidos no
+\texttt{rag\_experiment\_summary.json}. As 20 respostas foram exportadas
+em \texttt{rag\_experiment.csv}. As notas e justificativas serão
+incorporadas ao CSV após a avaliação humana.
 
 \section{Resultados Obtidos e Análise}
 \label{sec:resultados}
@@ -613,9 +618,10 @@ limitam a generalização dessas observações.
 
 \subsection{Contexto recuperado para a geração}
 
-A Tabela~\ref{tab:contexto-rag} traz as métricas dos cinco documentos
-selecionados para cada pergunta pela recuperação oficial. Os resultados
-avaliam o contexto antes da geração.
+A Tabela~\ref{tab:contexto-rag} apresenta as métricas dos cinco documentos
+enviados ao modelo em cada pergunta da condição com RAG. Os identificadores
+registrados na geração coincidem, na mesma ordem, com os cinco primeiros
+de cada lista reranqueada da recuperação oficial.
 
 \noindent\begin{minipage}{\linewidth}
 \centering
@@ -646,9 +652,8 @@ PLAIN-3342 & 0,40 & 0,66667 & 1 \\
 Em nove perguntas, pelo menos um documento relevante foi recuperado.
 A revocação deve ser interpretada à luz do limite de cinco documentos
 por pergunta. Em \texttt{PLAIN-2850}, nenhum dos cinco selecionados
-recebeu julgamento positivo. Essa pergunta é um ponto de partida para
-inspecionar a seleção do contexto, e a análise da resposta depende da
-execução da LLM.
+recebeu julgamento positivo. A avaliação humana permitirá verificar
+como a resposta tratou as evidências que chegaram ao contexto.
 
 Os contextos da rodada de referência foram comparados aos contextos
 selecionados pela recuperação oficial. Houve mudança em
@@ -660,14 +665,18 @@ com um relevante em ambas as rodadas.
 
 \subsection{Respostas A/B e análise ponta a ponta}
 
-\textbf{Pendente.} Ainda estão previstas a geração das 20 respostas com
-os rankings oficiais, a avaliação humana independente e a consolidação
-das notas, justificativas, médias por condição e concordância. Também
-serão registrados a revisão dos pesos da LLM, o ambiente efetivamente
-utilizado e os tempos de geração.
+Foram geradas 20 respostas, uma em cada condição para cada uma das dez
+perguntas. O tempo médio por resposta foi de 17,26\,s sem RAG e
+34,57\,s com RAG. Esses valores medem a geração a partir das listas já
+recuperadas. A condição com contexto levou, em média, cerca do dobro
+do tempo da condição sem contexto.
 
-Os três casos de melhora, pouca diferença e ausência de benefício ou
-piora serão selecionados após a avaliação humana. A análise seguirá
+\textbf{Pendente.} Ainda serão incorporadas as notas e justificativas
+das duas avaliações independentes, as médias por condição e a
+concordância entre os avaliadores.
+
+\textbf{Pendente.} Os três casos de melhora, pouca diferença e ausência de
+benefício ou piora serão selecionados após a avaliação humana. A análise seguirá
 as posições no BM25, na busca semântica, na fusão e na reordenação, os
 documentos incluídos no contexto e as afirmações da resposta. Isso
 permite distinguir falhas de recuperação e seleção de falhas na geração.
@@ -680,7 +689,9 @@ O ganho médio sobre o híbrido foi pequeno e o custo por consulta
 aumentou substancialmente.
 A correção recuperou a perda lexical nos oito casos em que o erro
 reduziu a nota. Esses achados se referem ao NFCorpus e às condições
-do experimento.
+do experimento. Na geração, o contexto incluiu ao menos um documento
+relevante em nove das dez perguntas, e a condição com RAG levou cerca
+do dobro do tempo médio por resposta.
 
 \textbf{Pendente.} A síntese sobre a contribuição do RAG para a qualidade
 e a verificabilidade das respostas será completada após a avaliação
