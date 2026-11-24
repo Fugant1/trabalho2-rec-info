@@ -1,0 +1,123 @@
+{
+  "query_ids": [
+    "PLAIN-68",
+    "PLAIN-2450",
+    "PLAIN-153",
+    "PLAIN-2850",
+    "PLAIN-2750",
+    "PLAIN-270",
+    "PLAIN-2470",
+    "PLAIN-2430",
+    "PLAIN-238",
+    "PLAIN-3342"
+  ],
+  "llm_config": {
+    "model": "/home/gabyl/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c",
+    "provider": "local",
+    "load_in_4bit": true,
+    "enable_thinking": false,
+    "temperature": 0.0,
+    "max_output_tokens": 1024,
+    "seed": 42,
+    "language": "Portuguese",
+    "top_k_context": 5
+  },
+  "retrieval_metrics_at_5": {
+    "num_queries": 10,
+    "k": 5,
+    "global": {
+      "Precision@5": 0.45999999999999996,
+      "Recall@5": 0.10749529913841127,
+      "MAP@5": 0.08197731195566436,
+      "NDCG@5": 0.5297599124235413,
+      "Hit@5": 0.9
+    },
+    "per_query": {
+      "PLAIN-153": {
+        "P5": 1.0,
+        "R5": 0.10638297872340426,
+        "AP5": 0.10638297872340426,
+        "NDCG5": 1.0,
+        "Hit5": 1.0
+      },
+      "PLAIN-238": {
+        "P5": 0.2,
+        "R5": 0.018518518518518517,
+        "AP5": 0.009259259259259259,
+        "NDCG5": 0.21398626473452756,
+        "Hit5": 1.0
+      },
+      "PLAIN-2430": {
+        "P5": 0.6,
+        "R5": 0.06521739130434782,
+        "AP5": 0.059782608695652176,
+        "NDCG5": 0.6992148198508501,
+        "Hit5": 1.0
+      },
+      "PLAIN-2450": {
+        "P5": 0.4,
+        "R5": 0.05263157894736842,
+        "AP5": 0.02368421052631579,
+        "NDCG5": 0.34519134224686937,
+        "Hit5": 1.0
+      },
+      "PLAIN-2470": {
+        "P5": 0.6,
+        "R5": 0.0410958904109589,
+        "AP5": 0.0410958904109589,
+        "NDCG5": 0.7227265726449519,
+        "Hit5": 1.0
+      },
+      "PLAIN-270": {
+        "P5": 0.4,
+        "R5": 0.038461538461538464,
+        "AP5": 0.02692307692307692,
+        "NDCG5": 0.4703652827859579,
+        "Hit5": 1.0
+      },
+      "PLAIN-2750": {
+        "P5": 0.8,
+        "R5": 0.06779661016949153,
+        "AP5": 0.06779661016949153,
+        "NDCG5": 0.6887676151990412,
+        "Hit5": 1.0
+      },
+      "PLAIN-2850": {
+        "P5": 0.0,
+        "R5": 0.0,
+        "AP5": 0.0,
+        "NDCG5": 0.0,
+        "Hit5": 0.0
+      },
+      "PLAIN-3342": {
+        "P5": 0.4,
+        "R5": 0.6666666666666666,
+        "AP5": 0.4666666666666666,
+        "NDCG5": 0.6508205185601091,
+        "Hit5": 1.0
+      },
+      "PLAIN-68": {
+        "P5": 0.2,
+        "R5": 0.01818181818181818,
+        "AP5": 0.01818181818181818,
+        "NDCG5": 0.5065267082131061,
+        "Hit5": 1.0
+      }
+    },
+    "model": "RAG_Context"
+  },
+  "generation_latency": {
+    "condition_A_mean_seconds": 17.263088543599952,
+    "condition_B_mean_seconds": 34.56863099939947,
+    "condition_A_total_seconds": 172.63088543599952,
+    "condition_B_total_seconds": 345.68630999399466
+  },
+  "files": {
+    "rag_experiment_csv": "results_final/runs/rag_local.Oegtwh/rag/rag_experiment.csv",
+    "pipeline_trace_json": "results_final/runs/rag_local.Oegtwh/rag/rag_pipeline_trace.json",
+    "blind_csv": "results_final/runs/rag_local.Oegtwh/rag/avaliacao_humana/rag_blind_evaluation.csv",
+    "key_json": "results_final/runs/rag_local.Oegtwh/rag/avaliacao_humana/rag_blind_key.json",
+    "context_reference_json": "results_final/runs/rag_local.Oegtwh/rag/avaliacao_humana/rag_context_reference.json",
+    "num_rows": 20
+  }
+}
