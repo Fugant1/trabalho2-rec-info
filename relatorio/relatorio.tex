@@ -7,6 +7,7 @@
 \usepackage{amsmath,graphicx,tikz,url}
 \usepackage{microtype}
 \usepackage{breakcites}
+\usepackage{booktabs}
 \usetikzlibrary{arrows.meta}
 
 \title{Avaliação de busca lexical, semântica e híbrida\\
@@ -86,13 +87,12 @@ uma etapa separada. As etapas do fluxo principal recebem as consultas originais.
 
 \subsection{Coleção e pré-processamento}
 
-Utilizamos o NFCorpus distribuído pelo \textit{benchmark} BEIR
-\cite{boteva2016,thakur2021}. O carregador do BEIR lê
-\texttt{corpus.jsonl}, \texttt{queries.jsonl} e os arquivos de julgamentos de
-relevância (\textit{qrels}). A coleção contém 3.633 documentos. Os julgamentos
-definem as consultas de cada divisão, com 324 em \texttt{dev} e 323 em
-\texttt{test}. O conjunto \texttt{dev} serve ao ajuste dos parâmetros de fusão
-e correção ortográfica. O conjunto \texttt{test} é reservado à avaliação final.
+Foi utilizado o NFCorpus distribuído pelo BEIR \cite{boteva2016,thakur2021}.
+O carregador lê \texttt{corpus.jsonl}, \texttt{queries.jsonl} e os arquivos de
+julgamentos de relevância (\textit{qrels}). A implementação verifica esses
+arquivos localmente e, se necessário, aproveita o arquivo compactado ou tenta
+baixá-lo da fonte original. Em caso de falha nessa fonte, usa revisões fixadas
+da coleção e dos julgamentos publicados pelo BEIR no Hugging Face.
 
 Cada documento é representado pela concatenação dos campos \texttt{title} e
 \texttt{text}. Na busca lexical, documentos e consultas são convertidos para
@@ -100,16 +100,12 @@ minúsculas e tokenizados pela expressão regular \texttt{[a-z0-9]+} do módulo
 \texttt{re} do Python. O sistema remove as \textit{stopwords} em inglês
 fornecidas pelo scikit-learn e mantém tokens de comprimento mínimo um.
 
-Mantivemos uma configuração lexical fixa ao longo dos experimentos, sem
-\textit{stemming} ou lematização, para manter o BM25 como uma referência
-simples e concentrar a avaliação nos métodos de recuperação, fusão e
-reordenação. Preservar as formas dos termos após a normalização facilita
-relacionar a pontuação do BM25 às correspondências encontradas no índice.
-Essa escolha pode reduzir a cobertura lexical quando consultas e documentos
-usam flexões diferentes de uma mesma palavra.
-
-O bi-encoder e o cross-encoder recebem os textos e aplicam seus próprios
-tokenizadores.
+A configuração selecionada em \texttt{dev} aplica a redução de palavras a
+radicais (\textit{stemming}) com Snowball English, versão 3.1.1, após a
+remoção das palavras de parada. A mesma transformação é aplicada aos
+documentos e às consultas do BM25. O vocabulário do corretor preserva as
+formas anteriores a essa transformação. O bi-encoder e o cross-encoder
+recebem os textos originais e aplicam seus próprios tokenizadores.
 
 \subsection{Índice invertido e busca lexical}
 
@@ -122,7 +118,7 @@ comprimento de cada documento, o total de documentos e o comprimento médio.
 O programa registra o tamanho do vocabulário, o número de entradas nas listas
 invertidas, o tempo de construção do índice e o tempo médio de consulta.
 
-Escolhemos o Okapi BM25 \cite{manning2008} como referência lexical porque o
+O Okapi BM25 \cite{manning2008} foi adotado como referência lexical porque o
 modelo combina a importância do termo na coleção, a saturação da frequência
 no documento e a normalização pelo comprimento. Para cada consulta, o
 algoritmo percorre as listas invertidas dos seus termos e acumula a pontuação
@@ -137,20 +133,35 @@ somente para os documentos encontrados. A implementação calcula
     \log\!\left(1+\frac{N-\mathrm{DF}(t)+0{,}5}
                        {\mathrm{DF}(t)+0{,}5}\right).
 \end{align*}
-Aqui, \(V(q)\) representa os termos distintos de \(q\), \(f(t,x)\) é a
+Na expressão, \(V(q)\) representa os termos distintos de \(q\), \(f(t,x)\) é a
 frequência do termo em \(x\), \(|d|\) é o comprimento do documento,
 \(\overline{L}\) é o comprimento médio e \(N\) é o número de documentos.
-Adotamos \(k_1=1{,}5\) e \(b=0{,}75\). O ranking textual exporta até cem
-candidatos. Na implementação atual, a lista é mais curta quando há menos de
-cem documentos que contêm pelo menos um termo indexado da consulta.
+Foram adotados \(k_1=1{,}5\) e \(b=0{,}75\).
+
+Para cada consulta, os documentos com pontuação BM25 positiva são ordenados
+da maior para a menor pontuação. Se houver menos de cem, as vagas restantes
+são preenchidas com documentos de pontuação zero. Para esse preenchimento,
+prepara-se uma lista auxiliar antes de processar as consultas. Os identificadores
+da coleção são primeiro ordenados e depois embaralhados com a semente fixa
+2026. O programa percorre essa lista auxiliar, pula os documentos já
+selecionados e acrescenta os demais ao fim do ranking até completar cem
+posições. A semente fixa permite reproduzir a ordem de preenchimento, e
+os documentos com pontuação positiva mantêm suas posições.
+
+A lista final de cem documentos é gravada no CSV da busca lexical. Os
+julgamentos de relevância são consultados depois que a lista está pronta
+para calcular as métricas de avaliação. A busca híbrida também recebe
+essa lista e combina suas posições com as da lista semântica por meio
+do RRF.
 
 \subsection{Tolerância a erros ortográficos}
 
-O corretor usa um vocabulário de tokens da coleção antes de
-\textit{stemming} ou lematização, com as \textit{stopwords} preservadas.
+O corretor usa o vocabulário da coleção antes do \textit{stemming},
+com as palavras de parada preservadas.
 Para um termo fora do vocabulário, um índice de bigramas de caracteres com
 marcadores de borda recupera candidatos. O coeficiente de Jaccard filtra as
-alternativas com similaridade inferior a \(0{,}35\). A seleção usa distância
+alternativas com similaridade inferior a \(0{,}20\), limiar selecionado em
+\texttt{dev}. A seleção usa distância
 de Damerau--Levenshtein de no máximo duas edições. Em caso de empate, prioriza
 maior Jaccard, maior número de documentos com o candidato e ordem alfabética.
 
@@ -165,7 +176,9 @@ complementar.
 
 \subsection{Recuperação semântica}
 
-O bi-encoder \texttt{all-MiniLM-L6-v2}, da biblioteca Sentence Transformers,
+Foi utilizado o modelo \texttt{all-MiniLM-L6-v2} com a biblioteca Sentence
+Transformers. A versão dos pesos utilizada é identificada pelo prefixo
+\texttt{1110a243fdf4} da revisão do modelo no Hugging Face. O modelo
 transforma cada texto em um vetor de 384 dimensões. Os vetores dos documentos
 são pré-calculados e armazenados. Consultas e documentos têm vetores
 normalizados pela norma \(L_2\). O produto escalar entre eles equivale à
@@ -177,20 +190,26 @@ vetores da coleção e o tempo médio por consulta.
 \subsection{Busca híbrida}
 
 A busca híbrida usa \textit{Reciprocal Rank Fusion} (RRF)
-\cite{cormack2009}. A fusão recebe os primeiros cem documentos disponíveis de
-cada ranking. Cada documento \(d\) recebe a pontuação
+\cite{cormack2009}. Para cada consulta, a fusão combina os cem primeiros
+documentos da busca lexical e os cem primeiros da busca semântica.
+Cada documento \(d\) recebe a pontuação
 \[
   \mathrm{RRF}(d)=\sum_{s:\, d\in L_s}\frac{1}{k+r_s(d)},
 \]
-em que \(L_s\) é a lista de candidatos do sistema \(s\) e \(r_s(d)\) é sua
-posição, contada a partir de um. A fusão utiliza posições, o que permite
-combinar listas pontuadas em escalas diferentes. Os valores
-\(k\in\{10,60,100\}\) são comparados por NDCG@10 médio em \texttt{dev}.
-A configuração de maior média é usada na avaliação em \texttt{test}.
+em que \(L_s\) é a lista do sistema \(s\) e \(r_s(d)\) é a posição do
+documento \(d\) nessa lista, contada a partir de um. Um documento só
+recebe contribuição das listas em que aparece.
+
+O parâmetro \(k\) é uma constante somada à posição no denominador.
+Valores menores de \(k\) dão mais peso relativo às primeiras posições.
+Valores maiores reduzem a diferença entre as contribuições de posições
+altas e baixas. O limite de cem documentos por lista é fixo em todas as
+configurações. Como a fusão usa posições, ela pode combinar listas cujas
+pontuações estão em escalas diferentes.
 
 \subsection{Reranking}
 
-Utilizamos o cross-encoder \texttt{ms-marco-MiniLM-L6-v2}, pré-treinado para
+Foi utilizado o cross-encoder \texttt{ms-marco-MiniLM-L6-v2}, pré-treinado para
 ordenar passagens no MS MARCO \cite{crossencoder}. Seu treinamento é
 adequado à tarefa de pontuar candidatos para uma consulta. O modelo processa
 os dois textos conjuntamente e considera interações entre seus tokens.
@@ -203,28 +222,478 @@ ultrapassam o limite.
 
 \subsection{Geração aumentada por recuperação}
 
-O experimento de RAG usa as dez perguntas fixas de \texttt{test}. Seus
-identificadores são sorteados com semente 42 de uma lista ordenada de
-consultas que terminam em ponto de interrogação. Cada pergunta é respondida em
-português pelo \texttt{Qwen/Qwen3-4B}, executado localmente com Transformers,
-LangChain e quantização NF4 de quatro bits via bitsandbytes. As condições
-compartilham temperatura zero, semente 42, limite de 1.024 tokens de saída e
-modo de raciocínio desativado.
+O experimento sem RAG e com RAG utiliza as mesmas dez perguntas do conjunto
+\texttt{test} nas duas condições. Conforme o requisito 12, o sorteio foi
+realizado com a semente 42 a partir da lista ordenada de identificadores
+das 42 consultas cujo texto termina em ponto de interrogação. A sequência
+sorteada foi conferida e coincide, na mesma ordem, com a lista do enunciado.
+Os dez identificadores constam na Tabela~\ref{tab:contexto-rag}.
 
-Na condição A, o modelo recebe a pergunta sem contexto externo. Na condição B,
-o \textit{prompt} inclui a mesma pergunta e os cinco primeiros documentos do
-ranking reranqueado. Cada documento é mantido como uma unidade com
+O protocolo prevê o uso local do modelo \texttt{Qwen/Qwen3-4B} para gerar
+respostas em português. A execução utiliza Transformers e LangChain, com
+quantização NF4 de quatro bits via bitsandbytes.
+Em ambas as condições, a temperatura é zero e a semente de geração é 42.
+O limite de saída é de 1.024 tokens e o modo de raciocínio fica desativado.
+
+Adota-se a nomenclatura do requisito 12 do enunciado. Na condição A
+(sem RAG), o modelo recebe somente a pergunta. Na condição B (com RAG),
+o \textit{prompt} inclui a mesma pergunta e os cinco primeiros documentos
+após a reordenação. Cada documento é mantido como uma unidade com
 identificador, título e texto. A instrução pede uma resposta apoiada no
 contexto, com indicação dos identificadores que sustentam as afirmações e
 menção explícita quando a evidência é insuficiente. O protocolo prevê avaliar
 a relevância dos documentos enviados e a qualidade das respostas por
 julgamento humano nas duas condições.
 
-% Próximas seções: Avaliação, Resultados Obtidos e Análise,
-% Considerações finais e Uso de ferramentas de IA.
-% Ao fechar a Avaliação, registrar as revisões dos pesos, o ambiente e
-% os parâmetros da execução escolhida. Atualizar a descrição do Top-100
-% lexical se o comportamento do ranking for ajustado.
+\section{Avaliação}
+\label{sec:avaliacao}
+
+A coleção contém 3.633 documentos. Os julgamentos da coleção definem as
+consultas de cada divisão. Foram utilizadas 324 consultas de \texttt{dev}
+para escolher a configuração lexical e ajustar a fusão e o corretor. As
+323 consultas de \texttt{test} foram reservadas para a avaliação dos quatro
+métodos. O teste de erros usa dez consultas elegíveis de \texttt{test}. A
+avaliação de geração usa as dez perguntas fixadas pelo enunciado.
+
+\subsection{Métricas e protocolo}
+
+A precisão nas dez primeiras posições (P@10) é a proporção de documentos
+relevantes entre as dez posições. A revocação (R@10) divide o número de
+relevantes recuperados nessas posições pelo total de relevantes da consulta nos
+julgamentos. A precisão média por consulta (AP@10) soma as precisões nas
+posições até dez em que aparece um relevante e divide essa soma pelo total de
+relevantes da consulta. O MAP@10 é a média da AP@10 entre as consultas. Nas
+três medidas, considera-se relevante um documento com grau maior que zero.
+O NDCG@10 usa os graus originais como ganhos lineares, com desconto logarítmico
+por posição. A normalização usa o ranking ideal formado a partir de todos os
+julgamentos da consulta.
+
+As métricas foram calculadas por consulta e conferidas com \texttt{pytrec\_eval}
+0.5.11. Nessa conferência, valores auxiliares derivados da posição impõem
+a ordem do ranking, inclusive quando trechos da lista têm pontuações iguais.
+Os CSVs registram as pontuações originais. Foram conferidos cem documentos
+distintos por consulta em cada ranking e 1.292 registros de métricas. As
+médias utilizam os mesmos julgamentos para todos os métodos. Neste relatório,
+grau zero nas tabelas indica ausência de julgamento positivo.
+
+Para os cinco documentos enviados ao modelo na condição com RAG,
+calculam-se P@5, R@5 e Hit@5. A última métrica vale 1 quando pelo menos
+um desses documentos é relevante.
+
+O protocolo prevê que os dois integrantes avaliem as respostas de forma
+cega e independente. Cada critério aplicável recebe uma nota de 0 a 2
+acompanhada de justificativa. Os critérios são fidelidade, completude,
+utilidade e rastreabilidade. Para julgar a fidelidade de ambas as respostas
+à mesma pergunta, os avaliadores usam como referência os cinco documentos
+fornecidos ao modelo na condição B (com RAG). Na condição A (sem RAG), o
+modelo recebe somente a pergunta, por isso a rastreabilidade é registrada
+como \textit{N/A} e excluída do cálculo da média desse critério. Após a
+avaliação, serão reportadas as médias por condição, a concordância exata e
+o kappa de Cohen.
+
+\subsection{Configuração e ambiente}
+
+A execução \texttt{run\_20261123\_181623} foi realizada em Linux sob WSL2,
+com uma GPU NVIDIA GeForce RTX 2050 de 4~GB. O ambiente usou Python
+3.12.3, PyTorch 2.15.0, BEIR 2.2.0, scikit-learn 1.9.1 e Sentence
+Transformers 6.3.0.
+
+Os resultados de recuperação e tolerância a erros apresentados neste
+relatório correspondem a essa execução. A rodada produziu quatro CSVs
+com as listas ordenadas de documentos, um CSV de métricas por consulta
+e um CSV do experimento de tolerância a erros. Os tempos foram obtidos
+do resumo da execução e do registro de uso dos índices. O CSV com os
+resultados da geração será completado após a avaliação humana.
+
+\section{Resultados Obtidos e Análise}
+\label{sec:resultados}
+
+\subsection{Escolha do stemming e ajuste da fusão}
+
+Primeiro, as duas configurações da busca lexical foram comparadas em
+\texttt{dev}, com os mesmos parâmetros do BM25 e a mesma regra de
+preenchimento. O NDCG@10 médio foi de \(0{,}27352\) sem redução a radicais
+e de \(0{,}29797\) com Snowball. A busca lexical com Snowball foi
+selecionada pelo maior valor da métrica.
+
+Em seguida, para cada consulta de \texttt{dev}, foram usadas duas listas
+de cem documentos, uma da busca lexical com Snowball e outra da busca
+semântica. Conforme o requisito 8 do enunciado, a fusão RRF foi calculada
+com \(k=10\), \(k=60\) e \(k=100\), reutilizando as mesmas listas em cada
+comparação. O NDCG@10 médio da busca híbrida em \texttt{dev} foi de
+\(0{,}32702\), \(0{,}32124\) e \(0{,}32101\),
+respectivamente.
+
+Como \(k=10\) obteve a maior média em \texttt{dev}, a avaliação final em
+\texttt{test} usou apenas esse valor para a fusão. O modelo semântico
+permaneceu fixo durante o ajuste, e seu desempenho isolado em
+\texttt{test} é apresentado na Tabela~\ref{tab:metricas-rec}.
+
+\subsection{Qualidade e custo das etapas de recuperação}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Métricas e tempos médios por consulta nas 323 consultas de teste.
+O negrito indica o maior valor de cada métrica de qualidade.}
+\label{tab:metricas-rec}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Método & P@10 & R@10 & MAP@10 & NDCG@10 & Etapa (ms) & Total (ms) \\
+\midrule
+BM25 + Snowball        & 0,24118 & 0,15618 & 0,12343 & 0,33101 & 0,429 & 0,429 \\
+Semântico              & 0,24334 & 0,15499 & 0,11083 & 0,31667 & 11,007 & 11,007 \\
+Híbrido (RRF)          & \textbf{0,25728} & \textbf{0,17240} & 0,13348 & 0,35140 & 0,226 & 11,662 \\
+Híbrido + reranking    & 0,25232 & 0,16828 & \textbf{0,13948} & \textbf{0,35738} & 443,101 & 454,763 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+O BM25 obteve MAP@10 e NDCG@10 superiores aos da busca semântica na
+coleção. A fusão melhorou as quatro métricas em relação a ambos os métodos
+isolados e obteve a maior precisão e revocação. Após a reordenação, o
+NDCG@10 aumentou aproximadamente 0,006 e o MAP@10 aumentou aproximadamente
+0,006. A precisão e a revocação diminuíram. Esse resultado é compatível
+com a promoção de documentos relevantes a posições mais altas, acompanhada
+da saída de alguns relevantes das dez primeiras posições.
+
+Na Tabela~\ref{tab:metricas-rec}, a coluna \emph{Etapa} mostra o tempo médio
+medido para cada etapa isolada. A coluna \emph{Total} estima o tempo médio
+por consulta pela soma dos tempos das etapas necessárias, considerando
+execução sequencial e índices já carregados. As buscas lexical e
+semântica são independentes. O total do método híbrido inclui as duas
+buscas e a fusão, chegando a 11,662\,ms por consulta. A reordenação
+acrescenta 443,101\,ms a esse total, que passa a 454,763\,ms por consulta.
+
+O índice lexical continha 18.866 termos e 341.992 entradas
+nas listas invertidas. O preenchimento com pontuação zero foi aplicado
+a 127 consultas. A execução carregou o índice lexical e os vetores
+pré-calculados em 0,103\,s e 0,010\,s, respectivamente. Os metadados
+preservam os tempos de construção anteriores de 21,57\,s para o índice
+lexical e 120,17\,s para os vetores, medidos em outras execuções.
+
+O bi-encoder aplicou o limite de 256 tokens, com 2.864 documentos
+contabilizados como sujeitos a truncamento. Na reordenação, 1.488 dos
+16.150 pares consulta--documento ultrapassaram o limite de 512 tokens
+(9,2\%). A ordem das posições 51 a 100 do ranking híbrido foi preservada
+em todas as consultas de teste.
+
+\subsection{Comparação por consulta entre busca lexical e semântica}
+
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parskip}{4pt}
+Foram selecionadas as três consultas com maior vantagem em NDCG@10 para
+cada método. As tabelas mostram os cinco primeiros documentos de cada
+busca e seus graus de relevância. As pontuações do BM25 e do cosseno
+têm escalas distintas.
+
+{%
+\centering
+\small
+\captionof{table}{Consultas com maior vantagem do BM25.}
+\label{tab:vantagem-lexical}
+\begin{tabular}{@{}r lrr lrr@{}}
+\toprule
+\multicolumn{7}{@{}l}{\textbf{PLAIN-1473} (\textit{kohlrabi}), NDCG@10 lexical 1,0000 e semântico 0,0000} \\
+Pos. & Doc. BM25 & Score & Grau & Doc. semântico & Cosseno & Grau \\
+\midrule
+1 & MED-4455 & 12,2934 & 1 & MED-3947 & 0,2202 & 0 \\
+2 & MED-2726 & 0,0000 & 0 & MED-4660 & 0,2173 & 0 \\
+3 & MED-5199 & 0,0000 & 0 & MED-3441 & 0,2156 & 0 \\
+4 & MED-2513 & 0,0000 & 0 & MED-3447 & 0,2128 & 0 \\
+5 & MED-4748 & 0,0000 & 0 & MED-5024 & 0,2125 & 0 \\
+\midrule
+\multicolumn{7}{@{}l}{\textbf{PLAIN-2081} (\textit{shelf life}), NDCG@10 lexical 1,0000 e semântico 0,0000} \\
+Pos. & Doc. BM25 & Score & Grau & Doc. semântico & Cosseno & Grau \\
+\midrule
+1 & MED-4303 & 15,7190 & 1 & MED-1378 & 0,4154 & 0 \\
+2 & MED-1182 & 12,3885 & 0 & MED-2422 & 0,3863 & 0 \\
+3 & MED-2700 & 11,2944 & 0 & MED-2510 & 0,3856 & 0 \\
+4 & MED-2671 & 10,8950 & 0 & MED-4715 & 0,3818 & 0 \\
+5 & MED-2074 & 8,7134 & 0 & MED-1433 & 0,3732 & 0 \\
+\midrule
+\multicolumn{7}{@{}l}{\textbf{PLAIN-1288} (\textit{grapes}), NDCG@10 lexical 0,8900 e semântico 0,1299} \\
+Pos. & Doc. BM25 & Score & Grau & Doc. semântico & Cosseno & Grau \\
+\midrule
+1 & MED-2668 & 10,3741 & 1 & MED-3200 & 0,4264 & 0 \\
+2 & MED-2669 & 10,0774 & 1 & MED-3207 & 0,4250 & 0 \\
+3 & MED-2083 & 9,7973 & 0 & MED-398 & 0,4250 & 0 \\
+4 & MED-1538 & 9,7415 & 1 & MED-3210 & 0,4243 & 0 \\
+5 & MED-5065 & 9,4935 & 1 & MED-2083 & 0,4141 & 0 \\
+\bottomrule
+\end{tabular}
+\par}
+\medskip
+\textbf{PLAIN-1473.} O termo \textit{kohlrabi} ocorre duas vezes em
+\texttt{MED-4455}, o único documento do índice que contém o termo e o único
+julgado relevante. O BM25 o colocou em primeiro lugar. As outras posições
+lexicais exibidas foram preenchidas com documentos de pontuação zero.
+
+\textbf{PLAIN-2081.} Os dois termos de \textit{shelf life} aparecem quatro
+vezes em \texttt{MED-4303}, que trata da conservação de óleos culinários.
+O termo \textit{shelf} ocorre em apenas sete documentos no índice.
+A busca semântica recuperou textos sobre longevidade e risco ao longo da
+vida, outra interpretação de \textit{life}.
+
+\textbf{PLAIN-1288.} O radical \textit{grape} aparece nos cinco primeiros
+documentos do BM25, dos quais quatro são relevantes. Os quatro primeiros
+documentos da busca semântica tratam de \textit{grapefruit}, um alimento
+diferente, e nenhum deles recebeu julgamento positivo.
+\end{minipage}
+\par\nobreak
+% Deixa a folga no pé da página quando o segundo bloco não cabe.
+\vskip 0pt plus 1fil\relax
+\penalty0
+
+\medskip
+
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parskip}{4pt}
+{%
+\centering
+\small
+\captionof{table}{Consultas com maior vantagem da busca semântica.}
+\label{tab:vantagem-semantica}
+\begin{tabular}{@{}r lrr lrr@{}}
+\toprule
+\multicolumn{7}{@{}l}{\textbf{PLAIN-1537} (\textit{low-carb diets}), NDCG@10 lexical 0,0948 e semântico 0,6618} \\
+Pos. & Doc. BM25 & Score & Grau & Doc. semântico & Cosseno & Grau \\
+\midrule
+1 & MED-4880 & 22,3570 & 0 & MED-4515 & 0,6623 & 1 \\
+2 & MED-2943 & 6,3022 & 0 & MED-4880 & 0,6094 & 0 \\
+3 & MED-1714 & 6,1983 & 0 & MED-4514 & 0,5962 & 1 \\
+4 & MED-4515 & 6,0081 & 1 & MED-1616 & 0,5870 & 1 \\
+5 & MED-3874 & 5,9976 & 0 & MED-2586 & 0,5584 & 1 \\
+\midrule
+\multicolumn{7}{@{}l}{\textbf{PLAIN-924} (\textit{cocaine}), NDCG@10 lexical 0,2201 e semântico 0,7779} \\
+Pos. & Doc. BM25 & Score & Grau & Doc. semântico & Cosseno & Grau \\
+\midrule
+1 & MED-3044 & 17,4405 & 1 & MED-3044 & 0,4667 & 1 \\
+2 & MED-2726 & 0,0000 & 0 & MED-3054 & 0,3844 & 1 \\
+3 & MED-5199 & 0,0000 & 0 & MED-3055 & 0,3389 & 1 \\
+4 & MED-2513 & 0,0000 & 0 & MED-3052 & 0,3345 & 1 \\
+5 & MED-4748 & 0,0000 & 0 & MED-4790 & 0,3133 & 0 \\
+\midrule
+\multicolumn{7}{@{}l}{\textbf{PLAIN-882} (\textit{Chernobyl}), NDCG@10 lexical 0,3590 e semântico 0,8669} \\
+Pos. & Doc. BM25 & Score & Grau & Doc. semântico & Cosseno & Grau \\
+\midrule
+1 & MED-3622 & 12,0769 & 1 & MED-3632 & 0,4710 & 1 \\
+2 & MED-3632 & 7,4498 & 1 & MED-3636 & 0,4514 & 1 \\
+3 & MED-2726 & 0,0000 & 0 & MED-3630 & 0,4296 & 1 \\
+4 & MED-5199 & 0,0000 & 0 & MED-3622 & 0,3705 & 1 \\
+5 & MED-2513 & 0,0000 & 0 & MED-3635 & 0,3544 & 1 \\
+\bottomrule
+\end{tabular}
+\par}
+\medskip
+\textbf{PLAIN-1537.} O termo \textit{carb} ocorre em apenas um documento
+do índice. Esse documento, \texttt{MED-4880}, ficou em primeiro no BM25
+com grau zero. A busca semântica pôs em primeiro \texttt{MED-4515}, cujo
+título usa \textit{low-carbohydrate} e que ocupava a quarta posição no BM25.
+
+\textbf{PLAIN-924.} O BM25 encontrou apenas \texttt{MED-3044} com o radical
+\textit{cocain}. A busca semântica manteve esse documento em primeiro e
+recuperou, nas três posições seguintes, documentos relevantes sobre
+dependência ou mecanismos de recompensa que não contêm o radical.
+
+\textbf{PLAIN-882.} O BM25 encontrou apenas dois documentos com
+\textit{Chernobyl}. Os cinco primeiros resultados semânticos receberam
+julgamento positivo e incluem textos sobre radiação e Fukushima que não
+mencionam o termo.
+\end{minipage}
+\par\nobreak
+\vskip 0pt plus 1fil\relax
+\penalty0
+
+\subsection{Análise da reordenação}
+
+\noindent\begin{minipage}{\linewidth}
+A Tabela~\ref{tab:casos-rerank} mostra os dois maiores ganhos, um caso
+sem variação de NDCG@10 e a maior queda. Os documentos indicados ajudam
+a explicar as mudanças nas primeiras posições.
+
+{%
+\centering
+\small
+\captionof{table}{NDCG@10 nos casos de reranking. As setas indicam a posição antes e depois.
+O grau de relevância aparece entre parênteses após o identificador.}
+\label{tab:casos-rerank}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Consulta & Antes & Depois & Documentos e posições \\
+\midrule
+PLAIN-1320 & 0,0000 & 0,5617 & MED-2760 (1): \(11\to1\), MED-2758 (1): \(13\to3\) \\
+PLAIN-33   & 0,0000 & 0,5223 & MED-2721 (2): \(22\to1\), MED-2723 (2): \(11\to3\) \\
+PLAIN-1008 & 0,0000 & 0,0000 & MED-3937 (0): \(39\to2\), MED-901 (0): \(2\to8\) \\
+PLAIN-2540 & 0,6089 & 0,3031 & MED-1205 (0): \(36\to1\), MED-1890 (2): \(3\to15\) \\
+\bottomrule
+\end{tabular}
+\par}
+\end{minipage}
+\par\medskip
+
+\begin{itemize}
+\item \texttt{PLAIN-1320}, \textit{Harvard Physicians' Study II}.
+  \texttt{MED-2760} e \texttt{MED-2758} citam no título o ensaio
+  \textit{Physicians' Health Study II}. Ambos entraram nas três primeiras
+  posições, enquanto o primeiro resultado híbrido, \texttt{MED-2112},
+  trata de educação médica e caiu para a 27ª posição.
+\item \texttt{PLAIN-33}, \textit{What's Driving America's Obesity Problem?}.
+  \texttt{MED-2721} aborda o papel da oferta de alimentos na epidemia de
+  obesidade nos Estados Unidos e passou à primeira posição.
+  \texttt{MED-2723}, sobre tendências de obesidade nos Estados Unidos e
+  no Reino Unido, passou à terceira. A relação entre o recorte geográfico
+  e o tema está explícita nos títulos.
+\item \texttt{PLAIN-1008}, \textit{deafness}.
+  A ordem mudou, mas nenhum documento com julgamento positivo apareceu
+  nas listas de cem posições antes ou depois da reordenação.
+  \texttt{MED-3937} trata de traumatismos em histórias em quadrinhos e
+  \texttt{MED-901} aborda otite recorrente. Ambos têm grau zero.
+  A reordenação dos candidatos disponíveis manteve o NDCG@10 em zero.
+\item \texttt{PLAIN-2540}, \textit{Does Cholesterol Size Matter?}.
+  O cross-encoder colocou em primeiro um texto sobre cristais de
+  colesterol, \texttt{MED-1205} (grau zero), e deslocou
+  \texttt{MED-1890} (grau 2) para fora dos dez primeiros. Ao mesmo
+  tempo, \texttt{MED-1886}, sobre perfis de partículas de lipoproteínas,
+  subiu de quarto para segundo. A pergunta permite interpretações
+  diferentes de \textit{size}. Os movimentos sugerem que a reordenação
+  favoreceu algumas associações com o termo \textit{cholesterol} que
+  não tiveram a mesma relevância nos julgamentos.
+\end{itemize}
+
+\subsection{Tolerância a erros ortográficos}
+
+A amostra contém três inserções, três remoções, duas substituições e duas
+trocas de caracteres. As dez consultas têm NDCG@10 original positivo,
+e os termos introduzidos pelos erros estão fora do vocabulário do
+corretor. A Tabela~\ref{tab:erros} apresenta os valores por consulta. A
+recuperação da perda é calculada quando o erro reduz o NDCG@10.
+
+\noindent\begin{minipage}{\linewidth}
+\centering
+\small
+\captionof{table}{NDCG@10 lexical por condição e fração da perda recuperada. O traço indica ausência de perda.}
+\label{tab:erros}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Consulta & Tipo & Original & Com erro & Corrigida & Recuperação \\
+\midrule
+PLAIN-165 & Inserção & 0,5193 & 0,0000 & 0,5193 & 100\% \\
+PLAIN-924 & Remoção & 0,2201 & 0,0000 & 0,2201 & 100\% \\
+PLAIN-2590 & Substituição & 0,0657 & 0,0000 & 0,0657 & 100\% \\
+PLAIN-2430 & Troca & 0,4726 & 0,4749 & 0,4726 & -- \\
+PLAIN-806 & Inserção & 0,8580 & 0,6937 & 0,8580 & 100\% \\
+PLAIN-371 & Remoção & 0,1637 & 0,0000 & 0,1637 & 100\% \\
+PLAIN-2061 & Substituição & 0,9306 & 0,0000 & 0,9306 & 100\% \\
+PLAIN-902 & Troca & 0,6367 & 0,0000 & 0,6367 & 100\% \\
+PLAIN-383 & Inserção & 0,1461 & 0,0000 & 0,1461 & 100\% \\
+PLAIN-2291 & Remoção & 0,3392 & 0,3392 & 0,3392 & -- \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\par\medskip
+
+No BM25, o NDCG@10 médio passou de 0,43519 na consulta original para
+0,15077 com erro e retornou a 0,43519 após a correção. Oito consultas
+perderam desempenho e recuperaram integralmente a perda observada.
+Em \texttt{PLAIN-165}, \textit{alcxohol} foi corrigido para
+\textit{alcohol}, com Jaccard de 0,7 e distância de edição igual a 1.
+Em \texttt{PLAIN-371}, o corretor restaurou \textit{avocado}, mas
+também mudou \textit{scary} para \textit{scars}. A nota lexical retornou
+ao valor original nesse caso, embora a consulta corrigida contenha
+uma alteração adicional.
+
+Na análise complementar, o NDCG@10 semântico médio foi de 0,43299,
+0,24187 e 0,42850 nas três condições. A redução média causada pelos
+erros foi menor que no BM25 neste conjunto de consultas. Em
+\texttt{PLAIN-371}, a correção recuperou a nota lexical, enquanto a nota
+semântica passou de zero para 0,14704 e ficou abaixo de 0,16370, o
+valor original. A amostra de dez consultas e os erros introduzidos
+limitam a generalização dessas observações.
+
+\subsection{Contexto recuperado para a geração}
+
+A Tabela~\ref{tab:contexto-rag} traz as métricas dos cinco documentos
+selecionados para cada pergunta pela recuperação oficial. Os resultados
+avaliam o contexto antes da geração.
+
+\noindent\begin{minipage}{\linewidth}
+\centering
+\small
+\captionof{table}{Relevância entre os cinco documentos selecionados por pergunta.}
+\label{tab:contexto-rag}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Consulta & P@5 & R@5 & Hit@5 \\
+\midrule
+PLAIN-68 & 0,20 & 0,01818 & 1 \\
+PLAIN-2450 & 0,40 & 0,05263 & 1 \\
+PLAIN-153 & 1,00 & 0,10638 & 1 \\
+PLAIN-2850 & 0,00 & 0,00000 & 0 \\
+PLAIN-2750 & 0,80 & 0,06780 & 1 \\
+PLAIN-270 & 0,40 & 0,03846 & 1 \\
+PLAIN-2470 & 0,60 & 0,04110 & 1 \\
+PLAIN-2430 & 0,60 & 0,06522 & 1 \\
+PLAIN-238 & 0,20 & 0,01852 & 1 \\
+PLAIN-3342 & 0,40 & 0,66667 & 1 \\
+\midrule
+\textbf{Média} & 0,46 & 0,10750 & 0,90 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\par\medskip
+
+Em nove perguntas, pelo menos um documento relevante foi recuperado.
+A revocação deve ser interpretada à luz do limite de cinco documentos
+por pergunta. Em \texttt{PLAIN-2850}, nenhum dos cinco selecionados
+recebeu julgamento positivo. Essa pergunta é um ponto de partida para
+inspecionar a seleção do contexto, e a análise da resposta depende da
+execução da LLM.
+
+Os contextos da rodada de referência foram comparados aos contextos
+selecionados pela recuperação oficial. Houve mudança em
+\texttt{PLAIN-270} e \texttt{PLAIN-238}. Em \texttt{PLAIN-270},
+\texttt{MED-4439} substituiu \texttt{MED-1642} na quinta posição, e o
+número de documentos relevantes no contexto aumentou de um para dois.
+Em \texttt{PLAIN-238}, a entrada de \texttt{MED-4653} alterou o conjunto,
+com um relevante em ambas as rodadas.
+
+\subsection{Respostas A/B e análise ponta a ponta}
+
+\textbf{Pendente.} Ainda estão previstas a geração das 20 respostas com
+os rankings oficiais, a avaliação humana independente e a consolidação
+das notas, justificativas, médias por condição e concordância. Também
+serão registrados a revisão dos pesos da LLM, o ambiente efetivamente
+utilizado e os tempos de geração.
+
+Os três casos de melhora, pouca diferença e ausência de benefício ou
+piora serão selecionados após a avaliação humana. A análise seguirá
+as posições no BM25, na busca semântica, na fusão e na reordenação, os
+documentos incluídos no contexto e as afirmações da resposta. Isso
+permite distinguir falhas de recuperação e seleção de falhas na geração.
+
+\section{Considerações finais}
+
+Nas 323 consultas de teste, a fusão melhorou as quatro métricas em
+relação às buscas isoladas. A reordenação obteve o maior NDCG@10.
+O ganho médio sobre o híbrido foi pequeno e o custo por consulta
+aumentou substancialmente.
+A correção recuperou a perda lexical nos oito casos em que o erro
+reduziu a nota. Esses achados se referem ao NFCorpus e às condições
+do experimento.
+
+\textbf{Pendente.} A síntese sobre a contribuição do RAG para a qualidade
+e a verificabilidade das respostas será completada após a avaliação
+humana.
+
+\section{Uso de ferramentas de IA}
+
+Sistemas de harness (Codex e Antigravity) foram utilizados como apoio à programação e à depuração,
+à elaboração de testes, à organização e conferência das evidências
+experimentais e à redação e revisão deste relatório. Os modelos de
+embeddings, de reordenação e de geração fazem parte da metodologia
+experimental. A interpretação e a validação das conclusões são de
+responsabilidade dos integrantes.
 
 \begin{thebibliography}{}
 \bibitem[Boteva et al. 2016]{boteva2016}
