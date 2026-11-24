@@ -1,0 +1,1610 @@
+{
+  "hybrid_global": {
+    "Precision@10": 0.25727554179566564,
+    "Recall@10": 0.17239747806324698,
+    "MAP@10": 0.13347810780822147,
+    "NDCG@10": 0.35139995288642667,
+    "Hit@10": 0.7368421052631579
+  },
+  "reranking_global": {
+    "Precision@10": 0.25232198142414863,
+    "Recall@10": 0.16827743024323238,
+    "MAP@10": 0.13948114611630721,
+    "NDCG@10": 0.3573837881828671,
+    "Hit@10": 0.7306501547987616
+  },
+  "largest_gains": [
+    {
+      "query_id": "PLAIN-1320",
+      "query_text": "Harvard Physicians’ Study II",
+      "ndcg_before": 0.0,
+      "ndcg_after": 0.5616927747727312,
+      "ndcg_delta": 0.5616927747727312,
+      "top_before": [
+        {
+          "doc_id": "MED-2112",
+          "title": "How evidence-based medicine biases physicians against nutrition.",
+          "text_snippet": "Medical students in the United States are taught little about nutrition and dietetics. Worse yet, their training biases them against the studies that show the power of dietary approaches to managing disease. The current approach to evidence-based medicine encourages physicians to...",
+          "rank_before": 1,
+          "score_before": 0.13438735177865613,
+          "rank_after": 27,
+          "score_after": -9.774547576904297,
+          "rank_gain": -26,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1053",
+          "title": "Physician disclosure of healthy personal behaviors improves credibility and ability to motivate.",
+          "text_snippet": "CONTEXT: While some studies have shown that physicians with healthy personal habits are especially likely to discuss prevention with their patients, to our knowledge no one has published information testing whether physician credibility and patient motivation to adopt healthier h...",
+          "rank_before": 2,
+          "score_before": 0.12698412698412698,
+          "rank_after": 15,
+          "score_after": -8.551700592041016,
+          "rank_gain": -13,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1097",
+          "title": "Moses Maimonides: medieval physician and scholar.",
+          "text_snippet": "Moses Maimonides (1135-1204), physician and philosopher, was the greatest Jewish thinker of the Middle Ages. Faced with a life of persecution, exile, and tragedy, Maimonides overcame obstacles to become the leading physician in his era, a clinician whose skills were sought across...",
+          "rank_before": 3,
+          "score_before": 0.11858974358974358,
+          "rank_after": 16,
+          "score_after": -8.663178443908691,
+          "rank_gain": -13,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1986",
+          "title": "Long-term morbidity and mortality of overweight adolescents. A follow-up of the Harvard Growth Study of 1922 to 1935.",
+          "text_snippet": "BACKGROUND: Overweight in adults is associated with increased morbidity and mortality. In contrast, the long-term effect of overweight in adolescence on morbidity and mortality is not known. METHODS: We studied the relation between overweight and morbidity and mortality in 508 le...",
+          "rank_before": 4,
+          "score_before": 0.11471861471861472,
+          "rank_after": 4,
+          "score_after": -4.050281047821045,
+          "rank_gain": 0,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-761",
+          "title": "The counseling practices of internists.",
+          "text_snippet": "OBJECTIVES: To determine the counseling practices of a group of internists in the areas of smoking, exercise, and alcohol and seat belt use, and to determine the associations among physicians' personal health habits and their counseling practices. DESIGN: A random stratified samp...",
+          "rank_before": 5,
+          "score_before": 0.10416666666666666,
+          "rank_after": 8,
+          "score_after": -7.343164443969727,
+          "rank_gain": -3,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1543",
+          "title": "Patient-related diet and exercise counseling: do providers' own lifestyle habits matter?",
+          "text_snippet": "The goal of this research was to evaluate the personal health behaviors of physicians in training and attending physicians in association with patient-related lifestyle counseling. Physicians at a major teaching hospital were surveyed regarding their personal lifestyle behavior, ...",
+          "rank_before": 6,
+          "score_before": 0.09953703703703703,
+          "rank_after": 19,
+          "score_after": -9.051448822021484,
+          "rank_gain": -13,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4929",
+          "title": "Vitamins E and C in the Prevention of Cardiovascular Disease in Men: The Physicians’ Health Study II Randomized Trial",
+          "text_snippet": "Context Basic and observational studies suggest vitamins E or C may reduce risk of cardiovascular disease (CVD). However, few long-term trials have evaluated men at initially low risk of CVD, and no previous trial in men has examined vitamin C alone in the prevention of CVD. Obje...",
+          "rank_before": 7,
+          "score_before": 0.09741784037558684,
+          "rank_after": 2,
+          "score_after": 0.17774617671966553,
+          "rank_gain": 5,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1549",
+          "title": "Physicians' health habits are associated with lifestyle counseling for hypertensive patients.",
+          "text_snippet": "BACKGROUND: The Seventh Report of the Joint National Committee on Prevention, Detection, Evaluation, and Treatment of High Blood Pressure (JNC VII) recommended lifestyle interventions, either with or without pharmacologic treatment, for all patients with high blood pressure. The ...",
+          "rank_before": 8,
+          "score_before": 0.09307359307359307,
+          "rank_after": 14,
+          "score_after": -7.908581733703613,
+          "rank_gain": -6,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-728",
+          "title": "Barriers to providing nutrition counseling cited by physicians: a survey of primary care practitioners.",
+          "text_snippet": "In a 1995 pivotal study, Kushner described the attitudes, practice behaviors, and barriers to the delivery of nutrition counseling by primary care physicians. This article recognized nutrition and dietary counseling as key components in the delivery of preventive services by prim...",
+          "rank_before": 9,
+          "score_before": 0.09166666666666667,
+          "rank_after": 11,
+          "score_after": -7.609072685241699,
+          "rank_gain": -2,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-5346",
+          "title": "Resident duty-hour restrictions-who are we protecting?: AOA critical issues.",
+          "text_snippet": "As advocated by Nasca, our teaching programs must nurture professionalism and the effacement of self interest that is the core of the practice of medicine and the profession. The evidence to date suggests that work-hour restrictions based solely on clock-defined time limits disco...",
+          "rank_before": 10,
+          "score_before": 0.09047619047619047,
+          "rank_after": 46,
+          "score_after": -10.939310073852539,
+          "rank_gain": -36,
+          "relevance": 0
+        }
+      ],
+      "top_after": [
+        {
+          "doc_id": "MED-2760",
+          "title": "Multivitamins in the Prevention of Cancer in Men: The Physicians’ Health Study II Randomized Controlled Trial",
+          "text_snippet": "Context Multivitamin preparations are the most common dietary supplement, taken by at least one-third of all US adults. Limited observational studies have not provided evidence regarding associations of multivitamin use with total and site-specific cancer incidence or mortality. ...",
+          "rank_after": 1,
+          "score_after": 0.7552090287208557,
+          "rank_before": 11,
+          "score_before": 0.08882783882783883,
+          "rank_gain": 10,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-4929",
+          "title": "Vitamins E and C in the Prevention of Cardiovascular Disease in Men: The Physicians’ Health Study II Randomized Trial",
+          "text_snippet": "Context Basic and observational studies suggest vitamins E or C may reduce risk of cardiovascular disease (CVD). However, few long-term trials have evaluated men at initially low risk of CVD, and no previous trial in men has examined vitamin C alone in the prevention of CVD. Obje...",
+          "rank_after": 2,
+          "score_after": 0.17774617671966553,
+          "rank_before": 7,
+          "score_before": 0.09741784037558684,
+          "rank_gain": 5,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2758",
+          "title": "Multivitamins in the Prevention of Cardiovascular Disease in Men: The Physicians' Health Study II Randomized Controlled Trial",
+          "text_snippet": "Context Though multivitamins aim to prevent vitamin and mineral deficiency, there is a perception that multivitamins may prevent cardiovascular disease (CVD). Observational studies examining regular multivitamin use have been inconsistently associated with CVD, with no long-term ...",
+          "rank_after": 3,
+          "score_after": -2.012955665588379,
+          "rank_before": 13,
+          "score_before": 0.0875,
+          "rank_gain": 10,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-1986",
+          "title": "Long-term morbidity and mortality of overweight adolescents. A follow-up of the Harvard Growth Study of 1922 to 1935.",
+          "text_snippet": "BACKGROUND: Overweight in adults is associated with increased morbidity and mortality. In contrast, the long-term effect of overweight in adolescence on morbidity and mortality is not known. METHODS: We studied the relation between overweight and morbidity and mortality in 508 le...",
+          "rank_after": 4,
+          "score_after": -4.050281047821045,
+          "rank_before": 4,
+          "score_before": 0.11471861471861472,
+          "rank_gain": 0,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4398",
+          "title": "High school dietary dairy intake and teenage acne.",
+          "text_snippet": "BACKGROUND: Previous studies suggest possible associations between Western diet and acne. We examined data from the Nurses Health Study II to retrospectively evaluate whether intakes of dairy foods during high school were associated with physician-diagnosed severe teenage acne. M...",
+          "rank_after": 5,
+          "score_after": -4.215021133422852,
+          "rank_before": 18,
+          "score_before": 0.07142857142857142,
+          "rank_gain": 13,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2761",
+          "title": "Who uses multivitamins? A cross-sectional study in the Physicians' Health Study.",
+          "text_snippet": "PURPOSE: The aim of this study was to examine the prevalence of self-reported multivitamin use in the Physicians' Health Study (PHS) cohort and its association with various lifestyle, clinical, and dietary factors to improve our understanding of who tends to use multivitamins. ME...",
+          "rank_after": 6,
+          "score_after": -5.364429473876953,
+          "rank_before": 20,
+          "score_before": 0.06946182728410513,
+          "rank_gain": 14,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-3932",
+          "title": "Caffeine and risk of Parkinson disease in a large cohort of men and women",
+          "text_snippet": "Background Caffeine consumption has been associated with a reduced risk of Parkinson disease. The association is strong and consistent in men, but uncertain in women, possibly because of an interaction with hormone replacement therapy. We sought to confirm these findings using da...",
+          "rank_after": 7,
+          "score_after": -6.23493766784668,
+          "rank_before": 23,
+          "score_before": 0.0625,
+          "rank_gain": 16,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-761",
+          "title": "The counseling practices of internists.",
+          "text_snippet": "OBJECTIVES: To determine the counseling practices of a group of internists in the areas of smoking, exercise, and alcohol and seat belt use, and to determine the associations among physicians' personal health habits and their counseling practices. DESIGN: A random stratified samp...",
+          "rank_after": 8,
+          "score_after": -7.343164443969727,
+          "rank_before": 5,
+          "score_before": 0.10416666666666666,
+          "rank_gain": -3,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1622",
+          "title": "Coffee, caffeine, and risk of completed suicide: results from 3 prospective cohorts of American adults",
+          "text_snippet": "Objective To evaluate the association between coffee and caffeine consumption and suicide risk in three large-scale cohorts of U.S. men and women. Methods We accessed data of 43,599 men enrolled in the Health Professionals Follow-up Study (HPFS, 1988–2008), 73,820 women in the Nu...",
+          "rank_after": 9,
+          "score_after": -7.523323059082031,
+          "rank_before": 34,
+          "score_before": 0.034482758620689655,
+          "rank_gain": 25,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4228",
+          "title": "Circulating insulin-like growth factor (IGF) peptides and prostate cancer risk: a systematic review and meta-analysis",
+          "text_snippet": "Insulin-like growth factors (IGF-I, IGF-II) and their binding proteins (IGFBP-1-6) play a key role in cell proliferation, differentiation and apoptosis, suggesting possible involvement in carcinogenesis. Several epidemiological studies show associations of IGFs with prostate canc...",
+          "rank_after": 10,
+          "score_after": -7.5928473472595215,
+          "rank_before": 49,
+          "score_before": 0.027777777777777776,
+          "rank_gain": 39,
+          "relevance": 0
+        }
+      ],
+      "moved_docs": [
+        {
+          "doc_id": "MED-4228",
+          "rank_before": 49,
+          "rank_after": 10,
+          "rank_gain": 39,
+          "score_before": 0.027777777777777776,
+          "score_after": -7.5928473472595215,
+          "relevance": 0,
+          "title": "Circulating insulin-like growth factor (IGF) peptides and prostate cancer risk: a systematic review and meta-analysis",
+          "text_snippet": "Insulin-like growth factors (IGF-I, IGF-II) and their binding proteins (IGFBP-1-6) play a key role in cell proliferation, differentiation and apoptosis, suggesting possible involvement in carcinogenesis. Several epidemiological studies show associations of IGFs with prostate canc..."
+        },
+        {
+          "doc_id": "MED-5346",
+          "rank_before": 10,
+          "rank_after": 46,
+          "rank_gain": -36,
+          "score_before": 0.09047619047619047,
+          "score_after": -10.939310073852539,
+          "relevance": 0,
+          "title": "Resident duty-hour restrictions-who are we protecting?: AOA critical issues.",
+          "text_snippet": "As advocated by Nasca, our teaching programs must nurture professionalism and the effacement of self interest that is the core of the practice of medicine and the profession. The evidence to date suggests that work-hour restrictions based solely on clock-defined time limits disco..."
+        },
+        {
+          "doc_id": "MED-2112",
+          "rank_before": 1,
+          "rank_after": 27,
+          "rank_gain": -26,
+          "score_before": 0.13438735177865613,
+          "score_after": -9.774547576904297,
+          "relevance": 0,
+          "title": "How evidence-based medicine biases physicians against nutrition.",
+          "text_snippet": "Medical students in the United States are taught little about nutrition and dietetics. Worse yet, their training biases them against the studies that show the power of dietary approaches to managing disease. The current approach to evidence-based medicine encourages physicians to..."
+        },
+        {
+          "doc_id": "MED-5256",
+          "rank_before": 38,
+          "rank_after": 12,
+          "rank_gain": 26,
+          "score_before": 0.03225806451612903,
+          "score_after": -7.861943244934082,
+          "relevance": 0,
+          "title": "No Association of Coffee Consumption with Gastric Ulcer, Duodenal Ulcer, Reflux Esophagitis, and Non-Erosive Reflux Disease: A Cross-Sectional Study of 8,013 Healthy Subjects in Japan",
+          "text_snippet": "Probably due to caffeine-induced gastric acid secretion, negative effects of coffee upon various upper-gastrointestinal diseases have been precariously accepted, despite the inadequate epidemiological evidence. Our aim is to evaluate the effect of coffee consumption on four major..."
+        },
+        {
+          "doc_id": "MED-1051",
+          "rank_before": 14,
+          "rank_after": 39,
+          "rank_gain": -25,
+          "score_before": 0.08125,
+          "score_after": -10.636415481567383,
+          "relevance": 0,
+          "title": "How does physician advice influence patient behavior? Evidence for a priming effect.",
+          "text_snippet": "OBJECTIVE: To explore a potential \"priming effect\" of physician advice on patient responses to behavioral change interventions. DESIGN: Randomized controlled trial with a 3-month follow-up. SETTING: Four community-based group family medicine clinics in southeastern Missouri. PART..."
+        },
+        {
+          "doc_id": "MED-1622",
+          "rank_before": 34,
+          "rank_after": 9,
+          "rank_gain": 25,
+          "score_before": 0.034482758620689655,
+          "score_after": -7.523323059082031,
+          "relevance": 0,
+          "title": "Coffee, caffeine, and risk of completed suicide: results from 3 prospective cohorts of American adults",
+          "text_snippet": "Objective To evaluate the association between coffee and caffeine consumption and suicide risk in three large-scale cohorts of U.S. men and women. Methods We accessed data of 43,599 men enrolled in the Health Professionals Follow-up Study (HPFS, 1988–2008), 73,820 women in the Nu..."
+        },
+        {
+          "doc_id": "MED-749",
+          "rank_before": 16,
+          "rank_after": 33,
+          "rank_gain": -17,
+          "score_before": 0.07702182284980744,
+          "score_after": -10.38478946685791,
+          "relevance": 0,
+          "title": "Current perception of nutrition education in U.S. medical schools.",
+          "text_snippet": "Historically, physicians have perceived the quality of nutrition training during medical school as inadequate. A literature review suggests that this perception has not significantly changed since the 1950s. Many schools have worked to create clinical nutrition curricula for use ..."
+        },
+        {
+          "doc_id": "MED-3932",
+          "rank_before": 23,
+          "rank_after": 7,
+          "rank_gain": 16,
+          "score_before": 0.0625,
+          "score_after": -6.23493766784668,
+          "relevance": 0,
+          "title": "Caffeine and risk of Parkinson disease in a large cohort of men and women",
+          "text_snippet": "Background Caffeine consumption has been associated with a reduced risk of Parkinson disease. The association is strong and consistent in men, but uncertain in women, possibly because of an interaction with hormone replacement therapy. We sought to confirm these findings using da..."
+        },
+        {
+          "doc_id": "MED-2761",
+          "rank_before": 20,
+          "rank_after": 6,
+          "rank_gain": 14,
+          "score_before": 0.06946182728410513,
+          "score_after": -5.364429473876953,
+          "relevance": 1,
+          "title": "Who uses multivitamins? A cross-sectional study in the Physicians' Health Study.",
+          "text_snippet": "PURPOSE: The aim of this study was to examine the prevalence of self-reported multivitamin use in the Physicians' Health Study (PHS) cohort and its association with various lifestyle, clinical, and dietary factors to improve our understanding of who tends to use multivitamins. ME..."
+        },
+        {
+          "doc_id": "MED-1053",
+          "rank_before": 2,
+          "rank_after": 15,
+          "rank_gain": -13,
+          "score_before": 0.12698412698412698,
+          "score_after": -8.551700592041016,
+          "relevance": 0,
+          "title": "Physician disclosure of healthy personal behaviors improves credibility and ability to motivate.",
+          "text_snippet": "CONTEXT: While some studies have shown that physicians with healthy personal habits are especially likely to discuss prevention with their patients, to our knowledge no one has published information testing whether physician credibility and patient motivation to adopt healthier h..."
+        },
+        {
+          "doc_id": "MED-1543",
+          "rank_before": 6,
+          "rank_after": 19,
+          "rank_gain": -13,
+          "score_before": 0.09953703703703703,
+          "score_after": -9.051448822021484,
+          "relevance": 0,
+          "title": "Patient-related diet and exercise counseling: do providers' own lifestyle habits matter?",
+          "text_snippet": "The goal of this research was to evaluate the personal health behaviors of physicians in training and attending physicians in association with patient-related lifestyle counseling. Physicians at a major teaching hospital were surveyed regarding their personal lifestyle behavior, ..."
+        },
+        {
+          "doc_id": "MED-4398",
+          "rank_before": 18,
+          "rank_after": 5,
+          "rank_gain": 13,
+          "score_before": 0.07142857142857142,
+          "score_after": -4.215021133422852,
+          "relevance": 0,
+          "title": "High school dietary dairy intake and teenage acne.",
+          "text_snippet": "BACKGROUND: Previous studies suggest possible associations between Western diet and acne. We examined data from the Nurses Health Study II to retrospectively evaluate whether intakes of dairy foods during high school were associated with physician-diagnosed severe teenage acne. M..."
+        },
+        {
+          "doc_id": "MED-1097",
+          "rank_before": 3,
+          "rank_after": 16,
+          "rank_gain": -13,
+          "score_before": 0.11858974358974358,
+          "score_after": -8.663178443908691,
+          "relevance": 0,
+          "title": "Moses Maimonides: medieval physician and scholar.",
+          "text_snippet": "Moses Maimonides (1135-1204), physician and philosopher, was the greatest Jewish thinker of the Middle Ages. Faced with a life of persecution, exile, and tragedy, Maimonides overcame obstacles to become the leading physician in his era, a clinician whose skills were sought across..."
+        },
+        {
+          "doc_id": "MED-1498",
+          "rank_before": 32,
+          "rank_after": 20,
+          "rank_gain": 12,
+          "score_before": 0.03617992177314211,
+          "score_after": -9.060826301574707,
+          "relevance": 0,
+          "title": "A modest proposal for a longitudinal study of dementia prevention (with apologies to Jonathan Swift, 1729).",
+          "text_snippet": "Many studies have documented the role of risk and protective factors for late life dementing illnesses, particularly Alzheimer's disease. A \"Systematic Review\" from the US Agency for Healthcare Research and Quality and the National Institute on Aging concluded that because the ov..."
+        },
+        {
+          "doc_id": "MED-2760",
+          "rank_before": 11,
+          "rank_after": 1,
+          "rank_gain": 10,
+          "score_before": 0.08882783882783883,
+          "score_after": 0.7552090287208557,
+          "relevance": 1,
+          "title": "Multivitamins in the Prevention of Cancer in Men: The Physicians’ Health Study II Randomized Controlled Trial",
+          "text_snippet": "Context Multivitamin preparations are the most common dietary supplement, taken by at least one-third of all US adults. Limited observational studies have not provided evidence regarding associations of multivitamin use with total and site-specific cancer incidence or mortality. ..."
+        }
+      ]
+    },
+    {
+      "query_id": "PLAIN-33",
+      "query_text": "What’s Driving America’s Obesity Problem?",
+      "ndcg_before": 0.0,
+      "ndcg_after": 0.5222965122621971,
+      "ndcg_delta": 0.5222965122621971,
+      "top_before": [
+        {
+          "doc_id": "MED-1056",
+          "title": "NOW AND THEN: The Global Nutrition Transition: The Pandemic of Obesity in Developing Countries",
+          "text_snippet": "Decades ago discussion of an impending global pandemic of obesity was thought of as heresy. Diets in the 1970’s began to shift toward increased reliance upon processed foods, increased away from home intake and greater use of edible oils and sugar-sweetened beverages. Reduced phy...",
+          "rank_before": 1,
+          "score_before": 0.12222222222222222,
+          "rank_after": 10,
+          "score_after": -5.806315898895264,
+          "rank_gain": -9,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4100",
+          "title": "The deadly quartet. Upper-body obesity, glucose intolerance, hypertriglyceridemia, and hypertension.",
+          "text_snippet": "The contribution of obesity to cardiovascular risk has not been adequately appreciated because of a failure to recognize the involvement of upper-body predominance of body weight with hypertension, diabetes, and hypertriglyceridemia even in the absence of significant overall obes...",
+          "rank_before": 2,
+          "score_before": 0.09821428571428571,
+          "rank_after": 11,
+          "score_after": -6.062142372131348,
+          "rank_gain": -9,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1448",
+          "title": "The costs of obesity in the workplace.",
+          "text_snippet": "OBJECTIVE: To quantify per capita and aggregate medical expenditures and the value of lost productivity, including absenteeism and presenteeism, because of overweight, and grade I, II, and III obesity among U.S. employees. METHODS: Cross-sectional analysis of the 2006 Medical Exp...",
+          "rank_before": 3,
+          "score_before": 0.09698275862068965,
+          "rank_after": 14,
+          "score_after": -6.900984764099121,
+          "rank_gain": -11,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1674",
+          "title": "Fructose: It’s “Alcohol Without the Buzz”",
+          "text_snippet": "What do the Atkins Diet and the traditional Japanese diet have in common? The Atkins Diet is low in carbohydrate and usually high in fat; the Japanese diet is high in carbohydrate and usually low in fat. Yet both work to promote weight loss. One commonality of both diets is that ...",
+          "rank_before": 4,
+          "score_before": 0.09090909090909091,
+          "rank_after": 24,
+          "score_after": -8.75141716003418,
+          "rank_gain": -20,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-5006",
+          "title": "Will all Americans become overweight or obese? estimating the progression and cost of the US obesity epidemic.",
+          "text_snippet": "We projected future prevalence and BMI distribution based on national survey data (National Health and Nutrition Examination Study) collected between 1970s and 2004. Future obesity-related health-care costs for adults were estimated using projected prevalence, Census population p...",
+          "rank_before": 5,
+          "score_before": 0.09090909090909091,
+          "rank_after": 4,
+          "score_after": -3.161569595336914,
+          "rank_gain": 1,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1650",
+          "title": "Tobacco and obesity epidemics: not so different after all?",
+          "text_snippet": "Short abstract Campaigns to promote healthy eating are undermined by the ubiquity of processed, energy dense foods. A global strategy is now needed to tackle the rising prevalence of obesity",
+          "rank_before": 6,
+          "score_before": 0.08333333333333333,
+          "rank_after": 18,
+          "score_after": -7.277228832244873,
+          "rank_gain": -12,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-3057",
+          "title": "Brain PET imaging in obesity and food addiction: current evidence and hypothesis.",
+          "text_snippet": "The ongoing epidemics of obesity is one main health concern of the present time. Overeating in some obese individuals shares similarities with the loss of control and compulsive behavior observed in drug-addicted subjects, suggesting that obesity may involve food addiction. Here,...",
+          "rank_before": 7,
+          "score_before": 0.08333333333333333,
+          "rank_after": 20,
+          "score_after": -7.649012565612793,
+          "rank_gain": -13,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-4202",
+          "title": "Non-nutrient causes of low-grade, systemic inflammation: support for a 'canary in the mineshaft' view of obesity in chronic disease.",
+          "text_snippet": "A form of low-grade, systemic inflammation ('metaflammation') is linked to many types of chronic disease. Initially, this was thought to be causally related to weight gain and obesity and a possible explanation of the link between obesity and disease. However, several lifestyle-r...",
+          "rank_before": 8,
+          "score_before": 0.08249158249158249,
+          "rank_after": 16,
+          "score_after": -7.156015396118164,
+          "rank_gain": -8,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2162",
+          "title": "Overweight, obesity, and mortality from cancer in a prospectively studied cohort of U.S. adults.",
+          "text_snippet": "BACKGROUND: The influence of excess body weight on the risk of death from cancer has not been fully characterized. METHODS: In a prospectively studied population of more than 900,000 U.S. adults (404,576 men and 495,477 women) who were free of cancer at enrollment in 1982, there ...",
+          "rank_before": 9,
+          "score_before": 0.07796101949025487,
+          "rank_after": 12,
+          "score_after": -6.30962610244751,
+          "rank_gain": -3,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1878",
+          "title": "Crossing the Quality Chasm: A New Health System for the 21st Century",
+          "text_snippet": "Excerpt Second in a series of publications from the Institute of Medicine's Quality of Health Care in America project Today's health care providers have more research findings and more technology available to them than ever before. Yet recent reports have raised serious doubts ab...",
+          "rank_before": 10,
+          "score_before": 0.07692307692307693,
+          "rank_after": 46,
+          "score_after": -11.190897941589355,
+          "rank_gain": -36,
+          "relevance": 0
+        }
+      ],
+      "top_after": [
+        {
+          "doc_id": "MED-2721",
+          "title": "Increased food energy supply is more than sufficient to explain the US epidemic of obesity.",
+          "text_snippet": "BACKGROUND: The major drivers of the obesity epidemic are much debated and have considerable policy importance for the population-wide prevention of obesity. OBJECTIVE: The objective was to determine the relative contributions of increased energy intake and reduced physical activ...",
+          "rank_after": 1,
+          "score_after": -1.5702084302902222,
+          "rank_before": 22,
+          "score_before": 0.05263157894736842,
+          "rank_gain": 21,
+          "relevance": 2
+        },
+        {
+          "doc_id": "MED-2717",
+          "title": "The role of exercise in the treatment of obesity.",
+          "text_snippet": "The United States is in the midst of a significant public health problem that relates to obesity and inactivity. This epidemic has far-ranging consequences for our workforce and our children and shows no signs of slowing in the near future. Significant research has been performed...",
+          "rank_after": 2,
+          "score_after": -2.3976635932922363,
+          "rank_before": 13,
+          "score_before": 0.07179487179487179,
+          "rank_gain": 11,
+          "relevance": 2
+        },
+        {
+          "doc_id": "MED-2723",
+          "title": "Health and economic burden of the projected obesity trends in the USA and the UK.",
+          "text_snippet": "Rising prevalence of obesity is a worldwide health concern because excess weight gain within populations forecasts an increased burden from several diseases, most notably cardiovascular diseases, diabetes, and cancers. In this report, we used a simulation model to project the pro...",
+          "rank_after": 3,
+          "score_after": -2.805111885070801,
+          "rank_before": 11,
+          "score_before": 0.07692307692307693,
+          "rank_gain": 8,
+          "relevance": 2
+        },
+        {
+          "doc_id": "MED-5006",
+          "title": "Will all Americans become overweight or obese? estimating the progression and cost of the US obesity epidemic.",
+          "text_snippet": "We projected future prevalence and BMI distribution based on national survey data (National Health and Nutrition Examination Study) collected between 1970s and 2004. Future obesity-related health-care costs for adults were estimated using projected prevalence, Census population p...",
+          "rank_after": 4,
+          "score_after": -3.161569595336914,
+          "rank_before": 5,
+          "score_before": 0.09090909090909091,
+          "rank_gain": 1,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1994",
+          "title": "Prediabetes and type 2 diabetes in youth: an emerging epidemic disease?",
+          "text_snippet": "PURPOSE OF REVIEW: The prevalence of obesity in youth is increasing alarmingly among children and adolescents in the United States. The problem falls disproportionately on African-American and Hispanic children. Many of the metabolic and cardiovascular complications associated wi...",
+          "rank_after": 5,
+          "score_after": -3.900259494781494,
+          "rank_before": 34,
+          "score_before": 0.040884438881935756,
+          "rank_gain": 29,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1468",
+          "title": "Dynamics of fat cell turnover in humans.",
+          "text_snippet": "Obesity is increasing in an epidemic manner in most countries and constitutes a public health problem by enhancing the risk for cardiovascular disease and metabolic disorders such as type 2 diabetes. Owing to the increase in obesity, life expectancy may start to decrease in devel...",
+          "rank_after": 6,
+          "score_after": -5.284019470214844,
+          "rank_before": 30,
+          "score_before": 0.04386792452830189,
+          "rank_gain": 24,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-2722",
+          "title": "Prevalence of physical activity and obesity in US counties, 2001–2011: a road map for action",
+          "text_snippet": "Background Obesity and physical inactivity are associated with several chronic conditions, increased medical care costs, and premature death. Methods We used the Behavioral Risk Factor Surveillance System (BRFSS), a state-based random-digit telephone survey that covers the majori...",
+          "rank_after": 7,
+          "score_after": -5.407329559326172,
+          "rank_before": 37,
+          "score_before": 0.04,
+          "rank_gain": 30,
+          "relevance": 1
+        },
+        {
+          "doc_id": "MED-1987",
+          "title": "Management of type 2 diabetes mellitus in children and adolescents.",
+          "text_snippet": "OBJECTIVE: Over the last 3 decades, the prevalence of childhood obesity has increased dramatically in North America, ushering in a variety of health problems, including type 2 diabetes mellitus (T2DM), which previously was not typically seen until much later in life. This technic...",
+          "rank_after": 8,
+          "score_after": -5.7571563720703125,
+          "rank_before": 36,
+          "score_before": 0.04,
+          "rank_gain": 28,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1718",
+          "title": "Obesity as a Major Risk Factor for Cancer",
+          "text_snippet": "The number of cancer cases caused by being obese is estimated to be 20% with the increased risk of malignancies being influenced by diet, weight change, and body fat distribution together with physical activity. Reports from the International Agency for Research into Cancer and t...",
+          "rank_after": 9,
+          "score_after": -5.782434940338135,
+          "rank_before": 40,
+          "score_before": 0.036616161616161616,
+          "rank_gain": 31,
+          "relevance": 0
+        },
+        {
+          "doc_id": "MED-1056",
+          "title": "NOW AND THEN: The Global Nutrition Transition: The Pandemic of Obesity in Developing Countries",
+          "text_snippet": "Decades ago discussion of an impending global pandemic of obesity was thought of as heresy. Diets in the 1970’s began to shift toward increased reliance upon processed foods, increased away from home intake and greater use of edible oils and sugar-sweetened beverages. Reduced phy...",
+          "rank_after": 10,
+          "score_after": -5.806315898895264,
+          "rank_before": 1,
+          "score_before": 0.12222222222222222,
+          "rank_gain": -9,
+          "relevance": 0
+        }
+      ],
+      "moved_docs": [
+        {
+          "doc_id": "MED-1878",
+          "rank_before": 10,
+          "rank_after": 46,
+          "rank_gain": -36,
+          "score_before": 0.07692307692307693,
+          "score_after": -11.190897941589355,
+          "relevance": 0,
+          "title": "Crossing the Quality Chasm: A New Health System for the 21st Century",
+          "text_snippet": "Excerpt Second in a series of publications from the Institute of Medicine's Quality of Health Care in America project Today's health care providers have more research findings and more technology available to them than ever before. Yet recent reports have raised serious doubts ab..."
+        },
+        {
+          "doc_id": "MED-1718",
+          "rank_before": 40,
+          "rank_after": 9,
+          "rank_gain": 31,
+          "score_before": 0.036616161616161616,
+          "score_after": -5.782434940338135,
+          "relevance": 0,
+          "title": "Obesity as a Major Risk Factor for Cancer",
+          "text_snippet": "The number of cancer cases caused by being obese is estimated to be 20% with the increased risk of malignancies being influenced by diet, weight change, and body fat distribution together with physical activity. Reports from the International Agency for Research into Cancer and t..."
+        },
+        {
+          "doc_id": "MED-2722",
+          "rank_before": 37,
+          "rank_after": 7,
+          "rank_gain": 30,
+          "score_before": 0.04,
+          "score_after": -5.407329559326172,
+          "relevance": 1,
+          "title": "Prevalence of physical activity and obesity in US counties, 2001–2011: a road map for action",
+          "text_snippet": "Background Obesity and physical inactivity are associated with several chronic conditions, increased medical care costs, and premature death. Methods We used the Behavioral Risk Factor Surveillance System (BRFSS), a state-based random-digit telephone survey that covers the majori..."
+        },
+        {
+          "doc_id": "MED-3635",
+          "rank_before": 15,
+          "rank_after": 45,
+          "rank_gain": -30,
+          "score_before": 0.07142857142857142,
+          "score_after": -11.13674259185791,
+          "relevance": 0,
+          "title": "Wet deposition of fission-product isotopes to North America from the Fukushima Dai-ichi incident, March 2011.",
+          "text_snippet": "Using the infrastructure of the National Atmospheric Deposition Program (NADP), numerous measurements of radionuclide wet deposition over North America were made for 167 NADP sites before and after the Fukushima Dai-ichi Nuclear Power Station incident of March 12, 2011. For the p..."
+        },
+        {
+          "doc_id": "MED-1994",
+          "rank_before": 34,
+          "rank_after": 5,
+          "rank_gain": 29,
+          "score_before": 0.040884438881935756,
+          "score_after": -3.900259494781494,
+          "relevance": 0,
+          "title": "Prediabetes and type 2 diabetes in youth: an emerging epidemic disease?",
+          "text_snippet": "PURPOSE OF REVIEW: The prevalence of obesity in youth is increasing alarmingly among children and adolescents in the United States. The problem falls disproportionately on African-American and Hispanic children. Many of the metabolic and cardiovascular complications associated wi..."
+        },
+        {
+          "doc_id": "MED-2763",
+          "rank_before": 19,
+          "rank_after": 48,
+          "rank_gain": -29,
+          "score_before": 0.058823529411764705,
+          "score_after": -11.281764030456543,
+          "relevance": 0,
+          "title": "Facing the facelessness of public health: what's the public got to do with it?",
+          "text_snippet": "Despite compelling statistics that show we could eliminate 80%of all heart disease and strokes, 90% of all diabetes, and 60% of all cancers with basic lifestyle changes, we have failed to motivate the public to make these changes and failed to motivate policy makers to make healt..."
+        },
+        {
+          "doc_id": "MED-1987",
+          "rank_before": 36,
+          "rank_after": 8,
+          "rank_gain": 28,
+          "score_before": 0.04,
+          "score_after": -5.7571563720703125,
+          "relevance": 0,
+          "title": "Management of type 2 diabetes mellitus in children and adolescents.",
+          "text_snippet": "OBJECTIVE: Over the last 3 decades, the prevalence of childhood obesity has increased dramatically in North America, ushering in a variety of health problems, including type 2 diabetes mellitus (T2DM), which previously was not typically seen until much later in life. This technic..."
+        },
+        {
+          "doc_id": "MED-1468",
+          "rank_before": 30,
+          "rank_after": 6,
+          "rank_gain": 24,
+          "score_before": 0.04386792452830189,
+          "score_after": -5.284019470214844,
+          "relevance": 0,
+          "title": "Dynamics of fat cell turnover in humans.",
+          "text_snippet": "Obesity is increasing in an epidemic manner in most countries and constitutes a public health problem by enhancing the risk for cardiovascular disease and metabolic disorders such as type 2 diabetes. Owing to the increase in obesity, life expectancy may start to decrease in devel..."
+        },
+        {
+          "doc_id": "MED-2721",
+          "rank_before": 22,
+          "rank_after": 1,
+          "rank_gain": 21,
+          "score_before": 0.05263157894736842,
+          "score_after": -1.5702084302902222,
+          "relevance": 2,
+          "title": "Increased food energy supply is more than sufficient to explain the US epidemic of obesity.",
+          "text_snippet": "BACKGROUND: The major drivers of the obesity epidemic are much debated and have considerable policy importance for the population-wide prevention of obesity. OBJECTIVE: The objective was to determine the relative contributions of increased energy intake and reduced physical activ..."
+        },
+        {
+          "doc_id": "MED-1674",
+          "rank_before": 4,
+          "rank_after": 24,
+          "rank_gain": -20,
+          "score_before": 0.09090909090909091,
+          "score_after": -8.75141716003418,
+          "relevance": 0,
+          "title": "Fructose: It’s “Alcohol Without the Buzz”",
+          "text_snippet": "What do the Atkins Diet and the traditional Japanese diet have in common? The Atkins Diet is low in carbohydrate and usually high in fat; the Japanese diet is high in carbohydrate and usually low in fat. Yet both work to promote weight loss. One commonality of both diets is that ..."
+        },
+        {
+          "doc_id": "MED-3057",
+          "rank_before": 7,
+          "rank_after": 20,
+          "rank_gain": -13,
+          "score_before": 0.08333333333333333,
+          "score_after": -7.649012565612793,
+          "relevance": 0,
+          "title": "Brain PET imaging in obesity and food addiction: current evidence and hypothesis.",
+          "text_snippet": "The ongoing epidemics of obesity is one main health concern of the present time. Overeating in some obese individuals shares similarities with the loss of control and compulsive behavior observed in drug-addicted subjects, suggesting that obesity may involve food addiction. Here,..."
+        },
+        {
+          "doc_id": "MED-1650",
+          "rank_before": 6,
+          "rank_after": 18,
+          "rank_gain": -12,
+          "score_before": 0.08333333333333333,
+          "score_after": -7.277228832244873,
+          "relevance": 0,
+          "title": "Tobacco and obesity epidemics: not so different after all?",
+          "text_snippet": "Short abstract Campaigns to promote healthy eating are undermined by the ubiquity of processed, energy dense foods. A global strategy is now needed to tackle the rising prevalence of obesity"
+        },
+        {
+          "doc_id": "MED-2221",
+          "rank_before": 16,
+          "rank_after": 27,
+          "rank_gain": -11,
+          "score_before": 0.0688235294117647,
+          "score_after": -9.12685775756836,
+          "relevance": 0,
+          "title": "The Perils of Ignoring History: Big Tobacco Played Dirty and Millions Died. How Similar Is Big Food?",
+          "text_snippet": "Context: In 1954 the tobacco industry paid to publish the “Frank Statement to Cigarette Smokers” in hundreds of U.S. newspapers. It stated that the public's health was the industry's concern above all others and promised a variety of good-faith changes. What followed were decades..."
+        },
+        {
+          "doc_id": "MED-2717",
+          "rank_before": 13,
+          "rank_after": 2,
+          "rank_gain": 11,
+          "score_before": 0.07179487179487179,
+          "score_after": -2.3976635932922363,
+          "relevance": 2,
+          "title": "The role of exercise in the treatment of obesity.",
+          "text_snippet": "The United States is in the midst of a significant public health problem that relates to obesity and inactivity. This epidemic has far-ranging consequences for our workforce and our children and shows no signs of slowing in the near future. Significant research has been performed..."
+        },
+        {
+          "doc_id": "MED-1448",
+          "rank_before": 3,
+          "rank_after": 14,
+          "rank_gain": -11,
+          "score_before": 0.09698275862068965,
+          "score_after": -6.900984764099121,
+          "relevance": 0,
+          "title": "The costs of obesity in the workplace.",
+          "text_snippet": "OBJECTIVE: To quantify per capita and aggregate medical expenditures and the value of lost productivity, including absenteeism and presenteeism, because of overweight, and grade I, II, and III obesity among U.S. employees. METHODS: Cross-sectional analysis of the 2006 Medical Exp..."
+        }
+      ]
+    }
+  ],
+  "minimal_change": {
+    "query_id": "PLAIN-1008",
+    "query_text": "deafness",
+    "ndcg_before": 0.0,
+    "ndcg_after": 0.0,
+    "ndcg_delta": 0.0,
+    "top_before": [
+      {
+        "doc_id": "MED-4668",
+        "title": "Cretinism revisited.",
+        "text_snippet": "Endemic cretinism includes two syndromes: a more common neurological disorder with brain damage, deaf mutism, squint and spastic paresis of the legs and a less common syndrome of severe hypothyroidism, growth retardation and less severe mental defect. Both conditions are due to d...",
+        "rank_before": 1,
+        "score_before": 0.17424242424242425,
+        "rank_after": 1,
+        "score_after": -5.273715496063232,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-901",
+        "title": "Cow's milk allergy is associated with recurrent otitis media during childhood.",
+        "text_snippet": "To determine whether cow's milk allergy (CMA) in infancy is associated with recurrent otitis media (ROM) or other chronic ear infections, we conducted a cohort study by enrolling 56 milk-allergic and 204 control schoolchildren. We also studied the association between ear problems...",
+        "rank_before": 2,
+        "score_before": 0.09090909090909091,
+        "rank_after": 8,
+        "score_after": -9.89566707611084,
+        "rank_gain": -6,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-2726",
+        "title": "Profits and pandemics: prevention of harmful effects of tobacco, alcohol, and ultra-processed food and drink industries.",
+        "text_snippet": "The 2011 UN high-level meeting on non-communicable diseases (NCDs) called for multisectoral action including with the private sector and industry. However, through the sale and promotion of tobacco, alcohol, and ultra-processed food and drink (unhealthy commodities), transnationa...",
+        "rank_before": 3,
+        "score_before": 0.08333333333333333,
+        "rank_after": 44,
+        "score_after": -11.119715690612793,
+        "rank_gain": -41,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3863",
+        "title": "Sensitive skin: closing in on a physiological cause.",
+        "text_snippet": "The phenomenon of 'sensitive skin' is a relatively recent complaint in which certain individuals report more intense and frequent adverse sensory effects than the normal population upon use of cosmetic (personal-care) products. Originally defined as a minority complaint, sensitiv...",
+        "rank_before": 4,
+        "score_before": 0.07692307692307693,
+        "rank_after": 6,
+        "score_after": -9.812080383300781,
+        "rank_gain": -2,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-5199",
+        "title": "Amount and fate of egg protein escaping assimilation in the small intestine of humans.",
+        "text_snippet": "Studies attempting to evaluate protein assimilation in humans have hitherto relied on either ileostomy subjects or intubation techniques. The availability of stable isotope-labeled protein allowed us to determine the amount and fate of dietary protein escaping digestion and absor...",
+        "rank_before": 5,
+        "score_before": 0.07692307692307693,
+        "rank_after": 48,
+        "score_after": -11.155745506286621,
+        "rank_gain": -43,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-1519",
+        "title": "Improved performance on clerical tasks associated with administration of peppermint odor.",
+        "text_snippet": "Previous research indicates the presence of certain odors is associated with enhanced task performance. The present study investigated use of peppermint odor during typing performance, memorization, and alphabetization. Participants completed the protocol twice--once with pepperm...",
+        "rank_before": 6,
+        "score_before": 0.07142857142857142,
+        "rank_after": 40,
+        "score_after": -11.053894996643066,
+        "rank_gain": -34,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-2513",
+        "title": "Insights into the beneficial effect of caloric/ dietary restriction for a healthy and prolonged life",
+        "text_snippet": "Over the last several years, new evidence has kept pouring in about the remarkable effect of caloric restriction (CR) on the conspicuous bedfellows- aging and cancer. Through the use of various animal models, it is now well established that by reducing calorie intake one can not ...",
+        "rank_before": 7,
+        "score_before": 0.07142857142857142,
+        "rank_after": 21,
+        "score_after": -10.539886474609375,
+        "rank_gain": -14,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4694",
+        "title": "Total visual blindness is protective against breast cancer.",
+        "text_snippet": "OBJECTIVE: Observational data, though sparse and based on small studies with limited ability to control for known breast cancer risk factors, support a lower risk of breast cancer in blind women compared to sighted women. Mechanisms influenced by ocular light perception, such as ...",
+        "rank_before": 8,
+        "score_before": 0.06666666666666667,
+        "rank_after": 3,
+        "score_after": -9.530624389648438,
+        "rank_gain": 5,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4748",
+        "title": "Body fat and animal protein intakes are associated with adrenal androgen secretion in children.",
+        "text_snippet": "BACKGROUND: Adrenarche is the increase in adrenal androgen (AA) production starting in childhood. Until now, it has been unknown whether or not nutritional factors modulate adrenarche. OBJECTIVE: The objective was to examine whether body composition and certain dietary intakes ar...",
+        "rank_before": 9,
+        "score_before": 0.06666666666666667,
+        "rank_after": 26,
+        "score_after": -10.727935791015625,
+        "rank_gain": -17,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-1101",
+        "title": "Exposure of human fetal penile cells to different PCB mixtures: transcriptome analysis points to diverse modes of interference on external genitali...",
+        "text_snippet": "The effects exerted by three mixtures of Polychlorinated Biphenyls (PCBs) were evaluated on human fetal corpora cavernosa cells, as a model for male external genitalia development. The three mixtures feature congeners grouped according to potentially shared modes of action: one d...",
+        "rank_before": 10,
+        "score_before": 0.0625,
+        "rank_after": 37,
+        "score_after": -11.0394287109375,
+        "rank_gain": -27,
+        "relevance": 0
+      }
+    ],
+    "top_after": [
+      {
+        "doc_id": "MED-4668",
+        "title": "Cretinism revisited.",
+        "text_snippet": "Endemic cretinism includes two syndromes: a more common neurological disorder with brain damage, deaf mutism, squint and spastic paresis of the legs and a less common syndrome of severe hypothyroidism, growth retardation and less severe mental defect. Both conditions are due to d...",
+        "rank_after": 1,
+        "score_after": -5.273715496063232,
+        "rank_before": 1,
+        "score_before": 0.17424242424242425,
+        "rank_gain": 0,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3937",
+        "title": "Traumatic brain injuries in illustrated literature: experience from a series of over 700 head injuries in the Asterix comic books.",
+        "text_snippet": "BACKGROUND: The goal of the present study was to analyze the epidemiology and specific risk factors of traumatic brain injury (TBI) in the Asterix illustrated comic books. Among the illustrated literature, TBI is a predominating injury pattern. METHODS: A retrospective analysis o...",
+        "rank_after": 2,
+        "score_after": -9.512594223022461,
+        "rank_before": 39,
+        "score_before": 0.03333333333333333,
+        "rank_gain": 37,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4694",
+        "title": "Total visual blindness is protective against breast cancer.",
+        "text_snippet": "OBJECTIVE: Observational data, though sparse and based on small studies with limited ability to control for known breast cancer risk factors, support a lower risk of breast cancer in blind women compared to sighted women. Mechanisms influenced by ocular light perception, such as ...",
+        "rank_after": 3,
+        "score_after": -9.530624389648438,
+        "rank_before": 8,
+        "score_before": 0.06666666666666667,
+        "rank_gain": 5,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4481",
+        "title": "Dietary fat and meat intakes and risk of reflux esophagitis, Barrett’s esophagus and esophageal adenocarcinoma",
+        "text_snippet": "The aim of this study was to investigate whether dietary fat and meat intakes are associated with reflux esophagitis (RE), Barrett’s esophagus (BE) and esophageal adenocarcinoma (EAC). In this all-Ireland case-control study, dietary intake data was collected using a food frequenc...",
+        "rank_after": 4,
+        "score_after": -9.568794250488281,
+        "rank_before": 33,
+        "score_before": 0.037037037037037035,
+        "rank_gain": 29,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3319",
+        "title": "Epidemiologic Investigation of Immune-Mediated Polyradiculoneuropathy among Abattoir Workers Exposed to Porcine Brain",
+        "text_snippet": "Background In October 2007, a cluster of patients experiencing a novel polyradiculoneuropathy was identified at a pork abattoir (Plant A). Patients worked in the primary carcass processing area (warm room); the majority processed severed heads (head-table). An investigation was i...",
+        "rank_after": 5,
+        "score_after": -9.742599487304688,
+        "rank_before": 25,
+        "score_before": 0.043478260869565216,
+        "rank_gain": 20,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3863",
+        "title": "Sensitive skin: closing in on a physiological cause.",
+        "text_snippet": "The phenomenon of 'sensitive skin' is a relatively recent complaint in which certain individuals report more intense and frequent adverse sensory effects than the normal population upon use of cosmetic (personal-care) products. Originally defined as a minority complaint, sensitiv...",
+        "rank_after": 6,
+        "score_after": -9.812080383300781,
+        "rank_before": 4,
+        "score_before": 0.07692307692307693,
+        "rank_gain": -2,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3876",
+        "title": "Lignans and isoflavonoids in plasma and prostatic fluid in men: samples from Portugal, Hong Kong, and the United Kingdom.",
+        "text_snippet": "BACKGROUND: Chinese men have lower incidences of prostate cancer compared to men from Europe and North America. Asians consume large quantities of soya, a rich source of isoflavanoids phyto-oestrogens and have high plasma and urinary levels of these compounds. The mammalian ligna...",
+        "rank_after": 7,
+        "score_after": -9.879364013671875,
+        "rank_before": 22,
+        "score_before": 0.047619047619047616,
+        "rank_gain": 15,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-901",
+        "title": "Cow's milk allergy is associated with recurrent otitis media during childhood.",
+        "text_snippet": "To determine whether cow's milk allergy (CMA) in infancy is associated with recurrent otitis media (ROM) or other chronic ear infections, we conducted a cohort study by enrolling 56 milk-allergic and 204 control schoolchildren. We also studied the association between ear problems...",
+        "rank_after": 8,
+        "score_after": -9.89566707611084,
+        "rank_before": 2,
+        "score_before": 0.09090909090909091,
+        "rank_gain": -6,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3865",
+        "title": "Sensitive skin in the American population: prevalence, clinical data, and role of the dermatologist.",
+        "text_snippet": "INTRODUCTION: Sensitive skin is a complex dermatological condition, defined by abnormal sensory symptoms. The aim of this epidemiological survey was to assess the prevalence of sensitive skin and collect data on sensitive skin in the US population. METHODS: A phone survey was con...",
+        "rank_after": 9,
+        "score_after": -9.983025550842285,
+        "rank_before": 34,
+        "score_before": 0.03571428571428571,
+        "rank_gain": 25,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4985",
+        "title": "A low-fat vegan diet and a conventional diabetes diet in the treatment of type 2 diabetes: a randomized, controlled, 74-wk clinical trial",
+        "text_snippet": "Background: Low-fat vegetarian and vegan diets are associated with weight loss, increased insulin sensitivity, and improved cardiovascular health. Objective: We compared the effects of a low-fat vegan diet and conventional diabetes diet recommendations on glycemia, weight, and pl...",
+        "rank_after": 10,
+        "score_after": -10.222814559936523,
+        "rank_before": 40,
+        "score_before": 0.03225806451612903,
+        "rank_gain": 30,
+        "relevance": 0
+      }
+    ],
+    "moved_docs": [
+      {
+        "doc_id": "MED-5199",
+        "rank_before": 5,
+        "rank_after": 48,
+        "rank_gain": -43,
+        "score_before": 0.07692307692307693,
+        "score_after": -11.155745506286621,
+        "relevance": 0,
+        "title": "Amount and fate of egg protein escaping assimilation in the small intestine of humans.",
+        "text_snippet": "Studies attempting to evaluate protein assimilation in humans have hitherto relied on either ileostomy subjects or intubation techniques. The availability of stable isotope-labeled protein allowed us to determine the amount and fate of dietary protein escaping digestion and absor..."
+      },
+      {
+        "doc_id": "MED-2726",
+        "rank_before": 3,
+        "rank_after": 44,
+        "rank_gain": -41,
+        "score_before": 0.08333333333333333,
+        "score_after": -11.119715690612793,
+        "relevance": 0,
+        "title": "Profits and pandemics: prevention of harmful effects of tobacco, alcohol, and ultra-processed food and drink industries.",
+        "text_snippet": "The 2011 UN high-level meeting on non-communicable diseases (NCDs) called for multisectoral action including with the private sector and industry. However, through the sale and promotion of tobacco, alcohol, and ultra-processed food and drink (unhealthy commodities), transnationa..."
+      },
+      {
+        "doc_id": "MED-3937",
+        "rank_before": 39,
+        "rank_after": 2,
+        "rank_gain": 37,
+        "score_before": 0.03333333333333333,
+        "score_after": -9.512594223022461,
+        "relevance": 0,
+        "title": "Traumatic brain injuries in illustrated literature: experience from a series of over 700 head injuries in the Asterix comic books.",
+        "text_snippet": "BACKGROUND: The goal of the present study was to analyze the epidemiology and specific risk factors of traumatic brain injury (TBI) in the Asterix illustrated comic books. Among the illustrated literature, TBI is a predominating injury pattern. METHODS: A retrospective analysis o..."
+      },
+      {
+        "doc_id": "MED-4883",
+        "rank_before": 13,
+        "rank_after": 49,
+        "rank_gain": -36,
+        "score_before": 0.058823529411764705,
+        "score_after": -11.19279956817627,
+        "relevance": 0,
+        "title": "[Flatufonia--or the musical anus].",
+        "text_snippet": "The art of the musical anus is reviewed in the light of its most prominent performers and of anorectal physiological aspects related to this specific musical performance."
+      },
+      {
+        "doc_id": "MED-1519",
+        "rank_before": 6,
+        "rank_after": 40,
+        "rank_gain": -34,
+        "score_before": 0.07142857142857142,
+        "score_after": -11.053894996643066,
+        "relevance": 0,
+        "title": "Improved performance on clerical tasks associated with administration of peppermint odor.",
+        "text_snippet": "Previous research indicates the presence of certain odors is associated with enhanced task performance. The present study investigated use of peppermint odor during typing performance, memorization, and alphabetization. Participants completed the protocol twice--once with pepperm..."
+      },
+      {
+        "doc_id": "MED-4985",
+        "rank_before": 40,
+        "rank_after": 10,
+        "rank_gain": 30,
+        "score_before": 0.03225806451612903,
+        "score_after": -10.222814559936523,
+        "relevance": 0,
+        "title": "A low-fat vegan diet and a conventional diabetes diet in the treatment of type 2 diabetes: a randomized, controlled, 74-wk clinical trial",
+        "text_snippet": "Background: Low-fat vegetarian and vegan diets are associated with weight loss, increased insulin sensitivity, and improved cardiovascular health. Objective: We compared the effects of a low-fat vegan diet and conventional diabetes diet recommendations on glycemia, weight, and pl..."
+      },
+      {
+        "doc_id": "MED-4481",
+        "rank_before": 33,
+        "rank_after": 4,
+        "rank_gain": 29,
+        "score_before": 0.037037037037037035,
+        "score_after": -9.568794250488281,
+        "relevance": 0,
+        "title": "Dietary fat and meat intakes and risk of reflux esophagitis, Barrett’s esophagus and esophageal adenocarcinoma",
+        "text_snippet": "The aim of this study was to investigate whether dietary fat and meat intakes are associated with reflux esophagitis (RE), Barrett’s esophagus (BE) and esophageal adenocarcinoma (EAC). In this all-Ireland case-control study, dietary intake data was collected using a food frequenc..."
+      },
+      {
+        "doc_id": "MED-1101",
+        "rank_before": 10,
+        "rank_after": 37,
+        "rank_gain": -27,
+        "score_before": 0.0625,
+        "score_after": -11.0394287109375,
+        "relevance": 0,
+        "title": "Exposure of human fetal penile cells to different PCB mixtures: transcriptome analysis points to diverse modes of interference on external genitali...",
+        "text_snippet": "The effects exerted by three mixtures of Polychlorinated Biphenyls (PCBs) were evaluated on human fetal corpora cavernosa cells, as a model for male external genitalia development. The three mixtures feature congeners grouped according to potentially shared modes of action: one d..."
+      },
+      {
+        "doc_id": "MED-4384",
+        "rank_before": 45,
+        "rank_after": 18,
+        "rank_gain": 27,
+        "score_before": 0.030303030303030304,
+        "score_after": -10.447023391723633,
+        "relevance": 0,
+        "title": "Glaucoma risk and the consumption of fruits and vegetables among older women in the study of osteoporotic fractures.",
+        "text_snippet": "PURPOSE: To explore the association between the consumption of fruits and vegetables and the presence of glaucoma. DESIGN: Cross-sectional cohort study. METHODS: In a sample of 1,155 women located in multiple centers in the United States, glaucoma specialists diagnosed glaucoma i..."
+      },
+      {
+        "doc_id": "MED-5216",
+        "rank_before": 41,
+        "rank_after": 14,
+        "rank_gain": 27,
+        "score_before": 0.03225806451612903,
+        "score_after": -10.337449073791504,
+        "relevance": 0,
+        "title": "Prevalence of Vitamin A Deficiency in South Asia: Causes, Outcomes, and Possible Remedies",
+        "text_snippet": "Vitamin A deficiency (VAD) has been recognized as a public-health issue in developing countries. Economic constraints, sociocultural limitations, insufficient dietary intake, and poor absorption leading to depleted vitamin A stores in the body have been regarded as potential dete..."
+      },
+      {
+        "doc_id": "MED-3865",
+        "rank_before": 34,
+        "rank_after": 9,
+        "rank_gain": 25,
+        "score_before": 0.03571428571428571,
+        "score_after": -9.983025550842285,
+        "relevance": 0,
+        "title": "Sensitive skin in the American population: prevalence, clinical data, and role of the dermatologist.",
+        "text_snippet": "INTRODUCTION: Sensitive skin is a complex dermatological condition, defined by abnormal sensory symptoms. The aim of this epidemiological survey was to assess the prevalence of sensitive skin and collect data on sensitive skin in the US population. METHODS: A phone survey was con..."
+      },
+      {
+        "doc_id": "MED-3221",
+        "rank_before": 43,
+        "rank_after": 20,
+        "rank_gain": 23,
+        "score_before": 0.03125,
+        "score_after": -10.509721755981445,
+        "relevance": 0,
+        "title": "Effect of urine pH changed by dietary intervention on uric acid clearance mechanism of pH-dependent excretion of urinary uric acid",
+        "text_snippet": "Background The finding reported in a previous paper - alkalization of urine facilitates uric acid excretion - is contradictory to what one might expect to occur: because food materials for the alkalization of urine contain fewer purine bodies than those for acidification, less ur..."
+      },
+      {
+        "doc_id": "MED-2529",
+        "rank_before": 12,
+        "rank_after": 34,
+        "rank_gain": -22,
+        "score_before": 0.058823529411764705,
+        "score_after": -10.930095672607422,
+        "relevance": 0,
+        "title": "Effect of a very-high-fiber vegetable, fruit, and nut diet on serum lipids and colonic function.",
+        "text_snippet": "We tested the effects of feeding a diet very high in fiber from fruit and vegetables. The levels fed were those, which had originally inspired the dietary fiber hypothesis related to colon cancer and heart disease prevention and also may have been eaten early in human evolution. ..."
+      },
+      {
+        "doc_id": "MED-3319",
+        "rank_before": 25,
+        "rank_after": 5,
+        "rank_gain": 20,
+        "score_before": 0.043478260869565216,
+        "score_after": -9.742599487304688,
+        "relevance": 0,
+        "title": "Epidemiologic Investigation of Immune-Mediated Polyradiculoneuropathy among Abattoir Workers Exposed to Porcine Brain",
+        "text_snippet": "Background In October 2007, a cluster of patients experiencing a novel polyradiculoneuropathy was identified at a pork abattoir (Plant A). Patients worked in the primary carcass processing area (warm room); the majority processed severed heads (head-table). An investigation was i..."
+      },
+      {
+        "doc_id": "MED-3493",
+        "rank_before": 19,
+        "rank_after": 38,
+        "rank_gain": -19,
+        "score_before": 0.05,
+        "score_after": -11.042041778564453,
+        "relevance": 0,
+        "title": "Acute hepatotoxicity after ingestion of Morinda citrifolia (Noni Berry) juice in a 14-year-old boy.",
+        "text_snippet": "We present a case of a 14-year-old previously healthy boy with acute hepatotoxicity after noni berry juice consumption. As the popularity of noni berry consumption continues to increase, heightened awareness of the relation between noni berry consumption and acute hepatotoxicity ..."
+      }
+    ]
+  },
+  "worst_drop": {
+    "query_id": "PLAIN-2540",
+    "query_text": "Does Cholesterol Size Matter?",
+    "ndcg_before": 0.6088855249484777,
+    "ndcg_after": 0.3030778079661617,
+    "ndcg_delta": -0.305807716982316,
+    "top_before": [
+      {
+        "doc_id": "MED-1884",
+        "title": "Maintenance of the LDL cholesterol:HDL cholesterol ratio in an elderly population given a dietary cholesterol challenge.",
+        "text_snippet": "We previously evaluated the responses to dietary cholesterol in children and young adults. In this study, the effects of dietary cholesterol on plasma lipids and LDL atherogenicity were evaluated in 42 elderly subjects (29 postmenopausal women and 13 men > 60 y old). Our exclusio...",
+        "rank_before": 1,
+        "score_before": 0.12040133779264214,
+        "rank_after": 5,
+        "score_after": -6.075654983520508,
+        "rank_gain": -4,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-2525",
+        "title": "A global survey of physicians' perceptions on cholesterol management: the From The Heart study.",
+        "text_snippet": "AIMS: Guidelines for cardiovascular disease (CVD) prevention cite high levels of low-density lipoprotein cholesterol (LDL-C) as a major risk factor and recommend LDL-C goals for various risk groups. Lifestyle changes are advised as first-line treatment for patients with high chol...",
+        "rank_before": 2,
+        "score_before": 0.10833333333333334,
+        "rank_after": 18,
+        "score_after": -7.8772053718566895,
+        "rank_gain": -16,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-1890",
+        "title": "Dietary cholesterol from eggs increases the ratio of total cholesterol to high-density lipoprotein cholesterol in humans: a meta-analysis.",
+        "text_snippet": "BACKGROUND: Several epidemiologic studies found no effect of egg consumption on the risk of coronary heart disease. It is possible that the adverse effect of eggs on LDL-cholesterol is offset by their favorable effect on HDL cholesterol. OBJECTIVE: The objective was to review the...",
+        "rank_before": 3,
+        "score_before": 0.10653409090909091,
+        "rank_after": 15,
+        "score_after": -7.361867427825928,
+        "rank_gain": -12,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-1886",
+        "title": "Lipoprotein Particle Profiles by Nuclear Magnetic Resonance Compared with Standard Lipids and Apolipoproteins in Predicting Incident Cardiovascular Disease in Women",
+        "text_snippet": "Background Nuclear magnetic resonance (NMR) spectroscopy measures the number and size of lipoprotein particles, instead of their cholesterol or triglyceride content, but its clinical utility is uncertain. Methods and Results Baseline lipoproteins were measured by NMR in 27,673 in...",
+        "rank_before": 4,
+        "score_before": 0.10294117647058823,
+        "rank_after": 2,
+        "score_after": -3.848267078399658,
+        "rank_gain": 2,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-1966",
+        "title": "Effects of dietary cholesterol on serum cholesterol: a meta-analysis and review.",
+        "text_snippet": "Attempts to estimate the effects of dietary cholesterol on serum cholesterol by meta-analysis have not previously included baseline together with added dietary cholesterol in a mathematical model. Mean reported changes in serum cholesterol from 27 studies in which controlled diet...",
+        "rank_before": 5,
+        "score_before": 0.09848484848484848,
+        "rank_after": 29,
+        "score_after": -8.520552635192871,
+        "rank_gain": -24,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3370",
+        "title": "Serving styles of raw snack vegetables. What do children want?",
+        "text_snippet": "The primary aim of this study was to investigate how serving styles of snack vegetables appeal to children, focusing on size and shape. A secondary aim was to investigate children's willingness to participate in fruit and vegetable subscription services at school, and how these c...",
+        "rank_before": 6,
+        "score_before": 0.09090909090909091,
+        "rank_after": 46,
+        "score_after": -11.184232711791992,
+        "rank_gain": -40,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4831",
+        "title": "Effects of plant-based diets on plasma lipids.",
+        "text_snippet": "Dyslipidemia is a primary risk factor for cardiovascular disease, peripheral vascular disease, and stroke. Current guidelines recommend diet as first-line therapy for patients with elevated plasma cholesterol concentrations. However, what constitutes an optimal dietary regimen re...",
+        "rank_before": 7,
+        "score_before": 0.08626887131560029,
+        "rank_after": 38,
+        "score_after": -9.505757331848145,
+        "rank_gain": -31,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3198",
+        "title": "Cheese intake in large amounts lowers LDL-cholesterol concentrations compared with butter intake of equal fat content.",
+        "text_snippet": "BACKGROUND: Despite its high content of saturated fatty acids, cheese does not seem to increase plasma total and LDL-cholesterol concentrations when compared with an equivalent intake of fat from butter. This effect may be due to the high calcium content of cheese, which results ...",
+        "rank_before": 8,
+        "score_before": 0.08035714285714285,
+        "rank_after": 37,
+        "score_after": -9.109612464904785,
+        "rank_gain": -29,
+        "relevance": 1
+      },
+      {
+        "doc_id": "MED-1882",
+        "title": "Low-density lipoprotein and high-density lipoprotein particle subclasses predict coronary events and are favorably changed by gemfibrozil therapy i...",
+        "text_snippet": "BACKGROUND: Changes in conventional lipid risk factors with gemfibrozil treatment only partially explain the reductions in coronary heart disease (CHD) events experienced by men in the Veterans Affairs High-Density Lipoprotein Intervention Trial (VA-HIT). We examined whether meas...",
+        "rank_before": 9,
+        "score_before": 0.0748663101604278,
+        "rank_after": 8,
+        "score_after": -6.433291912078857,
+        "rank_gain": 1,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-1885",
+        "title": "Rethinking dietary cholesterol.",
+        "text_snippet": "PURPOSE OF REVIEW: The perceived notion that dietary cholesterol is associated with increased risk for coronary heart disease (CHD) has led to dietary recommendations of no more than 300  mg/day for healthy populations in the USA. This study will review the recent evidence that c...",
+        "rank_before": 10,
+        "score_before": 0.07420814479638009,
+        "rank_after": 12,
+        "score_after": -7.191076278686523,
+        "rank_gain": -2,
+        "relevance": 2
+      }
+    ],
+    "top_after": [
+      {
+        "doc_id": "MED-1205",
+        "title": "Effect of cholesterol crystals on plaques and intima in arteries of patients with acute coronary and cerebrovascular syndromes.",
+        "text_snippet": "Plaque disruption (PD) causes most acute cardiovascular events. Although cholesterol crystals (CCs) have been observed in plaques, their role in PD was unknown. However, cholesterol expands with crystallization tearing and perforating fibrous tissues. This study tested the hypoth...",
+        "rank_after": 1,
+        "score_after": -3.133148670196533,
+        "rank_before": 36,
+        "score_before": 0.039527027027027026,
+        "rank_gain": 35,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-1886",
+        "title": "Lipoprotein Particle Profiles by Nuclear Magnetic Resonance Compared with Standard Lipids and Apolipoproteins in Predicting Incident Cardiovascular Disease in Women",
+        "text_snippet": "Background Nuclear magnetic resonance (NMR) spectroscopy measures the number and size of lipoprotein particles, instead of their cholesterol or triglyceride content, but its clinical utility is uncertain. Methods and Results Baseline lipoproteins were measured by NMR in 27,673 in...",
+        "rank_after": 2,
+        "score_after": -3.848267078399658,
+        "rank_before": 4,
+        "score_before": 0.10294117647058823,
+        "rank_gain": 2,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-1968",
+        "title": "Effects of increasing amounts of dietary cholesterol on postprandial lipemia and lipoproteins in human subjects.",
+        "text_snippet": "Our aim was to determine the effects of increasing amounts of dietary cholesterol (0-710 mg) on the postprandial plasma lipid responses and lipoprotein changes in normolipidemic human subjects. Ten subjects were fed five different test meals in a random order: one meal did not co...",
+        "rank_after": 3,
+        "score_after": -4.2544846534729,
+        "rank_before": 19,
+        "score_before": 0.05756276791181874,
+        "rank_gain": 16,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-3398",
+        "title": "Total cholesterol and high density lipoprotein cholesterol as important predictors of erectile dysfunction.",
+        "text_snippet": "Although erectile dysfunction is frequently seen in patients with manifestations of arteriosclerotic disease, the independent contribution of serum cholesterol in predicting erectile dysfunction is unclear. The aim of this study was to examine the relation between serum cholester...",
+        "rank_after": 4,
+        "score_after": -5.99149227142334,
+        "rank_before": 34,
+        "score_before": 0.04033613445378151,
+        "rank_gain": 30,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-1884",
+        "title": "Maintenance of the LDL cholesterol:HDL cholesterol ratio in an elderly population given a dietary cholesterol challenge.",
+        "text_snippet": "We previously evaluated the responses to dietary cholesterol in children and young adults. In this study, the effects of dietary cholesterol on plasma lipids and LDL atherogenicity were evaluated in 42 elderly subjects (29 postmenopausal women and 13 men > 60 y old). Our exclusio...",
+        "rank_after": 5,
+        "score_after": -6.075654983520508,
+        "rank_before": 1,
+        "score_before": 0.12040133779264214,
+        "rank_gain": -4,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-4676",
+        "title": "Dietary cholesterol and egg yolks: Not for patients at risk of vascular disease",
+        "text_snippet": "A widespread misconception has been developing among the Canadian public and among physicians. It is increasingly believed that consumption of dietary cholesterol and egg yolks is harmless. There are good reasons for long-standing recommendations that dietary cholesterol should b...",
+        "rank_after": 6,
+        "score_after": -6.23958158493042,
+        "rank_before": 11,
+        "score_before": 0.07142857142857142,
+        "rank_gain": 5,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-2440",
+        "title": "Total Cholesterol and Cancer Risk in a Large Prospective Study in Korea",
+        "text_snippet": "Purpose To further clarify the relationship between total cholesterol and cancer, which remains unclear. Methods We prospectively examined the association between total cholesterol and site-specific and all-cancer incidence among 1,189,719 Korean adults enrolled in the National H...",
+        "rank_after": 7,
+        "score_after": -6.255068778991699,
+        "rank_before": 30,
+        "score_before": 0.045454545454545456,
+        "rank_gain": 23,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-1882",
+        "title": "Low-density lipoprotein and high-density lipoprotein particle subclasses predict coronary events and are favorably changed by gemfibrozil therapy i...",
+        "text_snippet": "BACKGROUND: Changes in conventional lipid risk factors with gemfibrozil treatment only partially explain the reductions in coronary heart disease (CHD) events experienced by men in the Veterans Affairs High-Density Lipoprotein Intervention Trial (VA-HIT). We examined whether meas...",
+        "rank_after": 8,
+        "score_after": -6.433291912078857,
+        "rank_before": 9,
+        "score_before": 0.0748663101604278,
+        "rank_gain": 1,
+        "relevance": 2
+      },
+      {
+        "doc_id": "MED-1428",
+        "title": "Optimal low-density lipoprotein is 50 to 70 mg/dl: lower is better and physiologically normal.",
+        "text_snippet": "The normal low-density lipoprotein (LDL) cholesterol range is 50 to 70 mg/dl for native hunter-gatherers, healthy human neonates, free-living primates, and other wild mammals (all of whom do not develop atherosclerosis). Randomized trial data suggest atherosclerosis progression a...",
+        "rank_after": 9,
+        "score_after": -6.501953125,
+        "rank_before": 26,
+        "score_before": 0.047619047619047616,
+        "rank_gain": 17,
+        "relevance": 0
+      },
+      {
+        "doc_id": "MED-4509",
+        "title": "A meta-analysis of the effect of soy protein supplementation on serum lipids.",
+        "text_snippet": "Hypercholesterolemia is a major modifiable risk factor for cardiovascular disease. Some, but not all, studies have shown that soy protein intake decreases total and low-density lipoprotein cholesterol and triglycerides and increases high-density lipoprotein cholesterol. The objec...",
+        "rank_after": 10,
+        "score_after": -6.860440731048584,
+        "rank_before": 42,
+        "score_before": 0.03571428571428571,
+        "rank_gain": 32,
+        "relevance": 0
+      }
+    ],
+    "moved_docs": [
+      {
+        "doc_id": "MED-3370",
+        "rank_before": 6,
+        "rank_after": 46,
+        "rank_gain": -40,
+        "score_before": 0.09090909090909091,
+        "score_after": -11.184232711791992,
+        "relevance": 0,
+        "title": "Serving styles of raw snack vegetables. What do children want?",
+        "text_snippet": "The primary aim of this study was to investigate how serving styles of snack vegetables appeal to children, focusing on size and shape. A secondary aim was to investigate children's willingness to participate in fruit and vegetable subscription services at school, and how these c..."
+      },
+      {
+        "doc_id": "MED-1205",
+        "rank_before": 36,
+        "rank_after": 1,
+        "rank_gain": 35,
+        "score_before": 0.039527027027027026,
+        "score_after": -3.133148670196533,
+        "relevance": 0,
+        "title": "Effect of cholesterol crystals on plaques and intima in arteries of patients with acute coronary and cerebrovascular syndromes.",
+        "text_snippet": "Plaque disruption (PD) causes most acute cardiovascular events. Although cholesterol crystals (CCs) have been observed in plaques, their role in PD was unknown. However, cholesterol expands with crystallization tearing and perforating fibrous tissues. This study tested the hypoth..."
+      },
+      {
+        "doc_id": "MED-5266",
+        "rank_before": 43,
+        "rank_after": 11,
+        "rank_gain": 32,
+        "score_before": 0.03489702517162471,
+        "score_after": -7.072270393371582,
+        "relevance": 0,
+        "title": "Changes in flow-mediated brachial artery vasoactivity with lowering of desirable cholesterol levels in healthy middle-aged men.",
+        "text_snippet": "Current National Cholesterol Education Program guidelines consider desirable total and low-density lipoprotein cholesterol levels to be < 200 and < 160 mg/dl, respectively, for healthy individuals without multiple coronary risk factors. To determine the extent to which these leve..."
+      },
+      {
+        "doc_id": "MED-4840",
+        "rank_before": 18,
+        "rank_after": 50,
+        "rank_gain": -32,
+        "score_before": 0.058823529411764705,
+        "score_after": -11.318855285644531,
+        "relevance": 0,
+        "title": "Homeopathy: what does the \"best\" evidence tell us?",
+        "text_snippet": "OBJECTIVE: To evaluate the evidence for and against the effectiveness of homeopathy. DATA SOURCES: The Cochrane Database of Systematic Reviews (generally considered to be the most reliable source of evidence) was searched in January 2010. STUDY SELECTION: Cochrane reviews with th..."
+      },
+      {
+        "doc_id": "MED-4509",
+        "rank_before": 42,
+        "rank_after": 10,
+        "rank_gain": 32,
+        "score_before": 0.03571428571428571,
+        "score_after": -6.860440731048584,
+        "relevance": 0,
+        "title": "A meta-analysis of the effect of soy protein supplementation on serum lipids.",
+        "text_snippet": "Hypercholesterolemia is a major modifiable risk factor for cardiovascular disease. Some, but not all, studies have shown that soy protein intake decreases total and low-density lipoprotein cholesterol and triglycerides and increases high-density lipoprotein cholesterol. The objec..."
+      },
+      {
+        "doc_id": "MED-4831",
+        "rank_before": 7,
+        "rank_after": 38,
+        "rank_gain": -31,
+        "score_before": 0.08626887131560029,
+        "score_after": -9.505757331848145,
+        "relevance": 0,
+        "title": "Effects of plant-based diets on plasma lipids.",
+        "text_snippet": "Dyslipidemia is a primary risk factor for cardiovascular disease, peripheral vascular disease, and stroke. Current guidelines recommend diet as first-line therapy for patients with elevated plasma cholesterol concentrations. However, what constitutes an optimal dietary regimen re..."
+      },
+      {
+        "doc_id": "MED-3398",
+        "rank_before": 34,
+        "rank_after": 4,
+        "rank_gain": 30,
+        "score_before": 0.04033613445378151,
+        "score_after": -5.99149227142334,
+        "relevance": 0,
+        "title": "Total cholesterol and high density lipoprotein cholesterol as important predictors of erectile dysfunction.",
+        "text_snippet": "Although erectile dysfunction is frequently seen in patients with manifestations of arteriosclerotic disease, the independent contribution of serum cholesterol in predicting erectile dysfunction is unclear. The aim of this study was to examine the relation between serum cholester..."
+      },
+      {
+        "doc_id": "MED-3198",
+        "rank_before": 8,
+        "rank_after": 37,
+        "rank_gain": -29,
+        "score_before": 0.08035714285714285,
+        "score_after": -9.109612464904785,
+        "relevance": 1,
+        "title": "Cheese intake in large amounts lowers LDL-cholesterol concentrations compared with butter intake of equal fat content.",
+        "text_snippet": "BACKGROUND: Despite its high content of saturated fatty acids, cheese does not seem to increase plasma total and LDL-cholesterol concentrations when compared with an equivalent intake of fat from butter. This effect may be due to the high calcium content of cheese, which results ..."
+      },
+      {
+        "doc_id": "MED-1966",
+        "rank_before": 5,
+        "rank_after": 29,
+        "rank_gain": -24,
+        "score_before": 0.09848484848484848,
+        "score_after": -8.520552635192871,
+        "relevance": 0,
+        "title": "Effects of dietary cholesterol on serum cholesterol: a meta-analysis and review.",
+        "text_snippet": "Attempts to estimate the effects of dietary cholesterol on serum cholesterol by meta-analysis have not previously included baseline together with added dietary cholesterol in a mathematical model. Mean reported changes in serum cholesterol from 27 studies in which controlled diet..."
+      },
+      {
+        "doc_id": "MED-5329",
+        "rank_before": 15,
+        "rank_after": 39,
+        "rank_gain": -24,
+        "score_before": 0.06263157894736841,
+        "score_after": -9.606781005859375,
+        "relevance": 0,
+        "title": "Rapid reduction of serum cholesterol and blood pressure by a twelve-day, very low fat, strictly vegetarian diet.",
+        "text_snippet": "OBJECTIVE: This study was conducted to demonstrate the effectiveness of a strictly vegetarian, very low-fat diet on cardiac risk factor modification. METHODS: Five hundred men and women, participants in an intensive 12-day live-in program, were studied. The program focused on die..."
+      },
+      {
+        "doc_id": "MED-2440",
+        "rank_before": 30,
+        "rank_after": 7,
+        "rank_gain": 23,
+        "score_before": 0.045454545454545456,
+        "score_after": -6.255068778991699,
+        "relevance": 0,
+        "title": "Total Cholesterol and Cancer Risk in a Large Prospective Study in Korea",
+        "text_snippet": "Purpose To further clarify the relationship between total cholesterol and cancer, which remains unclear. Methods We prospectively examined the association between total cholesterol and site-specific and all-cancer incidence among 1,189,719 Korean adults enrolled in the National H..."
+      },
+      {
+        "doc_id": "MED-990",
+        "rank_before": 12,
+        "rank_after": 30,
+        "rank_gain": -18,
+        "score_before": 0.07142857142857142,
+        "score_after": -8.611512184143066,
+        "relevance": 0,
+        "title": "Associations between elevated homocysteine, cognitive impairment, and reduced white matter volume in healthy old adults.",
+        "text_snippet": "OBJECTIVES: Elevated homocysteine has emerged as a risk factor for cognitive impairment even in healthy elderly persons. Reduced brain volume and white matter hyperintensities also occur in healthy elderly as well, but the interrelationships between these have not been well studi..."
+      },
+      {
+        "doc_id": "MED-4827",
+        "rank_before": 32,
+        "rank_after": 14,
+        "rank_gain": 18,
+        "score_before": 0.04249815225424981,
+        "score_after": -7.273336410522461,
+        "relevance": 0,
+        "title": "Men with Low Serum Cholesterol Have a Lower Risk of High-Grade Prostate Cancer in the Placebo Arm of the Prostate Cancer Prevention Trial",
+        "text_snippet": "Background Several prospective studies suggest that use of cholesterol-lowering statin drugs is inversely associated with advanced stage and possibly high-grade prostate cancer. One study reported that men with low cholesterol had a lower risk of high-grade prostate cancer. Given..."
+      },
+      {
+        "doc_id": "MED-1555",
+        "rank_before": 37,
+        "rank_after": 20,
+        "rank_gain": 17,
+        "score_before": 0.038461538461538464,
+        "score_after": -8.107781410217285,
+        "relevance": 0,
+        "title": "Diet and serum cholesterol: do zero correlations negate the relationship?",
+        "text_snippet": "The confounding that results from the uncontrolled conditions under which most epidemiologic observations are made is sufficient to undermine their validity with respect to investigation of the relationship between diet and serum cholesterol. In this paper, the authors show, usin..."
+      },
+      {
+        "doc_id": "MED-1428",
+        "rank_before": 26,
+        "rank_after": 9,
+        "rank_gain": 17,
+        "score_before": 0.047619047619047616,
+        "score_after": -6.501953125,
+        "relevance": 0,
+        "title": "Optimal low-density lipoprotein is 50 to 70 mg/dl: lower is better and physiologically normal.",
+        "text_snippet": "The normal low-density lipoprotein (LDL) cholesterol range is 50 to 70 mg/dl for native hunter-gatherers, healthy human neonates, free-living primates, and other wild mammals (all of whom do not develop atherosclerosis). Randomized trial data suggest atherosclerosis progression a..."
+      }
+    ]
+  }
+}

@@ -1,0 +1,939 @@
+{
+  "corrector_metadata": {
+    "k_gram": 2,
+    "jaccard_threshold": 0.2,
+    "max_edit_distance": 2,
+    "max_candidates": 100,
+    "distance_metric": "damerau_levenshtein",
+    "pad_kgrams": true,
+    "vocabulary_size": 26389,
+    "num_kgrams": 1096
+  },
+  "num_queries": 10,
+  "mean_ndcg10_original": 0.43519034175691845,
+  "mean_ndcg10_erro": 0.15077133657089875,
+  "mean_ndcg10_corrigida": 0.43519034175691845,
+  "queries_with_degradation": 8,
+  "mean_recovery_rate": 1.0,
+  "records": [
+    {
+      "query_id": "PLAIN-165",
+      "query_original": "Breast Cancer & Alcohol: How Much is Safe?",
+      "query_erro": "Breast Cancer & alcxohol: How Much is Safe?",
+      "query_corrigida": "Breast Cancer & alcohol: How Much is Safe?",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.5193397618640793,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.5193397618640793,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-924",
+      "query_original": "cocaine",
+      "query_erro": "cocane",
+      "query_corrigida": "cocaine",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.22009176629808017,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.22009176629808017,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2590",
+      "query_original": "Do Vegetarians Get Enough Protein?",
+      "query_erro": "Do vegerarians Get Enough Protein?",
+      "query_corrigida": "Do vegetarians Get Enough Protein?",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.06571108366710599,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.06571108366710599,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2430",
+      "query_original": "Preventing Brain Loss with B Vitamins?",
+      "query_erro": "preventign Brain Loss with B Vitamins?",
+      "query_corrigida": "prevention Brain Loss with B Vitamins?",
+      "tipo_erro": "troca",
+      "NDCG10_original": 0.47260261581079904,
+      "NDCG10_erro": 0.47488969109180523,
+      "NDCG10_corrigida": 0.47260261581079904,
+      "error_reduced_performance": false,
+      "recovery_rate": null,
+      "note": "o erro não reduziu o desempenho"
+    },
+    {
+      "query_id": "PLAIN-806",
+      "query_original": "caloric restriction",
+      "query_erro": "caloric restreiction",
+      "query_corrigida": "caloric restriction",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.857980942822373,
+      "NDCG10_erro": 0.6936634693435663,
+      "NDCG10_corrigida": 0.857980942822373,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-371",
+      "query_original": "Any update on the scary in vitro avocado data?",
+      "query_erro": "Any update on the scary in vitro aocado data?",
+      "query_corrigida": "Any update on the scars in vitro avocado data?",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.16369747519436975,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.16369747519436975,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2061",
+      "query_original": "seafood",
+      "query_erro": "seqfood",
+      "query_corrigida": "seafood",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.9305687780632227,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.9305687780632227,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-902",
+      "query_original": "chlorophyll",
+      "query_erro": "chlroophyll",
+      "query_corrigida": "chlorophyll",
+      "tipo_erro": "troca",
+      "NDCG10_original": 0.6366824387328317,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.6366824387328317,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-383",
+      "query_original": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+      "query_erro": "What do you think of Dr. Jenkins' take on paleolkithic diets?",
+      "query_corrigida": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.14606834984270645,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.14606834984270645,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2291",
+      "query_original": "ultra-processed foods",
+      "query_erro": "ultra-prcessed foods",
+      "query_corrigida": "ultra-processed foods",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.3391602052736161,
+      "NDCG10_erro": 0.3391602052736161,
+      "NDCG10_corrigida": 0.3391602052736161,
+      "error_reduced_performance": false,
+      "recovery_rate": null,
+      "note": "o erro não reduziu o desempenho"
+    }
+  ],
+  "semantic_optional": [
+    {
+      "query_id": "PLAIN-165",
+      "query_original": "Breast Cancer & Alcohol: How Much is Safe?",
+      "query_erro": "Breast Cancer & alcxohol: How Much is Safe?",
+      "query_corrigida": "Breast Cancer & alcohol: How Much is Safe?",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.4651162160664119,
+      "NDCG10_erro": 0.35378784558917725,
+      "NDCG10_corrigida": 0.4651162160664119,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-924",
+      "query_original": "cocaine",
+      "query_erro": "cocane",
+      "query_corrigida": "cocaine",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.7778721720600673,
+      "NDCG10_erro": 0.3679212572135327,
+      "NDCG10_corrigida": 0.7778721720600673,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2590",
+      "query_original": "Do Vegetarians Get Enough Protein?",
+      "query_erro": "Do vegerarians Get Enough Protein?",
+      "query_corrigida": "Do vegetarians Get Enough Protein?",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.2520814921425032,
+      "NDCG10_erro": 0.20860430697902446,
+      "NDCG10_corrigida": 0.2520814921425032,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2430",
+      "query_original": "Preventing Brain Loss with B Vitamins?",
+      "query_erro": "preventign Brain Loss with B Vitamins?",
+      "query_corrigida": "prevention Brain Loss with B Vitamins?",
+      "tipo_erro": "troca",
+      "NDCG10_original": 0.6190807167889661,
+      "NDCG10_erro": 0.5541432109622958,
+      "NDCG10_corrigida": 0.5908251720119758,
+      "error_reduced_performance": true,
+      "recovery_rate": 0.5648809664416531,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-806",
+      "query_original": "caloric restriction",
+      "query_erro": "caloric restreiction",
+      "query_corrigida": "caloric restriction",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.7670273914429264,
+      "NDCG10_erro": 0.3746661058764784,
+      "NDCG10_corrigida": 0.7670273914429264,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-371",
+      "query_original": "Any update on the scary in vitro avocado data?",
+      "query_erro": "Any update on the scary in vitro aocado data?",
+      "query_corrigida": "Any update on the scars in vitro avocado data?",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.16369747519436975,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.14704034066641014,
+      "error_reduced_performance": true,
+      "recovery_rate": 0.8982444017039273,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2061",
+      "query_original": "seafood",
+      "query_erro": "seqfood",
+      "query_corrigida": "seafood",
+      "tipo_erro": "substituicao",
+      "NDCG10_original": 0.8899541168509599,
+      "NDCG10_erro": 0.2934556883974402,
+      "NDCG10_corrigida": 0.8899541168509599,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-902",
+      "query_original": "chlorophyll",
+      "query_erro": "chlroophyll",
+      "query_corrigida": "chlorophyll",
+      "tipo_erro": "troca",
+      "NDCG10_original": 0.2638647595767405,
+      "NDCG10_erro": 0.16812753627111746,
+      "NDCG10_corrigida": 0.2638647595767405,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-383",
+      "query_original": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+      "query_erro": "What do you think of Dr. Jenkins' take on paleolkithic diets?",
+      "query_corrigida": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+      "tipo_erro": "insercao",
+      "NDCG10_original": 0.13120507751234178,
+      "NDCG10_erro": 0.09803928583135704,
+      "NDCG10_corrigida": 0.13120507751234178,
+      "error_reduced_performance": true,
+      "recovery_rate": 1.0,
+      "note": ""
+    },
+    {
+      "query_id": "PLAIN-2291",
+      "query_original": "ultra-processed foods",
+      "query_erro": "ultra-prcessed foods",
+      "query_corrigida": "ultra-processed foods",
+      "tipo_erro": "remocao",
+      "NDCG10_original": 0.0,
+      "NDCG10_erro": 0.0,
+      "NDCG10_corrigida": 0.0,
+      "error_reduced_performance": false,
+      "recovery_rate": null,
+      "note": "o erro não reduziu o desempenho"
+    }
+  ],
+  "details": [
+    {
+      "query_id": "PLAIN-165",
+      "tipo_erro": "insercao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "alcxohol"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "Breast Cancer & alcxohol: How Much is Safe?",
+        "corrected_query": "Breast Cancer & alcohol: How Much is Safe?",
+        "corrections": [
+          {
+            "original": "alcxohol",
+            "corrected": "alcohol",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.7,
+            "candidates_checked": 42,
+            "top_candidates": [
+              {
+                "term": "alcohol",
+                "edit_distance": 1,
+                "jaccard": 0.7,
+                "freq": 141
+              },
+              {
+                "term": "alcohols",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 1
+              },
+              {
+                "term": "alcool",
+                "edit_distance": 2,
+                "jaccard": 0.454545,
+                "freq": 2
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-165",
+        "query_original": "Breast Cancer & Alcohol: How Much is Safe?",
+        "query_erro": "Breast Cancer & alcxohol: How Much is Safe?",
+        "query_corrigida": "Breast Cancer & alcohol: How Much is Safe?",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.4651162160664119,
+        "NDCG10_erro": 0.35378784558917725,
+        "NDCG10_corrigida": 0.4651162160664119,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-924",
+      "tipo_erro": "remocao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "cocane"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "cocane",
+        "corrected_query": "cocaine",
+        "corrections": [
+          {
+            "original": "cocane",
+            "corrected": "cocaine",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.6666666666666666,
+            "candidates_checked": 100,
+            "top_candidates": [
+              {
+                "term": "cocaine",
+                "edit_distance": 1,
+                "jaccard": 0.666667,
+                "freq": 1
+              },
+              {
+                "term": "cane",
+                "edit_distance": 2,
+                "jaccard": 0.714286,
+                "freq": 3
+              },
+              {
+                "term": "cochrane",
+                "edit_distance": 2,
+                "jaccard": 0.6,
+                "freq": 70
+              },
+              {
+                "term": "coca",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 3
+              },
+              {
+                "term": "coccine",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 1
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-924",
+        "query_original": "cocaine",
+        "query_erro": "cocane",
+        "query_corrigida": "cocaine",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.7778721720600673,
+        "NDCG10_erro": 0.3679212572135327,
+        "NDCG10_corrigida": 0.7778721720600673,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2590",
+      "tipo_erro": "substituicao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "vegerarians"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "Do vegerarians Get Enough Protein?",
+        "corrected_query": "Do vegetarians Get Enough Protein?",
+        "corrections": [
+          {
+            "original": "vegerarians",
+            "corrected": "vegetarians",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.7142857142857143,
+            "candidates_checked": 100,
+            "top_candidates": [
+              {
+                "term": "vegetarians",
+                "edit_distance": 1,
+                "jaccard": 0.714286,
+                "freq": 95
+              },
+              {
+                "term": "vegetarian",
+                "edit_distance": 2,
+                "jaccard": 0.533333,
+                "freq": 130
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2590",
+        "query_original": "Do Vegetarians Get Enough Protein?",
+        "query_erro": "Do vegerarians Get Enough Protein?",
+        "query_corrigida": "Do vegetarians Get Enough Protein?",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.2520814921425032,
+        "NDCG10_erro": 0.20860430697902446,
+        "NDCG10_corrigida": 0.2520814921425032,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2430",
+      "tipo_erro": "troca",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "preventign"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "preventign Brain Loss with B Vitamins?",
+        "corrected_query": "prevention Brain Loss with B Vitamins?",
+        "corrections": [
+          {
+            "original": "preventign",
+            "corrected": "prevention",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.6923076923076923,
+            "candidates_checked": 100,
+            "top_candidates": [
+              {
+                "term": "prevention",
+                "edit_distance": 1,
+                "jaccard": 0.692308,
+                "freq": 328
+              },
+              {
+                "term": "preventing",
+                "edit_distance": 1,
+                "jaccard": 0.571429,
+                "freq": 68
+              },
+              {
+                "term": "preventive",
+                "edit_distance": 2,
+                "jaccard": 0.615385,
+                "freq": 55
+              },
+              {
+                "term": "prevencion",
+                "edit_distance": 2,
+                "jaccard": 0.466667,
+                "freq": 1
+              },
+              {
+                "term": "presenting",
+                "edit_distance": 2,
+                "jaccard": 0.375,
+                "freq": 21
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2430",
+        "query_original": "Preventing Brain Loss with B Vitamins?",
+        "query_erro": "preventign Brain Loss with B Vitamins?",
+        "query_corrigida": "prevention Brain Loss with B Vitamins?",
+        "tipo_erro": "troca",
+        "NDCG10_original": 0.6190807167889661,
+        "NDCG10_erro": 0.5541432109622958,
+        "NDCG10_corrigida": 0.5908251720119758,
+        "error_reduced_performance": true,
+        "recovery_rate": 0.5648809664416531,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-806",
+      "tipo_erro": "insercao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "restreiction"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "caloric restreiction",
+        "corrected_query": "caloric restriction",
+        "corrections": [
+          {
+            "original": "restreiction",
+            "corrected": "restriction",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.8461538461538461,
+            "candidates_checked": 100,
+            "top_candidates": [
+              {
+                "term": "restriction",
+                "edit_distance": 1,
+                "jaccard": 0.846154,
+                "freq": 80
+              },
+              {
+                "term": "restrictions",
+                "edit_distance": 2,
+                "jaccard": 0.666667,
+                "freq": 9
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-806",
+        "query_original": "caloric restriction",
+        "query_erro": "caloric restreiction",
+        "query_corrigida": "caloric restriction",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.7670273914429264,
+        "NDCG10_erro": 0.3746661058764784,
+        "NDCG10_corrigida": 0.7670273914429264,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-371",
+      "tipo_erro": "remocao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "aocado"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "Any update on the scary in vitro aocado data?",
+        "corrected_query": "Any update on the scars in vitro avocado data?",
+        "corrections": [
+          {
+            "original": "scary",
+            "corrected": "scars",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.5,
+            "candidates_checked": 100,
+            "top_candidates": [
+              {
+                "term": "scars",
+                "edit_distance": 1,
+                "jaccard": 0.5,
+                "freq": 1
+              },
+              {
+                "term": "carry",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 19
+              },
+              {
+                "term": "scarce",
+                "edit_distance": 2,
+                "jaccard": 0.444444,
+                "freq": 19
+              },
+              {
+                "term": "sugary",
+                "edit_distance": 2,
+                "jaccard": 0.444444,
+                "freq": 5
+              },
+              {
+                "term": "sca",
+                "edit_distance": 2,
+                "jaccard": 0.428571,
+                "freq": 2
+              }
+            ]
+          },
+          {
+            "original": "aocado",
+            "corrected": "avocado",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.6666666666666666,
+            "candidates_checked": 39,
+            "top_candidates": [
+              {
+                "term": "avocado",
+                "edit_distance": 1,
+                "jaccard": 0.666667,
+                "freq": 10
+              },
+              {
+                "term": "avocados",
+                "edit_distance": 2,
+                "jaccard": 0.454545,
+                "freq": 2
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 2,
+        "num_corrected_tokens": 2
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-371",
+        "query_original": "Any update on the scary in vitro avocado data?",
+        "query_erro": "Any update on the scary in vitro aocado data?",
+        "query_corrigida": "Any update on the scars in vitro avocado data?",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.16369747519436975,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.14704034066641014,
+        "error_reduced_performance": true,
+        "recovery_rate": 0.8982444017039273,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2061",
+      "tipo_erro": "substituicao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "seqfood"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "seqfood",
+        "corrected_query": "seafood",
+        "corrections": [
+          {
+            "original": "seqfood",
+            "corrected": "seafood",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.6,
+            "candidates_checked": 53,
+            "top_candidates": [
+              {
+                "term": "seafood",
+                "edit_distance": 1,
+                "jaccard": 0.6,
+                "freq": 41
+              },
+              {
+                "term": "seafoods",
+                "edit_distance": 2,
+                "jaccard": 0.416667,
+                "freq": 1
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2061",
+        "query_original": "seafood",
+        "query_erro": "seqfood",
+        "query_corrigida": "seafood",
+        "tipo_erro": "substituicao",
+        "NDCG10_original": 0.8899541168509599,
+        "NDCG10_erro": 0.2934556883974402,
+        "NDCG10_corrigida": 0.8899541168509599,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-902",
+      "tipo_erro": "troca",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "chlroophyll"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "chlroophyll",
+        "corrected_query": "chlorophyll",
+        "corrections": [
+          {
+            "original": "chlroophyll",
+            "corrected": "chlorophyll",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.7142857142857143,
+            "candidates_checked": 46,
+            "top_candidates": [
+              {
+                "term": "chlorophyll",
+                "edit_distance": 1,
+                "jaccard": 0.714286,
+                "freq": 4
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-902",
+        "query_original": "chlorophyll",
+        "query_erro": "chlroophyll",
+        "query_corrigida": "chlorophyll",
+        "tipo_erro": "troca",
+        "NDCG10_original": 0.2638647595767405,
+        "NDCG10_erro": 0.16812753627111746,
+        "NDCG10_corrigida": 0.2638647595767405,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-383",
+      "tipo_erro": "insercao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "paleolkithic"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "What do you think of Dr. Jenkins' take on paleolkithic diets?",
+        "corrected_query": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+        "corrections": [
+          {
+            "original": "Jenkins",
+            "corrected": "Jenkins",
+            "was_unknown": true,
+            "was_corrected": false,
+            "edit_distance": null,
+            "jaccard": null,
+            "candidates_checked": 100,
+            "top_candidates": []
+          },
+          {
+            "original": "paleolkithic",
+            "corrected": "paleolithic",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.7857142857142857,
+            "candidates_checked": 44,
+            "top_candidates": [
+              {
+                "term": "paleolithic",
+                "edit_distance": 1,
+                "jaccard": 0.785714,
+                "freq": 6
+              },
+              {
+                "term": "palaeolithic",
+                "edit_distance": 2,
+                "jaccard": 0.625,
+                "freq": 2
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 2,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-383",
+        "query_original": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+        "query_erro": "What do you think of Dr. Jenkins' take on paleolkithic diets?",
+        "query_corrigida": "What do you think of Dr. Jenkins' take on paleolithic diets?",
+        "tipo_erro": "insercao",
+        "NDCG10_original": 0.13120507751234178,
+        "NDCG10_erro": 0.09803928583135704,
+        "NDCG10_corrigida": 0.13120507751234178,
+        "error_reduced_performance": true,
+        "recovery_rate": 1.0,
+        "note": ""
+      }
+    },
+    {
+      "query_id": "PLAIN-2291",
+      "tipo_erro": "remocao",
+      "validation": {
+        "is_valid": true,
+        "oov_tokens": [
+          "prcessed"
+        ],
+        "accidental_valid_words": []
+      },
+      "correction_details": {
+        "original_query": "ultra-prcessed foods",
+        "corrected_query": "ultra-processed foods",
+        "corrections": [
+          {
+            "original": "prcessed",
+            "corrected": "processed",
+            "was_unknown": true,
+            "was_corrected": true,
+            "edit_distance": 1,
+            "jaccard": 0.7272727272727273,
+            "candidates_checked": 100,
+            "top_candidates": [
+              {
+                "term": "processed",
+                "edit_distance": 1,
+                "jaccard": 0.727273,
+                "freq": 120
+              },
+              {
+                "term": "pressed",
+                "edit_distance": 1,
+                "jaccard": 0.7,
+                "freq": 1
+              },
+              {
+                "term": "processes",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 86
+              },
+              {
+                "term": "accessed",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 1
+              },
+              {
+                "term": "recessed",
+                "edit_distance": 2,
+                "jaccard": 0.5,
+                "freq": 1
+              }
+            ]
+          }
+        ],
+        "num_unknown_tokens": 1,
+        "num_corrected_tokens": 1
+      },
+      "semantic_robustness": {
+        "query_id": "PLAIN-2291",
+        "query_original": "ultra-processed foods",
+        "query_erro": "ultra-prcessed foods",
+        "query_corrigida": "ultra-processed foods",
+        "tipo_erro": "remocao",
+        "NDCG10_original": 0.0,
+        "NDCG10_erro": 0.0,
+        "NDCG10_corrigida": 0.0,
+        "error_reduced_performance": false,
+        "recovery_rate": null,
+        "note": "o erro não reduziu o desempenho"
+      }
+    }
+  ]
+}

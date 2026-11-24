@@ -1,0 +1,11 @@
+query_id,query_original,query_erro,query_corrigida,tipo_erro,NDCG10_original,NDCG10_erro,NDCG10_corrigida,recovery_rate,error_reduced_performance,note
+PLAIN-165,Breast Cancer & Alcohol: How Much is Safe?,Breast Cancer & alcxohol: How Much is Safe?,Breast Cancer & alcohol: How Much is Safe?,insercao,0.4651162160664119,0.35378784558917725,0.4651162160664119,1.0,True,
+PLAIN-924,cocaine,cocane,cocaine,remocao,0.7778721720600673,0.3679212572135327,0.7778721720600673,1.0,True,
+PLAIN-2590,Do Vegetarians Get Enough Protein?,Do vegerarians Get Enough Protein?,Do vegetarians Get Enough Protein?,substituicao,0.2520814921425032,0.20860430697902446,0.2520814921425032,1.0,True,
+PLAIN-2430,Preventing Brain Loss with B Vitamins?,preventign Brain Loss with B Vitamins?,prevention Brain Loss with B Vitamins?,troca,0.6190807167889661,0.5541432109622958,0.5908251720119758,0.5648809664416531,True,
+PLAIN-806,caloric restriction,caloric restreiction,caloric restriction,insercao,0.7670273914429264,0.3746661058764784,0.7670273914429264,1.0,True,
+PLAIN-371,Any update on the scary in vitro avocado data?,Any update on the scary in vitro aocado data?,Any update on the scars in vitro avocado data?,remocao,0.16369747519436975,0.0,0.14704034066641014,0.8982444017039273,True,
+PLAIN-2061,seafood,seqfood,seafood,substituicao,0.8899541168509599,0.2934556883974402,0.8899541168509599,1.0,True,
+PLAIN-902,chlorophyll,chlroophyll,chlorophyll,troca,0.2638647595767405,0.16812753627111746,0.2638647595767405,1.0,True,
+PLAIN-383,What do you think of Dr. Jenkins' take on paleolithic diets?,What do you think of Dr. Jenkins' take on paleolkithic diets?,What do you think of Dr. Jenkins' take on paleolithic diets?,insercao,0.13120507751234178,0.09803928583135704,0.13120507751234178,1.0,True,
+PLAIN-2291,ultra-processed foods,ultra-prcessed foods,ultra-processed foods,remocao,0.0,0.0,0.0,,False,o erro não reduziu o desempenho
