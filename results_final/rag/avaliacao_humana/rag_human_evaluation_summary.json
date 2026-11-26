@@ -1,0 +1,39 @@
+{
+  "output_csv": "results_final/rag/rag_experiment.csv",
+  "condition_means": {
+    "A": {
+      "fidelidade": 0.5,
+      "completude": 1.0,
+      "utilidade": 0.9,
+      "rastreabilidade": null
+    },
+    "B": {
+      "fidelidade": 1.4,
+      "completude": 1.65,
+      "utilidade": 1.7,
+      "rastreabilidade": 1.9
+    }
+  },
+  "inter_annotator_agreement": {
+    "fidelidade": {
+      "n_pairs": 20,
+      "exact_agreement": 0.9,
+      "cohens_kappa": 0.8333333333333333
+    },
+    "completude": {
+      "n_pairs": 20,
+      "exact_agreement": 0.45,
+      "cohens_kappa": 0.07172995780590714
+    },
+    "utilidade": {
+      "n_pairs": 20,
+      "exact_agreement": 0.6,
+      "cohens_kappa": 0.36
+    },
+    "rastreabilidade": {
+      "n_pairs": 10,
+      "exact_agreement": 1.0,
+      "cohens_kappa": 1.0
+    }
+  }
+}

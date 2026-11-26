@@ -13,14 +13,11 @@ A escala segue o requisito 13 do [enunciado](../../../Trabalho_Pratico_2_RI_2026
 | [rag_context_reference.json](rag_context_reference.json) | Título, texto e ID dos cinco documentos de referência de cada pergunta. Para localizar os documentos, buscar pelo `query_id` da linha na planilha e consultar `top5_context_docs`. |
 | [rag_blind_key.json](rag_blind_key.json) | Chave que associa cada `blind_id` à condição sem RAG (A) ou com RAG (B). Seu uso fica reservado à agregação. |
 
-Gabriel preenche [sua cópia em branco](rag_blind_gabriel.csv). A
-[planilha do Julio](rag_blind_julio.xlsx) e o [CSV correspondente](rag_blind_julio.csv)
-contêm sugestões de notas e justificativas geradas por IA. Julio deve ler cada
-resposta, conferir os documentos e registrar seu julgamento nas células amarelas.
-Depois da revisão, exportar a aba `Exportar CSV` como `rag_blind_julio.csv`.
-Se usar as sugestões, registrar a assistência de IA na metodologia do relatório.
-Cada integrante consulta apenas a própria planilha e as referências até concluir
-a avaliação. A chave A/B fica reservada para a agregação.
+Os registros individuais estão em [rag_blind_luiz.csv](rag_blind_luiz.csv) e
+[rag_blind_julio.csv](rag_blind_julio.csv). Para repetir a avaliação, cada
+integrante deve começar por uma cópia da planilha original e consultar apenas
+essa cópia e os documentos de referência até concluir seu julgamento. A chave
+A/B fica reservada para a agregação.
 
 Ao abrir a planilha em um editor de tabelas, importar e exportar como CSV em
 UTF-8 sem BOM, com vírgula como separador e aspas duplas como delimitador de
@@ -70,12 +67,12 @@ avaliacoes=results_final/rag/avaliacao_humana
 
 .venv/bin/python -m src.main --stages rag-aggregate \
   --results-dir results_final \
-  --blind-csv "$avaliacoes/rag_blind_gabriel.csv" "$avaliacoes/rag_blind_julio.csv"
+  --blind-csv "$avaliacoes/rag_blind_luiz.csv" "$avaliacoes/rag_blind_julio.csv"
 ```
 
 O comando usa a chave da própria rodada para associar cada resposta à
 condição A ou B. As duas planilhas individuais ficam como registro das notas
-originais. A ordem dos arquivos no comando identifica Gabriel como
+originais. A ordem dos arquivos no comando identifica Luiz como
 avaliador 1 e Julio como avaliador 2.
 
 - [rag_experiment.csv](../rag_experiment.csv) é atualizado com a média das

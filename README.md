@@ -173,7 +173,7 @@ avaliações, executar:
 resultados=results_reproducao
 avaliacoes="$resultados/rag/avaliacao_humana"
 python -m src.main --stages rag-aggregate --results-dir "$resultados" \
-  --blind-csv "$avaliacoes/rag_blind_gabriel.csv" "$avaliacoes/rag_blind_julio.csv"
+  --blind-csv "$avaliacoes/rag_blind_luiz.csv" "$avaliacoes/rag_blind_julio.csv"
 ```
 
 Usar `resultados=results_final` para consolidar a rodada oficial. A agregação

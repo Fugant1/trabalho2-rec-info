@@ -157,7 +157,7 @@ do RRF.
 \subsection{Tolerância a erros ortográficos}
 
 O corretor usa o vocabulário da coleção antes do \textit{stemming},
-com as palavras de parada preservadas.
+incluindo as palavras de parada que ocorrem nos documentos.
 Para um termo fora do vocabulário, um índice de bigramas de caracteres com
 marcadores de borda recupera candidatos. O coeficiente de Jaccard filtra as
 alternativas com similaridade inferior a \(0{,}20\), limiar selecionado em
@@ -247,7 +247,7 @@ identificador, título e texto. A instrução pede uma resposta apoiada no
 contexto, com indicação dos identificadores que sustentam as afirmações e
 menção explícita quando a evidência é insuficiente. Os documentos usados
 como contexto foram avaliados pelos julgamentos de relevância da coleção.
-As respostas das duas condições serão avaliadas pelos integrantes.
+As respostas das duas condições foram avaliadas pelos integrantes.
 
 \section{Avaliação}
 \label{sec:avaliacao}
@@ -284,16 +284,20 @@ Para os cinco documentos enviados ao modelo na condição com RAG,
 calculam-se P@5, R@5 e Hit@5. A última métrica vale 1 quando pelo menos
 um desses documentos é relevante.
 
-O protocolo prevê que os dois integrantes avaliem as respostas de forma
-cega e independente. Cada critério aplicável recebe uma nota de 0 a 2
-acompanhada de justificativa. Os critérios são fidelidade, completude,
-utilidade e rastreabilidade. Para julgar a fidelidade de ambas as respostas
-à mesma pergunta, os avaliadores usam como referência os cinco documentos
-fornecidos ao modelo na condição B (com RAG). Na condição A (sem RAG), o
-modelo recebe somente a pergunta, por isso a rastreabilidade é registrada
-como \textit{N/A} e excluída do cálculo da média desse critério. Após a
-avaliação, serão reportadas as médias por condição, a concordância exata e
-o kappa de Cohen.
+Os dois integrantes avaliaram as respostas de forma independente, com os
+rótulos das condições ocultos. As citações e os identificadores de
+documentos foram mantidos nas respostas para a avaliação
+da rastreabilidade.
+
+Os avaliadores atribuíram uma nota de 0 a 2, acompanhada de justificativa,
+a cada critério: fidelidade, completude, utilidade e rastreabilidade.
+Para julgar a fidelidade de ambas as respostas à mesma pergunta, usaram
+como referência os cinco documentos fornecidos ao modelo na condição B
+(com RAG). Na consolidação, após a identificação das condições, a
+rastreabilidade da condição A (sem RAG) foi registrada como \textit{N/A}
+e excluída da média e da análise de concordância desse critério. As notas
+dos dois avaliadores foram promediadas por resposta e critério. A
+concordância foi calculada sobre as notas individuais.
 
 \subsection{Configuração e ambiente}
 
@@ -306,9 +310,8 @@ Transformers 6.3.0.
 A geração (\texttt{run\_20261123\_220135}) foi executada na mesma máquina,
 com o Qwen na RTX 2050. A etapa reutilizou as listas da recuperação e
 registrou seus próprios tempos, mantidos no
-\texttt{rag\_experiment\_summary.json}. As 20 respostas foram exportadas
-em \texttt{rag\_experiment.csv}. As notas e justificativas serão
-incorporadas ao CSV após a avaliação humana.
+\texttt{rag\_experiment\_summary.json}. As 20 respostas e os resultados
+da avaliação humana constam em \texttt{rag\_experiment.csv}.
 
 \section{Resultados Obtidos e Análise}
 \label{sec:resultados}
@@ -671,15 +674,161 @@ perguntas. O tempo médio por resposta foi de 17,26\,s sem RAG e
 recuperadas. A condição com contexto levou, em média, cerca do dobro
 do tempo da condição sem contexto.
 
-\textbf{Pendente.} Ainda serão incorporadas as notas e justificativas
-das duas avaliações independentes, as médias por condição e a
-concordância entre os avaliadores.
+\noindent\begin{minipage}{\linewidth}
+\centering
+\small
+\captionof{table}{Notas médias por condição e concordância entre avaliadores.}
+\label{tab:notas-rag}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Critério & A (sem RAG) & B (com RAG) & Pares & Acordo exato & Kappa \\
+\midrule
+Fidelidade      & 0,50 & 1,40 & 20 & 90\%  & 0,83 \\
+Completude      & 1,00 & 1,65 & 20 & 45\%  & 0,07 \\
+Utilidade       & 0,90 & 1,70 & 20 & 60\%  & 0,36 \\
+Rastreabilidade & \textit{N/A} & 1,90 & 10 & 100\% & 1,00 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\par\medskip
 
-\textbf{Pendente.} Os três casos de melhora, pouca diferença e ausência de
-benefício ou piora serão selecionados após a avaliação humana. A análise seguirá
-as posições no BM25, na busca semântica, na fusão e na reordenação, os
-documentos incluídos no contexto e as afirmações da resposta. Isso
-permite distinguir falhas de recuperação e seleção de falhas na geração.
+A Tabela~\ref{tab:notas-rag} mostra que a condição com RAG obteve médias
+maiores nos três critérios comparáveis. A maior diferença foi em
+fidelidade, de 0,50 para 1,40 na escala de 0 a 2. A média de
+rastreabilidade foi calculada apenas para a condição com RAG. Nessa
+condição, os identificadores citados permitem localizar os documentos
+e verificar o apoio às afirmações.
+
+O kappa de Cohen mede a concordância entre os avaliadores levando em
+conta as coincidências esperadas pelas frequências com que cada um usou
+as notas 0, 1 e 2. Em fidelidade, os avaliadores atribuíram a mesma nota
+em 18 das 20 respostas (90\%). Pelas frequências de uso de cada nota,
+seriam esperadas 8 coincidências em 20 (40\%). Como a concordância
+observada foi bem superior à esperada, o kappa foi de 0,83. Em
+completude, as notas coincidiram em 9 das 20 respostas (45\%), ante
+40,75\% de acordo esperado, resultando em kappa de 0,07. As 11
+divergências em completude foram de um ponto na escala.
+
+\subsubsection{Análise de três casos ponta a ponta}
+
+A seleção considerou as notas médias por pergunta em fidelidade,
+completude e utilidade, os três critérios comparáveis entre as condições.
+\texttt{PLAIN-68} teve o maior aumento na soma dessas três notas,
+\texttt{PLAIN-238} manteve as mesmas notas e \texttt{PLAIN-3342} foi a
+única pergunta com queda em utilidade. Neste último caso, a queda ocorreu
+mesmo com aumento nos outros dois critérios. A
+Tabela~\ref{tab:casos-rag} apresenta as notas de cada par, e a
+Tabela~\ref{tab:docs-casos-rag} registra a ordem dos documentos efetivamente
+enviados na condição B. A condição A recebeu a pergunta sem documentos.
+
+\noindent\begin{minipage}{\linewidth}
+\centering
+\small
+\captionof{table}{Notas médias dos avaliadores nos três casos. As setas indicam a passagem de A (sem RAG) para B (com RAG).}
+\label{tab:casos-rag}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Consulta & Fidelidade & Completude & Utilidade \\
+\midrule
+\texttt{PLAIN-68}   & \(0{,}0 \to 1{,}0\) & \(0{,}5 \to 2{,}0\) & \(0{,}5 \to 2{,}0\) \\
+\texttt{PLAIN-238}  & \(1{,}0 \to 1{,}0\) & \(1{,}5 \to 1{,}5\) & \(1{,}5 \to 1{,}5\) \\
+\texttt{PLAIN-3342} & \(0{,}0 \to 1{,}0\) & \(0{,}5 \to 1{,}0\) & \(1{,}0 \to 0{,}5\) \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\par\medskip
+
+\noindent\begin{minipage}{\linewidth}
+\centering
+\small
+\captionof{table}{Documentos enviados na condição B, em ordem de reordenação. Entre parênteses está o grau de relevância. Zero indica ausência de julgamento positivo.}
+\label{tab:docs-casos-rag}
+\begin{tabular}{@{}rlll@{}}
+\toprule
+Posição & \texttt{PLAIN-68} & \texttt{PLAIN-238} & \texttt{PLAIN-3342} \\
+\midrule
+1 & MED-2991 (2) & MED-2391 (0) & MED-5014 (2) \\
+2 & MED-1797 (0) & MED-4739 (1) & MED-5015 (0) \\
+3 & MED-2492 (0) & MED-2493 (0) & MED-4000 (0) \\
+4 & MED-2088 (0) & MED-4653 (0) & MED-4002 (0) \\
+5 & MED-1810 (0) & MED-2994 (0) & MED-5012 (2) \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\par\medskip
+
+\paragraph{Melhora clara (PLAIN-68).}
+A pergunta trata da composição dos nuggets de frango. Sem RAG, a resposta
+lista ingredientes e descreve um modo de preparo. O
+\texttt{MED-2991}, primeiro nas buscas lexical e semântica, na fusão e
+na reordenação, chegou ao contexto e foi citado na resposta com RAG.
+O estudo descreve a análise microscópica de amostras de duas redes de
+alimentação. A resposta com RAG recupera o achado de que o tecido muscular
+não predominou e menciona gordura e outros tecidos. Dessa forma, passa de
+uma descrição de preparo a uma resposta sobre a composição observada.
+A generalização dos achados para nuggets em geral, sem delimitar o estudo
+às duas redes, explica por que a fidelidade permaneceu abaixo da nota máxima.
+
+\paragraph{Pouca diferença (PLAIN-238).}
+A pergunta trata da extensão da exposição humana a contaminantes químicos.
+Sem RAG, a resposta enumera contaminantes e vias de exposição. Com RAG,
+passa a citar medições e estudos específicos. O \texttt{MED-2391}, primeiro
+no contexto, registra a detecção de PFOA em 17 de 31 amostras compostas de
+alimentos. A resposta reproduz esse número, mas descreve como elevado o
+valor do metabólito do DDT no iogurte, que era o menor da faixa observada
+(0,028~ng/g). O \texttt{MED-4739}, único documento com julgamento positivo
+no contexto, foi promovido da 11ª posição na fusão para a segunda após a
+reordenação. A resposta o cita ao discutir exposição ao mercúrio na
+gestação. As referências deram maior especificidade à condição B, mas os
+erros de interpretação e o uso de medidas de alimentos como resposta
+indireta sobre as pessoas limitaram o benefício. As três notas comparáveis
+permaneceram iguais.
+
+\paragraph{Piora de utilidade (PLAIN-3342).}
+A pergunta trata do leite de coco. Sem RAG, a resposta permanece centrada
+nesse produto, embora atribua a ele benefícios que os documentos de
+referência não sustentam. Com RAG, a resposta cita estudos sobre óleo,
+farinha e água de coco, e a conclusão passa a tratar de água de coco.
+A utilidade caiu de 1,0 para 0,5, apesar do ganho de fidelidade e
+completude. Três documentos permitem localizar o problema na sequência
+de etapas, conforme a Tabela~\ref{tab:ranks-coco}.
+
+\noindent\begin{minipage}{\linewidth}
+\centering
+\small
+\captionof{table}{Posições de três documentos em \texttt{PLAIN-3342} e inclusão no contexto enviado.}
+\label{tab:ranks-coco}
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+Documento & BM25 & Semântico & Fusão & Reranking & No contexto \\
+\midrule
+MED-5014 &  2 &  4 &  3 & 1 & Sim \\
+MED-5015 &  3 &  6 &  4 & 2 & Sim \\
+MED-5013 & 47 & 22 & 24 & 7 & Não \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\par\medskip
+
+O \texttt{MED-5014}, de grau 2, chegou na primeira posição. O texto
+enviado afirma que o consumo de polpa ou leite de coco foi semelhante
+entre casos de doença coronariana e controles na população estudada.
+A resposta atribuiu ao estudo um resultado sobre água de coco. Como o
+trecho sobre leite estava no \textit{prompt}, a troca ocorreu na geração.
+O \texttt{MED-5015}, sobre água de coco e sem julgamento positivo para a
+pergunta, entrou na segunda posição. O \texttt{MED-5013}, de grau 2,
+estuda uma refeição com leite de coco. Foi recuperado pelas duas buscas,
+chegou à 24ª posição na fusão e subiu à sétima após a reordenação, ficando
+fora do limite de cinco. A seleção excluiu, portanto, uma evidência
+adicional pertinente, enquanto a geração interpretou incorretamente uma
+evidência que havia recebido.
+
+Os casos podem ser conferidos pelo identificador da consulta em
+\path{results_final/rag/rag_experiment.csv}, que contém as respostas,
+os textos enviados ao modelo e as justificativas. As posições são
+registradas nos quatro CSVs de \path{results_final/recuperacao/},
+e o percurso por consulta é resumido em
+\path{results_final/rag/rag_pipeline_trace.json}.
 
 \section{Considerações finais}
 
@@ -693,18 +842,27 @@ do experimento. Na geração, o contexto incluiu ao menos um documento
 relevante em nove das dez perguntas, e a condição com RAG levou cerca
 do dobro do tempo médio por resposta.
 
-\textbf{Pendente.} A síntese sobre a contribuição do RAG para a qualidade
-e a verificabilidade das respostas será completada após a avaliação
-humana.
+Nas dez perguntas avaliadas, o RAG aumentou as notas médias de fidelidade,
+completude e utilidade. A fidelidade passou de 0,50 para 1,40 na escala de
+0 a 2. O caso dos nuggets mostra o ganho de recuperar um estudo que trata
+diretamente da pergunta. Os casos de contaminação química e do leite de coco
+mostram que a interpretação das fontes e a seleção do contexto também
+afetam a qualidade da resposta. Os identificadores de documentos permitem
+conferir os achados citados na condição com RAG. Na condição sem RAG, essa
+verificação exige consultar fontes à parte. A comparação se limita às dez
+perguntas, ao modelo e à configuração de recuperação avaliados.
 
 \section{Uso de ferramentas de IA}
 
-Sistemas de harness (Codex e Antigravity) foram utilizados como apoio à programação e à depuração,
-à elaboração de testes, à organização e conferência das evidências
-experimentais e à redação e revisão deste relatório. Os modelos de
-embeddings, de reordenação e de geração fazem parte da metodologia
-experimental. A interpretação e a validação das conclusões são de
-responsabilidade dos integrantes.
+Ferramentas de IA generativa foram utilizadas como
+apoio à programação, à depuração, à elaboração de testes, à conferência de
+evidências e à redação e revisão do relatório. Na avaliação das respostas,
+foram usadas para organizar os documentos recuperados, facilitar a leitura
+das respostas e apoiar a revisão das notas e justificativas. As decisões
+sobre as notas finais couberam aos integrantes.
+Os modelos de embeddings, de reordenação e de geração fazem parte da
+metodologia experimental. A interpretação e a validação das conclusões são
+de responsabilidade dos integrantes.
 
 \begin{thebibliography}{}
 \bibitem[Boteva et al. 2016]{boteva2016}
