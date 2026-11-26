@@ -199,9 +199,7 @@ class SpellCorrector:
     ) -> "SpellCorrector":
         """Build dictionary from raw corpus texts BEFORE stemming/lemmatization.
 
-        All alphanumeric tokens (lowercased, including stopwords) are retained
-        so that stopwords in queries are recognized as known words and never
-        miscorrected.
+        Keep every observed alphanumeric token, including stopwords.
         """
         counts: Counter[str] = Counter()
         if isinstance(documents, Mapping):
@@ -213,12 +211,12 @@ class SpellCorrector:
             doc_tokens = set(self._regex.findall(text.lower()))
             counts.update(doc_tokens)
 
-        return self.fit_from_vocabulary(counts, include_english_stopwords=True)
+        return self.fit_from_vocabulary(counts)
 
     def fit_from_vocabulary(
         self,
         vocab: Mapping[str, int] | Iterable[str],
-        include_english_stopwords: bool = True,
+        include_english_stopwords: bool = False,
     ) -> "SpellCorrector":
         """Build k-gram index directly from a vocabulary (or term -> freq mapping)."""
         self.vocabulary.clear()

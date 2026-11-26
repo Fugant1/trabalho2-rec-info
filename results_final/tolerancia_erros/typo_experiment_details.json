@@ -6,7 +6,7 @@
     "max_candidates": 100,
     "distance_metric": "damerau_levenshtein",
     "pad_kgrams": true,
-    "vocabulary_size": 26389,
+    "vocabulary_size": 26359,
     "num_kgrams": 1096
   },
   "num_queries": 10,

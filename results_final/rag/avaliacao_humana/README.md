@@ -13,11 +13,14 @@ A escala segue o requisito 13 do [enunciado](../../../Trabalho_Pratico_2_RI_2026
 | [rag_context_reference.json](rag_context_reference.json) | Título, texto e ID dos cinco documentos de referência de cada pergunta. Para localizar os documentos, buscar pelo `query_id` da linha na planilha e consultar `top5_context_docs`. |
 | [rag_blind_key.json](rag_blind_key.json) | Chave que associa cada `blind_id` à condição sem RAG (A) ou com RAG (B). Seu uso fica reservado à agregação. |
 
-Salvar duas cópias da planilha original na pasta `avaliacao_humana/`, com os
-nomes `rag_blind_gabriel.csv` e `rag_blind_julio.csv`. Para a avaliação
-individual, usar apenas a própria cópia e o JSON de referência. A planilha do
-outro integrante, a chave A/B e o CSV com as condições ficam reservados até
-a conclusão das duas avaliações.
+Gabriel preenche [sua cópia em branco](rag_blind_gabriel.csv). A
+[planilha do Julio](rag_blind_julio.xlsx) e o [CSV correspondente](rag_blind_julio.csv)
+contêm sugestões de notas e justificativas geradas por IA. Julio deve ler cada
+resposta, conferir os documentos e registrar seu julgamento nas células amarelas.
+Depois da revisão, exportar a aba `Exportar CSV` como `rag_blind_julio.csv`.
+Se usar as sugestões, registrar a assistência de IA na metodologia do relatório.
+Cada integrante consulta apenas a própria planilha e as referências até concluir
+a avaliação. A chave A/B fica reservada para a agregação.
 
 Ao abrir a planilha em um editor de tabelas, importar e exportar como CSV em
 UTF-8 sem BOM, com vírgula como separador e aspas duplas como delimitador de

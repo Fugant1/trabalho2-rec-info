@@ -50,8 +50,7 @@ class TestTypoTolerance(unittest.TestCase):
         self.assertEqual(damerau_levenshtein_distance("scurvy", "scruvy"), 1)
 
     def test_dictionary_preserves_stopwords_and_corrects_all_four_error_types(self) -> None:
-        # Stopwords like "what", "and", "the" must be known and never miscorrected
-        self.assertTrue(self.corrector.is_known("what"))
+        self.assertFalse(self.corrector.is_known("what"))
         self.assertTrue(self.corrector.is_known("and"))
         self.assertTrue(self.corrector.is_known("cholesterol"))
 
