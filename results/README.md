@@ -1,6 +1,13 @@
-# Resultados
+# Resultados (rodada preliminar de referência)
 
-Os rankings, os testes de erros e as respostas do RAG aqui são da rodada de referência do Julio. O [resumo dessa rodada](experiment_summary.json) registra a configuração, as métricas e os tempos. A [comparação atual no dev](ajuste_dev/comparacao_stemming/top100/README.md) registra a configuração escolhida para a próxima rodada em `test`.
+> **Atenção:** os resultados definitivos reportados no relatório e os sete CSVs
+> padronizados para avaliação estão em **[`../results_final/`](../results_final/)**.
+> Os arquivos desta pasta (`results/`) pertencem a uma rodada preliminar sem
+> *stemming* e anterior à correção de preenchimento do Top-100 lexical (em que
+> 149 das 323 consultas de `test` ficavam com menos de 100 documentos em
+> `results_lexical.csv`), além de preservar a
+> [comparação de stemming no dev](ajuste_dev/comparacao_stemming/top100/README.md)
+> que embasou a configuração oficial adotada em `results_final/`.
 
 | Pasta | O que você encontra |
 | --- | --- |

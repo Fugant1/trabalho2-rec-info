@@ -3,7 +3,7 @@
 A rodada oficial contém duas respostas para cada uma das dez perguntas. Cada
 integrante avalia as 20 respostas em uma cópia da planilha, de forma independente.
 As condições são reveladas depois que as duas planilhas estiverem completas.
-A escala segue o requisito 13 do [enunciado](../../../Trabalho_Pratico_2_RI_2026.pdf#page=6).
+A escala segue o requisito 13 do enunciado (p. 6).
 
 ## 1. Preparação
 

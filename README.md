@@ -7,10 +7,18 @@ efeito de erros ortográficos sobre a recuperação. Na geração aumentada por
 recuperação (RAG), comparam-se respostas do mesmo modelo de linguagem com e
 sem acesso aos cinco documentos recuperados para cada pergunta.
 
-Os resultados do relatório estão em `results_final/`. A pasta `results/`
-preserva a rodada de referência e a comparação do stemming em `dev`. Os
-resultados oficiais foram obtidos com Snowball English no BM25 e com
-`k=10` na fusão.
+> **Onde estão os resultados oficiais para avaliação:** todos os resultados
+> reportados no relatório e os **sete arquivos CSV padronizados definitivos**
+> exigidos pelo enunciado estão em **`results_final/`** (ver tabela ao final
+> deste README). Essa rodada oficial utiliza *stemming* Snowball English no
+> BM25 (escolhido em `dev`), preenchimento determinístico com pontuação zero
+> para garantir exatamente 100 documentos por consulta no ranking lexical
+> (32.300 linhas nas 323 consultas de `test`) e `k=10` na fusão RRF.
+>
+> O diretório `results/ajuste_dev/comparacao_stemming/top100/` preserva o
+> registro da comparação entre `none` e `snowball-english` em `dev` que
+> fundamentou a escolha do pré-processamento lexical. **Para correção do
+> trabalho, considerar exclusivamente os CSVs em `results_final/`.**
 
 ## Integrantes do Grupo
 
@@ -37,7 +45,7 @@ resultados oficiais foram obtidos com Snowball English no BM25 e com
   - `torch==2.15.0`, `transformers==5.23.0`, `bitsandbytes==0.50.2`, `accelerate==1.16.0`
   - `sentence-transformers==6.3.0`
   - `beir==2.2.0`, `pytrec_eval-terrier==0.5.11`
-  - `scikit-learn==1.9.1`, `numpy==2.5.4`, `pandas==3.1.1`
+  - `scikit-learn==1.9.1`, `snowballstemmer==3.1.1`, `numpy==2.5.4`, `pandas==3.1.1`
   - `langchain-core==1.8.1`
 - **Rodadas oficiais:** WSL2 x86_64 com NVIDIA GeForce RTX 2050 de 4 GB. A recuperação usou CUDA para os modelos semântico e de reordenação. Na geração, a GPU foi usada pelo Qwen em 4 bits. Os ambientes e tempos estão nos resumos de [recuperação](results_final/experiment_summary.json) e [geração](results_final/rag/rag_execution_environment.json).
 
@@ -112,7 +120,7 @@ Quando o BM25 encontra menos de 100 documentos com score positivo, completa o To
 O RAG lê os quatro rankings de `recuperacao/`. As dez perguntas são
 sorteadas com semente 42 a partir dos IDs ordenados das 42 consultas de
 `test` terminadas em ponto de interrogação. A sequência da rodada oficial
-coincide com o [requisito 12 do enunciado](Trabalho_Pratico_2_RI_2026.pdf#page=5).
+coincide com o requisito 12 do enunciado (p. 5).
 
 Na condição A (sem RAG), a entrada contém a pergunta e as instruções de
 resposta. Na condição B (com RAG), acrescentam-se os cinco primeiros

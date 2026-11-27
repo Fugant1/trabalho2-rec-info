@@ -16,7 +16,6 @@
 \author{Julio Cesar Alves Araujo Fuganti\inst{1} (Nº USP 15638792)\\
   Luiz Gabriel Correia dos Santos\inst{1} (Nº USP 15639682)}
 
-% Os e-mails vieram do histórico Git. Confirmar os contatos e a filiação antes da entrega.
 \address{Instituto de Ciências Matemáticas e de Computação (ICMC)\\
   Universidade de São Paulo (USP) -- São Carlos, SP, Brasil
   \email{juliocesarfuganti@gmail.com, luizgcorreiadosantos@usp.br}}
@@ -101,8 +100,8 @@ minúsculas e tokenizados pela expressão regular \texttt{[a-z0-9]+} do módulo
 fornecidas pelo scikit-learn e mantém tokens de comprimento mínimo um.
 
 A configuração selecionada em \texttt{dev} aplica a redução de palavras a
-radicais (\textit{stemming}) com Snowball English, versão 3.1.1, após a
-remoção das palavras de parada. A mesma transformação é aplicada aos
+radicais (\textit{stemming}) com o algoritmo Snowball English da biblioteca
+\texttt{snowballstemmer} (versão 3.1.1), após a remoção das palavras de parada. A mesma transformação é aplicada aos
 documentos e às consultas do BM25. O vocabulário do corretor preserva as
 formas anteriores a essa transformação. O bi-encoder e o cross-encoder
 recebem os textos originais e aplicam seus próprios tokenizadores.
@@ -209,8 +208,10 @@ pontuações estão em escalas diferentes.
 
 \subsection{Reranking}
 
-Foi utilizado o cross-encoder \texttt{ms-marco-MiniLM-L6-v2}, pré-treinado para
-ordenar passagens no MS MARCO \cite{crossencoder}. Seu treinamento é
+Foi utilizado o cross-encoder \texttt{ms-marco-MiniLM-L6-v2} com a biblioteca
+Sentence Transformers, na revisão identificada pelo prefixo
+\texttt{233902d25c44} no Hugging Face, pré-treinado para ordenar passagens no
+MS MARCO \cite{crossencoder}. Seu treinamento é
 adequado à tarefa de pontuar candidatos para uma consulta. O modelo processa
 os dois textos conjuntamente e considera interações entre seus tokens.
 Esse processamento é limitado aos 50 primeiros candidatos da lista
@@ -655,16 +656,9 @@ PLAIN-3342 & 0,40 & 0,66667 & 1 \\
 Em nove perguntas, pelo menos um documento relevante foi recuperado.
 A revocação deve ser interpretada à luz do limite de cinco documentos
 por pergunta. Em \texttt{PLAIN-2850}, nenhum dos cinco selecionados
-recebeu julgamento positivo. A avaliação humana permitirá verificar
-como a resposta tratou as evidências que chegaram ao contexto.
-
-Os contextos da rodada de referência foram comparados aos contextos
-selecionados pela recuperação oficial. Houve mudança em
-\texttt{PLAIN-270} e \texttt{PLAIN-238}. Em \texttt{PLAIN-270},
-\texttt{MED-4439} substituiu \texttt{MED-1642} na quinta posição, e o
-número de documentos relevantes no contexto aumentou de um para dois.
-Em \texttt{PLAIN-238}, a entrada de \texttt{MED-4653} alterou o conjunto,
-com um relevante em ambas as rodadas.
+recebeu julgamento positivo; ainda assim, a avaliação humana mostrou que
+a resposta com RAG reconheceu a falta de comparação direta entre carne
+branca e escura no contexto (fidelidade média 1,5, ante 0,0 sem RAG).
 
 \subsection{Respostas A/B e análise ponta a ponta}
 
@@ -695,9 +689,18 @@ Rastreabilidade & \textit{N/A} & 1,90 & 10 & 100\% & 1,00 \\
 A Tabela~\ref{tab:notas-rag} mostra que a condição com RAG obteve médias
 maiores nos três critérios comparáveis. A maior diferença foi em
 fidelidade, de 0,50 para 1,40 na escala de 0 a 2. A média de
-rastreabilidade foi calculada apenas para a condição com RAG. Nessa
-condição, os identificadores citados permitem localizar os documentos
-e verificar o apoio às afirmações.
+rastreabilidade foi calculada apenas para a condição com RAG, enquanto a
+condição A recebeu \textit{N/A} por não contar com contexto externo. Sem
+identificadores de documentos na condição sem RAG, o leitor não consegue
+auditar afirmações nutricionais ou clínicas contra a coleção e precisa
+recorrer a fontes externas para checar sua validade. Na prática, essa
+ausência de lastro oculta extrapolações plausíveis mas não sustentadas pelas
+evidências, como a lista de ingredientes e o modo de preparo em
+\texttt{PLAIN-68} ou os benefícios atribuídos ao leite de coco em
+\texttt{PLAIN-3342} (ambos com fidelidade zero na condição A). Na condição B,
+os identificadores citados permitem localizar os estudos na coleção e
+inclusive identificar com precisão quando o modelo generaliza ou interpreta
+incorretamente uma fonte.
 
 O kappa de Cohen mede a concordância entre os avaliadores levando em
 conta as coincidências esperadas pelas frequências com que cada um usou
@@ -758,7 +761,8 @@ Posição & \texttt{PLAIN-68} & \texttt{PLAIN-238} & \texttt{PLAIN-3342} \\
 \par\medskip
 
 \paragraph{Melhora clara (PLAIN-68).}
-A pergunta trata da composição dos nuggets de frango. Sem RAG, a resposta
+A pergunta (\textit{What is Actually in Chicken Nuggets?}) trata da composição
+dos nuggets de frango. Sem RAG, a resposta
 lista ingredientes e descreve um modo de preparo. O
 \texttt{MED-2991}, primeiro nas buscas lexical e semântica, na fusão e
 na reordenação, chegou ao contexto e foi citado na resposta com RAG.
@@ -770,7 +774,8 @@ A generalização dos achados para nuggets em geral, sem delimitar o estudo
 às duas redes, explica por que a fidelidade permaneceu abaixo da nota máxima.
 
 \paragraph{Pouca diferença (PLAIN-238).}
-A pergunta trata da extensão da exposição humana a contaminantes químicos.
+A pergunta (\textit{How Chemically Contaminated Are We?}) trata da extensão da
+exposição humana a contaminantes químicos.
 Sem RAG, a resposta enumera contaminantes e vias de exposição. Com RAG,
 passa a citar medições e estudos específicos. O \texttt{MED-2391}, primeiro
 no contexto, registra a detecção de PFOA em 17 de 31 amostras compostas de
@@ -785,7 +790,7 @@ indireta sobre as pessoas limitaram o benefício. As três notas comparáveis
 permaneceram iguais.
 
 \paragraph{Piora de utilidade (PLAIN-3342).}
-A pergunta trata do leite de coco. Sem RAG, a resposta permanece centrada
+A pergunta (\textit{Is Coconut Milk Good For You?}) trata do leite de coco. Sem RAG, a resposta permanece centrada
 nesse produto, embora atribua a ele benefícios que os documentos de
 referência não sustentam. Com RAG, a resposta cita estudos sobre óleo,
 farinha e água de coco, e a conclusão passa a tratar de água de coco.

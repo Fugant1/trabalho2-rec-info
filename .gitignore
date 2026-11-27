@@ -237,3 +237,6 @@ temp_notes/
 graphify-out/
 
 relatorio/Template_SBC/
+
+# Pasta temporária para montagem da entrega
+/entrega_tmp/
